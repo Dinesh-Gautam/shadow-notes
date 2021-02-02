@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { db } from "../firebase";
 import { useAuth } from "./AuthContext";
 
@@ -13,6 +13,7 @@ export function useData() {
 export function DatabaseContext({ children }) {
   const { currentUser } = useAuth();
   const [data, setdata] = useState();
+  const [userData, setuserData] = useState([]);
 
   function setData_firestore(data) {
     users
@@ -33,10 +34,33 @@ export function DatabaseContext({ children }) {
       });
   }
 
+  useEffect(() => {
+    let unsubscribe = true;
+    if (unsubscribe && userData.length < 1) {
+      users
+        .doc(currentUser.uid)
+        .collection("userData")
+        .onSnapshot(
+          (snapshot) => {
+            setuserData(
+              snapshot.docs.map((doc) => {
+                return { id: doc.id, ...doc.data() };
+              })
+            );
+          },
+          (error) => alert(error.message)
+        );
+    }
+    return () => {
+      unsubscribe = false;
+    };
+  }, [currentUser.uid, userData]);
+
   const value = {
     data,
     setdata,
     setData_firestore,
+    userData,
   };
   return (
     <data_context.Provider value={value}>{children}</data_context.Provider>
