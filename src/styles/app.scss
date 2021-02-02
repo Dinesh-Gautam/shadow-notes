@@ -37,6 +37,7 @@ textarea:focus {
 main {
   display: grid;
   grid-template-columns: 1fr 4fr 1fr;
+  gap: var(--padding_large);
 }
 body {
   background: var(--bgWhiteGray);
@@ -58,6 +59,9 @@ button {
   background: var(--pureWhite);
   padding: var(--padding_large);
   box-shadow: var(--shadow_default);
+  label[for="heading_input_value"] {
+    margin-bottom: var(--margin);
+  }
 }
 .input_select_container {
   padding-bottom: var(--padding_large);
@@ -78,10 +82,18 @@ button {
     background: var(--pureWhite);
     margin: var(--margin) 0;
     box-shadow: var(--shadow_default);
+    padding: var(--padding);
+
     .input_box_header {
       margin: var(--pading_less) var(--padding_large);
       display: flex;
       align-items: center;
+      border-bottom: var(--border_1px);
+      button {
+        border: none;
+        box-shadow: none;
+        background-color: transparent;
+      }
       label {
         flex: 1;
       }
@@ -89,6 +101,8 @@ button {
     .input {
       width: 100%;
       padding: var(--padding);
+      display: flex;
+      justify-content: flex-start;
     }
     input,
     textarea {
@@ -96,10 +110,22 @@ button {
     }
   }
   .color_input {
-    width: 10% !important;
+    --square: 64px;
+    min-height: var(--square) !important;
+    min-width: var(--square) !important;
+    height: var(--square) !important;
+    width: var(--square) !important;
     border: none;
     padding: 0;
     border-width: 0;
+    align-self: flex-end;
+    cursor: pointer;
+    &::-webkit-color-swatch-wrapper {
+      padding: 0 !important;
+    }
+    &::-webkit-color-swatch {
+      border: var(--border_1px);
+    }
   }
   .list_control_btns {
     display: flex;
@@ -110,6 +136,21 @@ button {
     display: flex;
     flex-direction: column;
     gap: var(--padding);
+    width: 100%;
+  }
+  .color_addition_inputs {
+    margin: 0 var(--margin_large);
+  }
+  .random_color {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 var(--margin);
+    width: 100%;
+    gap: var(--padding);
+    button {
+      padding: var(--padding_large);
+      border: 4px solid #fff;
+    }
   }
 }
 .input_selection,

@@ -5,8 +5,9 @@ export const inputOptions = [
     value: "Title",
     name: "tile_input_value",
     inputValue: "",
-    attr: { type: "text" },
+    attr: { required: true, type: "text" },
     tag: "input",
+    isRequired: true,
   },
   {
     value: "Description",
@@ -53,7 +54,8 @@ export const inputOptions = [
   {
     value: "Color",
     name: "color_input_value",
-    inputValue: "#000000",
+    isOption: true,
+    inputValue: "rgb(22,22,225)",
     attr: { className: "color_input", type: "color" },
     tag: "input",
   },
