@@ -228,4 +228,43 @@ button {
       -ms-flex-align: center;
           align-items: center;
 }
+
+.mainoutput_container {
+  -ms-grid-column: 2;
+  -ms-grid-column-span: 1;
+  grid-column: 2/3;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  background: var(--pureWhite);
+  gap: var(--padding_large);
+}
+
+.dropdown_container {
+  -webkit-box-shadow: var(--shadow_default);
+          box-shadow: var(--shadow_default);
+  padding: var(--padding);
+  width: 100%;
+}
+
+.dropdown_container .dropdown_wraper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.dropdown_container .dropdown_wraper h1 {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+
+.dropdown_container .dropdown_inner_container {
+  padding: var(--padding);
+}
 /*# sourceMappingURL=app.css.map */

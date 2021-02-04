@@ -13,7 +13,7 @@ export function useData() {
 export function DatabaseContext({ children }) {
   const { currentUser } = useAuth();
   const [data, setdata] = useState();
-  const [userData, setuserData] = useState([]);
+  const [userData, setuserData] = useState(null);
 
   function setData_firestore(data) {
     users
@@ -36,12 +36,15 @@ export function DatabaseContext({ children }) {
 
   useEffect(() => {
     let unsubscribe = true;
-    if (unsubscribe && userData.length < 1) {
+    if (unsubscribe && userData === null) {
+      console.log("Adding onsnapshot");
+
       users
         .doc(currentUser.uid)
         .collection("userData")
         .onSnapshot(
           (snapshot) => {
+            console.log("snapshot function");
             setuserData(
               snapshot.docs.map((doc) => {
                 return { id: doc.id, ...doc.data() };

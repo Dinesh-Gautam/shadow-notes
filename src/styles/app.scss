@@ -160,3 +160,27 @@ button {
   justify-content: flex-end;
   align-items: center;
 }
+
+.mainoutput_container {
+  grid-column: 2/3;
+  display: flex;
+  flex-wrap: wrap;
+  background: var(--pureWhite);
+  gap: var(--padding_large);
+}
+.dropdown_container {
+  box-shadow: var(--shadow_default);
+  padding: var(--padding);
+  width: 100%;
+
+  .dropdown_wraper {
+    display: flex;
+    align-items: center;
+    h1 {
+      flex: 1;
+    }
+  }
+  .dropdown_inner_container {
+    padding: var(--padding);
+  }
+}

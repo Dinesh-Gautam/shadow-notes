@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from "uuid";
 export const inputOptions = [
   {
     value: "Title",
-    name: "tile_input_value",
+    name: "title_input_value",
     inputValue: "",
     attr: { required: true, type: "text" },
     tag: "input",

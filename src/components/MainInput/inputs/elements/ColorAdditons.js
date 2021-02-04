@@ -6,10 +6,12 @@ function ColorAdditons({ valueUpdater }) {
     <>
       <label> Random Colors </label>
       <div className="random_color">
-        {Array.from(
-          { length: 20 },
-          () => "#" + Math.floor(Math.random() * 16777215).toString(16)
-        ).map((colorValue, index) => (
+        {Array.from({ length: 20 }, () => {
+          const HexColor = () =>
+            "#" + Math.floor(Math.random() * 16777215).toString(16);
+          const color = HexColor();
+          return color.length <= 6 ? "#000000" : color;
+        }).map((colorValue, index) => (
           <Button
             key={index}
             attr={{
@@ -19,7 +21,6 @@ function ColorAdditons({ valueUpdater }) {
               style: { backgroundColor: colorValue },
               className: "random-color-btn colro-btn",
             }}
-            text=""
           />
         ))}
       </div>

@@ -104,18 +104,23 @@ export function InputContext(props) {
   const formSubmitHandler = (e) => {
     e.preventDefault();
     let finalInputSubmitValues = inputs.map((input) => {
-      const { value, inputValue, inner, name } = input;
-      return inner && inputValue !== ""
+      const { value, inputValue, name, id, inner } = input;
+      return inner
         ? {
-            value,
             name,
-            inner: inner.map((list) => list.inputValue),
+            value,
+            id,
+            inner: inner.map(
+              (list) => list.inputValue.trim() !== "" && list.inputValue
+            ),
           }
-        : {
-            value,
-            inputValue,
-            name,
-          };
+        : inputValue.trim() &&
+            inputValue !== "" && {
+              name,
+              inputValue: inputValue.trim(),
+              value,
+              id,
+            };
     });
     setinputs([
       {
