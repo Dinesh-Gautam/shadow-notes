@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import { db } from "../firebase";
 import { useAuth } from "./AuthContext";
 
@@ -34,36 +34,12 @@ export function DatabaseContext({ children }) {
       });
   }
 
-  useEffect(() => {
-    let unsubscribe = true;
-    if (unsubscribe && userData === null) {
-      console.log("Adding onsnapshot");
-
-      users
-        .doc(currentUser.uid)
-        .collection("userData")
-        .onSnapshot(
-          (snapshot) => {
-            console.log("snapshot function");
-            setuserData(
-              snapshot.docs.map((doc) => {
-                return { id: doc.id, ...doc.data() };
-              })
-            );
-          },
-          (error) => alert(error.message)
-        );
-    }
-    return () => {
-      unsubscribe = false;
-    };
-  }, [currentUser.uid, userData]);
-
   const value = {
     data,
     setdata,
     setData_firestore,
     userData,
+    setuserData,
   };
   return (
     <data_context.Provider value={value}>{children}</data_context.Provider>
