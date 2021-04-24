@@ -1,6 +1,12 @@
 import React, { useState } from "react";
 
-function DropDown({ children, className, mainText, extraButtons }) {
+function DropDown({
+  children,
+  className,
+  mainText,
+  extraButtons,
+  DropdownBackgroundColor,
+}) {
   const [dropdownDisplay, setdropdownDisplay] = useState(false);
 
   const dropInnerContainer = () => {
@@ -8,7 +14,10 @@ function DropDown({ children, className, mainText, extraButtons }) {
   };
 
   return (
-    <div className="dropdown_container">
+    <div
+      style={{ backgroundColor: DropdownBackgroundColor }}
+      className="dropdown_container"
+    >
       <div className="dropdown_wraper">
         <h1 className={className || "default_dropdown_main_container"}>
           {mainText}

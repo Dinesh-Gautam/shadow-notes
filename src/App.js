@@ -6,6 +6,7 @@ import SignWithGoogle from "./components/signIn/SignWithGoogle";
 import { useAuth } from "./context/AuthContext";
 
 import "./styles/app.css";
+import "./styles/MainOutput/mainOutput.css";
 
 function App() {
   const { currentUser, logout } = useAuth();
@@ -17,8 +18,10 @@ function App() {
       ) : (
         <>
           <InputContext>
-            <MainInput />
-            <MainOutput />
+            <div className="mainContainer">
+              <MainInput />
+              <MainOutput />
+            </div>
           </InputContext>
           <button onClick={logout}>Sign Out</button>
         </>

@@ -50,17 +50,29 @@ function MainOutput() {
 
   return (
     <div className="mainoutput_container">
-      {userData &&
-        userData.map(({ data, id }) => {
-          const { inputValue } = data.find(
-            (data) => data.name === "heading_input_value"
-          );
-          return (
-            <DropDown key={id} mainText={inputValue}>
-              <OutputTemplet userData={data} />
-            </DropDown>
-          );
-        })}
+      <div className="mainoutput_wraper">
+        {userData &&
+          userData.map(({ data, id }) => {
+            const headingText = data.find(
+              (data) => data.name === "heading_input_value"
+            );
+            const DropdownBackgroundColor = data.find(
+              (data) => data.name === "color_input_value"
+            );
+            console.log(DropdownBackgroundColor);
+            return (
+              <DropDown
+                key={id}
+                DropdownBackgroundColor={
+                  DropdownBackgroundColor && DropdownBackgroundColor.inputValue
+                }
+                mainText={headingText.inputValue}
+              >
+                <OutputTemplet userData={data} />
+              </DropDown>
+            );
+          })}
+      </div>
     </div>
   );
 }

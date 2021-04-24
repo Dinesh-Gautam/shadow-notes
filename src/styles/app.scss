@@ -14,6 +14,7 @@
   --bgWhiteGray_alpha: rgba(250, 250, 250, 0.3);
   --shadow_default: 0 2px 4px rgba(0, 0, 0, 0.1);
   --border_1px: 1px solid rgba(0, 0, 0, 0.1);
+  --default_font_size: 16px;
 }
 
 input,
@@ -29,10 +30,27 @@ select {
   border: var(--border_1px);
   font-size: var(--fontSize_input);
 }
+label {
+  display: block;
+  font-size: 10px;
+  text-transform: uppercase;
+  font-weight: bold;
+}
 
 input:focus,
 textarea:focus {
   box-shadow: inset 1px 2px 2px rgba(0, 0, 0, 0.02);
+}
+
+button {
+  border: none;
+  background: var(--bgWhiteGray);
+  cursor: pointer;
+  box-shadow: var(--shadow_default);
+  font-size: var(--fontSize_btn);
+  & > i {
+    pointer-events: none;
+  }
 }
 main {
   display: grid;
@@ -45,20 +63,22 @@ body {
   overflow-x: hidden;
   font-size: 14px;
 }
+body,
+html,
+#root,
+main {
+  height: 100%;
+}
 
-button {
-  border: none;
-  background: var(--bgWhiteGray);
-  cursor: pointer;
-  box-shadow: var(--shadow_default);
-  font-size: var(--fontSize_btn);
+.mainContainer {
+  grid-column: 2/3;
 }
 
 .input_container {
-  grid-column: 2/3;
   background: var(--pureWhite);
   padding: var(--padding_large);
   box-shadow: var(--shadow_default);
+
   label[for="heading_input_value"] {
     margin-bottom: var(--margin);
   }
@@ -159,28 +179,4 @@ button {
   gap: var(--padding);
   justify-content: flex-end;
   align-items: center;
-}
-
-.mainoutput_container {
-  grid-column: 2/3;
-  display: flex;
-  flex-wrap: wrap;
-  background: var(--pureWhite);
-  gap: var(--padding_large);
-}
-.dropdown_container {
-  box-shadow: var(--shadow_default);
-  padding: var(--padding);
-  width: 100%;
-
-  .dropdown_wraper {
-    display: flex;
-    align-items: center;
-    h1 {
-      flex: 1;
-    }
-  }
-  .dropdown_inner_container {
-    padding: var(--padding);
-  }
 }
