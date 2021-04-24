@@ -2,6 +2,7 @@ import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
 
+// firebase init
 const app = firebase.initializeApp({
   //   apiKey: process.env.FIREBASE_API_KEY,
   //   apikey: "AIzaSyB9VgvbdmNX1EmSQtJA69ME2Wqy7svMDYU",
@@ -17,8 +18,12 @@ const app = firebase.initializeApp({
   messagingSenderId: "528664552621",
   appId: "1:528664552621:web:445439863059ac1dc85224",
 });
-
+// firebase auth
 export const auth = app.auth();
+
+// firebase firestore database
 export const db = app.firestore();
+
+// sign in popup by google
 export const googleProvider = new firebase.auth.GoogleAuthProvider();
 export default app;

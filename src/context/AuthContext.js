@@ -28,6 +28,7 @@ export function AuthProvider({ children }) {
     return auth.signOut();
   }
 
+  // checks if the user is loggedin or not when the app starts
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       setCurrentUser(user);
@@ -35,6 +36,7 @@ export function AuthProvider({ children }) {
     });
     return unsubscribe;
   }, []);
+
   const value = {
     currentUser,
     login,

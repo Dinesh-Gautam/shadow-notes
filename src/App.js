@@ -4,6 +4,7 @@ import MainInput from "./components/MainInput/MainInput";
 import MainOutput from "./components/MainOutput/MainOutput";
 import SignWithGoogle from "./components/signIn/SignWithGoogle";
 import { useAuth } from "./context/AuthContext";
+import { DatabaseContext } from "./context/DatabaseContext";
 
 import "./styles/app.css";
 import "./styles/MainOutput/mainOutput.css";
@@ -16,15 +17,17 @@ function App() {
       {!currentUser ? (
         <SignWithGoogle />
       ) : (
-        <>
+        <DatabaseContext>
           <InputContext>
             <div className="mainContainer">
               <MainInput />
               <MainOutput />
             </div>
           </InputContext>
-          <button onClick={logout}>Sign Out</button>
-        </>
+          <div className="user-additionals-container">
+            <button onClick={logout}>Sign Out</button>
+          </div>
+        </DatabaseContext>
       )}
     </main>
   );

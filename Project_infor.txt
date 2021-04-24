@@ -1,0 +1,5 @@
+; * = done ; () = pending ; ^ = maybe in futer ;
+
+Use React routers   ()
+improve auth code   *
+
