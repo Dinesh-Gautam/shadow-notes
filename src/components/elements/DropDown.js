@@ -28,8 +28,12 @@ function DropDown({
         </div>
       </div>
       <div
-        style={{ display: dropdownDisplay ? "block" : "none" }}
-        className="dropdown_inner_container"
+        // style={{ display: dropdownDisplay ? "block" : "none" }}
+        className={
+          dropdownDisplay
+            ? "dropdown_inner_container visible"
+            : "dropdown_inner_container"
+        }
       >
         {children}
       </div>

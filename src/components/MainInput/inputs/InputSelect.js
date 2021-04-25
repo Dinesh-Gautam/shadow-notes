@@ -8,6 +8,7 @@ import { v4 as uuidv4 } from "uuid";
 function InputSelect() {
   const [inputSelect, setinputSelect] = useState("title");
   const { inputs, setinputs } = useContext(input_context);
+
   const inputAdderHandler = () => {
     const selectedInput = inputOptions.find(
       (input) => input.value.toLowerCase() === inputSelect.toLowerCase()

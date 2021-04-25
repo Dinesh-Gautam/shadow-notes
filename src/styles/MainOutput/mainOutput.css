@@ -39,8 +39,12 @@
 }
 
 .dropdown_container .dropdown_inner_container {
-  padding: var(--padding);
   background: rgba(255, 255, 255, 0.8);
+  display: none;
+}
+
+.dropdown_container .dropdown_inner_container.visible {
+  display: block;
 }
 
 .outputTemplet_wraper {

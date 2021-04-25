@@ -22,8 +22,15 @@
     }
   }
   .dropdown_inner_container {
-    padding: var(--padding);
     background: rgba($color: #fff, $alpha: 0.8);
+    // max-height: 0;
+    // overflow: hidden;
+    // transition: max-height 0.45s ease-in-out;
+    display: none;
+    &.visible {
+      // max-height: 500px;
+      display: block;
+    }
   }
 }
 .outputTemplet_wraper {

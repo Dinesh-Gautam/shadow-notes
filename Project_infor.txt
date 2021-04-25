@@ -3,3 +3,7 @@
 Use React routers   ()
 improve auth code   *
 
+use useReducer() hook for storing input values
+every input will have a different id and will be stored in state (using useReducer() hook)
+and there will be another state to manage all inputs which are displayed
+
