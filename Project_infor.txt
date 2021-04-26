@@ -7,3 +7,13 @@ use useReducer() hook for storing input values
 every input will have a different id and will be stored in state (using useReducer() hook)
 and there will be another state to manage all inputs which are displayed
 
+
+old approach------------
+added another state to manage input values *
+now set values of input to new state using id *
+now change value updater *
+then change remove element *
+then figure out list input
+
+new approach------------
+using use reducer this time 

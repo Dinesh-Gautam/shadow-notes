@@ -7,16 +7,23 @@ import { v4 as uuidv4 } from "uuid";
 
 function InputSelect() {
   const [inputSelect, setinputSelect] = useState("title");
-  const { inputs, setinputs } = useContext(input_context);
+  const { inputs, inputsDispatch } = useContext(input_context);
 
   const inputAdderHandler = () => {
+    const uid = uuidv4();
+
     const selectedInput = inputOptions.find(
       (input) => input.value.toLowerCase() === inputSelect.toLowerCase()
     );
-    setinputs((prev) => {
-      return [...prev, { ...selectedInput, id: uuidv4() }];
-    });
+    // console.log(uid);
+
+    inputsDispatch({ type: "addElement", payload: { id: uid, selectedInput } });
+
+    // setinputs((prev) => {
+    //   return [...prev, { ...selectedInput, id: uid }];
+    // });
   };
+
   return (
     <div className="input_select_container">
       <div className="input_fields">

@@ -9,11 +9,10 @@ const MemoAddions = React.memo(ColorAdditons);
 function InputField({ input }) {
   const {
     valueUpdater,
-    removeElement,
-    removeListInput,
-    addListInput,
+    removeListInput, 
+    inputsDispatch,
+    // inputValue,
   } = useInputs();
-
   return (
     <div className="input_box">
       <div className="input_box_header">
@@ -22,7 +21,15 @@ function InputField({ input }) {
         </label>
         {input.name === "heading_input_value" || (
           <Button
-            attr={{ onClick: removeElement, "data-id": input.id }}
+            attr={{
+              onClick: () => {
+                inputsDispatch({
+                  payload: { id: input.id },
+                  type: "removeElement",
+                });
+              },
+              "data-id": input.id,
+            }}
             text={<i className="fas fa-times"></i>}
           />
         )}
@@ -37,7 +44,7 @@ function InputField({ input }) {
               name: input.name,
               placeholder: input.value,
               onChange: valueUpdater,
-              value: input.inputValue,
+              // value: inputValue[input.id]?.value,
             },
             input.inner &&
               input.inner.map((list, index) => {
@@ -49,10 +56,13 @@ function InputField({ input }) {
                     input={input}
                     valueUpdater={valueUpdater}
                     removeListInput={removeListInput}
+                    inputsDispatch={inputsDispatch}
+                    // listInputValue={inputValue[list.id]?.value}
                   />
                 );
               })
           )}
+
           {input.isOption && input.name === "color_input_value" && (
             <div className="color_addition_inputs" id={input.id}>
               <MemoAddions valueUpdater={valueUpdater} />
@@ -64,12 +74,23 @@ function InputField({ input }) {
             <img src={input.inputValue} alt={"Not found"} />
           </div>
         )}
+        {input.inner && (
+          <div className="list_control_btns">
+            <Button
+              attr={{
+                name: input.id,
+                onClick: () => {
+                  inputsDispatch({
+                    payload: { id: input.id },
+                    type: "addListElement",
+                  });
+                },
+              }}
+              text="Add"
+            />
+          </div>
+        )}
       </div>
-      {input.inner && (
-        <div className="list_control_btns">
-          <Button attr={{ name: input.id, onClick: addListInput }} text="Add" />
-        </div>
-      )}
     </div>
   );
 }

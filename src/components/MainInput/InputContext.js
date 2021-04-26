@@ -1,6 +1,10 @@
-import React, { useState, createContext, useContext, useCallback } from "react";
+import React, {
+  createContext,
+  useContext,
+  useReducer,
+} from "react";
 import { v4 as uuidv4 } from "uuid";
-import { useData } from "../../context/DatabaseContext";
+// import { useData } from "../../context/DatabaseContext";
 
 export const input_context = createContext();
 
@@ -9,8 +13,7 @@ export function useInputs() {
 }
 
 export function InputContext(props) {
-  const { setData_firestore } = useData();
-  const [inputs, setinputs] = useState([
+  const initialState = [
     {
       value: "Heading",
       id: uuidv4(),
@@ -20,130 +23,195 @@ export function InputContext(props) {
       tag: "input",
       isRequired: true,
     },
-  ]);
+  ];
 
-  const addListInput = (e) => {
-    e.preventDefault();
-    setinputs((prev) => {
-      const listAdded = prev.map((input) => {
-        return input.id === e.target.name
-          ? {
-              ...input,
-              inner: [
-                ...input.inner,
-                {
-                  id: uuidv4(),
-                  attr: { type: "text" },
-                  inputValue: "",
-                  tag: "input",
-                },
-              ],
-            }
-          : input;
-      });
-      return [...listAdded];
-    });
+  const setinputs = (state, action) => {
+    switch (action.type) {
+      case "addElement":
+        return addElement(state, action);
+      case "removeElement":
+        return removeElement(state, action);
+      case "addListElement":
+        return addListElement(state, action);
+      case "removeListElement":
+        return removeListELement(state, action);
+      default:
+        return state;
+    }
   };
 
-  const removeElement = (e) => {
-    e.preventDefault();
-    setinputs((prev) =>
-      prev.filter((input) => input.id !== e.target.dataset.id)
-    );
+  const addElement = (state, action) => {
+    return [
+      ...state,
+      { ...action.payload.selectedInput, id: action.payload.id },
+    ];
   };
 
-  const removeListInput = (e) => {
-    e.preventDefault();
-    const parentId = e.target.parentElement.parentElement.id;
-    setinputs((prev) => {
-      const listRemoved = prev.map((input) => {
-        return input.id === parentId
-          ? {
-              ...input,
-              inner: input.inner.filter((list) => list.id !== e.target.id),
-            }
-          : input;
-      });
-      return [...listRemoved];
-    });
-  };
-
-  const valueUpdater = useCallback(
-    (e) => {
-      setinputs((prev) => {
-        const updatedinputs = prev.map((inputs) => {
-          if (e.target.name === "list_input_value") {
-            if (e.target.parentElement.parentElement.id === inputs.id) {
-              return {
-                ...inputs,
-                inner: inputs.inner.map((list) =>
-                  list.id === e.target.dataset.id
-                    ? { ...list, inputValue: e.target.value }
-                    : list
-                ),
-              };
-            } else {
-              return inputs;
-            }
-          } else if (e.target.name === "color_input_value") {
-            return inputs.id === e.target.parentElement.parentElement.id ||
-              inputs.id === e.target.id
-              ? { ...inputs, inputValue: e.target.value }
-              : inputs;
-          } else {
-            return inputs.id === e.target.id
-              ? { ...inputs, inputValue: e.target.value }
-              : inputs;
-          }
-        });
-        return updatedinputs;
-      });
-    },
-    [setinputs]
-  );
-  const formSubmitHandler = (e) => {
-    e.preventDefault();
-    let finalInputSubmitValues = inputs.map((input) => {
-      const { value, inputValue, name, id, inner } = input;
-      return inner
+  const removeListELement = (state, action) => {
+    const listRemoved = state.map((input) => {
+      return input.id === action.payload.parentId
         ? {
-            name,
-            value,
-            id,
-            inner: inner.map(
-              (list) => list.inputValue.trim() !== "" && list.inputValue
-            ),
+            ...input,
+            inner: input.inner.filter((list) => list.id !== action.payload.id),
           }
-        : inputValue.trim() &&
-            inputValue !== "" && {
-              name,
-              inputValue: inputValue.trim(),
-              value,
-              id,
-            };
+        : input;
     });
-    setinputs([
-      {
-        value: "Heading",
-        id: uuidv4(),
-        name: "heading_input_value",
-        inputValue: "",
-        attr: { required: true, type: "text" },
-        tag: "input",
-        isRequired: true,
-      },
-    ]);
-    setData_firestore({ options: false, data: finalInputSubmitValues });
+    return [...listRemoved];
   };
+
+  const addListElement = (state, action) => {
+    const listAdded = state.map((input) => {
+      return input.id === action.payload.id
+        ? {
+            ...input,
+            inner: [
+              ...input.inner,
+              {
+                id: uuidv4(),
+                attr: { type: "text" },
+                inputValue: "",
+                tag: "input",
+              },
+            ],
+          }
+        : input;
+    });
+    return [...listAdded];
+  };
+
+  const removeElement = (state, action) => {
+    return state.filter((input) => input.id !== action.payload.id);
+  };
+  const [inputs, inputsDispatch] = useReducer(setinputs, initialState);
+
+  // const headingInput = {
+  //   id : uuidv4(),
+  //   state : [
+  //     {
+  //       value: "Heading",
+  //       id: uuidv4(),
+  //       name: "heading_input_value",
+  //       inputValue: "",
+  //       attr: { required: true, type: "text" },
+  //       tag: "input",
+  //       isRequired: true,
+  //     },
+  //   ],
+  //   valueState : {[this.id] : {value: "" , additionalValue : ""}}
+  // }
+
+  // const { setData_firestore } = useData();
+
+  // const addListInput = (e) => {
+  //   e.preventDefault();
+  //   setinputs((prev) => {
+  //     const listAdded = prev.map((input) => {
+  //       return input.id === e.target.name
+  //         ? {
+  //             ...input,
+  //             inner: [
+  //               ...input.inner,
+  //               {
+  //                 id: uuidv4(),
+  //                 attr: { type: "text" },
+  //                 inputValue: "",
+  //                 tag: "input",
+  //               },
+  //             ],
+  //           }
+  //         : input;
+  //     });
+  //     return [...listAdded];
+  //   });
+  // };
+
+  // const removeElement = () => {
+  // e.preventDefault();
+  // setinputs((prev) =>
+  //   prev.filter((input) => input.id !== e.target.dataset.id)
+  // );
+
+  // setinputValue((prev) => {
+  //   delete prev[e.target.dataset.id];
+  //   return prev;
+  // });
+  // };
+
+  // const removeListInput = (e) => {
+  // e.preventDefault();
+  // const parentId = e.target.parentElement.parentElement.id;
+  // setinputs((prev) => {
+  //   const listRemoved = prev.map((input) => {
+  //     return input.id === parentId
+  //       ? {
+  //           ...input,
+  //           inner: input.inner.filter((list) => list.id !== e.target.id),
+  //         }
+  //       : input;
+  //   });
+  //   return [...listRemoved];
+  // });
+  // setinputValue((prev) => {
+  //   delete prev[e.target.id];
+  //   return prev;
+  // });
+  // };
+
+  // const valueUpdater = useCallback((e) => {
+  // setinputValue((prev) => {
+  //   return {
+  //     ...prev,
+  //     [e.target.id]: { ...prev[e.target.id], value: e.target.value },
+  //   };
+  // });
+  // }, []);
+
+  // const formSubmitHandler = (e) => {
+  //   e.preventDefault();
+  //   // let finalInputSubmitValues = inputs.map((input) => {
+  //   //   const { value, inputValue, name, id, inner } = input;
+  //   //   return inner
+  //   //     ? {
+  //   //         name,
+  //   //         value,
+  //   //         id,
+  //   //         inner: inner.map(
+  //   //           (list) => list.inputValue.trim() !== "" && list.inputValue
+  //   //         ),
+  //   //       }
+  //   //     : inputValue.trim() &&
+  //   //         inputValue !== "" && {
+  //   //           name,
+  //   //           inputValue: inputValue.trim(),
+  //   //           value,
+  //   //           id,
+  //   //         };
+  //   // });
+  //   // setinputs([
+  //   //   {
+  //   //     value: "Heading",
+  //   //     id: uuidv4(),
+  //   //     name: "heading_input_value",
+  //   //     inputValue: "",
+  //   //     attr: { required: true, type: "text" },
+  //   //     tag: "input",
+  //   //     isRequired: true,
+  //   //   },
+  //   // ]);
+  //   // setData_firestore({ options: false, data: finalInputSubmitValues });
+  // };
 
   const value = {
     inputs,
-    setinputs,
-    addListInput,
-    removeElement,
-    removeListInput,
-    valueUpdater,
-    formSubmitHandler,
+    // setinputs,
+    inputsDispatch,
+    // addListInput,
+    // removeElement,
+    // removeListInput,
+    // valueUpdater,
+    // formSubmitHandler,
+    // inputValue,
+    // setinputValue,
   };
   return (
     <input_context.Provider value={value}>
