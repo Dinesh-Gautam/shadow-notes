@@ -5,8 +5,7 @@ function List({
   index,
   list,
   input,
-  valueUpdater,
-  removeListInput,
+  inputValueDispatch,
   inputsDispatch,
   listInputValue,
 }) {
@@ -18,7 +17,15 @@ function List({
         "data-id": list.id,
         placeholder: `${input.value} ${index}`,
         name: input.name,
-        onChange: valueUpdater,
+        onChange: (e) =>
+          inputValueDispatch({
+            type: "listValue",
+            payload: {
+              parentId: input.id,
+              childrenId: list.id,
+              value: e.target.value,
+            },
+          }),
         value: listInputValue,
       })}
 

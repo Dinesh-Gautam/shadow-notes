@@ -8,9 +8,9 @@ const MemoAddions = React.memo(ColorAdditons);
 
 function InputField({ input }) {
   const {
-    valueUpdater,
-    removeListInput, 
     inputsDispatch,
+    inputValueDispatch,
+    inputValue,
     // inputValue,
   } = useInputs();
   return (
@@ -43,8 +43,14 @@ function InputField({ input }) {
               id: input.id,
               name: input.name,
               placeholder: input.value,
-              onChange: valueUpdater,
-              // value: inputValue[input.id]?.value,
+              onChange: (e) => {
+                input.tag === "div" ||
+                  inputValueDispatch({
+                    type: "normalValue",
+                    payload: { id: input.id, value: e.target.value },
+                  });
+              },
+              value: inputValue[input.id]?.value || "",
             },
             input.inner &&
               input.inner.map((list, index) => {
@@ -54,10 +60,11 @@ function InputField({ input }) {
                     list={list}
                     index={index}
                     input={input}
-                    valueUpdater={valueUpdater}
-                    removeListInput={removeListInput}
                     inputsDispatch={inputsDispatch}
-                    // listInputValue={inputValue[list.id]?.value}
+                    inputValueDispatch={inputValueDispatch}
+                    listInputValue={
+                      inputValue[input.id]?.inputChildren[list.id]?.value || ""
+                    }
                   />
                 );
               })
@@ -65,13 +72,16 @@ function InputField({ input }) {
 
           {input.isOption && input.name === "color_input_value" && (
             <div className="color_addition_inputs" id={input.id}>
-              <MemoAddions valueUpdater={valueUpdater} />
+              <MemoAddions
+                inputValueDispatch={inputValueDispatch}
+                parentId={input.id}
+              />
             </div>
           )}
         </div>
-        {input.name === "image_input_value" && !!input.inputValue && (
+        {input.name === "image_input_value" && !!inputValue[input.id]?.value && (
           <div className="image_container">
-            <img src={input.inputValue} alt={"Not found"} />
+            <img src={inputValue[input.id]?.value} alt={"Not found"} />
           </div>
         )}
         {input.inner && (

@@ -1,7 +1,7 @@
 import React from "react";
 import Button from "./Button";
 
-function ColorAdditons({ valueUpdater }) {
+function ColorAdditons({ inputValueDispatch, parentId }) {
   return (
     <>
       <label> Random Colors </label>
@@ -16,7 +16,12 @@ function ColorAdditons({ valueUpdater }) {
             key={index}
             attr={{
               value: colorValue,
-              onClick: valueUpdater,
+              onClick: () => {
+                inputValueDispatch({
+                  type: "normalValue",
+                  payload: { id: parentId, value: colorValue },
+                });
+              },
               name: "color_input_value",
               style: { backgroundColor: colorValue },
               className: "random-color-btn colro-btn",

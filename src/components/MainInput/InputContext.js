@@ -1,8 +1,4 @@
-import React, {
-  createContext,
-  useContext,
-  useReducer,
-} from "react";
+import React, { createContext, useContext, useReducer } from "react";
 import { v4 as uuidv4 } from "uuid";
 // import { useData } from "../../context/DatabaseContext";
 
@@ -25,16 +21,29 @@ export function InputContext(props) {
     },
   ];
 
-  const setinputs = (state, action) => {
+  const setinputValue = (state, action) => {
+    const { payload } = action;
+
     switch (action.type) {
-      case "addElement":
-        return addElement(state, action);
-      case "removeElement":
-        return removeElement(state, action);
-      case "addListElement":
-        return addListElement(state, action);
-      case "removeListElement":
-        return removeListELement(state, action);
+      case "normalValue":
+        return {
+          ...state,
+          [payload.id]: {
+            value: payload.value,
+            additionalValue: "",
+          },
+        };
+      case "listValue":
+        return {
+          ...state,
+          [payload.parentId]: {
+            additionalValue: "",
+            inputChildren: {
+              ...state[payload.parentId]?.inputChildren,
+              [payload.childrenId]: { value: payload.value },
+            },
+          },
+        };
       default:
         return state;
     }
@@ -82,8 +91,24 @@ export function InputContext(props) {
   const removeElement = (state, action) => {
     return state.filter((input) => input.id !== action.payload.id);
   };
-  const [inputs, inputsDispatch] = useReducer(setinputs, initialState);
 
+  const setinputs = (state, action) => {
+    switch (action.type) {
+      case "addElement":
+        return addElement(state, action);
+      case "removeElement":
+        return removeElement(state, action);
+      case "addListElement":
+        return addListElement(state, action);
+      case "removeListElement":
+        return removeListELement(state, action);
+      default:
+        return state;
+    }
+  };
+
+  const [inputs, inputsDispatch] = useReducer(setinputs, initialState);
+  const [inputValue, inputValueDispatch] = useReducer(setinputValue, {});
   // const headingInput = {
   //   id : uuidv4(),
   //   state : [
@@ -210,7 +235,8 @@ export function InputContext(props) {
     // removeListInput,
     // valueUpdater,
     // formSubmitHandler,
-    // inputValue,
+    inputValue,
+    inputValueDispatch,
     // setinputValue,
   };
   return (
