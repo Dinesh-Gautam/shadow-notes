@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useReducer } from "react";
 import { v4 as uuidv4 } from "uuid";
-// import { useData } from "../../context/DatabaseContext";
+import { useData } from "../../context/DatabaseContext";
 
 export const input_context = createContext();
 
@@ -44,10 +44,20 @@ export function InputContext(props) {
             },
           },
         };
+      case "delete":
+        delete state[action.payload.id];
+        return state;
+      case "listDelete":
+        const list = state[action.payload.parentId].inputChildren;
+        delete list[action.payload.childrenId];
+        return state;
+      case "clear":
+        return {};
       default:
         return state;
     }
   };
+  const [inputValue, inputValueDispatch] = useReducer(setinputValue, {});
 
   const addElement = (state, action) => {
     return [
@@ -57,6 +67,13 @@ export function InputContext(props) {
   };
 
   const removeListELement = (state, action) => {
+    inputValueDispatch({
+      type: "listDelete",
+      payload: {
+        parentId: action.payload.parentId,
+        childrenId: action.payload.id,
+      },
+    });
     const listRemoved = state.map((input) => {
       return input.id === action.payload.parentId
         ? {
@@ -89,6 +106,7 @@ export function InputContext(props) {
   };
 
   const removeElement = (state, action) => {
+    inputValueDispatch({ type: "delete", payload: { id: action.payload.id } });
     return state.filter((input) => input.id !== action.payload.id);
   };
 
@@ -102,142 +120,56 @@ export function InputContext(props) {
         return addListElement(state, action);
       case "removeListElement":
         return removeListELement(state, action);
+      case "clear":
+        return initialState;
       default:
         return state;
     }
   };
 
   const [inputs, inputsDispatch] = useReducer(setinputs, initialState);
-  const [inputValue, inputValueDispatch] = useReducer(setinputValue, {});
-  // const headingInput = {
-  //   id : uuidv4(),
-  //   state : [
-  //     {
-  //       value: "Heading",
-  //       id: uuidv4(),
-  //       name: "heading_input_value",
-  //       inputValue: "",
-  //       attr: { required: true, type: "text" },
-  //       tag: "input",
-  //       isRequired: true,
-  //     },
-  //   ],
-  //   valueState : {[this.id] : {value: "" , additionalValue : ""}}
-  // }
 
-  // const { setData_firestore } = useData();
+  const { setData_firestore } = useData();
 
-  // const addListInput = (e) => {
-  //   e.preventDefault();
-  //   setinputs((prev) => {
-  //     const listAdded = prev.map((input) => {
-  //       return input.id === e.target.name
-  //         ? {
-  //             ...input,
-  //             inner: [
-  //               ...input.inner,
-  //               {
-  //                 id: uuidv4(),
-  //                 attr: { type: "text" },
-  //                 inputValue: "",
-  //                 tag: "input",
-  //               },
-  //             ],
-  //           }
-  //         : input;
-  //     });
-  //     return [...listAdded];
-  //   });
-  // };
-
-  // const removeElement = () => {
-  // e.preventDefault();
-  // setinputs((prev) =>
-  //   prev.filter((input) => input.id !== e.target.dataset.id)
-  // );
-
-  // setinputValue((prev) => {
-  //   delete prev[e.target.dataset.id];
-  //   return prev;
-  // });
-  // };
-
-  // const removeListInput = (e) => {
-  // e.preventDefault();
-  // const parentId = e.target.parentElement.parentElement.id;
-  // setinputs((prev) => {
-  //   const listRemoved = prev.map((input) => {
-  //     return input.id === parentId
-  //       ? {
-  //           ...input,
-  //           inner: input.inner.filter((list) => list.id !== e.target.id),
-  //         }
-  //       : input;
-  //   });
-  //   return [...listRemoved];
-  // });
-  // setinputValue((prev) => {
-  //   delete prev[e.target.id];
-  //   return prev;
-  // });
-  // };
-
-  // const valueUpdater = useCallback((e) => {
-  // setinputValue((prev) => {
-  //   return {
-  //     ...prev,
-  //     [e.target.id]: { ...prev[e.target.id], value: e.target.value },
-  //   };
-  // });
-  // }, []);
-
-  // const formSubmitHandler = (e) => {
-  //   e.preventDefault();
-  //   // let finalInputSubmitValues = inputs.map((input) => {
-  //   //   const { value, inputValue, name, id, inner } = input;
-  //   //   return inner
-  //   //     ? {
-  //   //         name,
-  //   //         value,
-  //   //         id,
-  //   //         inner: inner.map(
-  //   //           (list) => list.inputValue.trim() !== "" && list.inputValue
-  //   //         ),
-  //   //       }
-  //   //     : inputValue.trim() &&
-  //   //         inputValue !== "" && {
-  //   //           name,
-  //   //           inputValue: inputValue.trim(),
-  //   //           value,
-  //   //           id,
-  //   //         };
-  //   // });
-  //   // setinputs([
-  //   //   {
-  //   //     value: "Heading",
-  //   //     id: uuidv4(),
-  //   //     name: "heading_input_value",
-  //   //     inputValue: "",
-  //   //     attr: { required: true, type: "text" },
-  //   //     tag: "input",
-  //   //     isRequired: true,
-  //   //   },
-  //   // ]);
-  //   // setData_firestore({ options: false, data: finalInputSubmitValues });
-  // };
+  const formSubmitHandler = (e) => {
+    e.preventDefault();
+    let finalInputSubmitValues = inputs.map((input) => {
+      const { value, name, id, inner } = input;
+      const valueOfInput = inputValue[id];
+      return inner
+        ? {
+            name,
+            value,
+            id,
+            inner: inner.map(
+              (list) =>
+                valueOfInput.inputChildren[list.id].value.trim() !== "" &&
+                valueOfInput.inputChildren[list.id].value
+            ),
+          }
+        : valueOfInput.value.trim() &&
+            valueOfInput.value !== "" && {
+              name,
+              inputValue: valueOfInput.value.trim(),
+              value,
+              id,
+            };
+    });
+    inputsDispatch({
+      type: "clear",
+    });
+    inputValueDispatch({
+      type: "clear",
+    });
+    setData_firestore({ options: false, data: finalInputSubmitValues });
+  };
 
   const value = {
     inputs,
-    // setinputs,
     inputsDispatch,
-    // addListInput,
-    // removeElement,
-    // removeListInput,
-    // valueUpdater,
-    // formSubmitHandler,
+    formSubmitHandler,
     inputValue,
     inputValueDispatch,
-    // setinputValue,
   };
   return (
     <input_context.Provider value={value}>

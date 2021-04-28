@@ -1,4 +1,4 @@
-; * = done ; () = pending ; ^ = maybe in futer ;
+; * = done ; () = pending ; ^ = maybe in futer ; # = cancle;
 
 Use React routers   ()
 improve auth code   *
@@ -13,7 +13,9 @@ added another state to manage input values *
 now set values of input to new state using id *
 now change value updater *
 then change remove element *
-then figure out list input
+then figure out list input #
 
 new approach------------
-using use reducer this time 
+using use reducer this time *
+
+formSubmit handler ()

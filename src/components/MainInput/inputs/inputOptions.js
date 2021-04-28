@@ -55,7 +55,7 @@ export const inputOptions = [
     value: "Color",
     name: "color_input_value",
     isOption: true,
-    inputValue: "rgb(22,22,225)",
+    inputValue: "#000000",
     attr: { className: "color_input", type: "color" },
     tag: "input",
   },

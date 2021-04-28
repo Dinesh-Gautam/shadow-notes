@@ -50,7 +50,7 @@ function InputField({ input }) {
                     payload: { id: input.id, value: e.target.value },
                   });
               },
-              value: inputValue[input.id]?.value || "",
+              value: inputValue[input.id]?.value || input.inputValue,
             },
             input.inner &&
               input.inner.map((list, index) => {
