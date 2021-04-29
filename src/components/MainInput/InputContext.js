@@ -161,7 +161,11 @@ export function InputContext(props) {
     inputValueDispatch({
       type: "clear",
     });
-    setData_firestore({ options: false, data: finalInputSubmitValues });
+    setData_firestore({
+      delete: false,
+      options: false,
+      data: finalInputSubmitValues,
+    });
   };
 
   const value = {

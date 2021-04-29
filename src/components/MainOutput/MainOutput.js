@@ -2,6 +2,7 @@ import React from "react";
 import { useData } from "../../context/DatabaseContext";
 import DropDown from "../elements/DropDown";
 import OutputTemplet from "./OutputTemplet";
+import AdditionalButtons from "./smallComponents/AdditionalButtons";
 
 function MainOutput() {
   const { userData } = useData();
@@ -20,6 +21,7 @@ function MainOutput() {
             return (
               <DropDown
                 key={id}
+                extraButtons={<AdditionalButtons docId={id} />}
                 DropdownBackgroundColor={
                   DropdownBackgroundColor && DropdownBackgroundColor.inputValue
                 }

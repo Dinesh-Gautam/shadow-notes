@@ -25,6 +25,7 @@ export function DatabaseContext({ children }) {
       .collection("users")
       .doc(userID)
       .collection("userData")
+      .where("delete", "==", false)
       .onSnapshot(
         (snapshot) => {
           console.log("On snapshot");
@@ -66,10 +67,19 @@ export function DatabaseContext({ children }) {
       });
   }
 
+  function updateData_firestore(docId, data) {
+    users
+      .doc(currentUser.uid)
+      .collection("userData")
+      .doc(docId)
+      .set(data, { merge: true });
+  }
+
   const value = {
     data,
     setdata,
     setData_firestore,
+    updateData_firestore,
     userData,
     setuserData,
   };
