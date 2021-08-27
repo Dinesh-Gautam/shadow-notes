@@ -6,8 +6,8 @@ import SignWithGoogle from "./components/signIn/SignWithGoogle";
 import { useAuth } from "./context/AuthContext";
 import { DatabaseContext } from "./context/DatabaseContext";
 
-import "./styles/app.css";
-import "./styles/MainOutput/mainOutput.css";
+import "./styles/styles.css";
+// import "./styles/MainOutput/mainOutput.css";
 
 function App() {
   const { currentUser, logout } = useAuth();

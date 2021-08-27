@@ -1,0 +1,70 @@
+:root {
+  --default-backgroundcolor: #f0f0f0;
+  --default-color: #fafafa;
+  --default-text-color: rgba(0, 0, 0, 0.8);
+}
+
+$padding-veryLess: 6px;
+$padding-less: 12px;
+$padding-default: 16px;
+$padding-medium: 24px;
+$padding-large: 32px;
+
+$font-default: "Poppins", sans-serif;
+
+$fontSize-extraSmall: 8px;
+$fontSize-small: 12px;
+$fontSize-default: 16px;
+$fontSize-medium: 18px;
+
+$boxShadow-small: 0px 2px 6px rgba(0, 0, 0, 0.1);
+$boxShadow-default: 0px 4px 6px rgba(0, 0, 0, 0.1);
+
+$border-thin: 0.5px solid rgba(0, 0, 0, 0.2);
+$border-default: 1px solid rgba(0, 0, 0, 0.2);
+$border-bolder: 2px solid rgba(0, 0, 0, 0.05);
+
+$border-radius-default: 6px;
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(default-backgroundcolor);
+  font-family: $font-default;
+  font-weight: 400;
+}
+
+button {
+  background-color: var(default-backgroundcolor);
+  border: none;
+  padding: $padding-default / 2 $padding-default;
+  font-size: $fontSize-default;
+  font-family: $font-default;
+  border-radius: $border-radius-default;
+  box-shadow: $boxShadow-default;
+  cursor: pointer;
+  text-transform: capitalize;
+  color: var(--default-text-color);
+}
+
+input,
+select {
+  padding: $padding-default / 2 $padding-default;
+  background-color: var(--default-color);
+  border: $border-default;
+  border-radius: 0 0 $border-radius-default $border-radius-default;
+  outline: none;
+  font-size: $fontSize-medium;
+  color: var(--default-text-color);
+}
+
+select {
+  font-size: $fontSize-default;
+  font-family: $font-default;
+}
