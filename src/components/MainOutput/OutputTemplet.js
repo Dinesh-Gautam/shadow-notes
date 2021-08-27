@@ -8,18 +8,14 @@ function OutputTemplet({ userData }) {
         const url = name === "link_input_value" && new URL(inputValue);
         return (
           <div key={id}>
-            {name === "heading_input_value" || <label>{value}</label>}
+            {name === "heading_input_value" || name === "color_input_value" || (
+              <label>{value}</label>
+            )}
             {name === "title_input_value" && <h2>{inputValue}</h2>}
             {name === "description_input_value" && <h5>{inputValue}</h5>}
             {name === "Pragraph_input_value" && <p>{inputValue}</p>}
             {name === "link_input_value" && (
               <a href={url.href}>{url.hostname}</a>
-            )}
-            {name === "color_input_value" && (
-              <div
-                style={{ backgroundColor: inputValue, height: 48, width: 48 }}
-                className="random-color-btn colro-btn"
-              ></div>
             )}
             {name === "image_input_value" && (
               <img src={inputValue} alt={inputValue} />

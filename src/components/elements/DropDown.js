@@ -15,10 +15,14 @@ function DropDown({
 
   return (
     <div
-      style={{ backgroundColor: DropdownBackgroundColor }}
+      // style={{ backgroundColor: DropdownBackgroundColor || "" }}
       className="dropdown_container"
     >
       <div className="dropdown_wraper">
+        <div
+          style={{ backgroundColor: DropdownBackgroundColor || "" }}
+          className="dropdown_header_side_color"
+        ></div>
         <h1 className={className || "default_dropdown_main_container"}>
           {mainText}
         </h1>

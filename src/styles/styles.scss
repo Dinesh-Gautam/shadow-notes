@@ -2,6 +2,8 @@
   --default-backgroundcolor: #f0f0f0;
   --default-color: #fafafa;
   --default-text-color: rgba(0, 0, 0, 0.8);
+  --less-alpha-text-color: rgba(0, 0, 0, 0.5);
+  --link-text-color: #2372e9;
 }
 
 $padding-veryLess: 6px;
@@ -16,6 +18,7 @@ $fontSize-extraSmall: 8px;
 $fontSize-small: 12px;
 $fontSize-default: 16px;
 $fontSize-medium: 18px;
+$fontSize-large: 28px;
 
 $boxShadow-small: 0px 2px 6px rgba(0, 0, 0, 0.1);
 $boxShadow-default: 0px 4px 6px rgba(0, 0, 0, 0.1);
@@ -45,6 +48,15 @@ body {
   background-color: var(--default-backgroundcolor);
   font-family: $font-default;
   font-weight: 400;
+}
+
+a {
+  display: block;
+  text-decoration: none;
+  color: var(--link-text-color);
+}
+ul {
+  list-style: none;
 }
 
 button {
@@ -203,3 +215,99 @@ button.colro-btn {
 }
 
 // Main Output
+.mainoutput_wraper {
+  margin-top: $padding-default;
+  display: flex;
+  gap: $padding-default;
+  flex-wrap: wrap;
+
+  img {
+    display: block;
+    width: 100%;
+    max-width: 15%;
+  }
+}
+.dropdown_container {
+  width: 100%;
+  .dropdown_wraper {
+    display: flex;
+    align-items: center;
+    height: 72px;
+    background-color: var(--default-color);
+    border-radius: $border-radius-default;
+    box-shadow: $boxShadow-default;
+    overflow: hidden;
+    .dropdown_header_side_color {
+      height: 100%;
+      width: $padding-default;
+    }
+    h1 {
+      flex: 1;
+      font-size: $fontSize-large;
+      font-weight: 600;
+      margin-left: $padding-large;
+    }
+  }
+  .dropdown_btn_container {
+    display: flex;
+    align-items: center;
+    height: 48px;
+    gap: $padding-default;
+    padding: 0 $padding-default;
+    margin: $padding-less 0;
+    box-shadow: $boxShadow-default;
+    border-radius: $border-radius-default 0 0 $border-radius-default;
+    background-color: var(--default-backgroundcolor);
+
+    button {
+      box-shadow: none;
+      background: transparent;
+      height: 100%;
+    }
+  }
+  .dropdown_inner_container {
+    display: none;
+    .outputTemplet_wraper {
+      padding: $padding-default $padding-large;
+      background: var(--default-color);
+      margin-top: $padding-veryLess;
+      box-shadow: $boxShadow-default;
+      border-radius: $border-radius-default;
+
+      label {
+        font-size: $fontSize-small;
+        text-transform: uppercase;
+        font-weight: 600;
+        color: var(--less-alpha-text-color);
+        position: relative;
+        bottom: -4px;
+      }
+      h2,
+      h5 {
+        font-size: $fontSize-medium;
+      }
+      h2 {
+        font-weight: 500;
+        font-size: $fontSize-large - 4px;
+      }
+      h5 {
+        font-weight: 500;
+      }
+      p {
+        font-weight: 400;
+        font-size: $fontSize-default;
+      }
+      img {
+        margin: 4px 0;
+        border-radius: $border-radius-default;
+        box-shadow: $boxShadow-default;
+      }
+    }
+  }
+
+  .dropdown_inner_container {
+    &.visible {
+      display: block;
+    }
+  }
+}
