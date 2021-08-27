@@ -14,7 +14,12 @@ function InputField({ input }) {
     // inputValue,
   } = useInputs();
   return (
-    <div className="input_box">
+    <div
+      className={
+        "input_box" +
+        (input.name !== "heading_input_value" ? " added_input_box" : "")
+      }
+    >
       <div className="input_box_header">
         <label className="input_label" htmlFor={input.name}>
           {input.value}

@@ -33,17 +33,24 @@ $border-radius-default: 6px;
   padding: 0;
   box-sizing: border-box;
 }
-
+html,
 body {
-  background-color: var(default-backgroundcolor);
+  height: 100%;
+}
+
+#root {
+  height: 100%;
+}
+body {
+  background-color: var(--default-backgroundcolor);
   font-family: $font-default;
   font-weight: 400;
 }
 
 button {
-  background-color: var(default-backgroundcolor);
+  background-color: var(--default-backgroundcolor);
   border: none;
-  padding: $padding-default / 2 $padding-default;
+  padding: $padding-default / 3 $padding-default;
   font-size: $fontSize-default;
   font-family: $font-default;
   border-radius: $border-radius-default;
@@ -51,10 +58,12 @@ button {
   cursor: pointer;
   text-transform: capitalize;
   color: var(--default-text-color);
+  outline: none;
 }
 
 input,
-select {
+select,
+textarea {
   padding: $padding-default / 2 $padding-default;
   background-color: var(--default-color);
   border: $border-default;
@@ -63,8 +72,134 @@ select {
   font-size: $fontSize-medium;
   color: var(--default-text-color);
 }
-
+input {
+  width: 100%;
+}
+textarea {
+  width: 100%;
+  max-width: 100%;
+  min-height: $padding-large * 2;
+  min-width: $padding-default;
+}
 select {
+  padding: $padding-default / 3 $padding-default;
   font-size: $fontSize-default;
   font-family: $font-default;
 }
+
+main {
+  display: grid;
+  grid-template-columns: 1fr 1336px 1fr;
+  height: 100%;
+}
+
+.mainContainer {
+  grid-column: 2/3;
+  display: flex;
+  flex-direction: column;
+}
+
+.input_container {
+  background-color: var(--default-color);
+  padding: $padding-medium $padding-medium * 2;
+  border-radius: $border-radius-default;
+  box-shadow: $boxShadow-default;
+}
+
+.input_selection {
+  display: flex;
+  gap: $padding-default;
+  margin-top: $padding-medium;
+  .input_main_button {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    button {
+      height: 100%;
+    }
+  }
+}
+
+.input_box_header {
+  display: flex;
+  justify-content: space-between;
+  button {
+    padding: 0;
+    background: none;
+    height: 100%;
+    box-shadow: none;
+    padding: 0 $padding-default;
+  }
+  label {
+    text-transform: uppercase;
+    font-size: $fontSize-small;
+    height: fit-content;
+    margin-top: auto;
+    background: var(--default-backgroundcolor);
+    padding: $padding-default / 3 $padding-medium;
+    border-radius: $border-radius-default $border-radius-default 0 0;
+  }
+}
+
+.added_input_box {
+  margin-top: $padding-default;
+  padding: $padding-default;
+  box-shadow: $boxShadow-default;
+  border-radius: $border-radius-default;
+  .inputWaper {
+    .list_input_box {
+      flex: 1;
+    }
+    .input .list_input_box .list-container {
+      margin-bottom: $padding-default;
+      gap: $padding-default;
+      display: flex;
+    }
+    .list_control_btns {
+      display: flex;
+      justify-content: flex-end;
+    }
+  }
+}
+
+.color_input {
+  border: none;
+  height: $padding-large * 2;
+  width: $padding-large * 2;
+  padding: 0;
+  &::-webkit-color-swatch-wrapper {
+    padding: 0;
+  }
+  &::-webkit-color-swatch {
+    border: none;
+  }
+}
+.color_addition_inputs {
+  display: flex;
+  flex-direction: column;
+  gap: $padding-default;
+  justify-content: center;
+  flex: 1;
+  width: 50%;
+  margin: 0;
+}
+.random_color {
+  display: flex;
+  align-items: center;
+  gap: $padding-default;
+  button {
+    padding: $padding-default;
+    box-shadow: $boxShadow-small;
+    border: 3px solid rgba(255, 255, 255, 0.8);
+    transition: transform 0.2s ease-in-out;
+    &:hover {
+      transform: scale(1.2);
+    }
+  }
+}
+button.colro-btn {
+  height: $padding-less;
+  width: $padding-less;
+}
+
+// Main Output

@@ -10,9 +10,9 @@ function MainInput() {
     <div className="input_container">
       <form onSubmit={formSubmitHandler}>
         <InputSelect />
-        <div className="input_main_button">
+        {/* <div className="input_main_button">
           <Button attr={{ type: "submit" }} text="Submit" />
-        </div>
+        </div> */}
       </form>
     </div>
   );

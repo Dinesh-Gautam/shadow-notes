@@ -45,6 +45,9 @@ function InputSelect() {
           ))}
         </select>
         <Button attr={{ onClick: inputAdderHandler }} text="Add" />
+        <div className="input_main_button">
+          <Button attr={{ type: "submit" }} text="Submit" />
+        </div>
       </div>
     </div>
   );
