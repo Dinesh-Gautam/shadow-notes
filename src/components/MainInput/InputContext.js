@@ -48,7 +48,8 @@ export function InputContext(props) {
         delete state[action.payload.id];
         return state;
       case "listDelete":
-        const list = state[action.payload.parentId].inputChildren;
+        const list = state[action.payload.parentId]?.inputChildren;
+        if (!list) return state;
         delete list[action.payload.childrenId];
         return state;
       case "clear":
