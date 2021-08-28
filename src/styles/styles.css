@@ -29,7 +29,6 @@ body {
 }
 
 a {
-  display: block;
   text-decoration: none;
   color: var(--link-text-color);
 }
@@ -41,7 +40,7 @@ ul {
 button {
   background-color: var(--default-backgroundcolor);
   border: none;
-  padding: 5.3333333333px 16px;
+  padding: 8px 16px;
   font-size: 16px;
   font-family: "Poppins", sans-serif;
   border-radius: 6px;
@@ -76,9 +75,10 @@ textarea {
 }
 
 select {
-  padding: 5.3333333333px 16px;
+  padding: 8px 16px;
   font-size: 16px;
   font-family: "Poppins", sans-serif;
+  border-radius: 6px;
 }
 
 main {
@@ -96,6 +96,14 @@ main {
 .input_container {
   background-color: var(--default-color);
   padding: 24px 48px;
+  border-radius: 6px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+.input_container img {
+  display: block;
+  width: 100%;
+  max-width: 15%;
+  margin: 16px 0;
   border-radius: 6px;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
@@ -159,6 +167,9 @@ main {
   height: 64px;
   width: 64px;
   padding: 0;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 .color_input::-webkit-color-swatch-wrapper {
   padding: 0;
@@ -203,11 +214,6 @@ button.colro-btn {
   gap: 16px;
   flex-wrap: wrap;
 }
-.mainoutput_wraper img {
-  display: block;
-  width: 100%;
-  max-width: 15%;
-}
 
 .dropdown_container {
   width: 100%;
@@ -228,7 +234,7 @@ button.colro-btn {
 .dropdown_container .dropdown_wraper h1 {
   flex: 1;
   font-size: 28px;
-  font-weight: 600;
+  font-weight: 500;
   margin-left: 32px;
 }
 .dropdown_container .dropdown_btn_container {
@@ -258,6 +264,7 @@ button.colro-btn {
   border-radius: 6px;
 }
 .dropdown_container .dropdown_inner_container .outputTemplet_wraper label {
+  display: block;
   font-size: 12px;
   text-transform: uppercase;
   font-weight: 600;
@@ -281,6 +288,9 @@ button.colro-btn {
   font-size: 16px;
 }
 .dropdown_container .dropdown_inner_container .outputTemplet_wraper img {
+  display: block;
+  width: 100%;
+  max-width: 15%;
   margin: 4px 0;
   border-radius: 6px;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);

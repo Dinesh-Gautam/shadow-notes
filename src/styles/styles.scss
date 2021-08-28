@@ -12,6 +12,8 @@ $padding-default: 16px;
 $padding-medium: 24px;
 $padding-large: 32px;
 
+$dropdown-height-default: 72px;
+
 $font-default: "Poppins", sans-serif;
 
 $fontSize-extraSmall: 8px;
@@ -51,7 +53,6 @@ body {
 }
 
 a {
-  display: block;
   text-decoration: none;
   color: var(--link-text-color);
 }
@@ -62,7 +63,7 @@ ul {
 button {
   background-color: var(--default-backgroundcolor);
   border: none;
-  padding: $padding-default / 3 $padding-default;
+  padding: $padding-default / 2 $padding-default;
   font-size: $fontSize-default;
   font-family: $font-default;
   border-radius: $border-radius-default;
@@ -94,9 +95,10 @@ textarea {
   min-width: $padding-default;
 }
 select {
-  padding: $padding-default / 3 $padding-default;
+  padding: $padding-default / 2 $padding-default;
   font-size: $fontSize-default;
   font-family: $font-default;
+  border-radius: $border-radius-default;
 }
 
 main {
@@ -116,6 +118,14 @@ main {
   padding: $padding-medium $padding-medium * 2;
   border-radius: $border-radius-default;
   box-shadow: $boxShadow-default;
+  img {
+    display: block;
+    width: 100%;
+    max-width: 15%;
+    margin: $padding-default 0;
+    border-radius: $border-radius-default;
+    box-shadow: $boxShadow-default;
+  }
 }
 
 .input_selection {
@@ -179,6 +189,9 @@ main {
   height: $padding-large * 2;
   width: $padding-large * 2;
   padding: 0;
+  border-radius: $border-radius-default;
+  overflow: hidden;
+  box-shadow: $boxShadow-default;
   &::-webkit-color-swatch-wrapper {
     padding: 0;
   }
@@ -220,19 +233,13 @@ button.colro-btn {
   display: flex;
   gap: $padding-default;
   flex-wrap: wrap;
-
-  img {
-    display: block;
-    width: 100%;
-    max-width: 15%;
-  }
 }
 .dropdown_container {
   width: 100%;
   .dropdown_wraper {
     display: flex;
     align-items: center;
-    height: 72px;
+    height: $dropdown-height-default;
     background-color: var(--default-color);
     border-radius: $border-radius-default;
     box-shadow: $boxShadow-default;
@@ -244,14 +251,14 @@ button.colro-btn {
     h1 {
       flex: 1;
       font-size: $fontSize-large;
-      font-weight: 600;
+      font-weight: 500;
       margin-left: $padding-large;
     }
   }
   .dropdown_btn_container {
     display: flex;
     align-items: center;
-    height: 48px;
+    height: $dropdown-height-default / 1.5;
     gap: $padding-default;
     padding: 0 $padding-default;
     margin: $padding-less 0;
@@ -275,6 +282,7 @@ button.colro-btn {
       border-radius: $border-radius-default;
 
       label {
+        display: block;
         font-size: $fontSize-small;
         text-transform: uppercase;
         font-weight: 600;
@@ -298,6 +306,9 @@ button.colro-btn {
         font-size: $fontSize-default;
       }
       img {
+        display: block;
+        width: 100%;
+        max-width: 15%;
         margin: 4px 0;
         border-radius: $border-radius-default;
         box-shadow: $boxShadow-default;

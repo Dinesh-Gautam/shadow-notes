@@ -21,9 +21,13 @@ function InputField({ input }) {
       }
     >
       <div className="input_box_header">
-        <label className="input_label" htmlFor={input.name}>
-          {input.value}
-        </label>
+        {input.name === "color_input_value" ? (
+          <div></div>
+        ) : (
+          <label className="input_label" htmlFor={input.name}>
+            {input.value}
+          </label>
+        )}
         {input.name === "heading_input_value" || (
           <Button
             attr={{
