@@ -2,6 +2,7 @@ import React from "react";
 import { InputContext } from "./components/MainInput/InputContext";
 import MainInput from "./components/MainInput/MainInput";
 import MainOutput from "./components/MainOutput/MainOutput";
+import OutputFilter from "./components/OutputFilters/OutputFilter";
 import SignWithGoogle from "./components/signIn/SignWithGoogle";
 import { useAuth } from "./context/AuthContext";
 import { DatabaseContext } from "./context/DatabaseContext";
@@ -21,6 +22,7 @@ function App() {
           <InputContext>
             <div className="mainContainer">
               <MainInput />
+              <OutputFilter />
               <MainOutput />
             </div>
           </InputContext>

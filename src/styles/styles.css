@@ -248,7 +248,6 @@ button.colro-btn {
   display: flex;
   align-items: center;
   height: 48px;
-  gap: 16px;
   padding: 0 16px;
   margin: 12px 0;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
@@ -258,6 +257,9 @@ button.colro-btn {
 .dropdown_container .dropdown_btn_container button {
   box-shadow: none;
   background: transparent;
+  height: 100%;
+}
+.dropdown_container .dropdown_btn_container button svg {
   height: 100%;
 }
 .dropdown_container .dropdown_inner_container {
@@ -304,6 +306,36 @@ button.colro-btn {
 }
 .dropdown_container .dropdown_inner_container.visible {
   display: block;
+}
+
+.search_filters {
+  display: flex;
+  gap: 16px;
+  margin-top: 16px;
+}
+.search_filters > div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--default-color);
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 6px;
+}
+.search_filters > div button,
+.search_filters > div select,
+.search_filters > div input {
+  background: var(--default-color);
+  padding: 12px 16px;
+  border: none;
+  box-shadow: none;
+  border-radius: none;
+}
+.search_filters > div select,
+.search_filters > div button {
+  text-transform: capitalize;
+}
+.search_filters > div button svg {
+  height: 100%;
 }
 
 /*# sourceMappingURL=styles.css.map */

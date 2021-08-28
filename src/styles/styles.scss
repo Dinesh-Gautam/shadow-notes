@@ -266,7 +266,7 @@ button.colro-btn {
     display: flex;
     align-items: center;
     height: $dropdown-height-default / 1.5;
-    gap: $padding-default;
+    // gap: $padding-default;
     padding: 0 $padding-default;
     margin: $padding-less 0;
     box-shadow: $boxShadow-default;
@@ -277,6 +277,9 @@ button.colro-btn {
       box-shadow: none;
       background: transparent;
       height: 100%;
+      svg {
+        height: 100%;
+      }
     }
   }
   .dropdown_inner_container {
@@ -326,6 +329,40 @@ button.colro-btn {
   .dropdown_inner_container {
     &.visible {
       display: block;
+    }
+  }
+}
+
+// filters
+.search_filters {
+  display: flex;
+  gap: $padding-default;
+  margin-top: $padding-default;
+  & > div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--default-color);
+    box-shadow: $boxShadow-default;
+    border-radius: $border-radius-default;
+    button,
+    select,
+    input {
+      background: var(--default-color);
+      padding: $padding-less $padding-default;
+      border: none;
+      box-shadow: none;
+      border-radius: none;
+    }
+
+    select,
+    button {
+      text-transform: capitalize;
+    }
+    button {
+      svg {
+        height: 100%;
+      }
     }
   }
 }
