@@ -29,9 +29,11 @@ function DropDown({
         </h1>
         <div className="dropdown_btn_container">
           {extraButtons}
-          <button onClick={dropInnerContainer}>
-            <UseSvg type="expand" />
-          </button>
+          {children && (
+            <button onClick={dropInnerContainer}>
+              <UseSvg type="expand" />
+            </button>
+          )}
         </div>
       </div>
       <div

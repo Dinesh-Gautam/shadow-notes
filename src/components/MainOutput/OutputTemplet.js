@@ -7,7 +7,7 @@ function OutputTemplet({ userData }) {
         const { name, value, inputValue, id, inner } = data;
         const url = name === "link_input_value" && new URL(inputValue);
         return (
-          <div key={id}>
+          <React.Fragment key={id}>
             {name === "heading_input_value" || name === "color_input_value" || (
               <label>{value}</label>
             )}
@@ -27,7 +27,7 @@ function OutputTemplet({ userData }) {
                 ))}
               </ul>
             )}
-          </div>
+          </React.Fragment>
         );
       })}
     </div>

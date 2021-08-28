@@ -1,6 +1,7 @@
 import React from "react";
 import { useData } from "../../context/DatabaseContext";
 import DropDown from "../elements/DropDown";
+import { inputOptions } from "../MainInput/inputs/inputOptions";
 import OutputTemplet from "./OutputTemplet";
 import AdditionalButtons from "./smallComponents/AdditionalButtons";
 
@@ -27,7 +28,9 @@ function MainOutput() {
                 }
                 mainText={headingText.inputValue}
               >
-                <OutputTemplet userData={data} />
+                {data.some((e) => {
+                  return inputOptions.some((option) => option.name === e.name);
+                }) && <OutputTemplet userData={data} />}
               </DropDown>
             );
           })}
