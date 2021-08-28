@@ -135,19 +135,26 @@ export function InputContext(props) {
     e.preventDefault();
     let finalInputSubmitValues = inputs.map((input) => {
       const { value, name, id, inner } = input;
-      const valueOfInput = inputValue[id];
+      const valueOfInput = inputValue[id] || "";
+
+      if (!valueOfInput) {
+        return null;
+      }
       return inner
         ? {
             name,
             value,
             id,
-            inner: inner.map(
-              (list) =>
-                valueOfInput.inputChildren[list.id].value.trim() !== "" &&
-                valueOfInput.inputChildren[list.id].value
-            ),
+            inner:
+              valueOfInput > 0 &&
+              inner.map(
+                (list) =>
+                  valueOfInput.inputChildren[list.id].value.trim() !== "" &&
+                  valueOfInput.inputChildren[list.id].value
+              ),
           }
-        : valueOfInput.value.trim() &&
+        : valueOfInput &&
+            valueOfInput.value.trim() &&
             valueOfInput.value !== "" && {
               name,
               inputValue: valueOfInput.value.trim(),
@@ -161,10 +168,11 @@ export function InputContext(props) {
     inputValueDispatch({
       type: "clear",
     });
+
     setData_firestore({
       delete: false,
       options: false,
-      data: finalInputSubmitValues,
+      data: finalInputSubmitValues.filter((e) => e !== null),
     });
   };
 
