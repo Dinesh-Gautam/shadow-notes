@@ -8,7 +8,8 @@ import UseSvg from "../../elements/UseSvg";
 
 function InputSelect() {
   const [inputSelect, setinputSelect] = useState("title");
-  const { inputs, inputsDispatch } = useContext(input_context);
+  const { inputs, inputsDispatch, inputValueDispatch } =
+    useContext(input_context);
 
   const inputAdderHandler = () => {
     const uid = uuidv4();
@@ -16,9 +17,17 @@ function InputSelect() {
     const selectedInput = inputOptions.find(
       (input) => input.value.toLowerCase() === inputSelect.toLowerCase()
     );
+
     // console.log(uid);
 
     inputsDispatch({ type: "addElement", payload: { id: uid, selectedInput } });
+
+    if (selectedInput.name === "color_input_value") {
+      inputValueDispatch({
+        type: "normalValue",
+        payload: { id: uid, value: selectedInput.inputValue },
+      });
+    }
 
     // setinputs((prev) => {
     //   return [...prev, { ...selectedInput, id: uid }];
