@@ -29,19 +29,20 @@ function List({
           }),
         value: listInputValue,
       })}
-
-      <Button
-        attr={{
-          id: list.id,
-          onClick: () => {
-            inputsDispatch({
-              payload: { parentId: input.id, id: list.id },
-              type: "removeListElement",
-            });
-          },
-        }}
-        text={<UseSvg type="close" />}
-      />
+      {index > 0 && (
+        <Button
+          attr={{
+            id: list.id,
+            onClick: () => {
+              inputsDispatch({
+                payload: { parentId: input.id, id: list.id },
+                type: "removeListElement",
+              });
+            },
+          }}
+          text={<UseSvg type="remove" />}
+        />
+      )}
     </div>
   );
 }
