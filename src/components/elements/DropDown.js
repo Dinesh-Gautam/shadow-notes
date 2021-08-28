@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import UseSvg from "./UseSvg";
 
 function DropDown({
   children,
@@ -28,7 +29,9 @@ function DropDown({
         </h1>
         <div className="dropdown_btn_container">
           {extraButtons}
-          <button onClick={dropInnerContainer}>drop</button>
+          <button onClick={dropInnerContainer}>
+            <UseSvg type="expand" />
+          </button>
         </div>
       </div>
       <div

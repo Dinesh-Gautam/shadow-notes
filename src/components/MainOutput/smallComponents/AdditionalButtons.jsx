@@ -1,5 +1,6 @@
 import React from "react";
 import { useData } from "../../../context/DatabaseContext";
+import UseSvg from "../../elements/UseSvg";
 
 function AdditionalButtons({ docId }) {
   const { updateData_firestore } = useData();
@@ -10,11 +11,10 @@ function AdditionalButtons({ docId }) {
           const data = {
             delete: true,
           };
-
           updateData_firestore(docId, data);
         }}
       >
-        delete
+        <UseSvg type="close" />
       </button>
     </div>
   );

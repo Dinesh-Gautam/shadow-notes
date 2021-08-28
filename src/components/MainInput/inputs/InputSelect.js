@@ -4,6 +4,7 @@ import Button from "./elements/Button";
 import InputField from "./InputField";
 import { inputOptions } from "./inputOptions";
 import { v4 as uuidv4 } from "uuid";
+import UseSvg from "../../elements/UseSvg";
 
 function InputSelect() {
   const [inputSelect, setinputSelect] = useState("title");
@@ -44,7 +45,10 @@ function InputSelect() {
             </option>
           ))}
         </select>
-        <Button attr={{ onClick: inputAdderHandler }} text="Add" />
+        <Button
+          attr={{ onClick: inputAdderHandler }}
+          text={<UseSvg type="add" />}
+        />
         <div className="input_main_button">
           <Button attr={{ type: "submit" }} text="Submit" />
         </div>

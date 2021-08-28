@@ -49,6 +49,13 @@ button {
   text-transform: capitalize;
   color: var(--default-text-color);
   outline: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+button svg {
+  opacity: 0.8;
+  height: 18px;
 }
 
 input,

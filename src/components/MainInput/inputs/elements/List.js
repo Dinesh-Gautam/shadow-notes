@@ -1,4 +1,5 @@
 import React from "react";
+import UseSvg from "../../../elements/UseSvg";
 import Button from "./Button";
 
 function List({
@@ -39,7 +40,7 @@ function List({
             });
           },
         }}
-        text="remove"
+        text={<UseSvg type="close" />}
       />
     </div>
   );

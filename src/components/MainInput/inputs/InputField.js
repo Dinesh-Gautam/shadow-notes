@@ -3,6 +3,7 @@ import Button from "./elements/Button";
 import List from "./elements/List";
 import { useInputs } from "../InputContext";
 import ColorAdditons from "./elements/ColorAdditons";
+import UseSvg from "../../elements/UseSvg";
 
 const MemoAddions = React.memo(ColorAdditons);
 
@@ -39,7 +40,7 @@ function InputField({ input }) {
               },
               "data-id": input.id,
             }}
-            text={<i className="fas fa-times"></i>}
+            text={<UseSvg type="close" />}
           />
         )}
       </div>
@@ -105,7 +106,7 @@ function InputField({ input }) {
                   });
                 },
               }}
-              text="Add"
+              text={<UseSvg type="add" />}
             />
           </div>
         )}

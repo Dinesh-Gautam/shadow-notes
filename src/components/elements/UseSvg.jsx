@@ -1,6 +1,6 @@
 import React from "react";
 
-function Svg({ type }) {
+function UseSvg({ type }) {
   switch (type) {
     case "add":
       return (
@@ -101,4 +101,4 @@ function Svg({ type }) {
   }
 }
 
-export default Svg;
+export default UseSvg;
