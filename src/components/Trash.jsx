@@ -6,8 +6,8 @@ import Button from "./MainInput/inputs/elements/Button";
 import { inputOptions } from "./MainInput/inputs/inputOptions";
 import OutputTemplet from "./MainOutput/OutputTemplet";
 
-function Trash({ displayState, setdisplayState }) {
-  const { trashData, updateData_firestore } = useData();
+function Trash({ trashData, displayState, setdisplayState }) {
+  const { updateData_firestore } = useData();
   return (
     <div id="trash" style={{ display: displayState }}>
       <div className="trash_header">

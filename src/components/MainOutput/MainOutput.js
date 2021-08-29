@@ -6,8 +6,8 @@ import OutputTemplet from "./OutputTemplet";
 import AdditionalButtons from "./smallComponents/AdditionalButtons";
 
 function MainOutput() {
-  const { userData } = useData();
-
+  const { filtererdUserData } = useData();
+  const userData = filtererdUserData;
   return (
     <div className="mainoutput_container">
       <div className="mainoutput_wraper">

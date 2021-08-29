@@ -1,10 +1,49 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Button from "../../MainInput/inputs/elements/Button";
 
-function ColorFilter() {
+function ColorFilter({ data, setData, appliedColors }) {
+  useEffect(() => {
+    appliedColors &&
+      setuniqueAppliedColors(
+        appliedColors.filter((e, index, arr) => arr.indexOf(e) === index)
+      );
+  }, [appliedColors]);
+
+  const [uniqueAppliedColors, setuniqueAppliedColors] = useState([]);
+
+  const handleColorFilterClick = (e) => {
+    const value = e.target.value;
+    const filterByColorData = data.filter(({ data }) => {
+      return data.find((foundedValue) => foundedValue.inputValue === value);
+    });
+    setData(filterByColorData);
+  };
   return (
     <div>
-      <Button text="All" />
+      <Button
+        attr={{
+          onClick: () => {
+            setData(data);
+          },
+        }}
+        text="All"
+      />
+      <div className="color_filter_container">
+        {uniqueAppliedColors.map((inputValue, index) => {
+          return (
+            <Button
+              key={index}
+              attr={{
+                value: inputValue,
+                onClick: handleColorFilterClick,
+                name: "color_input_value",
+                style: { backgroundColor: inputValue },
+                className: "random-color-btn colro-btn",
+              }}
+            />
+          );
+        })}
+      </div>
     </div>
   );
 }

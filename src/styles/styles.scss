@@ -217,23 +217,23 @@ main {
   width: 50%;
   margin: 0;
 }
+
 .random_color {
   display: flex;
   align-items: center;
   gap: $padding-default;
+
   button {
     padding: $padding-default;
     box-shadow: $boxShadow-small;
     border: 3px solid rgba(255, 255, 255, 0.8);
     transition: transform 0.2s ease-in-out;
+    height: $padding-less;
+    width: $padding-less;
     &:hover {
       transform: scale(1.2);
     }
   }
-}
-button.colro-btn {
-  height: $padding-less;
-  width: $padding-less;
 }
 
 // Main Output
@@ -365,6 +365,15 @@ button.colro-btn {
       svg {
         height: 100%;
       }
+    }
+  }
+  .color_filter_container {
+    @extend .random_color;
+    gap: $padding-less;
+    margin-right: $padding-default;
+    button {
+      padding: $padding-default/ 1.6;
+      border: 2px solid rgba(255, 255, 255, 0.8);
     }
   }
 }

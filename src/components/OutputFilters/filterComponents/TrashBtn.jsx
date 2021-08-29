@@ -5,11 +5,14 @@ import UseSvg from "../../elements/UseSvg";
 import Button from "../../MainInput/inputs/elements/Button";
 import Trash from "../../Trash";
 
-function TrashBtn() {
+function TrashBtn({ data, setData }) {
+  const trashData = data,
+    settrashData = setData;
+
   const [initialRequest, setinitialRequest] = useState(false);
   const [displayState, setdisplayState] = useState("none");
 
-  const { trashData, settrashData, userID } = useData();
+  const { userID } = useData();
 
   useEffect(() => {
     let unsubscribe;
@@ -57,10 +60,10 @@ function TrashBtn() {
         />
       </div>
       <Trash
-        setinitialRequest={setinitialRequest}
+        trashData={trashData}
+        settrashData={settrashData}
         setdisplayState={setdisplayState}
         displayState={displayState}
-        initialRequest={initialRequest}
       />
     </>
   );

@@ -197,24 +197,21 @@ main {
   margin: 0;
 }
 
-.random_color {
+.random_color, .search_filters .color_filter_container {
   display: flex;
   align-items: center;
   gap: 16px;
 }
-.random_color button {
+.random_color button, .search_filters .color_filter_container button {
   padding: 16px;
   box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
   border: 3px solid rgba(255, 255, 255, 0.8);
   transition: transform 0.2s ease-in-out;
-}
-.random_color button:hover {
-  transform: scale(1.2);
-}
-
-button.colro-btn {
   height: 12px;
   width: 12px;
+}
+.random_color button:hover, .search_filters .color_filter_container button:hover {
+  transform: scale(1.2);
 }
 
 .mainoutput_wraper {
@@ -338,6 +335,14 @@ button.colro-btn {
 }
 .search_filters > div button svg {
   height: 100%;
+}
+.search_filters .color_filter_container {
+  gap: 12px;
+  margin-right: 16px;
+}
+.search_filters .color_filter_container button {
+  padding: 10px;
+  border: 2px solid rgba(255, 255, 255, 0.8);
 }
 
 #trash {

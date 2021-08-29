@@ -15,6 +15,7 @@ export function DatabaseContext({ children }) {
   const [data, setdata] = useState();
   const [userData, setuserData] = useState(null);
   const [trashData, settrashData] = useState(null);
+  const [filtererdUserData, setfiltererdUserData] = useState(null);
 
   // get data form firestore only when userID changes
 
@@ -48,6 +49,11 @@ export function DatabaseContext({ children }) {
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userID]);
+
+  useEffect(() => {
+    console.log("Updating filter UserData");
+    setfiltererdUserData(userData);
+  }, [userData]);
 
   function setData_firestore(data) {
     users
@@ -86,6 +92,8 @@ export function DatabaseContext({ children }) {
     trashData,
     settrashData,
     userID,
+    filtererdUserData,
+    setfiltererdUserData,
   };
   return (
     <data_context.Provider value={value}>{children}</data_context.Provider>
