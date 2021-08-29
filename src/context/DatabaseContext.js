@@ -14,6 +14,7 @@ export function DatabaseContext({ children }) {
   const { currentUser } = useAuth();
   const [data, setdata] = useState();
   const [userData, setuserData] = useState(null);
+  const [trashData, settrashData] = useState(null);
 
   // get data form firestore only when userID changes
 
@@ -82,6 +83,9 @@ export function DatabaseContext({ children }) {
     updateData_firestore,
     userData,
     setuserData,
+    trashData,
+    settrashData,
+    userID,
   };
   return (
     <data_context.Provider value={value}>{children}</data_context.Provider>

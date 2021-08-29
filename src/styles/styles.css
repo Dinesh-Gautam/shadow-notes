@@ -148,6 +148,8 @@ main {
   background: var(--default-backgroundcolor);
   padding: 5.3333333333px 24px;
   border-radius: 6px 6px 0 0;
+  font-weight: 500;
+  opacity: 0.7;
 }
 
 .added_input_box {
@@ -217,9 +219,9 @@ button.colro-btn {
 
 .mainoutput_wraper {
   margin-top: 16px;
-  display: flex;
+  display: grid;
   gap: 16px;
-  flex-wrap: wrap;
+  grid-template-columns: 1fr 1fr;
 }
 
 .dropdown_container {
@@ -336,6 +338,42 @@ button.colro-btn {
 }
 .search_filters > div button svg {
   height: 100%;
+}
+
+#trash {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 16px;
+  z-index: 100;
+}
+#trash .trash_header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+#trash .trash_header h1 {
+  font-size: 28px;
+  text-transform: uppercase;
+}
+#trash .trash_content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-top: 16px;
+  position: relative;
+}
+#trash .trash_content span {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  margin-top: 32px;
+  font-size: 28px;
+  opacity: 0.5;
+  font-weight: 700;
+  top: 24px;
 }
 
 /*# sourceMappingURL=styles.css.map */

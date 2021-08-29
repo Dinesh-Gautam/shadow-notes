@@ -167,6 +167,8 @@ main {
     background: var(--default-backgroundcolor);
     padding: $padding-default / 3 $padding-medium;
     border-radius: $border-radius-default $border-radius-default 0 0;
+    font-weight: 500;
+    opacity: 0.7;
   }
 }
 
@@ -237,9 +239,9 @@ button.colro-btn {
 // Main Output
 .mainoutput_wraper {
   margin-top: $padding-default;
-  display: flex;
+  display: grid;
   gap: $padding-default;
-  flex-wrap: wrap;
+  grid-template-columns: 1fr 1fr;
 }
 .dropdown_container {
   width: 100%;
@@ -363,6 +365,42 @@ button.colro-btn {
       svg {
         height: 100%;
       }
+    }
+  }
+}
+
+#trash {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: $padding-default;
+  z-index: 100;
+  .trash_header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    h1 {
+      font-size: $fontSize-large;
+      text-transform: uppercase;
+    }
+  }
+  .trash_content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: $padding-default;
+    margin-top: $padding-default;
+    position: relative;
+    span {
+      position: absolute;
+      width: 100%;
+      text-align: center;
+      margin-top: $padding-large;
+      font-size: $fontSize-large;
+      opacity: 0.5;
+      font-weight: 700;
+      top: $padding-medium;
     }
   }
 }

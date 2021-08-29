@@ -29,7 +29,10 @@ function MainOutput() {
                 mainText={headingText.inputValue}
               >
                 {data.some((e) => {
-                  return inputOptions.some((option) => option.name === e.name);
+                  return inputOptions.some(
+                    (option) =>
+                      option.name === e.name && e.name !== "color_input_value"
+                  );
                 }) && <OutputTemplet userData={data} />}
               </DropDown>
             );
