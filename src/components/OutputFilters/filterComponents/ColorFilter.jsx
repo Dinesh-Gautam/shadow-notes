@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Button from "../../MainInput/inputs/elements/Button";
 
-function ColorFilter({ data, setData, appliedColors }) {
+function ColorFilter({ setData, appliedColors }) {
   useEffect(() => {
     appliedColors &&
       setuniqueAppliedColors(
@@ -13,17 +13,16 @@ function ColorFilter({ data, setData, appliedColors }) {
 
   const handleColorFilterClick = (e) => {
     const value = e.target.value;
-    const filterByColorData = data.filter(({ data }) => {
-      return data.find((foundedValue) => foundedValue.inputValue === value);
+    setData((prev) => {
+      return [{ colorFIlter: value }];
     });
-    setData(filterByColorData);
   };
   return (
     <div>
       <Button
         attr={{
           onClick: () => {
-            setData(data);
+            setData([]);
           },
         }}
         text="All"

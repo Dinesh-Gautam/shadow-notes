@@ -6,8 +6,17 @@ import OutputTemplet from "./OutputTemplet";
 import AdditionalButtons from "./smallComponents/AdditionalButtons";
 
 function MainOutput() {
-  const { filtererdUserData } = useData();
-  const userData = filtererdUserData;
+  const { filtererdUserData, userData: originalData } = useData();
+  const userData =
+    filtererdUserData.length > 0
+      ? originalData.filter(({ data }) => {
+          return data.find(
+            (foundedValue) =>
+              foundedValue.inputValue === filtererdUserData[0].colorFIlter
+          );
+        })
+      : originalData;
+
   return (
     <div className="mainoutput_container">
       <div className="mainoutput_wraper">
