@@ -223,25 +223,38 @@ main {
 
 .dropdown_container {
   width: 100%;
+  min-width: 0;
 }
 .dropdown_container .dropdown_wraper {
   display: flex;
   align-items: center;
-  height: 72px;
+  min-height: 72px;
   background-color: var(--default-color);
   border-radius: 6px;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  position: relative;
   overflow: hidden;
 }
 .dropdown_container .dropdown_wraper .dropdown_header_side_color {
-  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
   width: 16px;
 }
-.dropdown_container .dropdown_wraper h1 {
+.dropdown_container .dropdown_wraper .dropdown_heading {
   flex: 1;
+  padding: 16px;
+  padding-left: 32px;
+  overflow: hidden;
+  text-overflow: clip;
+}
+.dropdown_container .dropdown_wraper h1 {
   font-size: 28px;
   font-weight: 500;
-  margin-left: 32px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .dropdown_container .dropdown_btn_container {
   display: flex;
@@ -260,6 +273,17 @@ main {
 }
 .dropdown_container .dropdown_btn_container button svg {
   height: 100%;
+}
+.dropdown_container.visible .dropdown_inner_container {
+  display: block;
+}
+.dropdown_container.visible .dropdown_heading {
+  overflow: visible;
+}
+.dropdown_container.visible .dropdown_wraper h1 {
+  white-space: normal;
+  text-overflow: none;
+  overflow: visible;
 }
 .dropdown_container .dropdown_inner_container {
   display: none;
@@ -302,9 +326,6 @@ main {
   margin: 4px 0;
   border-radius: 6px;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-}
-.dropdown_container .dropdown_inner_container.visible {
-  display: block;
 }
 
 .search_filters {
@@ -371,7 +392,6 @@ main {
   padding: 16px;
   overflow-y: scroll;
   height: 94%;
-  box-shadow: inset 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 #trash .trash_content {
   display: grid;

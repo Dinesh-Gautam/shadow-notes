@@ -245,23 +245,36 @@ main {
 }
 .dropdown_container {
   width: 100%;
+  min-width: 0;
   .dropdown_wraper {
     display: flex;
     align-items: center;
-    height: $dropdown-height-default;
+    min-height: $dropdown-height-default;
     background-color: var(--default-color);
     border-radius: $border-radius-default;
     box-shadow: $boxShadow-default;
+    position: relative;
     overflow: hidden;
     .dropdown_header_side_color {
-      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
       width: $padding-default;
     }
-    h1 {
+    .dropdown_heading {
       flex: 1;
+      padding: $padding-default;
+      padding-left: $padding-large;
+      overflow: hidden;
+      text-overflow: clip;
+    }
+    h1 {
       font-size: $fontSize-large;
       font-weight: 500;
-      margin-left: $padding-large;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
   }
   .dropdown_btn_container {
@@ -284,6 +297,23 @@ main {
       }
     }
   }
+
+  &.visible {
+    .dropdown_inner_container {
+      display: block;
+    }
+    .dropdown_heading {
+      overflow: visible;
+    }
+    .dropdown_wraper {
+      h1 {
+        white-space: normal;
+        text-overflow: none;
+        overflow: visible;
+      }
+    }
+  }
+
   .dropdown_inner_container {
     display: none;
     .outputTemplet_wraper {
@@ -325,12 +355,6 @@ main {
         border-radius: $border-radius-default;
         box-shadow: $boxShadow-default;
       }
-    }
-  }
-
-  .dropdown_inner_container {
-    &.visible {
-      display: block;
     }
   }
 }
@@ -403,7 +427,6 @@ main {
     padding: $padding-default;
     overflow-y: scroll;
     height: 94%;
-    box-shadow: inset $boxShadow-default;
   }
   .trash_content {
     display: grid;
