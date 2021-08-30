@@ -385,6 +385,8 @@ main {
   right: 0;
   bottom: 0;
   padding: $padding-default;
+  width: 100vw;
+  height: 100vh;
   z-index: 100;
   .trash_header {
     display: flex;
@@ -393,14 +395,22 @@ main {
     h1 {
       font-size: $fontSize-large;
       text-transform: uppercase;
+      color: var(--default-text-color);
     }
+  }
+  .trash_content_container {
+    margin-top: $padding-default;
+    padding: $padding-default;
+    overflow-y: scroll;
+    height: 94%;
+    box-shadow: inset $boxShadow-default;
   }
   .trash_content {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: $padding-default;
-    margin-top: $padding-default;
     position: relative;
+
     span {
       position: absolute;
       width: 100%;
