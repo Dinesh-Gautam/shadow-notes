@@ -51,6 +51,7 @@ body {
   background-color: var(--default-backgroundcolor);
   font-family: $font-default;
   font-weight: 400;
+  font-smooth: auto;
 }
 
 a {
@@ -320,45 +321,59 @@ main {
 
   .dropdown_inner_container {
     display: none;
-    .outputTemplet_wraper {
-      padding: $padding-default $padding-large;
-      background: var(--default-color);
-      margin-top: $padding-veryLess;
-      box-shadow: $boxShadow-default;
-      border-radius: $border-radius-default;
+  }
+}
+.outputTemplet_wraper {
+  padding: $padding-default $padding-large;
+  background: var(--default-color);
+  margin-top: $padding-veryLess;
+  box-shadow: $boxShadow-default;
+  border-radius: $border-radius-default;
 
-      label {
-        display: block;
-        font-size: $fontSize-small;
-        text-transform: uppercase;
-        font-weight: 600;
-        color: var(--less-alpha-text-color);
-        position: relative;
-        bottom: -4px;
-      }
-      h2,
-      h5 {
-        font-size: $fontSize-medium;
-      }
-      h2 {
-        font-weight: 500;
-        font-size: $fontSize-large - 4px;
-      }
-      h5 {
-        font-weight: 500;
-      }
-      p {
-        font-weight: 400;
-        font-size: $fontSize-default;
-      }
-      img {
-        display: block;
-        width: 100%;
-        max-width: 15%;
-        margin: 4px 0;
-        border-radius: $border-radius-default;
-        box-shadow: $boxShadow-default;
-      }
+  label {
+    display: block;
+    font-size: $fontSize-small;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--less-alpha-text-color);
+    position: relative;
+    bottom: -4px;
+  }
+  h2,
+  h5 {
+    font-size: $fontSize-medium;
+  }
+  h2 {
+    font-weight: 500;
+    font-size: $fontSize-large - 4px;
+  }
+  h5 {
+    font-weight: 500;
+  }
+  h6,
+  span {
+    font-size: $fontSize-small;
+  }
+  p {
+    font-weight: 400;
+    font-size: $fontSize-default;
+  }
+  img {
+    display: block;
+    width: 100%;
+    max-width: 15%;
+    margin: 4px 0;
+    border-radius: $border-radius-default;
+    box-shadow: $boxShadow-default;
+  }
+  .output_footer {
+    margin-top: $padding-less;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    .publishing-date {
+      display: flex;
+      gap: 4px;
     }
   }
 }

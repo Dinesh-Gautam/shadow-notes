@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { db } from "../firebase";
 import { useAuth } from "./AuthContext";
-
 const data_context = React.createContext();
 
 const users = db.collection("users");

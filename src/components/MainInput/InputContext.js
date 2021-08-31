@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useReducer } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { useData } from "../../context/DatabaseContext";
-
+import { firebase } from "../../firebase";
 export const input_context = createContext();
 
 export function useInputs() {
@@ -173,6 +173,7 @@ export function InputContext(props) {
     setData_firestore({
       delete: false,
       options: false,
+      publishDate: firebase.firestore.FieldValue.serverTimestamp(),
       data: finalInputSubmitValues.filter((e) => e !== null),
     });
   };

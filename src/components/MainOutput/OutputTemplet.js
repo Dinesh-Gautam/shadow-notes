@@ -1,6 +1,7 @@
 import React from "react";
+import Button from "../MainInput/inputs/elements/Button";
 
-function OutputTemplet({ userData }) {
+function OutputTemplet({ userData, publishDate }) {
   return (
     <div className="outputTemplet_wraper">
       {userData.map((data) => {
@@ -30,6 +31,13 @@ function OutputTemplet({ userData }) {
           </React.Fragment>
         );
       })}
+      <div className="output_footer">
+        <Button text="Edit" />
+        <div className="publishing-date">
+          <h6>Published on:</h6>
+          <span>{publishDate && publishDate.toDate().toDateString()}</span>
+        </div>
+      </div>
     </div>
   );
 }

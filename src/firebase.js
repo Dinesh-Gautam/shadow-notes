@@ -23,7 +23,7 @@ export const auth = app.auth();
 
 // firebase firestore database
 export const db = app.firestore();
-
+export { firebase };
 // sign in popup by google
 export const googleProvider = new firebase.auth.GoogleAuthProvider();
 export default app;
