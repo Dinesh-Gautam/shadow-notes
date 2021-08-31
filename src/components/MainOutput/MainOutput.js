@@ -20,7 +20,6 @@ function MainOutput() {
   return (
     <div className="mainoutput_container">
       <div className="mainoutput_wraper">
-        {console.log(userData)}
         {userData &&
           userData.map(({ data, id, publishDate }) => {
             const headingText = data.find(
@@ -38,14 +37,14 @@ function MainOutput() {
                 }
                 mainText={headingText.inputValue}
               >
-                {data.some((e) => {
+                {/* {data.some((e) => {
                   return inputOptions.some(
                     (option) =>
                       option.name === e.name && e.name !== "color_input_value"
                   );
-                }) && (
-                  <OutputTemplet publishDate={publishDate} userData={data} />
-                )}
+                }) && ( */}
+                <OutputTemplet publishDate={publishDate} userData={data} />
+                {/* )} */}
               </DropDown>
             );
           })}
