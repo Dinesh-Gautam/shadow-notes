@@ -27,6 +27,8 @@ export function DatabaseContext({ children }) {
       .doc(userID)
       .collection("userData")
       .where("delete", "==", false)
+      .orderBy("publishDate", "desc")
+      // .limit(2)
       .onSnapshot(
         (snapshot) => {
           console.log("On snapshot");

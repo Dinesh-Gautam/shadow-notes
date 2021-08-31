@@ -1,3 +1,5 @@
+@use "sass:math";
+
 :root {
   --default-backgroundcolor: #f0f0f0;
   --default-color: #fafafa;
@@ -65,7 +67,7 @@ ul {
 button {
   background-color: var(--default-backgroundcolor);
   border: none;
-  padding: $padding-default / 2 $padding-default;
+  padding: math.div($padding-default, 2) $padding-default;
   font-size: $fontSize-default;
   font-family: $font-default;
   border-radius: $border-radius-default;
@@ -86,7 +88,7 @@ button {
 input,
 select,
 textarea {
-  padding: $padding-default / 2 $padding-default;
+  padding: math.div($padding-default, 2) $padding-default;
   background-color: var(--default-color);
   border: $border-default;
   border-radius: 0 0 $border-radius-default $border-radius-default;
@@ -104,7 +106,7 @@ textarea {
   min-width: $padding-default;
 }
 select {
-  padding: $padding-default / 2 $padding-default;
+  padding: math.div($padding-default, 2) $padding-default;
   font-size: $fontSize-default;
   font-family: $font-default;
   border-radius: $border-radius-default;
@@ -167,7 +169,7 @@ main {
     height: fit-content;
     margin-top: auto;
     background: var(--default-backgroundcolor);
-    padding: $padding-default / 3 $padding-medium;
+    padding: math.div($padding-default, 3) $padding-medium;
     border-radius: $border-radius-default $border-radius-default 0 0;
     font-weight: 500;
     opacity: 0.7;
@@ -285,7 +287,7 @@ main {
   .dropdown_btn_container {
     display: flex;
     align-items: center;
-    height: $dropdown-height-default / 1.5;
+    height: math.div($dropdown-height-default, 1.5);
     // gap: $padding-default;
     padding: 0 $padding-default;
     margin: $padding-less 0;
@@ -415,7 +417,7 @@ main {
     gap: $padding-less;
     margin-right: $padding-default;
     button {
-      padding: $padding-default/ 1.6;
+      padding: math.div($padding-default, 1.6);
       border: 2px solid rgba(255, 255, 255, 0.8);
     }
   }
@@ -446,7 +448,7 @@ main {
   .trash_content_container {
     // margin-top: $padding-default;
     padding: $padding-default;
-    overflow-y: scroll;
+    overflow-y: auto;
     height: 94%;
   }
   .trash_content {

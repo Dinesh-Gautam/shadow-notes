@@ -411,7 +411,7 @@ main {
 }
 #trash .trash_content_container {
   padding: 16px;
-  overflow-y: scroll;
+  overflow-y: auto;
   height: 94%;
 }
 #trash .trash_content {
