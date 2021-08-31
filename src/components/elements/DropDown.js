@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Separator from "./Separator";
 import UseSvg from "./UseSvg";
 
 function DropDown({
@@ -31,6 +32,7 @@ function DropDown({
         </div>
         <div className="dropdown_btn_container">
           {extraButtons}
+          <Separator type="vertical-medium" />
           <button
             style={{
               transform: dropdownDisplay ? "rotate(180deg)" : "rotate(0deg)",

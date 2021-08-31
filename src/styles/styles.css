@@ -430,5 +430,8 @@ main {
 .separator.vertical-medium.ml0 {
   margin-left: 0;
 }
+.separator.vertical-medium.m0 {
+  margin: 0;
+}
 
 /*# sourceMappingURL=styles.css.map */
