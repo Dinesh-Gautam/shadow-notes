@@ -1,6 +1,7 @@
 import React from "react";
 import { useData } from "../context/DatabaseContext";
 import DropDown from "./elements/DropDown";
+import Separator from "./elements/Separator";
 import UseSvg from "./elements/UseSvg";
 import Button from "./MainInput/inputs/elements/Button";
 import { inputOptions } from "./MainInput/inputs/inputOptions";
@@ -21,6 +22,7 @@ function Trash({ trashData, displayState, setdisplayState }) {
           text={<UseSvg type="close" />}
         />
       </div>
+
       <div className="trash_content_container">
         <div className="trash_content">
           {trashData && trashData.length > 0 ? (

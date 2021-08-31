@@ -1,4 +1,5 @@
 import React from "react";
+import Separator from "./components/elements/Separator";
 import { InputContext } from "./components/MainInput/InputContext";
 import MainInput from "./components/MainInput/MainInput";
 import MainOutput from "./components/MainOutput/MainOutput";
@@ -23,6 +24,7 @@ function App() {
             <div className="mainContainer">
               <MainInput />
               <OutputFilter />
+              <Separator type="horizontal-bold" />
               <MainOutput />
             </div>
           </InputContext>

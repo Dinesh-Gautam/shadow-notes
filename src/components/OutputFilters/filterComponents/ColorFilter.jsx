@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Separator from "../../elements/Separator";
 import Button from "../../MainInput/inputs/elements/Button";
 
 function ColorFilter({ setData, appliedColors }) {
@@ -27,6 +28,7 @@ function ColorFilter({ setData, appliedColors }) {
         }}
         text="All"
       />
+      <Separator type="vertical-medium ml0" />
       <div className="color_filter_container">
         {uniqueAppliedColors.map((inputValue, index) => {
           return (

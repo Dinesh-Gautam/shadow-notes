@@ -3,6 +3,7 @@
   --default-color: #fafafa;
   --default-text-color: rgba(0, 0, 0, 0.8);
   --less-alpha-text-color: rgba(0, 0, 0, 0.5);
+  --vless-alpha-text-color: rgba(0, 0, 0, 0.05);
   --link-text-color: #2372e9;
 }
 
@@ -180,6 +181,9 @@ main {
   .inputWaper {
     .list_input_box {
       flex: 1;
+      input:not(input:last-child) {
+        border-radius: $border-radius-default;
+      }
     }
     .input .list_input_box .list-container {
       margin-bottom: $padding-default;
@@ -238,7 +242,7 @@ main {
 
 // Main Output
 .mainoutput_wraper {
-  margin-top: $padding-default;
+  margin-bottom: $padding-default;
   display: grid;
   gap: $padding-default;
   grid-template-columns: 1fr 1fr;
@@ -421,9 +425,11 @@ main {
       text-transform: uppercase;
       color: var(--default-text-color);
     }
+    border-bottom: 3px solid var(--vless-alpha-text-color);
+    padding-bottom: $padding-default;
   }
   .trash_content_container {
-    margin-top: $padding-default;
+    // margin-top: $padding-default;
     padding: $padding-default;
     overflow-y: scroll;
     height: 94%;
@@ -443,6 +449,25 @@ main {
       opacity: 0.5;
       font-weight: 700;
       top: $padding-medium;
+    }
+  }
+}
+
+// Separator
+.separator {
+  &.horizontal-bold {
+    width: 100%;
+    height: 3px;
+    background-color: var(--vless-alpha-text-color);
+    margin: $padding-default 0;
+  }
+  &.vertical-medium {
+    height: 60%;
+    width: 1px;
+    background-color: rgba(0, 0, 0, 0.15);
+    margin: $padding-default;
+    &.ml0 {
+      margin-left: 0;
     }
   }
 }
