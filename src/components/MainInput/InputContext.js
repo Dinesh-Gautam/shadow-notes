@@ -8,11 +8,22 @@ export function useInputs() {
   return useContext(input_context);
 }
 
+export const headingId = uuidv4();
+
+class Options {
+  constructor(isEditMode, editParameters) {
+    this.isEditMode = isEditMode;
+    this.editParameters = editParameters;
+  }
+}
+
+export const edit = new Options(false, {});
+
 export function InputContext(props) {
   const initialState = [
     {
       value: "Heading",
-      id: uuidv4(),
+      id: headingId,
       name: "heading_input_value",
       inputValue: "",
       attr: { required: true, type: "text" },
@@ -20,6 +31,11 @@ export function InputContext(props) {
       isRequired: true,
     },
   ];
+
+  // const getStateValue = (state, action) => {
+  //   const { payload } = action;
+  //   return state.find((e) => e === payload.name)[payload.property];
+  // };
 
   const setinputValue = (state, action) => {
     const { payload } = action;
@@ -94,7 +110,7 @@ export function InputContext(props) {
             inner: [
               ...input.inner,
               {
-                id: uuidv4(),
+                id: action.payload.listId || uuidv4(),
                 attr: { type: "text" },
                 inputValue: "",
                 tag: "input",
@@ -128,9 +144,11 @@ export function InputContext(props) {
     }
   };
 
+  //////////
+
   const [inputs, inputsDispatch] = useReducer(setinputs, initialState);
 
-  const { setData_firestore } = useData();
+  const { setData_firestore, updateData_firestore } = useData();
 
   const formSubmitHandler = (e) => {
     e.preventDefault();
@@ -147,7 +165,7 @@ export function InputContext(props) {
             value,
             id,
             inner:
-              valueOfInput > 0 &&
+              valueOfInput &&
               inner.map(
                 (list) =>
                   valueOfInput.inputChildren[list.id].value.trim() !== "" &&
@@ -170,12 +188,19 @@ export function InputContext(props) {
       type: "clear",
     });
 
-    setData_firestore({
-      delete: false,
-      options: false,
-      publishDate: firebase.firestore.FieldValue.serverTimestamp(),
-      data: finalInputSubmitValues.filter((e) => e !== null),
-    });
+    if (edit.isEditMode) {
+      const { docId } = edit.editParameters;
+      updateData_firestore(docId, {
+        data: finalInputSubmitValues.filter((e) => e !== null),
+      });
+    } else {
+      setData_firestore({
+        delete: false,
+        options: false,
+        publishDate: firebase.firestore.FieldValue.serverTimestamp(),
+        data: finalInputSubmitValues.filter((e) => e !== null),
+      });
+    }
   };
 
   const value = {

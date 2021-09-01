@@ -208,6 +208,7 @@ main {
   border-radius: $border-radius-default;
   overflow: hidden;
   box-shadow: $boxShadow-default;
+  cursor: pointer;
   &::-webkit-color-swatch-wrapper {
     padding: 0;
   }

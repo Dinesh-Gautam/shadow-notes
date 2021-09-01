@@ -27,7 +27,7 @@ export function DatabaseContext({ children }) {
       .doc(userID)
       .collection("userData")
       .where("delete", "==", false)
-      .orderBy("publishDate", "desc")
+      // .orderBy("publishDate", "desc")
       // .limit(2)
       .onSnapshot(
         (snapshot) => {

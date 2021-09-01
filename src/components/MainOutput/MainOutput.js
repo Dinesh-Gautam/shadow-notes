@@ -43,7 +43,11 @@ function MainOutput() {
                       option.name === e.name && e.name !== "color_input_value"
                   );
                 }) && ( */}
-                <OutputTemplet publishDate={publishDate} userData={data} />
+                <OutputTemplet
+                  publishDate={publishDate}
+                  userData={data}
+                  docId={id}
+                />
                 {/* )} */}
               </DropDown>
             );
