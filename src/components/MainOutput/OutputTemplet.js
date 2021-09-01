@@ -1,25 +1,12 @@
 import React from "react";
-import { useData } from "../../context/DatabaseContext";
 import { headingId, edit, useInputs } from "../MainInput/InputContext";
 import Button from "../MainInput/inputs/elements/Button";
 import { inputOptions } from "../MainInput/inputs/inputOptions";
 import { v4 as uuidv4 } from "uuid";
 function OutputTemplet({ userData, publishDate, docId }) {
-  const { userData: originalData } = useData();
-
-  const {
-    inputsDispatch,
-    inputValueDispatch,
-    inputValue,
-    // inputValue,
-  } = useInputs();
+  const { inputsDispatch, inputValueDispatch } = useInputs();
 
   const editButtonHandler = () => {
-    // options = {
-    //   ...options,
-    //   isEditMode: true,
-    //   editParameters: { docId },
-    // };
     edit.isEditMode = true;
     edit.editParameters = { docId };
 
@@ -29,15 +16,13 @@ function OutputTemplet({ userData, publishDate, docId }) {
     inputValueDispatch({
       type: "clear",
     });
-    // const docRef = originalData.find((e) => e.id === docId);
-    // console.log(userData);
+
     userData.forEach((e, index) => {
-      const { inputValue, name, id, value } = e;
-      // console.log(e);
+      const { inputValue, name, id } = e;
+
       const selectedInput = inputOptions.find((input) => input.name === name);
 
       const firsInputId = uuidv4();
-      // console.log(selectedInput);
 
       if (selectedInput) {
         switch (name) {
@@ -55,7 +40,7 @@ function OutputTemplet({ userData, publishDate, docId }) {
 
             e.inner.forEach((listInputValue, index, arr) => {
               const uid = uuidv4();
-              // console.log(listInputValue);
+
               if (index < 1) {
                 inputValueDispatch({
                   type: "listValue",
