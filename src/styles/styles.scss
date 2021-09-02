@@ -302,6 +302,7 @@ main {
       height: 100%;
       svg {
         height: 100%;
+        opacity: 0.7;
       }
     }
   }
@@ -326,6 +327,13 @@ main {
     display: none;
   }
 }
+
+.dropdown_extraButtons {
+  display: flex;
+  height: 100%;
+  align-items: center;
+}
+
 .outputTemplet_wraper {
   padding: $padding-default $padding-large;
   background: var(--default-color);
@@ -483,7 +491,7 @@ main {
     height: 60%;
     width: 1px;
     background-color: rgba(0, 0, 0, 0.15);
-    margin: $padding-default;
+    margin: 0 $padding-default;
     &.ml0 {
       margin-left: 0;
     }

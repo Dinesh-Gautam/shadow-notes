@@ -28,3 +28,31 @@ delete functionality
     filter using firebese indexing [use isNormal boolean for normal | if it is not siNormal is false then it is probaly deleted or any orther feature is true] ()
 
     clean code ()
+
+
+
+Sekelton loading
+
+edit button (move edit button to dropdown extra buttons)
+
+responsive
+
+userInfo
+
+signIn and SignOut
+
+Search
+
+ColorInput (scroll arrows)
+
+already colors applied in colors input opition
+
+auto scroll in text area (paragraph) and add limit
+
+when edit att cancle button and show edit mode is on
+
+when only allow to add one color
+
+temprarely remove search selecet for now
+
+custom Select

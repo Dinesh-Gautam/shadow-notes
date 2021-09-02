@@ -17,7 +17,6 @@ function DropDown({
 
   return (
     <div
-      // style={{ backgroundColor: DropdownBackgroundColor || "" }}
       className={`dropdown_container ${dropdownDisplay ? "visible" : false}`}
     >
       <div className="dropdown_wraper">
@@ -43,12 +42,7 @@ function DropDown({
           </button>
         </div>
       </div>
-      <div
-        // style={{ display: dropdownDisplay ? "block" : "none" }}
-        className="dropdown_inner_container"
-      >
-        {children}
-      </div>
+      <div className="dropdown_inner_container">{children}</div>
     </div>
   );
 }

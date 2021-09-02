@@ -1,7 +1,6 @@
 import React from "react";
 import { useData } from "../../context/DatabaseContext";
 import DropDown from "../elements/DropDown";
-import { inputOptions } from "../MainInput/inputs/inputOptions";
 import OutputTemplet from "./OutputTemplet";
 import AdditionalButtons from "./smallComponents/AdditionalButtons";
 
@@ -31,24 +30,17 @@ function MainOutput() {
             return (
               <DropDown
                 key={id}
-                extraButtons={<AdditionalButtons docId={id} />}
+                extraButtons={<AdditionalButtons userData={data} docId={id} />}
                 DropdownBackgroundColor={
                   DropdownBackgroundColor && DropdownBackgroundColor.inputValue
                 }
                 mainText={headingText.inputValue}
               >
-                {/* {data.some((e) => {
-                  return inputOptions.some(
-                    (option) =>
-                      option.name === e.name && e.name !== "color_input_value"
-                  );
-                }) && ( */}
                 <OutputTemplet
                   publishDate={publishDate}
                   userData={data}
                   docId={id}
                 />
-                {/* )} */}
               </DropDown>
             );
           })}

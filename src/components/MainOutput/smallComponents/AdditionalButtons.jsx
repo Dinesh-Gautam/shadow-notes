@@ -1,11 +1,110 @@
 import React from "react";
 import { useData } from "../../../context/DatabaseContext";
 import UseSvg from "../../elements/UseSvg";
+import { edit, headingId, useInputs } from "../../MainInput/InputContext";
+import { inputOptions } from "../../MainInput/inputs/inputOptions";
+import { v4 as uuidv4 } from "uuid";
+import Button from "../../MainInput/inputs/elements/Button";
+import Separator from "../../elements/Separator";
 
-function AdditionalButtons({ docId }) {
+function AdditionalButtons({ docId, userData }) {
+  const { inputsDispatch, inputValueDispatch } = useInputs();
+
   const { updateData_firestore } = useData();
+
+  const editButtonHandler = () => {
+    edit.isEditMode = true;
+    edit.editParameters = { docId };
+
+    inputsDispatch({
+      type: "clear",
+    });
+    inputValueDispatch({
+      type: "clear",
+    });
+
+    userData.forEach((e) => {
+      const { inputValue, name, id } = e;
+
+      const selectedInput = inputOptions.find((input) => input.name === name);
+
+      const firsInputId = uuidv4();
+
+      if (selectedInput) {
+        switch (name) {
+          case "list_input_value":
+            inputsDispatch({
+              type: "addElement",
+              payload: {
+                id: id,
+                selectedInput: {
+                  ...selectedInput,
+                  inner: [{ ...selectedInput.inner[0], id: firsInputId }],
+                },
+              },
+            });
+
+            e.inner.forEach((listInputValue, index) => {
+              const uid = uuidv4();
+
+              if (index < 1) {
+                inputValueDispatch({
+                  type: "listValue",
+                  payload: {
+                    parentId: id,
+                    childrenId: firsInputId,
+                    value: listInputValue,
+                  },
+                });
+              } else {
+                inputsDispatch({
+                  payload: { id, listId: uid },
+                  type: "addListElement",
+                });
+                inputValueDispatch({
+                  type: "listValue",
+                  payload: {
+                    parentId: id,
+                    childrenId: uid,
+                    value: listInputValue,
+                  },
+                });
+              }
+            });
+            break;
+
+          default:
+            inputsDispatch({
+              type: "addElement",
+              payload: { id: id, selectedInput },
+            });
+            inputValueDispatch({
+              type: "normalValue",
+              payload: { id: id, value: inputValue },
+            });
+            break;
+        }
+      } else {
+        if (name === "heading_input_value") {
+          console.log(headingId);
+          inputValueDispatch({
+            type: "normalValue",
+            payload: { id: headingId, value: inputValue },
+          });
+        }
+      }
+    });
+  };
+
   return (
-    <div>
+    <div className="dropdown_extraButtons">
+      <Button
+        attr={{
+          onClick: editButtonHandler,
+        }}
+        text={<UseSvg type="edit" />}
+      />
+      <Separator type="vertical-medium" />
       <button
         onClick={() => {
           const data = {
