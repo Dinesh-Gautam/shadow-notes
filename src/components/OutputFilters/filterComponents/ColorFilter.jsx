@@ -15,7 +15,7 @@ function ColorFilter({ setData, appliedColors }) {
   const handleColorFilterClick = (e) => {
     const value = e.target.value;
     setData((prev) => {
-      return [{ colorFIlter: value }];
+      return { ...prev, colorFIlter: value };
     });
   };
   return (
@@ -23,7 +23,10 @@ function ColorFilter({ setData, appliedColors }) {
       <Button
         attr={{
           onClick: () => {
-            setData([]);
+            setData((prev) => {
+              delete prev.colorFIlter;
+              return { ...prev };
+            });
           },
         }}
         text="All"

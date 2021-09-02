@@ -29,7 +29,7 @@ function OutputFilter() {
         data={userData}
         setData={setfiltererdUserData}
       />
-      <SearchFilter />
+      <SearchFilter setData={setfiltererdUserData} />
     </div>
   );
 }

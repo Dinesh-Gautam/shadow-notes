@@ -354,6 +354,7 @@ main {
 .outputTemplet_wraper .output_footer .publishing-date {
   display: flex;
   gap: 4px;
+  margin-left: auto;
 }
 
 .search_filters {
@@ -384,6 +385,9 @@ main {
 }
 .search_filters > div button svg {
   height: 100%;
+}
+.search_filters > div button.search_clear_button svg {
+  opacity: 0.6;
 }
 .search_filters .color_filter_container {
   gap: 12px;

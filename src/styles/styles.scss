@@ -385,6 +385,7 @@ main {
     .publishing-date {
       display: flex;
       gap: 4px;
+      margin-left: auto;
     }
   }
 }
@@ -418,6 +419,11 @@ main {
     button {
       svg {
         height: 100%;
+      }
+      &.search_clear_button {
+        svg {
+          opacity: 0.6;
+        }
       }
     }
   }

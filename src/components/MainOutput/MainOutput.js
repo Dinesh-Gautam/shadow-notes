@@ -6,13 +6,34 @@ import AdditionalButtons from "./smallComponents/AdditionalButtons";
 
 function MainOutput() {
   const { filtererdUserData, userData: originalData } = useData();
+
   const userData =
-    filtererdUserData.length > 0
-      ? originalData.filter(({ data }) => {
-          return data.find(
-            (foundedValue) =>
-              foundedValue.inputValue === filtererdUserData[0].colorFIlter
-          );
+    Object.keys(filtererdUserData).length > 0
+      ? originalData &&
+        originalData.filter(({ data }) => {
+          return Object.keys(filtererdUserData).every((filter) => {
+            if (filter === "colorFIlter") {
+              return data.some(
+                (dataFields) =>
+                  dataFields.name === "color_input_value" &&
+                  dataFields.inputValue === filtererdUserData.colorFIlter
+              );
+            } else if (filter === "searchFilter") {
+              return data.some((dataFields) => {
+                if (dataFields.name === "list_input_value") {
+                  return dataFields.inner.some((listValue) => {
+                    return RegExp(filtererdUserData[filter].toLowerCase()).test(
+                      listValue.toLowerCase()
+                    );
+                  });
+                } else {
+                  return RegExp(filtererdUserData[filter].toLowerCase()).test(
+                    dataFields.inputValue.toLowerCase()
+                  );
+                }
+              });
+            }
+          });
         })
       : originalData;
 

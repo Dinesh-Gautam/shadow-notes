@@ -33,15 +33,11 @@ delete functionality
 
 Sekelton loading
 
-edit button (move edit button to dropdown extra buttons)
-
 responsive
 
 userInfo
 
 signIn and SignOut
-
-Search
 
 ColorInput (scroll arrows)
 
@@ -56,3 +52,5 @@ when only allow to add one color
 temprarely remove search selecet for now
 
 custom Select
+
+Output for / result
