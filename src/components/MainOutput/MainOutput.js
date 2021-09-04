@@ -1,6 +1,7 @@
 import React from "react";
 import { useData } from "../../context/DatabaseContext";
 import DropDown from "../elements/DropDown";
+import Loading from "../elements/Loading";
 import OutputTemplet from "./OutputTemplet";
 import AdditionalButtons from "./smallComponents/AdditionalButtons";
 
@@ -40,7 +41,11 @@ function MainOutput() {
   return (
     <div className="mainoutput_container">
       <div className="mainoutput_wraper">
-        {userData &&
+        {!userData ? (
+          Array(10).fill(<Loading type="simple-card" />)
+        ) : userData.length < 1 ? (
+          <span> Nothing Here. </span>
+        ) : (
           userData.map(({ data, id, publishDate }) => {
             const headingText = data.find(
               (data) => data.name === "heading_input_value"
@@ -64,7 +69,8 @@ function MainOutput() {
                 />
               </DropDown>
             );
-          })}
+          })
+        )}
       </div>
     </div>
   );

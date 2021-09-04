@@ -225,6 +225,16 @@ main {
   display: grid;
   gap: 16px;
   grid-template-columns: 1fr 1fr;
+  position: relative;
+}
+.mainoutput_wraper span {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  margin-top: 32px;
+  font-size: 28px;
+  opacity: 0.5;
+  font-weight: 700;
 }
 
 .dropdown_container {
@@ -389,6 +399,9 @@ main {
 .search_filters > div button.search_clear_button svg {
   opacity: 0.6;
 }
+.search_filters .filter-by-search {
+  flex: 1;
+}
 .search_filters .color_filter_container {
   gap: 12px;
   margin-right: 16px;
@@ -460,6 +473,26 @@ main {
 }
 .separator.vertical-medium.m0 {
   margin: 0;
+}
+
+.simple-card {
+  height: 10%;
+  width: 100%;
+  padding: 32px;
+  border-radius: 6px;
+  animation: loading_animation 2s linear infinite;
+}
+
+@keyframes loading_animation {
+  0% {
+    background: #e6e6e6;
+  }
+  50% {
+    background-color: gainsboro;
+  }
+  100% {
+    background: #e6e6e6;
+  }
 }
 
 /*# sourceMappingURL=styles.css.map */

@@ -10,26 +10,30 @@ function OutputFilter() {
   return (
     <div className="search_filters">
       <TrashBtn data={trashData} setData={settrashData} />
-      <ColorFilter
-        appliedColors={
-          userData &&
-          userData
-            .map(({ data }) => {
-              const colorValue = data.find(
-                (dataValue) => dataValue.name === "color_input_value"
-              );
-              if (colorValue) {
-                return colorValue.inputValue;
-              } else {
-                return false;
-              }
-            })
-            .filter((e) => e)
-        }
-        data={userData}
-        setData={setfiltererdUserData}
-      />
-      <SearchFilter setData={setfiltererdUserData} />
+      {userData && userData.length > 0 && (
+        <ColorFilter
+          appliedColors={
+            userData &&
+            userData
+              .map(({ data }) => {
+                const colorValue = data.find(
+                  (dataValue) => dataValue.name === "color_input_value"
+                );
+                if (colorValue) {
+                  return colorValue.inputValue;
+                } else {
+                  return false;
+                }
+              })
+              .filter((e) => e)
+          }
+          data={userData}
+          setData={setfiltererdUserData}
+        />
+      )}
+      {userData && userData.length > 0 && (
+        <SearchFilter setData={setfiltererdUserData} />
+      )}
     </div>
   );
 }

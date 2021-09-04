@@ -24,7 +24,7 @@ function SearchFilter({ setData }) {
     handleSearchFilter({ target: { value: "" } });
   };
   return (
-    <div>
+    <div className="filter-by-search">
       {/* !! DONT REMOVE BELOW CODE  !! */}
 
       {/* <select name="search-select">
@@ -43,7 +43,7 @@ function SearchFilter({ setData }) {
           onClick: handleSearchClear,
           className: "search_clear_button",
           style: {
-            display: input.current.value.length > 0 ? "flex" : "none",
+            display: input.current?.value.length > 0 ? "flex" : "none",
           },
         }}
         text={<UseSvg type="close" />}

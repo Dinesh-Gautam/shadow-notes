@@ -1,6 +1,7 @@
 import React from "react";
 import { useData } from "../context/DatabaseContext";
 import DropDown from "./elements/DropDown";
+import Loading from "./elements/Loading";
 import Separator from "./elements/Separator";
 import UseSvg from "./elements/UseSvg";
 import Button from "./MainInput/inputs/elements/Button";
@@ -25,7 +26,9 @@ function Trash({ trashData, displayState, setdisplayState }) {
 
       <div className="trash_content_container">
         <div className="trash_content">
-          {trashData && trashData.length > 0 ? (
+          {!trashData ? (
+            Array(10).fill(<Loading type="simple-card" />)
+          ) : trashData.length > 0 ? (
             trashData.map(({ data, id }) => {
               const headingText = data.find(
                 (data) => data.name === "heading_input_value"

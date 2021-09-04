@@ -250,6 +250,16 @@ main {
   display: grid;
   gap: $padding-default;
   grid-template-columns: 1fr 1fr;
+  position: relative;
+  span {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    margin-top: $padding-large;
+    font-size: $fontSize-large;
+    opacity: 0.5;
+    font-weight: 700;
+  }
 }
 .dropdown_container {
   width: 100%;
@@ -427,6 +437,9 @@ main {
       }
     }
   }
+  .filter-by-search {
+    flex: 1;
+  }
   .color_filter_container {
     @extend .random_color;
     gap: $padding-less;
@@ -504,5 +517,28 @@ main {
     &.m0 {
       margin: 0;
     }
+  }
+}
+
+// loading
+
+.simple-card {
+  // background-color: rgb(200, 200, 200);
+  height: 10%;
+  width: 100%;
+  padding: $padding-large;
+  border-radius: $border-radius-default;
+  animation: loading_animation 2s linear infinite;
+}
+
+@keyframes loading_animation {
+  0% {
+    background: rgb(230, 230, 230);
+  }
+  50% {
+    background-color: rgb(220, 220, 220);
+  }
+  100% {
+    background: rgb(230, 230, 230);
   }
 }
