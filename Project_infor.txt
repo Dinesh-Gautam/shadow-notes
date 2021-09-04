@@ -35,10 +35,6 @@ responsive
 
 ColorInput (scroll arrows)
 
-already colors applied in colors input opition
-
-auto scroll in text area (paragraph) and add limit
-
 when edit att cancle button and show edit mode is on
 
 when only allow to add one color

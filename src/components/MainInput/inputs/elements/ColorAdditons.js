@@ -1,7 +1,9 @@
 import React from "react";
 import Button from "./Button";
+import { useData } from "../../../../context/DatabaseContext";
 
 function ColorAdditons({ inputValueDispatch, parentId }) {
+  const { userData } = useData();
   return (
     <>
       <label> Random Colors </label>
@@ -28,6 +30,41 @@ function ColorAdditons({ inputValueDispatch, parentId }) {
             }}
           />
         ))}
+      </div>
+      <label> Applied Colors </label>
+      <div className="random_color">
+        {userData &&
+          userData
+            .map(({ data, index }) => {
+              const colorValue = data.find(
+                (dataValue) => dataValue.name === "color_input_value"
+              );
+              if (colorValue) {
+                return colorValue.inputValue;
+              } else {
+                return false;
+              }
+            })
+            .filter((e, index, arr) => e && arr.indexOf(e) === index)
+            .map((value, index) => {
+              return (
+                <Button
+                  key={index}
+                  attr={{
+                    value: value,
+                    onClick: () => {
+                      inputValueDispatch({
+                        type: "normalValue",
+                        payload: { id: parentId, value: value },
+                      });
+                    },
+                    name: "color_input_value",
+                    style: { backgroundColor: value },
+                    className: "random-color-btn colro-btn",
+                  }}
+                />
+              );
+            })}
       </div>
     </>
   );
