@@ -5,6 +5,7 @@ import MainInput from "./components/MainInput/MainInput";
 import MainOutput from "./components/MainOutput/MainOutput";
 import OutputFilter from "./components/OutputFilters/OutputFilter";
 import SignWithGoogle from "./components/signIn/SignWithGoogle";
+import UserInfo from "./components/UserInfo";
 import { useAuth } from "./context/AuthContext";
 import { DatabaseContext } from "./context/DatabaseContext";
 
@@ -37,14 +38,5 @@ function App() {
     </main>
   );
 }
-
-const UserInfo = () => {
-  const { logout } = useAuth();
-  return (
-    <div className="user-info-container">
-      <button onClick={logout}>Sign Out</button>
-    </div>
-  );
-};
 
 export default App;

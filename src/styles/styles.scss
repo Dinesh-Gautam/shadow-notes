@@ -79,6 +79,7 @@ button {
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: $padding-default;
   svg {
     opacity: 0.8;
     height: $fontSize-medium;
@@ -578,6 +579,9 @@ main {
   left: 50%;
   transform: translate(-50%, -50%);
   button {
+    padding: $padding-default $padding-default * 2;
     background: var(--default-color);
+    display: flex;
+    gap: $padding-default;
   }
 }
