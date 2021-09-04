@@ -31,13 +31,7 @@ delete functionality
 
 
 
-Sekelton loading * 
-
 responsive
-
-userInfo * 
-
-signIn and SignOut * 
 
 ColorInput (scroll arrows)
 

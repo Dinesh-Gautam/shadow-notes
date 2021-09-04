@@ -105,6 +105,8 @@ textarea {
   max-width: 100%;
   min-height: $padding-large * 2;
   min-width: $padding-default;
+  resize: vertical;
+  overflow: hidden;
 }
 select {
   padding: math.div($padding-default, 2) $padding-default;

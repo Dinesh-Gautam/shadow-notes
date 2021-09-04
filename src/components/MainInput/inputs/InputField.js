@@ -59,6 +59,10 @@ function InputField({ input }) {
                     type: "normalValue",
                     payload: { id: input.id, value: e.target.value },
                   });
+                if (e.target.tagName === "TEXTAREA") {
+                  e.target.style.height = "auto";
+                  e.target.style.height = e.target.scrollHeight + "px";
+                }
               },
               value: inputValue[input.id]?.value || input.inputValue,
             },
