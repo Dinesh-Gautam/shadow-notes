@@ -1,5 +1,4 @@
-import React from "react";
-import Loading from "./components/elements/Loading";
+import React, { useState } from "react";
 import Separator from "./components/elements/Separator";
 import { InputContext } from "./components/MainInput/InputContext";
 import MainInput from "./components/MainInput/MainInput";
@@ -13,8 +12,8 @@ import "./styles/styles.css";
 // import "./styles/MainOutput/mainOutput.css";
 
 function App() {
-  const { currentUser, logout } = useAuth();
-
+  const { currentUser } = useAuth();
+  const [userDisplay, setuserDisplay] = useState(false);
   return (
     <main>
       {!currentUser ? (
@@ -24,18 +23,28 @@ function App() {
           <InputContext>
             <div className="mainContainer">
               <MainInput />
-              <OutputFilter />
+              <OutputFilter
+                userDisplay={userDisplay}
+                setuserDisplay={setuserDisplay}
+              />
               <Separator type="horizontal-bold" />
               <MainOutput />
             </div>
+            {userDisplay && <UserInfo />}
           </InputContext>
-          <div className="user-additionals-container">
-            <button onClick={logout}>Sign Out</button>
-          </div>
         </DatabaseContext>
       )}
     </main>
   );
 }
+
+const UserInfo = () => {
+  const { logout } = useAuth();
+  return (
+    <div className="user-info-container">
+      <button onClick={logout}>Sign Out</button>
+    </div>
+  );
+};
 
 export default App;

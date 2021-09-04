@@ -116,6 +116,8 @@ main {
   display: grid;
   grid-template-columns: 1fr 1336px 1fr;
   height: 100%;
+  gap: $padding-default;
+  margin: 0 $padding-default;
 }
 
 .mainContainer {
@@ -405,6 +407,11 @@ main {
   display: flex;
   gap: $padding-default;
   margin-top: $padding-default;
+  // position: sticky;
+  top: 0;
+  // z-index: 9999;
+  // background: rgba($color: #ffffff, $alpha: 1);
+
   & > div {
     display: flex;
     align-items: center;
@@ -448,6 +455,28 @@ main {
       padding: math.div($padding-default, 1.6);
       border: 2px solid rgba(255, 255, 255, 0.8);
     }
+  }
+}
+.user-info-btn {
+  background: var(--default-color);
+  svg {
+    height: 100%;
+  }
+}
+
+.user-info-container {
+  grid-column: 3/-1;
+  height: fit-content;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: $padding-default;
+  margin: $padding-default 0;
+  box-shadow: $boxShadow-default;
+  border-radius: $border-radius-default;
+  background: var(--default-color);
+  button {
   }
 }
 
