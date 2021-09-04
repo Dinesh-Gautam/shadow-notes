@@ -428,13 +428,43 @@ main {
   width: 100%;
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  align-items: flex-end;
   padding: 16px;
   margin: 16px 0;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   border-radius: 6px;
   background: var(--default-color);
+  flex-direction: column;
+  gap: 16px;
+  max-width: 400px;
 }
+.user-info-container .user-info {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  align-self: flex-start;
+}
+.user-info-container .user-photo {
+  border-radius: 50%;
+  height: 48px;
+  width: 48px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  margin-right: 16px;
+}
+.user-info-container .user-credentials {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.user-info-container .user-name {
+  font-size: 18px;
+  font-weight: 600;
+}
+.user-info-container .user-email {
+  font-size: 14px;
+  color: var(--default-text-color);
+}
+
 #trash {
   position: fixed;
   top: 0;
