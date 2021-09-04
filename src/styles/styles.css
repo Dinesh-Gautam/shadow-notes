@@ -517,5 +517,14 @@ main {
     background: #e6e6e6;
   }
 }
+.sign-in-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.sign-in-container button {
+  background: var(--default-color);
+}
 
 /*# sourceMappingURL=styles.css.map */

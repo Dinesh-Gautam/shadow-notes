@@ -4,7 +4,11 @@ import Button from "../MainInput/inputs/elements/Button";
 
 function SignWithGoogle() {
   const { login } = useAuth();
-  return <Button attr={{ onClick: login }} text="Sign with Google"></Button>;
+  return (
+    <div className="sign-in-container">
+      <Button attr={{ onClick: login }} text="Sign In with Google"></Button>
+    </div>
+  );
 }
 
 export default SignWithGoogle;
