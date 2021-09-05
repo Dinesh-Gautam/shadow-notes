@@ -175,6 +175,7 @@ main {
     flex: 1;
     display: flex;
     justify-content: flex-end;
+    gap: $padding-default;
     button {
       height: 100%;
     }

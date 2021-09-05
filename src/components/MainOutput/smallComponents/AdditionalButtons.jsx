@@ -1,21 +1,22 @@
 import React from "react";
 import { useData } from "../../../context/DatabaseContext";
 import UseSvg from "../../elements/UseSvg";
-import { edit, headingId, useInputs } from "../../MainInput/InputContext";
+import { headingId, useInputs } from "../../MainInput/InputContext";
 import { inputOptions } from "../../MainInput/inputs/inputOptions";
 import { v4 as uuidv4 } from "uuid";
 import Button from "../../MainInput/inputs/elements/Button";
 import Separator from "../../elements/Separator";
 
 function AdditionalButtons({ docId, userData }) {
-  const { inputsDispatch, inputValueDispatch } = useInputs();
+  const { inputsDispatch, inputValueDispatch, isEditMode, setisEditMode } =
+    useInputs();
 
   const { updateData_firestore } = useData();
 
   const editButtonHandler = () => {
-    edit.isEditMode = true;
-    edit.editParameters = { docId };
-
+    setisEditMode((prev) => {
+      return { edit: true, editParameters: docId };
+    });
     inputsDispatch({
       type: "clear",
     });

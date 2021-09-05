@@ -135,6 +135,7 @@ main {
   flex: 1;
   display: flex;
   justify-content: flex-end;
+  gap: 16px;
 }
 .input_selection .input_main_button button {
   height: 100%;

@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useReducer } from "react";
+import React, { createContext, useContext, useReducer, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { useData } from "../../context/DatabaseContext";
 import { firebase } from "../../firebase";
@@ -9,15 +9,6 @@ export function useInputs() {
 }
 
 export const headingId = uuidv4();
-
-class Options {
-  constructor(isEditMode, editParameters) {
-    this.isEditMode = isEditMode;
-    this.editParameters = editParameters;
-  }
-}
-
-export const edit = new Options(false, {});
 
 export function InputContext(props) {
   const initialState = [
@@ -31,11 +22,6 @@ export function InputContext(props) {
       isRequired: true,
     },
   ];
-
-  // const getStateValue = (state, action) => {
-  //   const { payload } = action;
-  //   return state.find((e) => e === payload.name)[payload.property];
-  // };
 
   const setinputValue = (state, action) => {
     const { payload } = action;
@@ -150,6 +136,7 @@ export function InputContext(props) {
 
   const { setData_firestore, updateData_firestore } = useData();
 
+  const [isEditMode, setisEditMode] = useState({ edit: false, parameters: {} });
   const formSubmitHandler = (e) => {
     e.preventDefault();
     let finalInputSubmitValues = inputs.map((input) => {
@@ -181,6 +168,8 @@ export function InputContext(props) {
               id,
             };
     });
+
+    setisEditMode({ edit: false, editParameters: {} });
     inputsDispatch({
       type: "clear",
     });
@@ -188,8 +177,8 @@ export function InputContext(props) {
       type: "clear",
     });
 
-    if (edit.isEditMode) {
-      const { docId } = edit.editParameters;
+    if (isEditMode.edit) {
+      const docId = isEditMode.editParameters;
       updateData_firestore(docId, {
         data: finalInputSubmitValues.filter((e) => e !== null),
       });
@@ -209,6 +198,8 @@ export function InputContext(props) {
     formSubmitHandler,
     inputValue,
     inputValueDispatch,
+    isEditMode,
+    setisEditMode,
   };
   return (
     <input_context.Provider value={value}>

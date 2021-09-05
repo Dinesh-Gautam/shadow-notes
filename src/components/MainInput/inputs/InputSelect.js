@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { input_context } from "../InputContext";
+import { edit, input_context } from "../InputContext";
 import Button from "./elements/Button";
 import InputField from "./InputField";
 import { inputOptions } from "./inputOptions";
@@ -9,8 +9,13 @@ import UseSvg from "../../elements/UseSvg";
 function InputSelect() {
   const [inputSelect, setinputSelect] = useState("title");
   const [disableColorSelect, setdisableColorSelect] = useState(false);
-  const { inputs, inputsDispatch, inputValueDispatch } =
-    useContext(input_context);
+  const {
+    inputs,
+    inputsDispatch,
+    inputValueDispatch,
+    setisEditMode,
+    isEditMode,
+  } = useContext(input_context);
 
   const inputAdderHandler = () => {
     const uid = uuidv4();
@@ -70,7 +75,26 @@ function InputSelect() {
           text={<UseSvg type="add" />}
         />
         <div className="input_main_button">
-          <Button attr={{ type: "submit" }} text="Submit" />
+          {isEditMode.edit && (
+            <Button
+              attr={{
+                onClick: () => {
+                  setisEditMode(false);
+                  inputsDispatch({
+                    type: "clear",
+                  });
+                  inputValueDispatch({
+                    type: "clear",
+                  });
+                },
+              }}
+              text="Cancel"
+            />
+          )}
+          <Button
+            attr={{ type: "submit" }}
+            text={isEditMode.edit ? "Done" : "Submit"}
+          />
         </div>
       </div>
     </div>
