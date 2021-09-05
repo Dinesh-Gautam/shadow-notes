@@ -9,7 +9,7 @@ import { inputOptions } from "./MainInput/inputs/inputOptions";
 import OutputTemplet from "./MainOutput/OutputTemplet";
 
 function Trash({ trashData, displayState, setdisplayState }) {
-  const { updateData_firestore } = useData();
+  const { updateData_firestore, deleteData_firestore } = useData();
   return (
     <div id="trash" style={{ display: displayState }}>
       <div className="trash_header">
@@ -42,16 +42,26 @@ function Trash({ trashData, displayState, setdisplayState }) {
                 <DropDown
                   key={id}
                   extraButtons={
-                    <button
-                      onClick={() => {
-                        const data = {
-                          delete: false,
-                        };
-                        updateData_firestore(id, data);
-                      }}
-                    >
-                      Restore
-                    </button>
+                    <div className="dropdown_extraButtons">
+                      <button
+                        onClick={() => {
+                          const data = {
+                            delete: false,
+                          };
+                          updateData_firestore(id, data);
+                        }}
+                      >
+                        Restore
+                      </button>
+                      <Separator type="vertical-medium" />
+                      <button
+                        onClick={() => {
+                          deleteData_firestore(id);
+                        }}
+                      >
+                        {<UseSvg type="trash" />}
+                      </button>
+                    </div>
                   }
                   DropdownBackgroundColor={
                     DropdownBackgroundColor &&

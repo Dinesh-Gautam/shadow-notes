@@ -78,6 +78,10 @@ export function DatabaseContext({ children }) {
       .set(data, { merge: true });
   }
 
+  function deleteData_firestore(docId) {
+    users.doc(currentUser.uid).collection("userData").doc(docId).delete();
+  }
+
   const value = {
     data,
     setdata,
@@ -90,6 +94,7 @@ export function DatabaseContext({ children }) {
     userID,
     filtererdUserData,
     setfiltererdUserData,
+    deleteData_firestore,
   };
   return (
     <data_context.Provider value={value}>{children}</data_context.Provider>
