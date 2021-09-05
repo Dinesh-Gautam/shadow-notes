@@ -231,7 +231,7 @@ main {
   grid-template-columns: 1fr 1fr;
   position: relative;
 }
-.mainoutput_wraper span {
+.mainoutput_wraper > span {
   position: absolute;
   width: 100%;
   text-align: center;

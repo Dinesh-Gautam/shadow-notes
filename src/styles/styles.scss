@@ -255,7 +255,7 @@ main {
   gap: $padding-default;
   grid-template-columns: 1fr 1fr;
   position: relative;
-  span {
+  > span {
     position: absolute;
     width: 100%;
     text-align: center;

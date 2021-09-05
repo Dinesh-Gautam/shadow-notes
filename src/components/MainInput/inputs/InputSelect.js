@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { input_context } from "../InputContext";
 import Button from "./elements/Button";
 import InputField from "./InputField";
@@ -8,6 +8,7 @@ import UseSvg from "../../elements/UseSvg";
 
 function InputSelect() {
   const [inputSelect, setinputSelect] = useState("title");
+  const [disableColorSelect, setdisableColorSelect] = useState(false);
   const { inputs, inputsDispatch, inputValueDispatch } =
     useContext(input_context);
 
@@ -18,8 +19,6 @@ function InputSelect() {
       (input) => input.value.toLowerCase() === inputSelect.toLowerCase()
     );
 
-    // console.log(uid);
-
     inputsDispatch({ type: "addElement", payload: { id: uid, selectedInput } });
 
     if (selectedInput.name === "color_input_value") {
@@ -28,11 +27,16 @@ function InputSelect() {
         payload: { id: uid, value: selectedInput.inputValue },
       });
     }
-
-    // setinputs((prev) => {
-    //   return [...prev, { ...selectedInput, id: uid }];
-    // });
   };
+
+  useEffect(() => {
+    if (inputs.some((e) => e.name === "color_input_value")) {
+      setdisableColorSelect(true);
+      setinputSelect("title");
+    } else {
+      setdisableColorSelect(false);
+    }
+  }, [inputs]);
 
   return (
     <div className="input_select_container">
@@ -48,11 +52,18 @@ function InputSelect() {
           onChange={(e) => setinputSelect(e.target.value)}
           name="inputs_options"
         >
-          {inputOptions.map((inputType) => (
-            <option key={inputType.name} value={inputType.value}>
-              {inputType.value}
-            </option>
-          ))}
+          {inputOptions.map((inputType) => {
+            if (inputType.name === "color_input_value" && disableColorSelect) {
+              console.log(disableColorSelect);
+              return null;
+            } else {
+              return (
+                <option key={inputType.name} value={inputType.value}>
+                  {inputType.value}
+                </option>
+              );
+            }
+          })}
         </select>
         <Button
           attr={{ onClick: inputAdderHandler }}
