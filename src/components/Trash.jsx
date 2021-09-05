@@ -1,15 +1,19 @@
-import React from "react";
+import React, { useRef } from "react";
 import { useData } from "../context/DatabaseContext";
 import DropDown from "./elements/DropDown";
 import Loading from "./elements/Loading";
 import Separator from "./elements/Separator";
 import UseSvg from "./elements/UseSvg";
+// import { useUndoDelete } from "./elements/UndoDelete";
 import Button from "./MainInput/inputs/elements/Button";
-import { inputOptions } from "./MainInput/inputs/inputOptions";
+// import { inputOptions } from "./MainInput/inputs/inputOptions";
 import OutputTemplet from "./MainOutput/OutputTemplet";
 
 function Trash({ trashData, displayState, setdisplayState }) {
-  const { updateData_firestore, deleteData_firestore } = useData();
+  const { updateData_firestore, deleteData_firestore, setundoTrigger } =
+    useData();
+
+  // const { undoDelete } = useUndoDelete();
   return (
     <div id="trash" style={{ display: displayState }}>
       <div className="trash_header">
@@ -41,6 +45,7 @@ function Trash({ trashData, displayState, setdisplayState }) {
               return (
                 <DropDown
                   key={id}
+                  id={id}
                   extraButtons={
                     <div className="dropdown_extraButtons">
                       <button
@@ -56,7 +61,11 @@ function Trash({ trashData, displayState, setdisplayState }) {
                       <Separator type="vertical-medium" />
                       <button
                         onClick={() => {
-                          deleteData_firestore(id);
+                          setundoTrigger((prev) => {
+                            return { trigger: true, id: [...prev.id, id] };
+                          });
+
+                          document.getElementById(id).style.display = "none";
                         }}
                       >
                         {<UseSvg type="trash" />}
@@ -69,18 +78,11 @@ function Trash({ trashData, displayState, setdisplayState }) {
                   }
                   mainText={headingText.inputValue}
                 >
-                  {/* {data.some((e) => {
-                    return inputOptions.some(
-                      (option) =>
-                        option.name === e.name && e.name !== "color_input_value"
-                    );
-                  }) && ( */}
                   <OutputTemplet
                     deletedOn={deletedOn}
                     isInTrash={true}
                     userData={data}
                   />
-                  {/* )} */}
                 </DropDown>
               );
             })

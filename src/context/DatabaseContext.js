@@ -8,17 +8,33 @@ const users = db.collection("users");
 export function useData() {
   return useContext(data_context);
 }
-
+let undoInterval = null;
 export function DatabaseContext({ children }) {
   const { currentUser } = useAuth();
   const [data, setdata] = useState();
   const [userData, setuserData] = useState(null);
   const [trashData, settrashData] = useState(null);
   const [filtererdUserData, setfiltererdUserData] = useState({});
-
+  const [undoTrigger, setundoTrigger] = useState({ trigger: false, id: [] });
   // get data form firestore only when userID changes
 
   const userID = currentUser?.uid || null;
+
+  useEffect(() => {
+    clearInterval(undoInterval);
+    if (undoTrigger.trigger) {
+      undoInterval = setTimeout(() => {
+        console.log("intervale ended");
+        undoTrigger.id.forEach((eachId) => {
+          console.log("deleted Item" + eachId);
+          deleteData_firestore(eachId);
+        });
+        setundoTrigger({ trigger: false, id: [] });
+      }, 5000);
+    } else {
+      undoInterval && clearInterval(undoInterval);
+    }
+  }, [undoTrigger]);
 
   useEffect(() => {
     console.log("userID is changed " + userID);
@@ -95,6 +111,8 @@ export function DatabaseContext({ children }) {
     filtererdUserData,
     setfiltererdUserData,
     deleteData_firestore,
+    undoTrigger,
+    setundoTrigger,
   };
   return (
     <data_context.Provider value={value}>{children}</data_context.Provider>

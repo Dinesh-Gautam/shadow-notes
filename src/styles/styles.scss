@@ -774,3 +774,22 @@ main {
     }
   }
 }
+
+.undo-container {
+  position: fixed;
+  left: $padding-default;
+  bottom: $padding-default;
+  z-index: 999999;
+  display: flex;
+  align-items: center;
+  gap: $padding-default;
+  background-color: rgb(32, 32, 32);
+  padding: $padding-default;
+  color: var(--default-color);
+  border-radius: $border-radius-default;
+  button {
+    padding: 0;
+    color: rgb(82, 123, 255);
+    background: transparent;
+  }
+}

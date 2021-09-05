@@ -8,6 +8,7 @@ function DropDown({
   mainText,
   extraButtons,
   DropdownBackgroundColor,
+  id,
 }) {
   const [dropdownDisplay, setdropdownDisplay] = useState(false);
 
@@ -18,6 +19,7 @@ function DropDown({
   return (
     <div
       className={`dropdown_container ${dropdownDisplay ? "visible" : false}`}
+      id={id}
     >
       <div className="dropdown_wraper">
         <div
