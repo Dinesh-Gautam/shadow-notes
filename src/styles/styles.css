@@ -461,7 +461,6 @@ main {
 }
 
 .color_filter {
-  min-width: 30%;
   max-width: 40%;
   overflow: hidden;
   display: flex;
@@ -667,6 +666,7 @@ main {
   }
 
   .color_filter {
+    min-width: 30%;
     max-width: 100%;
   }
 
@@ -687,6 +687,10 @@ main {
     left: 0;
     max-width: 100%;
     right: 0;
+  }
+
+  #trash .trash_content {
+    grid-template-columns: 1fr;
   }
 }
 

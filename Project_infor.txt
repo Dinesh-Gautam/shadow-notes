@@ -28,7 +28,3 @@ delete functionality
     filter using firebese indexing [use isNormal boolean for normal | if it is not siNormal is false then it is probaly deleted or any orther feature is true] ()
 
     clean code ()
-
-
-
-responsive
