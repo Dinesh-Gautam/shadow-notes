@@ -27,7 +27,6 @@ body {
   background-color: var(--default-backgroundcolor);
   font-family: "Poppins", sans-serif;
   font-weight: 400;
-  font-smooth: auto;
 }
 
 a {
@@ -393,7 +392,6 @@ main {
   padding: 12px 16px;
   border: none;
   box-shadow: none;
-  border-radius: none;
 }
 .search_filters > div select,
 .search_filters > div button {
@@ -410,11 +408,23 @@ main {
 }
 .search_filters .color_filter_container {
   gap: 12px;
-  margin-right: 16px;
+  scroll-behavior: smooth;
+  height: 100%;
+  max-width: 100%;
+  overflow: hidden;
 }
 .search_filters .color_filter_container button {
   padding: 10px;
   border: 2px solid rgba(255, 255, 255, 0.8);
+}
+.search_filters .color_filter_container.mr {
+  margin-right: 16px;
+}
+
+.color_filter {
+  max-width: 40%;
+  overflow: hidden;
+  display: flex;
 }
 
 .user-info-btn {
@@ -561,6 +571,28 @@ main {
   background: var(--default-color);
   display: flex;
   gap: 16px;
+}
+
+.color_container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  overflow: hidden;
+  height: 100%;
+}
+
+.color-filter-scrollBtn {
+  height: 100%;
+  border-radius: 0;
+}
+
+.color-filter-arrowLeft svg {
+  transform: rotate(90deg);
+}
+
+.color-filter-arrowRight svg {
+  transform: rotate(-90deg);
 }
 
 /*# sourceMappingURL=styles.css.map */
