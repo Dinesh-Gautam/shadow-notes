@@ -31,7 +31,7 @@ function Trash({ trashData, displayState, setdisplayState }) {
               .fill("")
               .map((e, i) => <Loading key={i} type="simple-card" />)
           ) : trashData.length > 0 ? (
-            trashData.map(({ data, id }) => {
+            trashData.map(({ data, id, deletedOn }) => {
               const headingText = data.find(
                 (data) => data.name === "heading_input_value"
               );
@@ -69,12 +69,18 @@ function Trash({ trashData, displayState, setdisplayState }) {
                   }
                   mainText={headingText.inputValue}
                 >
-                  {data.some((e) => {
+                  {/* {data.some((e) => {
                     return inputOptions.some(
                       (option) =>
                         option.name === e.name && e.name !== "color_input_value"
                     );
-                  }) && <OutputTemplet userData={data} />}
+                  }) && ( */}
+                  <OutputTemplet
+                    deletedOn={deletedOn}
+                    isInTrash={true}
+                    userData={data}
+                  />
+                  {/* )} */}
                 </DropDown>
               );
             })

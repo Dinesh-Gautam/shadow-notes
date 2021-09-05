@@ -618,7 +618,7 @@ main {
     gap: $padding-default;
     position: relative;
 
-    span {
+    > span {
       position: absolute;
       width: 100%;
       text-align: center;

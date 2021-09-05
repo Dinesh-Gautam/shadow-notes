@@ -552,7 +552,7 @@ main {
   gap: 16px;
   position: relative;
 }
-#trash .trash_content span {
+#trash .trash_content > span {
   position: absolute;
   width: 100%;
   text-align: center;

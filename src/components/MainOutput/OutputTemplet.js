@@ -1,6 +1,6 @@
 import React from "react";
 
-function OutputTemplet({ userData, publishDate, docId }) {
+function OutputTemplet({ isInTrash, userData, publishDate, deletedOn }) {
   return (
     <div className="outputTemplet_wraper">
       {userData.map((data) => {
@@ -32,8 +32,12 @@ function OutputTemplet({ userData, publishDate, docId }) {
       })}
       <div className="output_footer">
         <div className="publishing-date">
-          <h6>Published on:</h6>
-          <span>{publishDate && publishDate.toDate().toDateString()}</span>
+          <h6>{isInTrash ? "Deleted on:" : "Published on:"}</h6>
+          <span>
+            {isInTrash
+              ? deletedOn && deletedOn.toDate().toDateString()
+              : publishDate && publishDate.toDate().toDateString()}
+          </span>
         </div>
       </div>
     </div>
