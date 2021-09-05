@@ -783,13 +783,13 @@ main {
   display: flex;
   align-items: center;
   gap: $padding-default;
-  background-color: rgb(32, 32, 32);
+  background-color: rgb(40, 40, 40);
   padding: $padding-default;
   color: var(--default-color);
   border-radius: $border-radius-default;
   button {
     padding: 0;
-    color: rgb(82, 123, 255);
+    color: rgb(72, 134, 248);
     background: transparent;
   }
 }

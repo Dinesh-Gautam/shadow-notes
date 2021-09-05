@@ -701,14 +701,14 @@ main {
   display: flex;
   align-items: center;
   gap: 16px;
-  background-color: #202020;
+  background-color: #282828;
   padding: 16px;
   color: var(--default-color);
   border-radius: 6px;
 }
 .undo-container button {
   padding: 0;
-  color: #527bff;
+  color: #4886f8;
   background: transparent;
 }
 
