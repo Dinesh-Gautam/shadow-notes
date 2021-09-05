@@ -2,12 +2,13 @@ import React from "react";
 import { useData } from "../../context/DatabaseContext";
 import DropDown from "../elements/DropDown";
 import Loading from "../elements/Loading";
+import Button from "../MainInput/inputs/elements/Button";
 import OutputTemplet from "./OutputTemplet";
 import AdditionalButtons from "./smallComponents/AdditionalButtons";
 
 function MainOutput() {
   const { filtererdUserData, userData: originalData } = useData();
-
+  const outputFilterString = "Results For";
   const userData =
     Object.keys(filtererdUserData).length > 0
       ? originalData &&
@@ -40,6 +41,30 @@ function MainOutput() {
 
   return (
     <div className="mainoutput_container">
+      {Object.keys(filtererdUserData).length > 0 ? (
+        <span className="output_filter_label">
+          {filtererdUserData.colorFIlter && (
+            <div className="color_filter_container output">
+              {outputFilterString}
+              <Button
+                attr={{
+                  value: filtererdUserData.colorFIlter,
+                  name: "color_input_value",
+                  style: { backgroundColor: filtererdUserData.colorFIlter },
+                  className: "random-color-btn colro-btn",
+                }}
+              />
+            </div>
+          )}
+
+          {filtererdUserData.searchFilter &&
+            `${
+              Object.keys(filtererdUserData).length < 2
+                ? outputFilterString
+                : " and"
+            } "${filtererdUserData.searchFilter}"`}
+        </span>
+      ) : null}
       <div className="mainoutput_wraper">
         {!userData ? (
           Array(10)

@@ -207,12 +207,12 @@ main {
   margin: 0;
 }
 
-.random_color, .search_filters .color_filter_container {
+.random_color, .color_filter_container, .search_filters .color_filter_container {
   display: flex;
   align-items: center;
   gap: 16px;
 }
-.random_color button, .search_filters .color_filter_container button {
+.random_color button, .color_filter_container button, .search_filters .color_filter_container button {
   padding: 16px;
   box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
   border: 3px solid rgba(255, 255, 255, 0.8);
@@ -220,7 +220,7 @@ main {
   height: 12px;
   width: 12px;
 }
-.random_color button:hover, .search_filters .color_filter_container button:hover {
+.random_color button:hover, .color_filter_container button:hover {
   transform: scale(1.2);
 }
 
@@ -420,6 +420,37 @@ main {
 }
 .search_filters .color_filter_container.mr {
   margin-right: 16px;
+}
+
+.color_filter_container {
+  gap: 12px;
+  padding: 0 8px;
+  scroll-behavior: smooth;
+  height: 100%;
+  max-width: 100%;
+  overflow: hidden;
+}
+.color_filter_container button {
+  padding: 10px;
+  border: 2px solid rgba(255, 255, 255, 0.8);
+}
+.color_filter_container.mr {
+  margin-right: 16px;
+}
+.color_filter_container.output {
+  height: auto;
+}
+.color_filter_container.output button {
+  cursor: default;
+}
+.color_filter_container.output button:hover {
+  transform: scale(1);
+}
+
+.output_filter_label {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 16px;
 }
 
 .color_filter {

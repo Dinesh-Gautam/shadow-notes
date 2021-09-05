@@ -36,5 +36,3 @@ responsive
 when edit att cancle button and show edit mode is on
 
 custom Select
-
-Output for / result
