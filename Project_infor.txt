@@ -33,8 +33,6 @@ delete functionality
 
 responsive
 
-ColorInput (scroll arrows)
-
 when edit att cancle button and show edit mode is on
 
 when only allow to add one color

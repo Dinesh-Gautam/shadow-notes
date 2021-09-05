@@ -42,7 +42,9 @@ function MainOutput() {
     <div className="mainoutput_container">
       <div className="mainoutput_wraper">
         {!userData ? (
-          Array(10).map((e, i) => <Loading key={i} type="simple-card" />)
+          Array(10)
+            .fill("")
+            .map((e, i) => <Loading key={i} type="simple-card" />)
         ) : userData.length < 1 ? (
           <span> Nothing Here. </span>
         ) : (

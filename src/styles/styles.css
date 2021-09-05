@@ -408,6 +408,7 @@ main {
 }
 .search_filters .color_filter_container {
   gap: 12px;
+  padding: 0 8px;
   scroll-behavior: smooth;
   height: 100%;
   max-width: 100%;

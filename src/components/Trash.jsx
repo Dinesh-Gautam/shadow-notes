@@ -27,7 +27,9 @@ function Trash({ trashData, displayState, setdisplayState }) {
       <div className="trash_content_container">
         <div className="trash_content">
           {!trashData ? (
-            Array(10).map((e, i) => <Loading key={i} type="simple-card" />)
+            Array(10)
+              .fill("")
+              .map((e, i) => <Loading key={i} type="simple-card" />)
           ) : trashData.length > 0 ? (
             trashData.map(({ data, id }) => {
               const headingText = data.find(

@@ -451,7 +451,7 @@ main {
   .color_filter_container {
     @extend .random_color;
     gap: $padding-less;
-
+    padding: 0 $padding-less - 4px;
     scroll-behavior: smooth;
     height: 100%;
     max-width: 100%;

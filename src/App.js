@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Loading from "./components/elements/Loading";
 import Separator from "./components/elements/Separator";
 import { InputContext } from "./components/MainInput/InputContext";
 import MainInput from "./components/MainInput/MainInput";
