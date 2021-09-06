@@ -91,7 +91,8 @@ textarea {
   padding: math.div($padding-default, 2) $padding-default;
   background-color: var(--default-color);
   border: $border-default;
-  border-radius: 0 0 $border-radius-default $border-radius-default;
+  border-radius: 0 $border-radius-default $border-radius-default
+    $border-radius-default;
   outline: none;
   font-size: $fontSize-medium;
   color: var(--default-text-color);
@@ -754,6 +755,7 @@ main {
       .dropdown_heading {
         text-align: center;
         max-width: 100%;
+        padding-bottom: 0;
       }
     }
   }
@@ -769,8 +771,20 @@ main {
     right: 0;
   }
   #trash {
+    .trash_content_container {
+      padding: $padding-default 0;
+    }
     .trash_content {
       grid-template-columns: 1fr;
+    }
+  }
+
+  .sign-in-container {
+    button {
+      padding: $padding-default $padding-default;
+      background: var(--default-color);
+      display: flex;
+      gap: $padding-default;
     }
   }
 }

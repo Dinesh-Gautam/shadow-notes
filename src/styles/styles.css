@@ -66,7 +66,7 @@ textarea {
   padding: 8px 16px;
   background-color: var(--default-color);
   border: 1px solid rgba(0, 0, 0, 0.2);
-  border-radius: 0 0 6px 6px;
+  border-radius: 0 6px 6px 6px;
   outline: none;
   font-size: 18px;
   color: var(--default-text-color);
@@ -676,6 +676,7 @@ main {
   .dropdown_container .dropdown_wraper .dropdown_heading {
     text-align: center;
     max-width: 100%;
+    padding-bottom: 0;
   }
 
   .outputTemplet_wraper img {
@@ -689,8 +690,18 @@ main {
     right: 0;
   }
 
+  #trash .trash_content_container {
+    padding: 16px 0;
+  }
   #trash .trash_content {
     grid-template-columns: 1fr;
+  }
+
+  .sign-in-container button {
+    padding: 16px 16px;
+    background: var(--default-color);
+    display: flex;
+    gap: 16px;
   }
 }
 .undo-container {

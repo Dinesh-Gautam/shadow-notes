@@ -13,7 +13,7 @@ export function AuthProvider({ children }) {
 
   function login() {
     auth
-      .signInWithPopup(googleProvider)
+      .signInWithRedirect(googleProvider)
       .then((result) => {
         const user = result.user;
         setCurrentUser(user);
