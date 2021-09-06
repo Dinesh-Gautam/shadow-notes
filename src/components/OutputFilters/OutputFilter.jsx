@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import TrashBtn from "./filterComponents/TrashBtn";
 import ColorFilter from "./filterComponents/ColorFilter";
 import SearchFilter from "./filterComponents/SearchFilter";

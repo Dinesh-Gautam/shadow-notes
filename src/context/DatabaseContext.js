@@ -35,6 +35,7 @@ export function DatabaseContext({ children }) {
     } else {
       undoInterval && clearInterval(undoInterval);
     }
+    // eslint-disable-next-line
   }, [undoTrigger]);
 
   useEffect(() => {

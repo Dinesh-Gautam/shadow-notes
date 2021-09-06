@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React from "react";
 import { useData } from "../context/DatabaseContext";
 import DropDown from "./elements/DropDown";
 import Loading from "./elements/Loading";
@@ -10,8 +10,7 @@ import Button from "./MainInput/inputs/elements/Button";
 import OutputTemplet from "./MainOutput/OutputTemplet";
 
 function Trash({ trashData, displayState, setdisplayState }) {
-  const { updateData_firestore, deleteData_firestore, setundoTrigger } =
-    useData();
+  const { updateData_firestore, setundoTrigger } = useData();
 
   // const { undoDelete } = useUndoDelete();
   return (

@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { edit, input_context } from "../InputContext";
+import { input_context } from "../InputContext";
 import Button from "./elements/Button";
 import InputField from "./InputField";
 import { inputOptions } from "./inputOptions";
