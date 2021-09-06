@@ -1,3 +1,4 @@
+import { v4 as uuidv4 } from "uuid";
 import React, { useContext, useEffect, useState } from "react";
 import { db } from "../firebase";
 import { useAuth } from "./AuthContext";
@@ -58,6 +59,96 @@ export function DatabaseContext({ children }) {
           console.log(error.message);
         }
       );
+
+    // const finalArr = [];
+
+    // db.collection("list")
+    //   .doc(userID)
+    //   .collection("listItem")
+    //   .get()
+    //   .then((e) => {
+    //     console.log(e.docs[0].data());
+    //     e.docs.map((doc) => {
+    //       const {
+    //         title,
+    //         timestamp,
+    //         deletedTimestamp,
+    //         backgroundColor,
+    //         deleted,
+    //         List,
+    //         paragraph,
+    //         link,
+    //         description,
+    //         heading,
+    //       } = doc.data();
+
+    //       const data = [
+    //         {
+    //           name: "heading_input_value",
+    //           inputValue: heading || "no Value",
+    //           id: uuidv4(),
+    //           value: "Heading",
+    //         },
+    //         {
+    //           name: "title_input_value",
+    //           inputValue: title || "no Value",
+    //           id: uuidv4(),
+    //           value: "Title",
+    //         },
+    //         {
+    //           name: "description_input_value",
+    //           inputValue: description || "no Value",
+    //           id: uuidv4(),
+    //           value: "Description",
+    //         },
+    //         {
+    //           name: "Pragraph_input_value",
+    //           inputValue: paragraph || "no Value",
+    //           id: uuidv4(),
+    //           value: "Paragraph",
+    //         },
+    //         {
+    //           name: "list_input_value",
+    //           inner:
+    //             List.map((list) => list.value || "no Value").filter(
+    //               (e) => e !== "no Value"
+    //             ) || "no Value",
+    //           id: uuidv4(),
+    //           value: "List",
+    //         },
+    //         {
+    //           name: "color_input_value",
+    //           inputValue: backgroundColor || "no Value",
+    //           id: uuidv4(),
+    //           value: "Color",
+    //         },
+    //         {
+    //           name: "link_input_value",
+    //           inputValue: link || "no Value",
+    //           id: uuidv4(),
+    //           value: "Link",
+    //         },
+    //       ].filter((e) => {
+    //         if (e.name === "list_input_value") {
+    //           return e.inner.length > 0;
+    //         }
+
+    //         return e.inputValue !== "no Value";
+    //       });
+
+    //       const finalData = {
+    //         delete: deleted,
+    //         publishDate: timestamp,
+    //         deletedOn: deletedTimestamp,
+    //         data,
+    //       };
+    //       finalArr.push(finalData);
+    //     });
+    //     finalArr.map((data) => {
+    //       setData_firestore(data);
+    //     });
+    //     console.log(finalArr);
+    //   });
 
     return () => {
       console.log("unsubscribing");
