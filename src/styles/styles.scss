@@ -60,7 +60,7 @@ a {
   color: var(--link-text-color);
 }
 ul {
-  list-style: none;
+  // list-style: none;
 }
 
 button {
@@ -380,14 +380,29 @@ main {
   box-shadow: $boxShadow-default;
   border-radius: $border-radius-default;
 
+  .label_container {
+    position: relative;
+    bottom: -4px;
+    background: transparent;
+    z-index: 1;
+    // &::after {
+    //   content: "";
+    //   position: absolute;
+    //   top: 50%;
+    //   left: 0;
+    //   z-index: -1;
+    //   background: var(--vless-alpha-text-color);
+    //   width: 100%;
+    //   height: 1px;
+    // }
+  }
   label {
-    display: block;
     font-size: $fontSize-small;
     text-transform: uppercase;
     font-weight: 600;
     color: var(--less-alpha-text-color);
-    position: relative;
-    bottom: -4px;
+    background: var(--default-color);
+    padding-right: $padding-veryLess;
   }
   h2,
   h5 {
@@ -415,6 +430,9 @@ main {
     margin: 4px 0;
     border-radius: $border-radius-default;
     box-shadow: $boxShadow-default;
+  }
+  ul {
+    margin-left: $padding-default;
   }
   .output_footer {
     margin-top: $padding-less;

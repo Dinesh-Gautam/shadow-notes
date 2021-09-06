@@ -9,7 +9,9 @@ function OutputTemplet({ isInTrash, userData, publishDate, deletedOn }) {
         return (
           <React.Fragment key={id}>
             {name === "heading_input_value" || name === "color_input_value" || (
-              <label>{value}</label>
+              <div className="label_container">
+                <label>{value}</label>
+              </div>
             )}
             {name === "title_input_value" && <h2>{inputValue}</h2>}
             {name === "description_input_value" && <h5>{inputValue}</h5>}
