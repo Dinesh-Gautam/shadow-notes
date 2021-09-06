@@ -5,7 +5,14 @@ function OutputTemplet({ isInTrash, userData, publishDate, deletedOn }) {
     <div className="outputTemplet_wraper">
       {userData.map((data) => {
         const { name, value, inputValue, id, inner } = data;
-        const url = name === "link_input_value" && new URL(inputValue);
+        let url = null;
+        if (name === "link_input_value") {
+          try {
+            url = new URL(inputValue);
+          } catch {
+            url = { hostname: "Invalid Url", href: "" };
+          }
+        }
         return (
           <React.Fragment key={id}>
             {name === "heading_input_value" || name === "color_input_value" || (

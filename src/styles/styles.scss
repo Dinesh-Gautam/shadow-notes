@@ -422,6 +422,7 @@ main {
   p {
     font-weight: 400;
     font-size: $fontSize-default;
+    overflow: hidden;
   }
   img {
     display: block;

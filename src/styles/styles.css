@@ -356,6 +356,7 @@ main {
 .outputTemplet_wraper p {
   font-weight: 400;
   font-size: 16px;
+  overflow: hidden;
 }
 .outputTemplet_wraper img {
   display: block;
