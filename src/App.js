@@ -35,7 +35,6 @@ function App() {
               <MainOutput />
             </div>
             {userDisplay && <UserInfo />}
-
             <UndoDelete />
           </InputContext>
         </DatabaseContext>

@@ -43,9 +43,6 @@ function ColorFilter({ setData, appliedColors }) {
   const colorFIlterScrollHandlerRight = (e) => {
     e.preventDefault();
     const btnParent = colorFilterBtnRef.current;
-
-    console.log(btnParent.__proto__);
-    console.log(btnParent.scrollLeft);
     btnParent.scroll(
       Math.min(
         btnParent.scrollLeft + btnParent.clientWidth,

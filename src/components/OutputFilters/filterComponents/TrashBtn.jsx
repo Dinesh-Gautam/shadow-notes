@@ -59,6 +59,7 @@ function TrashBtn({ data, setData }) {
           text={<UseSvg type="trash" />}
         />
       </div>
+
       <Trash
         trashData={trashData}
         settrashData={settrashData}
