@@ -34,14 +34,25 @@ function ColorFilter({ setData, appliedColors }) {
     e.preventDefault();
     const btnParent = colorFilterBtnRef.current;
 
-    btnParent.scroll(-btnParent.clientWidth, 0);
+    btnParent.scroll(
+      Math.max(btnParent.scrollLeft - btnParent.clientWidth, 0),
+      0
+    );
   };
 
   const colorFIlterScrollHandlerRight = (e) => {
     e.preventDefault();
     const btnParent = colorFilterBtnRef.current;
 
-    btnParent.scroll(btnParent.clientWidth, 0);
+    console.log(btnParent.__proto__);
+    console.log(btnParent.scrollLeft);
+    btnParent.scroll(
+      Math.min(
+        btnParent.scrollLeft + btnParent.clientWidth,
+        btnParent.scrollWidth
+      ),
+      0
+    );
   };
 
   const handleColorFilterClick = (e) => {

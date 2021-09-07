@@ -24,7 +24,7 @@ function OutputTemplet({ isInTrash, userData, publishDate, deletedOn }) {
             {name === "description_input_value" && <h5>{inputValue}</h5>}
             {name === "Pragraph_input_value" && <p>{inputValue}</p>}
             {name === "link_input_value" && (
-              <a without rel="noreferrer" target="_blank" href={url.href}>
+              <a rel="noreferrer" target="_blank" href={url.href}>
                 {url.hostname}
               </a>
             )}

@@ -35,6 +35,8 @@ function MainOutput() {
                 }
               });
             }
+
+            return false;
           });
         })
       : originalData;
