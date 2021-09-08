@@ -1,5 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import { auth, googleProvider } from "../firebase";
+import { signInWithRedirect, signOut, onAuthStateChanged } from "firebase/auth";
 
 const AuthContext = React.createContext();
 
@@ -12,8 +13,7 @@ export function AuthProvider({ children }) {
   const [loading, setLoading] = useState(true);
 
   function login() {
-    auth
-      .signInWithRedirect(googleProvider)
+    signInWithRedirect(auth, googleProvider)
       .then((result) => {
         const user = result.user;
         setCurrentUser(user);
@@ -25,12 +25,12 @@ export function AuthProvider({ children }) {
   }
 
   function logout() {
-    return auth.signOut();
+    return signOut(auth);
   }
 
   // checks if the user is loggedin or not when the app starts
   useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((user) => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
       setCurrentUser(user);
       setLoading(false);
     });
