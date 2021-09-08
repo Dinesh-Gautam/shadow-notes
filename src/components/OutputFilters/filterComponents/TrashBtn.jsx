@@ -4,6 +4,9 @@ import { db } from "../../../firebase";
 import UseSvg from "../../elements/UseSvg";
 import Button from "../../MainInput/inputs/elements/Button";
 import Trash from "../../Trash";
+import { collection, doc, onSnapshot, query, where } from "firebase/firestore";
+
+const users = collection(db, "users");
 
 function TrashBtn({ data, setData }) {
   const trashData = data,
@@ -14,29 +17,41 @@ function TrashBtn({ data, setData }) {
 
   const { userID } = useData();
 
+  const userDoc = doc(users, userID);
+  const userDocCollection = query(
+    collection(userDoc, "userData"),
+    where("delete", "==", true)
+  );
+
   useEffect(() => {
     let unsubscribe;
     if (trashData === null && initialRequest) {
-      console.log("Trash useEffect Changed " + userID);
-      unsubscribe = db
-        .collection("users")
-        .doc(userID)
-        .collection("userData")
-        .where("delete", "==", true)
-        .onSnapshot(
-          (snapshot) => {
-            console.log("On trash snapshot");
-            settrashData(
-              snapshot.docs.map((doc) => {
-                return { id: doc.id, ...doc.data() };
-              })
-            );
-          },
-
-          (error) => {
-            console.log(error.message);
-          }
+      unsubscribe = onSnapshot(userDocCollection, (snapshot) => {
+        settrashData(
+          snapshot.docs.map((doc) => {
+            return { id: doc.id, ...doc.data() };
+          })
         );
+      });
+      // console.log("Trash useEffect Changed " + userID);
+      // unsubscribe = db
+      //   .collection("users")
+      //   .doc(userID)
+      //   .collection("userData")
+      //   .where("delete", "==", true)
+      //   .onSnapshot(
+      //     (snapshot) => {
+      //       console.log("On trash snapshot");
+      //       settrashData(
+      //         snapshot.docs.map((doc) => {
+      //           return { id: doc.id, ...doc.data() };
+      //         })
+      //       );
+      //     },
+      //     (error) => {
+      //       console.log(error.message);
+      //     }
+      //   );
     }
     // !initialRequest && setinitialRequest(true);
     return () => {

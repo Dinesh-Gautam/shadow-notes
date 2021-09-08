@@ -1,7 +1,16 @@
 // import { v4 as uuidv4 } from "uuid";
 import React, { useContext, useEffect, useState } from "react";
-import { collection, doc, onSnapshot } from "firebase/firestore";
-import app, { db } from "../firebase";
+import {
+  collection,
+  doc,
+  onSnapshot,
+  setDoc,
+  addDoc,
+  deleteDoc,
+  where,
+  query,
+} from "firebase/firestore";
+import { db } from "../firebase";
 import { useAuth } from "./AuthContext";
 const data_context = React.createContext();
 
@@ -22,6 +31,9 @@ export function DatabaseContext({ children }) {
 
   const userID = currentUser?.uid || null;
 
+  const userDoc = doc(users, userID);
+  const userDocCollection = collection(userDoc, "userData");
+
   useEffect(() => {
     clearInterval(undoInterval);
     if (undoTrigger.trigger) {
@@ -40,10 +52,8 @@ export function DatabaseContext({ children }) {
   }, [undoTrigger]);
 
   useEffect(() => {
-    const userDoc = doc(users, userID);
-    const userDocCollection = collection(userDoc, "userData");
-
-    let unsubscribe = onSnapshot(userDocCollection, (snapshot) => {
+    const q = query(userDocCollection, where("delete", "==", false));
+    let unsubscribe = onSnapshot(q, (snapshot) => {
       setuserData(
         snapshot.docs.map((doc) => {
           return { id: doc.id, ...doc.data() };
@@ -172,34 +182,53 @@ export function DatabaseContext({ children }) {
   }, [userID]);
 
   function setData_firestore(data) {
-    users
-      .doc(currentUser.uid)
-      .set(
-        {
-          user: {
-            uid: currentUser.uid,
-          },
-          groups: false,
-          favourits: false,
-          tags: false,
+    // users
+    //   .doc(currentUser.uid)
+    //   .set(
+    //     {
+    //       user: {
+    //         uid: currentUser.uid,
+    //       },
+    //       groups: false,
+    //       favourits: false,
+    //       tags: false,
+    //     },
+    //     { merge: true }
+    //   )
+    //   .then(() => {
+    //     users.doc(currentUser.uid).collection("userData").add(data);
+    //   });
+
+    setDoc(
+      userDoc,
+      {
+        user: {
+          uid: currentUser.uid,
         },
-        { merge: true }
-      )
-      .then(() => {
-        users.doc(currentUser.uid).collection("userData").add(data);
-      });
+        groups: false,
+        favourits: false,
+        tags: false,
+      },
+      { merge: true }
+    ).then(() => {
+      addDoc(userDocCollection, data);
+    });
   }
 
   function updateData_firestore(docId, data) {
-    users
-      .doc(currentUser.uid)
-      .collection("userData")
-      .doc(docId)
-      .set(data, { merge: true });
+    const toBeUpdatedDoc = doc(userDocCollection, docId);
+    setDoc(toBeUpdatedDoc, data, { merge: true });
+    // users
+    //   .doc(currentUser.uid)
+    //   .collection("userData")
+    //   .doc(docId)
+    //   .set(data, { merge: true });
   }
 
   function deleteData_firestore(docId) {
-    users.doc(currentUser.uid).collection("userData").doc(docId).delete();
+    // users.doc(currentUser.uid).collection("userData").doc(docId).delete();
+    const toBeDeletedDoc = doc(userDocCollection, docId);
+    deleteDoc(toBeDeletedDoc);
   }
 
   const value = {
