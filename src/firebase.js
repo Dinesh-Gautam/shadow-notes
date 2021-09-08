@@ -1,9 +1,9 @@
-import firebase from "firebase/compat/app";
+// import firebase from "firebase/compat/app";
 // import "firebase/compat/auth";
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 import { getAuth, GoogleAuthProvider } from "firebase/auth";
-import "firebase/compat/firestore";
+// import "firebase/compat/firestore";
 
 // firebase init
 const app = initializeApp({
@@ -36,7 +36,6 @@ export const auth = getAuth();
 
 // firebase firestore database
 export const db = getFirestore(app);
-export { firebase };
 // sign in popup by google
 export const googleProvider = new GoogleAuthProvider();
 export default app;

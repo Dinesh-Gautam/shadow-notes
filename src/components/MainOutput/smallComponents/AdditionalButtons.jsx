@@ -6,7 +6,8 @@ import { inputOptions } from "../../MainInput/inputs/inputOptions";
 import { v4 as uuidv4 } from "uuid";
 import Button from "../../MainInput/inputs/elements/Button";
 import Separator from "../../elements/Separator";
-import { firebase } from "../../../firebase";
+import { FieldValue } from "firebase/firestore";
+
 function AdditionalButtons({ docId, userData }) {
   const { inputsDispatch, inputValueDispatch, setisEditMode } = useInputs();
 
@@ -109,7 +110,7 @@ function AdditionalButtons({ docId, userData }) {
         onClick={() => {
           const data = {
             delete: true,
-            deletedOn: firebase.firestore.FieldValue.serverTimestamp(),
+            deletedOn: FieldValue.serverTimestamp(),
           };
           updateData_firestore(docId, data);
         }}
