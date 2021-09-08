@@ -29,7 +29,7 @@ function OutputTemplet({ isInTrash, userData, publishDate, deletedOn }) {
               </a>
             )}
             {name === "image_input_value" && (
-              <img src={inputValue} alt={inputValue} />
+              <img loading="lazy" src={inputValue} alt={inputValue} />
             )}
             {name === "list_input_value" && (
               <ul className="list_input_ul">
