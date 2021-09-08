@@ -110,6 +110,7 @@ textarea {
 }
 select {
   padding: math.div($padding-default, 2) $padding-default;
+  padding-right: $padding-large;
   font-size: $fontSize-default;
   font-family: $font-default;
   border-radius: $border-radius-default;

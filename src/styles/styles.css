@@ -83,6 +83,7 @@ textarea {
 
 select {
   padding: 8px 16px;
+  padding-right: 32px;
   font-size: 16px;
   font-family: "Poppins", sans-serif;
   border-radius: 6px;
