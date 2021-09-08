@@ -1,10 +1,11 @@
 // import { v4 as uuidv4 } from "uuid";
 import React, { useContext, useEffect, useState } from "react";
-import { db } from "../firebase";
+import { collection, doc, onSnapshot } from "firebase/firestore";
+import app, { db } from "../firebase";
 import { useAuth } from "./AuthContext";
 const data_context = React.createContext();
 
-const users = db.collection("users");
+const users = collection(db, "users");
 
 export function useData() {
   return useContext(data_context);
@@ -39,27 +40,38 @@ export function DatabaseContext({ children }) {
   }, [undoTrigger]);
 
   useEffect(() => {
-    console.log("userID is changed " + userID);
-    let unsubscribe = db
-      .collection("users")
-      .doc(userID)
-      .collection("userData")
-      .where("delete", "==", false)
-      // .orderBy("publishDate", "desc")
-      // .limit(2)
-      .onSnapshot(
-        (snapshot) => {
-          console.log("On snapshot");
-          setuserData(
-            snapshot.docs.map((doc) => {
-              return { id: doc.id, ...doc.data() };
-            })
-          );
-        },
-        (error) => {
-          console.log(error.message);
-        }
+    const userDoc = doc(users, userID);
+    const userDocCollection = collection(userDoc, "userData");
+
+    let unsubscribe = onSnapshot(userDocCollection, (snapshot) => {
+      setuserData(
+        snapshot.docs.map((doc) => {
+          return { id: doc.id, ...doc.data() };
+        })
       );
+    });
+
+    // console.log("userID is changed " + userID);
+    // let unsubscribe = db
+    //   .collection("users")
+    //   .doc(userID)
+    //   .collection("userData")
+    //   .where("delete", "==", false)
+    //   // .orderBy("publishDate", "desc")
+    //   // .limit(2)
+    //   .onSnapshot(
+    //     (snapshot) => {
+    //       console.log("On snapshot");
+    //       setuserData(
+    //         snapshot.docs.map((doc) => {
+    //           return { id: doc.id, ...doc.data() };
+    //         })
+    //       );
+    //     },
+    //     (error) => {
+    //       console.log(error.message);
+    //     }
+    //   );
 
     // const finalArr = [];
 

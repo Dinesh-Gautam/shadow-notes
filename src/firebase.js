@@ -1,10 +1,12 @@
 import firebase from "firebase/compat/app";
 // import "firebase/compat/auth";
+import { initializeApp } from "firebase/app";
+import { getFirestore } from "firebase/firestore";
 import { getAuth, GoogleAuthProvider } from "firebase/auth";
 import "firebase/compat/firestore";
 
 // firebase init
-const app = firebase.initializeApp({
+const app = initializeApp({
   //   apiKey: process.env.FIREBASE_API_KEY,
   //   apikey: "AIzaSyB9VgvbdmNX1EmSQtJA69ME2Wqy7svMDYU",
   //   authDomain: process.env.FIREBASE_AUTH_DOMAIN,
@@ -33,7 +35,7 @@ const app = firebase.initializeApp({
 export const auth = getAuth();
 
 // firebase firestore database
-export const db = app.firestore();
+export const db = getFirestore(app);
 export { firebase };
 // sign in popup by google
 export const googleProvider = new GoogleAuthProvider();
