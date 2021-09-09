@@ -1,31 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useData } from "../../context/DatabaseContext";
-
-// function useUndoDelete(id) {
-//   const { deleteData_firestore } = useData();
-
-//   useEffect(() => {
-//     let undoTimeout = null;
-//     undoTimeout = setTimeout(() => {
-//       //   deleteData_firestore(id);
-//       console.log("Item Deleted");
-//       setundoDisplay(false);
-//     }, 1000);
-//   }, []);
-
-//   const [undoDisplay, setundoDisplay] = useState(false);
-
-//   const UndoDom = (
-//     <div>
-//       <button>Undo</button>
-//       <button>Cancel</button>
-//     </div>
-//   );
-
-//   return { undoDisplay, UndoDom };
-// }
-
-// export { useUndoDelete };
 
 function UndoDelete() {
   const { undoTrigger, setundoTrigger } = useData();

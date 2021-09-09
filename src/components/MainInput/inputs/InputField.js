@@ -8,12 +8,7 @@ import UseSvg from "../../elements/UseSvg";
 const MemoAddions = React.memo(ColorAdditons);
 
 function InputField({ input }) {
-  const {
-    inputsDispatch,
-    inputValueDispatch,
-    inputValue,
-    // inputValue,
-  } = useInputs();
+  const { inputsDispatch, inputValueDispatch, inputValue } = useInputs();
   return (
     <div
       className={

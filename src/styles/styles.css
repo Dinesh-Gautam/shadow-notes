@@ -303,10 +303,19 @@ main {
 .dropdown_container.visible .dropdown_heading {
   overflow: visible;
 }
+.dropdown_container.visible .dropdown_wraper {
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.dropdown_container.visible .dropdown_wraper .dropdown_heading {
+  width: 100%;
+}
 .dropdown_container.visible .dropdown_wraper h1 {
-  white-space: normal;
+  white-space: pre-wrap;
   text-overflow: none;
   overflow: visible;
+  overflow-wrap: break-word;
+  max-width: 100%;
 }
 .dropdown_container .dropdown_inner_container {
   display: none;

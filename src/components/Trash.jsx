@@ -4,15 +4,12 @@ import DropDown from "./elements/DropDown";
 import Loading from "./elements/Loading";
 import Separator from "./elements/Separator";
 import UseSvg from "./elements/UseSvg";
-// import { useUndoDelete } from "./elements/UndoDelete";
 import Button from "./MainInput/inputs/elements/Button";
-// import { inputOptions } from "./MainInput/inputs/inputOptions";
 import OutputTemplet from "./MainOutput/OutputTemplet";
 
 function Trash({ trashData, displayState, setdisplayState }) {
   const { updateData_firestore, setundoTrigger } = useData();
 
-  // const { undoDelete } = useUndoDelete();
   return (
     <div id="trash" style={{ display: displayState }}>
       <div className="trash_header">

@@ -8,7 +8,6 @@ import Button from "../../MainInput/inputs/elements/Button";
 import Separator from "../../elements/Separator";
 import { serverTimestamp } from "firebase/firestore";
 
-console.log(serverTimestamp);
 function AdditionalButtons({ docId, userData }) {
   const { inputsDispatch, inputValueDispatch, setisEditMode } = useInputs();
 
@@ -88,7 +87,6 @@ function AdditionalButtons({ docId, userData }) {
         }
       } else {
         if (name === "heading_input_value") {
-          console.log(headingId);
           inputValueDispatch({
             type: "normalValue",
             payload: { id: headingId, value: inputValue },

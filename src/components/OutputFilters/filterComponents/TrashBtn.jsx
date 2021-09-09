@@ -33,29 +33,9 @@ function TrashBtn({ data, setData }) {
           })
         );
       });
-      // console.log("Trash useEffect Changed " + userID);
-      // unsubscribe = db
-      //   .collection("users")
-      //   .doc(userID)
-      //   .collection("userData")
-      //   .where("delete", "==", true)
-      //   .onSnapshot(
-      //     (snapshot) => {
-      //       console.log("On trash snapshot");
-      //       settrashData(
-      //         snapshot.docs.map((doc) => {
-      //           return { id: doc.id, ...doc.data() };
-      //         })
-      //       );
-      //     },
-      //     (error) => {
-      //       console.log(error.message);
-      //     }
-      //   );
     }
-    // !initialRequest && setinitialRequest(true);
+
     return () => {
-      console.log("trash UnSubscribing");
       unsubscribe?.();
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps

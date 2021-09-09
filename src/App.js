@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-// import Loading from "./components/elements/Loading";
 import Separator from "./components/elements/Separator";
 import UndoDelete from "./components/elements/UndoDelete";
 import { InputContext } from "./components/MainInput/InputContext";
@@ -12,7 +11,6 @@ import { useAuth } from "./context/AuthContext";
 import { DatabaseContext } from "./context/DatabaseContext";
 
 import "./styles/styles.css";
-// import "./styles/MainOutput/mainOutput.css";
 
 function App() {
   const { currentUser } = useAuth();

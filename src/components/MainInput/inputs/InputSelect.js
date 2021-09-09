@@ -59,7 +59,6 @@ function InputSelect() {
         >
           {inputOptions.map((inputType) => {
             if (inputType.name === "color_input_value" && disableColorSelect) {
-              console.log(disableColorSelect);
               return null;
             } else {
               return (

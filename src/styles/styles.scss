@@ -352,10 +352,17 @@ main {
       overflow: visible;
     }
     .dropdown_wraper {
+      flex-wrap: wrap;
+      justify-content: center;
+      .dropdown_heading {
+        width: 100%;
+      }
       h1 {
-        white-space: normal;
+        white-space: pre-wrap;
         text-overflow: none;
         overflow: visible;
+        overflow-wrap: break-word;
+        max-width: 100%;
       }
     }
   }
