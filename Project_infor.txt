@@ -3,4 +3,9 @@
 Use React routers   ()
 improve auth code   *
 
-reduce firebase code
+//////
+
+pagination
+
+firebase :
+    add security rules (add timeLimit for uploading a new note)

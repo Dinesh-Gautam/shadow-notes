@@ -1,8 +1,21 @@
 {
   "short_name": "SN",
-  "name": "shadow Notes",
+  "name": "Shadow Notes",
+  "icons": [
+    {
+      "src": "/Logo/192px_logo.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/Logo/512px_logo.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "theme_color": "#fafafa",
+  "background_color": "#f0f0f0"
 }
