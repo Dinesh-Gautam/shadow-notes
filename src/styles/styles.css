@@ -415,7 +415,6 @@ main {
   gap: 16px;
   margin-top: 16px;
   flex-wrap: wrap;
-  top: 0;
 }
 .search_filters > div {
   display: flex;
