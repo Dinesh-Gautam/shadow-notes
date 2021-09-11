@@ -6,6 +6,3 @@ improve auth code   *
 //////
 
 pagination
-
-firebase :
-    add security rules (add timeLimit for uploading a new note)

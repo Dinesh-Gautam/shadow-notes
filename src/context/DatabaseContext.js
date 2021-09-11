@@ -9,6 +9,7 @@ import {
   deleteDoc,
   where,
   query,
+  orderBy,
 } from "firebase/firestore";
 import { db } from "../firebase";
 import { useAuth } from "./AuthContext";
@@ -49,7 +50,11 @@ export function DatabaseContext({ children }) {
   }, [undoTrigger]);
 
   useEffect(() => {
-    const q = query(userDocCollection, where("delete", "==", false));
+    const q = query(
+      userDocCollection,
+      where("delete", "==", false),
+      orderBy("publishDate", "desc")
+    );
     let unsubscribe = onSnapshot(q, (snapshot) => {
       setuserData(
         snapshot.docs.map((doc) => {

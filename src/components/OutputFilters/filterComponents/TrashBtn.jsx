@@ -4,7 +4,14 @@ import { db } from "../../../firebase";
 import UseSvg from "../../elements/UseSvg";
 import Button from "../../MainInput/inputs/elements/Button";
 import Trash from "../../Trash";
-import { collection, doc, onSnapshot, query, where } from "firebase/firestore";
+import {
+  collection,
+  doc,
+  onSnapshot,
+  query,
+  where,
+  orderBy,
+} from "firebase/firestore";
 
 const users = collection(db, "users");
 
@@ -20,7 +27,8 @@ function TrashBtn({ data, setData }) {
   const userDoc = doc(users, userID);
   const userDocCollection = query(
     collection(userDoc, "userData"),
-    where("delete", "==", true)
+    where("delete", "==", true),
+    orderBy("deletedOn", "desc")
   );
 
   useEffect(() => {
