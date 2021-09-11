@@ -121,6 +121,7 @@ select {
   background-position: calc(100% - 20px) calc(1em + 2px),
     calc(100% - 15px) calc(1em + 2px), calc(100% - 2.5em) 0.5em;
   background-size: 5px 5px, 5px 5px, 1px 1.5em;
+  height: 100%;
   background-repeat: no-repeat;
   // &:focus {
   //   background-image: linear-gradient(
@@ -168,18 +169,20 @@ main {
 
 .input_selection {
   display: flex;
-  gap: $padding-default;
   margin-top: $padding-medium;
-  flex-wrap: wrap;
   row-gap: $padding-medium;
+  gap: $padding-default;
+  .selection_input_btn {
+    flex: 1;
+    display: flex;
+    justify-content: flex-start;
+    gap: $padding-default;
+  }
   .input_main_button {
     flex: 1;
     display: flex;
     justify-content: flex-end;
     gap: $padding-default;
-    button {
-      height: 100%;
-    }
   }
 }
 
@@ -828,7 +831,16 @@ main {
     }
   }
 }
-
+@media screen and (max-width: 400px) {
+  .input_selection {
+    flex-wrap: wrap;
+    row-gap: $padding-medium;
+    select {
+      padding-bottom: $padding-less;
+      padding-top: $padding-less;
+    }
+  }
+}
 @media screen and (max-width: 350px) {
   .dropdown_container {
     .dropdown_wraper {

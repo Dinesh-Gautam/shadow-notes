@@ -91,6 +91,7 @@ select {
   background-image: linear-gradient(45deg, transparent 50%, var(--less-alpha-text-color) 50%), linear-gradient(135deg, var(--less-alpha-text-color) 50%, transparent 50%);
   background-position: calc(100% - 20px) calc(1em + 2px), calc(100% - 15px) calc(1em + 2px), calc(100% - 2.5em) 0.5em;
   background-size: 5px 5px, 5px 5px, 1px 1.5em;
+  height: 100%;
   background-repeat: no-repeat;
 }
 
@@ -125,19 +126,21 @@ main {
 
 .input_selection {
   display: flex;
-  gap: 16px;
   margin-top: 24px;
-  flex-wrap: wrap;
   row-gap: 24px;
+  gap: 16px;
+}
+.input_selection .selection_input_btn {
+  flex: 1;
+  display: flex;
+  justify-content: flex-start;
+  gap: 16px;
 }
 .input_selection .input_main_button {
   flex: 1;
   display: flex;
   justify-content: flex-end;
   gap: 16px;
-}
-.input_selection .input_main_button button {
-  height: 100%;
 }
 
 .input_box_header {
@@ -734,6 +737,16 @@ main {
     background: var(--default-color);
     display: flex;
     gap: 16px;
+  }
+}
+@media screen and (max-width: 400px) {
+  .input_selection {
+    flex-wrap: wrap;
+    row-gap: 24px;
+  }
+  .input_selection select {
+    padding-bottom: 12px;
+    padding-top: 12px;
   }
 }
 @media screen and (max-width: 350px) {

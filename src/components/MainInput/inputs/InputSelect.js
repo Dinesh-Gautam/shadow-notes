@@ -52,27 +52,32 @@ function InputSelect() {
       </div>
 
       <div className="input_selection">
-        <select
-          value={inputSelect}
-          onChange={(e) => setinputSelect(e.target.value)}
-          name="inputs_options"
-        >
-          {inputOptions.map((inputType) => {
-            if (inputType.name === "color_input_value" && disableColorSelect) {
-              return null;
-            } else {
-              return (
-                <option key={inputType.name} value={inputType.value}>
-                  {inputType.value}
-                </option>
-              );
-            }
-          })}
-        </select>
-        <Button
-          attr={{ onClick: inputAdderHandler }}
-          text={<UseSvg type="add" />}
-        />
+        <div className="selection_input_btn">
+          <select
+            value={inputSelect}
+            onChange={(e) => setinputSelect(e.target.value)}
+            name="inputs_options"
+          >
+            {inputOptions.map((inputType) => {
+              if (
+                inputType.name === "color_input_value" &&
+                disableColorSelect
+              ) {
+                return null;
+              } else {
+                return (
+                  <option key={inputType.name} value={inputType.value}>
+                    {inputType.value}
+                  </option>
+                );
+              }
+            })}
+          </select>
+          <Button
+            attr={{ onClick: inputAdderHandler }}
+            text={<UseSvg type="add" />}
+          />
+        </div>
         <div className="input_main_button">
           {isEditMode.edit && (
             <Button
