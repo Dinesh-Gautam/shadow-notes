@@ -367,6 +367,19 @@ main {
   font-weight: 400;
   font-size: 16px;
   overflow: hidden;
+  text-rendering: auto;
+  letter-spacing: normal;
+  word-spacing: normal;
+  line-height: normal;
+  text-transform: none;
+  text-indent: 0px;
+  display: inline-block;
+  text-align: start;
+  appearance: auto;
+  -webkit-rtl-ordering: logical;
+  cursor: text;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
 }
 .outputTemplet_wraper img {
   display: block;
@@ -607,13 +620,13 @@ main {
 
 @keyframes loading_animation {
   0% {
-    background: #e6e6e6;
+    background: #f0f0f0;
   }
   50% {
-    background-color: gainsboro;
+    background: gainsboro;
   }
   100% {
-    background: #e6e6e6;
+    background: #f0f0f0;
   }
 }
 .sign-in-container {

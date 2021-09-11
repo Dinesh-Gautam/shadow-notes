@@ -428,6 +428,20 @@ main {
     font-weight: 400;
     font-size: $fontSize-default;
     overflow: hidden;
+
+    text-rendering: auto;
+    letter-spacing: normal;
+    word-spacing: normal;
+    line-height: normal;
+    text-transform: none;
+    text-indent: 0px;
+    display: inline-block;
+    text-align: start;
+    appearance: auto;
+    -webkit-rtl-ordering: logical;
+    cursor: text;
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
   }
   img {
     display: block;
@@ -691,13 +705,13 @@ main {
 
 @keyframes loading_animation {
   0% {
-    background: rgb(230, 230, 230);
+    background: rgb(240, 240, 240);
   }
   50% {
-    background-color: rgb(220, 220, 220);
+    background: rgb(220, 220, 220);
   }
   100% {
-    background: rgb(230, 230, 230);
+    background: rgb(240, 240, 240);
   }
 }
 
