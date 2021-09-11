@@ -372,7 +372,7 @@ main {
 .outputTemplet_wraper p {
   font-weight: 400;
   font-size: 16px;
-  overflow: hidden;
+  width: 100%;
   text-rendering: auto;
   letter-spacing: normal;
   word-spacing: normal;

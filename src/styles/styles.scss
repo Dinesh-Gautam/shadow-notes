@@ -432,8 +432,7 @@ main {
   p {
     font-weight: 400;
     font-size: $fontSize-default;
-    overflow: hidden;
-
+    width: 100%;
     text-rendering: auto;
     letter-spacing: normal;
     word-spacing: normal;
