@@ -170,6 +170,8 @@ main {
   display: flex;
   gap: $padding-default;
   margin-top: $padding-medium;
+  flex-wrap: wrap;
+  row-gap: $padding-medium;
   .input_main_button {
     flex: 1;
     display: flex;
@@ -250,7 +252,7 @@ main {
   gap: $padding-default;
   justify-content: center;
   flex: 1;
-  width: 50%;
+  width: 100%;
   margin: 0;
 }
 
@@ -258,7 +260,7 @@ main {
   display: flex;
   align-items: center;
   gap: $padding-default;
-
+  flex-wrap: wrap;
   button {
     padding: $padding-default;
     box-shadow: $boxShadow-small;
@@ -521,7 +523,7 @@ main {
     height: 100%;
     max-width: 100%;
     overflow: hidden;
-
+    flex-wrap: nowrap;
     button {
       padding: math.div($padding-default, 1.6);
       border: 2px solid rgba(255, 255, 255, 0.8);
@@ -823,6 +825,20 @@ main {
       background: var(--default-color);
       display: flex;
       gap: $padding-default;
+    }
+  }
+}
+
+@media screen and (max-width: 350px) {
+  .dropdown_container {
+    .dropdown_wraper {
+      .dropdown_header_side_color {
+        width: 100%;
+        height: math.div($padding-default, 1.5);
+      }
+      .dropdown_heading {
+        padding-left: $padding-default;
+      }
     }
   }
 }
