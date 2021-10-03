@@ -46,6 +46,16 @@ export function InputContext(props) {
             },
           },
         };
+      case "labelValue":
+        return {
+          ...state,
+          [payload.id]: {
+            additionalValue: {
+              ...state[payload.id]?.additionalValue,
+              labelValue: payload.value,
+            },
+          },
+        };
       case "delete":
         delete state[action.payload.id];
         return state;

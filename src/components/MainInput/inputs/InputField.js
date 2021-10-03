@@ -20,9 +20,21 @@ function InputField({ input }) {
         {input.name === "color_input_value" ? (
           <div></div>
         ) : (
-          <label className="input_label" htmlFor={input.name}>
-            {input.value}
-          </label>
+          <input
+            value={
+              inputValue[input.id]?.additionalValue?.labelValue !== undefined
+                ? inputValue[input.id]?.additionalValue?.labelValue
+                : input.value
+            }
+            onChange={(e) => {
+              inputValueDispatch({
+                type: "labelValue",
+                payload: { id: input.id, value: e.target.value },
+              });
+            }}
+            className="input_label"
+            htmlFor={input.name}
+          ></input>
         )}
         {input.name === "heading_input_value" || (
           <Button
