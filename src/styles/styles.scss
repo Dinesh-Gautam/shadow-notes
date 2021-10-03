@@ -196,16 +196,22 @@ main {
     box-shadow: none;
     padding: 0 $padding-default;
   }
-  label {
+  input {
+    overflow-x: hidden;
+    box-sizing: border-box;
     text-transform: uppercase;
     font-size: $fontSize-small;
     height: fit-content;
+    width: fit-content;
+    block-size: fit-content;
+    max-width: 98%;
     margin-top: auto;
     background: var(--default-backgroundcolor);
     padding: math.div($padding-default, 3) $padding-medium;
     border-radius: $border-radius-default $border-radius-default 0 0;
-    font-weight: 500;
+    font-weight: 600;
     opacity: 0.7;
+    border: none;
   }
 }
 

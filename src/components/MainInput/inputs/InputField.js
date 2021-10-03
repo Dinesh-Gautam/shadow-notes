@@ -21,6 +21,8 @@ function InputField({ input }) {
           <div></div>
         ) : (
           <input
+            type="text"
+            className="input-label"
             value={
               inputValue[input.id]?.additionalValue?.labelValue !== undefined
                 ? inputValue[input.id]?.additionalValue?.labelValue
@@ -31,10 +33,18 @@ function InputField({ input }) {
                 type: "labelValue",
                 payload: { id: input.id, value: e.target.value },
               });
+
+              e.target.style.width =
+                Math.min(
+                  (e.target.value.length + 1) * 8 +
+                    parseInt(
+                      getComputedStyle(e.target).paddingLeft.replace("px", "")
+                    ) *
+                      2,
+                  e.target.scrollWidth
+                ) + "px";
             }}
-            className="input_label"
-            htmlFor={input.name}
-          ></input>
+          />
         )}
         {input.name === "heading_input_value" || (
           <Button
