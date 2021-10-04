@@ -14,6 +14,7 @@ function InputField({ input }) {
   const [imageLink, setimageLink] = useState("");
 
   const labelRef = useRef(null);
+  const textAreaRef = useRef(null);
 
   const additionValue = inputValue[input.id]?.additionalValue?.labelValue;
   const inputValueTxt = inputValue[input.id]?.value;
@@ -38,6 +39,12 @@ function InputField({ input }) {
       } catch {
         setimageLink("");
       }
+    }
+
+    if (input.name === "Pragraph_input_value") {
+      textAreaRef.current.style.height = "auto";
+      textAreaRef.current.style.height =
+        textAreaRef.current.scrollHeight + "px";
     }
   }, [inputValueTxt]);
 
@@ -93,16 +100,13 @@ function InputField({ input }) {
               id: input.id,
               name: input.name,
               placeholder: input.value,
+              ref: textAreaRef,
               onChange: (e) => {
                 input.tag === "div" ||
                   inputValueDispatch({
                     type: "normalValue",
                     payload: { id: input.id, value: e.target.value },
                   });
-                if (e.target.tagName === "TEXTAREA") {
-                  e.target.style.height = "auto";
-                  e.target.style.height = e.target.scrollHeight + "px";
-                }
               },
               value: inputValue[input.id]?.value || input.inputValue,
             },
