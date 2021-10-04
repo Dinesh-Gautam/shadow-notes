@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Button from "./elements/Button";
 import List from "./elements/List";
 import { useInputs } from "../InputContext";
@@ -8,12 +8,15 @@ import UseSvg from "../../elements/UseSvg";
 const MemoAddions = React.memo(ColorAdditons);
 
 function InputField({ input }) {
+  console.log("Re-rendered");
   const { inputsDispatch, inputValueDispatch, inputValue } = useInputs();
+
+  const [imageLink, setimageLink] = useState("");
 
   const labelRef = useRef(null);
 
   const additionValue = inputValue[input.id]?.additionalValue?.labelValue;
-
+  const inputValueTxt = inputValue[input.id]?.value;
   useEffect(() => {
     const e = labelRef.current;
     e.style.width =
@@ -24,6 +27,19 @@ function InputField({ input }) {
         window.innerWidth / 1.2
       ) + "px";
   }, [additionValue]);
+
+  useEffect(() => {
+    let url;
+    if (input.name === "image_input_value") {
+      try {
+        url = new URL(inputValueTxt);
+        setimageLink(url);
+        console.log(url);
+      } catch {
+        setimageLink("");
+      }
+    }
+  }, [inputValueTxt]);
 
   return (
     <div
@@ -117,11 +133,13 @@ function InputField({ input }) {
             </div>
           )}
         </div>
-        {input.name === "image_input_value" && !!inputValue[input.id]?.value && (
-          <div className="image_container">
-            <img src={inputValue[input.id]?.value} alt={"Not found"} />
-          </div>
-        )}
+        {input.name === "image_input_value" &&
+          !!inputValue[input.id]?.value &&
+          imageLink && (
+            <div className="image_container">
+              <img src={inputValue[input.id]?.value} alt={"Not found"} />
+            </div>
+          )}
         {input.inner && (
           <div className="list_control_btns">
             <Button
