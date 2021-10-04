@@ -32,14 +32,14 @@ export function InputContext(props) {
           ...state,
           [payload.id]: {
             value: payload.value,
-            additionalValue: "",
+            additionalValue: { ...state[payload.id]?.additionalValue },
           },
         };
       case "listValue":
         return {
           ...state,
           [payload.parentId]: {
-            additionalValue: "",
+            additionalValue: { ...state[payload.parentId]?.additionalValue },
             inputChildren: {
               ...state[payload.parentId]?.inputChildren,
               [payload.childrenId]: { value: payload.value },
@@ -50,6 +50,7 @@ export function InputContext(props) {
         return {
           ...state,
           [payload.id]: {
+            ...state[payload.id],
             additionalValue: {
               ...state[payload.id]?.additionalValue,
               labelValue: payload.value,
