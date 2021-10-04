@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import Button from "./elements/Button";
 import List from "./elements/List";
 import { useInputs } from "../InputContext";
@@ -9,6 +9,22 @@ const MemoAddions = React.memo(ColorAdditons);
 
 function InputField({ input }) {
   const { inputsDispatch, inputValueDispatch, inputValue } = useInputs();
+
+  const labelRef = useRef(null);
+
+  const additionValue = inputValue[input.id]?.additionalValue?.labelValue;
+
+  useEffect(() => {
+    const e = labelRef.current;
+    e.style.width =
+      Math.min(
+        (e.value.length + 1) * 8 +
+          parseInt(getComputedStyle(e).paddingLeft.replace("px", "")) * 2,
+        e.scrollWidth,
+        window.innerWidth / 1.2
+      ) + "px";
+  }, [additionValue]);
+
   return (
     <div
       className={
@@ -23,6 +39,7 @@ function InputField({ input }) {
           <input
             type="text"
             className="input-label"
+            ref={labelRef}
             value={
               inputValue[input.id]?.additionalValue?.labelValue !== undefined
                 ? inputValue[input.id]?.additionalValue?.labelValue
@@ -33,16 +50,6 @@ function InputField({ input }) {
                 type: "labelValue",
                 payload: { id: input.id, value: e.target.value },
               });
-
-              e.target.style.width =
-                Math.min(
-                  (e.target.value.length + 1) * 8 +
-                    parseInt(
-                      getComputedStyle(e.target).paddingLeft.replace("px", "")
-                    ) *
-                      2,
-                  e.target.scrollWidth
-                ) + "px";
             }}
           />
         )}
