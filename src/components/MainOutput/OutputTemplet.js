@@ -5,7 +5,6 @@ function OutputTemplet({ isInTrash, userData, publishDate, deletedOn }) {
     <div className="outputTemplet_wraper">
       {userData.map((data) => {
         const { name, value, inputValue, id, inner, additionalValue } = data;
-        console.log(additionalValue);
         let url = null;
         if (name === "link_input_value") {
           try {

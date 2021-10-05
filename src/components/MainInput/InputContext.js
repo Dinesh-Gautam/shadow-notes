@@ -162,7 +162,7 @@ export function InputContext(props) {
             name,
             value,
             id,
-            additionalValue,
+            additionalValue: { labelValue: additionalValue.labelValue || "" },
             inner:
               valueOfInput &&
               inner.map(
@@ -177,10 +177,12 @@ export function InputContext(props) {
               name,
               inputValue: valueOfInput.value.trim(),
               value,
-              additionalValue,
+              additionalValue: { labelValue: additionalValue.labelValue || "" },
               id,
             };
     });
+
+    console.log(finalInputSubmitValues);
 
     setisEditMode({ edit: false, editParameters: {} });
     inputsDispatch({

@@ -25,7 +25,7 @@ function AdditionalButtons({ docId, userData }) {
     });
 
     userData.forEach((e) => {
-      const { inputValue, name, id } = e;
+      const { inputValue, name, id, additionalValue } = e;
 
       const selectedInput = inputOptions.find((input) => input.name === name);
 
@@ -44,7 +44,10 @@ function AdditionalButtons({ docId, userData }) {
                 },
               },
             });
-
+            inputValueDispatch({
+              type: "labelValue",
+              payload: { id: id, value: additionalValue.labelValue },
+            });
             e.inner.forEach((listInputValue, index) => {
               const uid = uuidv4();
 
@@ -82,6 +85,10 @@ function AdditionalButtons({ docId, userData }) {
             inputValueDispatch({
               type: "normalValue",
               payload: { id: id, value: inputValue },
+            });
+            inputValueDispatch({
+              type: "labelValue",
+              payload: { id: id, value: additionalValue.labelValue },
             });
             break;
         }
