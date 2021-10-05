@@ -70,11 +70,7 @@ function InputField({ input }) {
             value={
               inputValue[input.id]?.additionalValue?.labelValue !== undefined
                 ? inputValue[input.id]?.additionalValue?.labelValue
-                : input.value &&
-                  inputValueDispatch({
-                    type: "labelValue",
-                    payload: { id: input.id, value: input.value },
-                  })
+                : input.value
             }
             onChange={(e) => {
               inputValueDispatch({

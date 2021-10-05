@@ -154,6 +154,8 @@ export function InputContext(props) {
       const { value, name, id, inner } = input;
       const valueOfInput = inputValue[id] || "";
       const additionalValue = inputValue[id].additionalValue;
+
+      console.log(additionalValue.labelValue);
       if (!valueOfInput) {
         return null;
       }
@@ -162,7 +164,12 @@ export function InputContext(props) {
             name,
             value,
             id,
-            additionalValue: { labelValue: additionalValue.labelValue || "" },
+            additionalValue: {
+              labelValue:
+                additionalValue.labelValue === undefined
+                  ? null
+                  : additionalValue.labelValue,
+            },
             inner:
               valueOfInput &&
               inner.map(
@@ -177,7 +184,12 @@ export function InputContext(props) {
               name,
               inputValue: valueOfInput.value.trim(),
               value,
-              additionalValue: { labelValue: additionalValue.labelValue || "" },
+              additionalValue: {
+                labelValue:
+                  additionalValue.labelValue === undefined
+                    ? null
+                    : additionalValue.labelValue,
+              },
               id,
             };
     });
