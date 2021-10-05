@@ -60,6 +60,8 @@ function InputField({ input }) {
       <div className="input_box_header">
         {input.name === "color_input_value" ? (
           <div></div>
+        ) : input.name === "heading_input_value" ? (
+          <label>{input.value}</label>
         ) : (
           <input
             type="text"

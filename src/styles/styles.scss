@@ -203,7 +203,8 @@ main {
     box-shadow: none;
     padding: 0 $padding-default;
   }
-  input {
+  input,
+  label {
     text-transform: uppercase;
     font-size: $fontSize-small;
     height: fit-content;
