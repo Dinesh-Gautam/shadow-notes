@@ -106,6 +106,7 @@ textarea {
   overflow: hidden;
 }
 select {
+  height: 1ch;
   padding: math.div($padding-default, 2) $padding-default;
   padding-right: $padding-large;
   font-size: $fontSize-default;

@@ -82,6 +82,7 @@ textarea {
 }
 
 select {
+  height: 1ch;
   padding: 8px 16px;
   padding-right: 32px;
   font-size: 16px;
