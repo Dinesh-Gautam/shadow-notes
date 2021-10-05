@@ -71,6 +71,9 @@ textarea {
 input {
   width: 100%;
 }
+input:focus {
+  box-shadow: inset 0px 1px 4px rgba(0, 0, 0, 0.1);
+}
 
 textarea {
   width: 100%;
