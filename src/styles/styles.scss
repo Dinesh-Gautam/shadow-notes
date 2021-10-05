@@ -79,6 +79,7 @@ button {
   svg {
     opacity: 0.8;
     height: $fontSize-medium;
+    // height: 100%;
   }
 }
 
@@ -107,7 +108,7 @@ textarea {
 }
 select {
   height: 1ch;
-  padding: math.div($padding-default, 2) $padding-default;
+  padding: 0 $padding-default;
   padding-right: $padding-large;
   font-size: $fontSize-default;
   font-family: $font-default;
@@ -123,6 +124,7 @@ select {
     calc(100% - 15px) calc(1em + 2px), calc(100% - 2.5em) 0.5em;
   background-size: 5px 5px, 5px 5px, 1px 1.5em;
   height: 100%;
+  box-sizing: content-box;
   background-repeat: no-repeat;
   // &:focus {
   //   background-image: linear-gradient(
@@ -172,7 +174,7 @@ main {
   display: flex;
   margin-top: $padding-medium;
   row-gap: $padding-medium;
-  gap: $padding-default;
+  gap: $padding-medium;
   .selection_input_btn {
     flex: 1;
     display: flex;
@@ -184,6 +186,9 @@ main {
     display: flex;
     justify-content: flex-end;
     gap: $padding-default;
+  }
+  button {
+    padding: math.div($padding-less, 1.5) $padding-default;
   }
 }
 
@@ -227,6 +232,12 @@ main {
   box-shadow: $boxShadow-default;
   border-radius: $border-radius-default;
   .inputWaper {
+    .list_control_btns {
+      margin-top: $padding-medium;
+      button {
+        padding: $padding-less $padding-default;
+      }
+    }
     .list_input_box {
       flex: 1;
       input:not(input:last-child) {
@@ -846,9 +857,8 @@ main {
   .input_selection {
     flex-wrap: wrap;
     row-gap: $padding-medium;
-    select {
-      padding-bottom: $padding-less;
-      padding-top: $padding-less;
+    button {
+      padding: $padding-less $padding-default;
     }
   }
 }

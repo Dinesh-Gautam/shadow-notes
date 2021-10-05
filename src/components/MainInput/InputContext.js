@@ -153,7 +153,7 @@ export function InputContext(props) {
     let finalInputSubmitValues = inputs.map((input) => {
       const { value, name, id, inner } = input;
       const valueOfInput = inputValue[id] || "";
-
+      const additionalValue = inputValue[id].additionalValue;
       if (!valueOfInput) {
         return null;
       }
@@ -162,6 +162,7 @@ export function InputContext(props) {
             name,
             value,
             id,
+            additionalValue,
             inner:
               valueOfInput &&
               inner.map(
@@ -176,6 +177,7 @@ export function InputContext(props) {
               name,
               inputValue: valueOfInput.value.trim(),
               value,
+              additionalValue,
               id,
             };
     });

@@ -4,7 +4,8 @@ function OutputTemplet({ isInTrash, userData, publishDate, deletedOn }) {
   return (
     <div className="outputTemplet_wraper">
       {userData.map((data) => {
-        const { name, value, inputValue, id, inner } = data;
+        const { name, value, inputValue, id, inner, additionalValue } = data;
+        console.log(additionalValue);
         let url = null;
         if (name === "link_input_value") {
           try {
@@ -17,7 +18,11 @@ function OutputTemplet({ isInTrash, userData, publishDate, deletedOn }) {
           <React.Fragment key={id}>
             {name === "heading_input_value" || name === "color_input_value" || (
               <div className="label_container">
-                <label>{value}</label>
+                <label>
+                  {additionalValue.labelValue
+                    ? additionalValue.labelValue
+                    : value}
+                </label>
               </div>
             )}
             {name === "title_input_value" && <h2>{inputValue}</h2>}
