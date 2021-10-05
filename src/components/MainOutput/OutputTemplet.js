@@ -17,11 +17,7 @@ function OutputTemplet({ isInTrash, userData, publishDate, deletedOn }) {
           <React.Fragment key={id}>
             {name === "heading_input_value" || name === "color_input_value" || (
               <div className="label_container">
-                <label>
-                  {additionalValue?.labelValue
-                    ? additionalValue.labelValue
-                    : value}
-                </label>
+                <label>{additionalValue?.labelValue}</label>
               </div>
             )}
             {name === "title_input_value" && <h2>{inputValue}</h2>}
