@@ -19,13 +19,15 @@ function InputField({ input }) {
   const inputValueTxt = inputValue[input.id]?.value;
   useEffect(() => {
     const e = labelRef.current;
-    e.style.width =
-      Math.min(
-        (e.value.length + 1) * 8 +
-          parseInt(getComputedStyle(e).paddingLeft.replace("px", "")) * 2,
-        e.scrollWidth,
-        window.innerWidth / 1.2
-      ) + "px";
+    if (e && e.className === "input-label") {
+      e.style.width =
+        Math.min(
+          (e.value.length + 1) * 8 +
+            parseInt(getComputedStyle(e).paddingLeft.replace("px", "")) * 2,
+          e.scrollWidth,
+          window.innerWidth / 1.2
+        ) + "px";
+    }
   }, [additionValue]);
 
   useEffect(() => {
