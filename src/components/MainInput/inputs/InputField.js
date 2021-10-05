@@ -8,7 +8,6 @@ import UseSvg from "../../elements/UseSvg";
 const MemoAddions = React.memo(ColorAdditons);
 
 function InputField({ input }) {
-  console.log("Re-rendered");
   const { inputsDispatch, inputValueDispatch, inputValue } = useInputs();
 
   const [imageLink, setimageLink] = useState("");
@@ -46,6 +45,7 @@ function InputField({ input }) {
       textAreaRef.current.style.height =
         textAreaRef.current.scrollHeight + "px";
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [inputValueTxt]);
 
   return (
