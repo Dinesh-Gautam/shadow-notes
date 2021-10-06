@@ -801,6 +801,7 @@ main {
   border-radius: 6px;
 }
 .undo-container button {
+  margin-left: 32px;
   padding: 0;
   color: #71a3ff;
   background: transparent;

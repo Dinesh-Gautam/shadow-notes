@@ -902,6 +902,7 @@ main {
   color: var(--default-color);
   border-radius: $border-radius-default;
   button {
+    margin-left: $padding-default * 2;
     padding: 0;
     color: rgb(113, 163, 255);
     background: transparent;
