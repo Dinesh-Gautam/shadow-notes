@@ -42,7 +42,7 @@ export function DatabaseContext({ children }) {
           deleteData_firestore(eachId);
         });
         setundoTrigger({ trigger: false, id: [] });
-      }, 5000);
+      }, 10000);
     } else {
       undoInterval && clearInterval(undoInterval);
     }
