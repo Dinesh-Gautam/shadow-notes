@@ -1,7 +1,6 @@
 ; * = done ; () = pending ; ^ = maybe in futer ; # = cancle;
 
 Use React routers   ()
-improve auth code   *
 
 //////
 

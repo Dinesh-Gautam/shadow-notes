@@ -98,10 +98,16 @@ textarea {
 }
 input {
   width: 100%;
-  &:focus {
-    box-shadow: inset $boxShadow-input;
-  }
 }
+
+input:focus {
+  box-shadow: inset $boxShadow-input !important;
+}
+
+button:active {
+  box-shadow: inset $boxShadow-default !important;
+}
+
 textarea {
   width: 100%;
   max-width: 100%;
@@ -193,6 +199,8 @@ main {
   }
   button {
     padding: math.div($padding-less, 1.5) $padding-default;
+    align-self: center;
+    height: 100%;
   }
 }
 

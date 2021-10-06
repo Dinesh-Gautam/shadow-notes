@@ -125,7 +125,8 @@ function InputField({ input }) {
                     inputsDispatch={inputsDispatch}
                     inputValueDispatch={inputValueDispatch}
                     listInputValue={
-                      inputValue[input.id]?.inputChildren[list.id]?.value || ""
+                      // inputValue[input.id]?.inputChildren[list.id]?.value || ""
+                      ""
                     }
                   />
                 );

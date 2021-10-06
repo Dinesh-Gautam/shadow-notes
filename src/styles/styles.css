@@ -71,8 +71,13 @@ textarea {
 input {
   width: 100%;
 }
+
 input:focus {
-  box-shadow: inset 0px 1px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: inset 0px 1px 4px rgba(0, 0, 0, 0.1) !important;
+}
+
+button:active {
+  box-shadow: inset 0px 4px 6px rgba(0, 0, 0, 0.1) !important;
 }
 
 textarea {
@@ -149,6 +154,8 @@ main {
 }
 .input_selection button {
   padding: 8px 16px;
+  align-self: center;
+  height: 100%;
 }
 
 .input_box_header {
