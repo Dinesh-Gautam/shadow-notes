@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import UseSvg from "../../../elements/UseSvg";
 import Button from "./Button";
 
@@ -10,14 +10,29 @@ function List({
   inputsDispatch,
   listInputValue,
 }) {
+  const [dragDisplay, setdragDisplay] = useState(false);
+
   return (
-    <div className="list-container" id={list.id}>
+    <div
+      onMouseEnter={() => {
+        setdragDisplay(true);
+      }}
+      onMouseLeave={() => {
+        setdragDisplay(false);
+      }}
+      className="list-container"
+      id={list.id}
+    >
+      <div style={{ display: true ? "flex" : "none" }} className="list-drag">
+        <UseSvg type="drag" />
+      </div>
       {React.createElement(list.tag, {
         ...list.attr,
         id: list.id,
         "data-id": list.id,
         placeholder: `${input.value} ${index}`,
         name: input.name,
+
         onChange: (e) =>
           inputValueDispatch({
             type: "listValue",

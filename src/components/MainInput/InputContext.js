@@ -151,72 +151,77 @@ export function InputContext(props) {
   const formSubmitHandler = (e) => {
     e.preventDefault();
     let finalInputSubmitValues = inputs.map((input) => {
-      const { value, name, id, inner } = input;
-      const valueOfInput = inputValue[id] || "";
-      const additionalValue = inputValue[id].additionalValue;
-
-      console.log(additionalValue.labelValue);
-      if (!valueOfInput) {
-        return null;
-      }
-      return inner
-        ? {
-            name,
-            value,
-            id,
-            additionalValue: {
-              labelValue:
-                additionalValue.labelValue === undefined
-                  ? null
-                  : additionalValue.labelValue,
-            },
-            inner:
-              valueOfInput &&
-              inner.map(
-                (list) =>
-                  valueOfInput.inputChildren[list.id].value.trim() !== "" &&
-                  valueOfInput.inputChildren[list.id].value
-              ),
-          }
-        : valueOfInput &&
-            valueOfInput.value.trim() &&
-            valueOfInput.value !== "" && {
-              name,
-              inputValue: valueOfInput.value.trim(),
-              value,
-              additionalValue: {
-                labelValue:
-                  additionalValue.labelValue === undefined
-                    ? null
-                    : additionalValue.labelValue,
-              },
-              id,
-            };
+      // const { value, name, id, inner } = input;
+      // const valueOfInput = inputValue[id] || "";
+      // const additionalValue = inputValue[id].additionalValue;
+      //   if (!valueOfInput) {
+      //     return null;
+      //   }
+      //   return inner
+      //     ? {
+      //         name,
+      //         value,
+      //         id,
+      //         additionalValue: {
+      //           labelValue:
+      //             additionalValue.labelValue === undefined
+      //               ? null
+      //               : additionalValue.labelValue,
+      //         },
+      //         inner:
+      //           valueOfInput &&
+      //           inner.map(
+      //             (list) =>
+      //               valueOfInput.inputChildren !== undefined &&
+      //               valueOfInput?.inputChildren?.[list.id]?.value?.trim() !==
+      //                 "" &&
+      //               valueOfInput?.inputChildren?.[list.id]?.value
+      //           ),
+      //       }
+      //     : valueOfInput &&
+      //         valueOfInput?.value.trim() &&
+      //         valueOfInput?.value !== "" && {
+      //           name,
+      //           inputValue:
+      //             valueOfInput?.value === undefined ? null : valueOfInput.value,
+      //           value,
+      //           additionalValue: {
+      //             labelValue:
+      //               additionalValue.labelValue === undefined
+      //                 ? null
+      //                 : additionalValue.labelValue,
+      //           },
+      //           id,
+      //         };
     });
+
+    /* 
+  REWRITE FINALSUBMIT CODE
+  */
 
     console.log(finalInputSubmitValues);
 
-    setisEditMode({ edit: false, editParameters: {} });
-    inputsDispatch({
-      type: "clear",
-    });
-    inputValueDispatch({
-      type: "clear",
-    });
+    // setisEditMode({ edit: false, editParameters: {} });
+    // inputsDispatch({
+    //   type: "clear",
+    // });
+    // inputValueDispatch({
+    //   type: "clear",
+    // });
 
-    if (isEditMode.edit) {
-      const docId = isEditMode.editParameters;
-      updateData_firestore(docId, {
-        data: finalInputSubmitValues.filter((e) => e !== null),
-      });
-    } else {
-      setData_firestore({
-        delete: false,
-        options: false,
-        publishDate: serverTimestamp(),
-        data: finalInputSubmitValues.filter((e) => e !== null),
-      });
-    }
+    // if (isEditMode.edit) {
+    //   const docId = isEditMode.editParameters;
+    //   updateData_firestore(docId, {
+    //     data: finalInputSubmitValues.filter((e) => e !== null),
+    //   });
+    // } else {
+    //   setData_firestore({
+    //     delete: false,
+    //     options: false,
+    //     publishDate: serverTimestamp(),
+    //     data: finalInputSubmitValues.filter((e) => e !== null),
+    //   });
+    // }
   };
 
   const value = {

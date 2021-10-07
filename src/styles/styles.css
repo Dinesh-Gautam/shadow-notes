@@ -72,14 +72,6 @@ input {
   width: 100%;
 }
 
-input:focus {
-  box-shadow: inset 0px 1px 4px rgba(0, 0, 0, 0.1) !important;
-}
-
-button:active {
-  box-shadow: inset 0px 4px 6px rgba(0, 0, 0, 0.1) !important;
-}
-
 textarea {
   width: 100%;
   max-width: 100%;
@@ -133,6 +125,9 @@ main {
   border-radius: 6px;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
+.input_container input:focus {
+  box-shadow: inset 0px 1px 4px rgba(0, 0, 0, 0.1) !important;
+}
 
 .input_selection {
   display: flex;
@@ -165,7 +160,6 @@ main {
 .input_box_header button {
   padding: 0;
   background: none;
-  height: 100%;
   box-shadow: none;
   padding: 0 16px;
 }
@@ -208,6 +202,18 @@ main {
 }
 .added_input_box .inputWaper .list_input_box input:not(input:last-child) {
   border-radius: 6px;
+}
+.added_input_box .inputWaper .list_input_box .list-drag {
+  background-color: var(--default-backgroundcolor);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: -16px;
+  cursor: grab;
+}
+.added_input_box .inputWaper .list_input_box .list-drag svg {
+  opacity: 0.3;
+  height: 18px;
 }
 .added_input_box .inputWaper .input .list_input_box .list-container {
   margin-bottom: 16px;

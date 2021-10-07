@@ -100,14 +100,6 @@ input {
   width: 100%;
 }
 
-input:focus {
-  box-shadow: inset $boxShadow-input !important;
-}
-
-button:active {
-  box-shadow: inset $boxShadow-default !important;
-}
-
 textarea {
   width: 100%;
   max-width: 100%;
@@ -178,6 +170,9 @@ main {
     border-radius: $border-radius-default;
     box-shadow: $boxShadow-default;
   }
+  input:focus {
+    box-shadow: inset $boxShadow-input !important;
+  }
 }
 
 .input_selection {
@@ -211,7 +206,6 @@ main {
   button {
     padding: 0;
     background: none;
-    height: 100%;
     box-shadow: none;
     padding: 0 $padding-default;
   }
@@ -255,6 +249,18 @@ main {
       flex: 1;
       input:not(input:last-child) {
         border-radius: $border-radius-default;
+      }
+      .list-drag {
+        background-color: var(--default-backgroundcolor);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: -$padding-default;
+        cursor: grab;
+        svg {
+          opacity: 0.3;
+          height: $fontSize-medium;
+        }
       }
     }
     .input .list_input_box .list-container {
