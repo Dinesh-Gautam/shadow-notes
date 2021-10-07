@@ -4,7 +4,7 @@ import List from "./elements/List";
 import { useInputs } from "../InputContext";
 import ColorAdditons from "./elements/ColorAdditons";
 import UseSvg from "../../elements/UseSvg";
-
+import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 const MemoAddions = React.memo(ColorAdditons);
 
 function InputField({ input }) {
@@ -14,6 +14,30 @@ function InputField({ input }) {
 
   const labelRef = useRef(null);
   const textAreaRef = useRef(null);
+
+  function handleOnDragEnd(result) {
+    if (!result.destination) return;
+
+    // inputValueDispatch({
+    //   type: "listReOrder",
+    //   payload: {
+    //     id: input.id,
+    //     sIndex: result.source.index,
+    //     dIndex: result.destination.index,
+    //   },
+    // });
+
+    console.log(result);
+
+    inputsDispatch({
+      payload: {
+        id: input.id,
+        sIndex: result.source.index,
+        dIndex: result.destination.index,
+      },
+      type: "listReOrder",
+    });
+  }
 
   const additionValue = inputValue[input.id]?.additionalValue?.labelValue;
   const inputValueTxt = inputValue[input.id]?.value;
@@ -114,23 +138,38 @@ function InputField({ input }) {
               },
               value: inputValue[input.id]?.value || input.inputValue,
             },
-            input.inner &&
-              input.inner.map((list, index) => {
-                return (
-                  <List
-                    key={list.id}
-                    list={list}
-                    index={index}
-                    input={input}
-                    inputsDispatch={inputsDispatch}
-                    inputValueDispatch={inputValueDispatch}
-                    listInputValue={
-                      inputValue[input.id]?.inputChildren?.[list?.id]?.value ||
-                      ""
-                    }
-                  />
-                );
-              })
+
+            input.inner && (
+              <DragDropContext onDragEnd={handleOnDragEnd}>
+                <Droppable droppableId="list-inner">
+                  {(provided) => (
+                    <div
+                      className="list-inner"
+                      {...provided.droppableProps}
+                      ref={provided.innerRef}
+                    >
+                      {input.inner.map((list, index) => {
+                        return (
+                          <List
+                            key={list.id}
+                            list={list}
+                            index={index}
+                            input={input}
+                            inputsDispatch={inputsDispatch}
+                            inputValueDispatch={inputValueDispatch}
+                            listInputValue={
+                              inputValue[input.id]?.inputChildren?.[list?.id]
+                                ?.value || ""
+                            }
+                          />
+                        );
+                      })}
+                      {provided.placeholder}
+                    </div>
+                  )}
+                </Droppable>
+              </DragDropContext>
+            )
           )}
 
           {input.isOption && input.name === "color_input_value" && (
