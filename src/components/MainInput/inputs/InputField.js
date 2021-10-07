@@ -4,7 +4,7 @@ import List from "./elements/List";
 import { useInputs } from "../InputContext";
 import ColorAdditons from "./elements/ColorAdditons";
 import UseSvg from "../../elements/UseSvg";
-import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
+import { DragDropContext, Droppable } from "react-beautiful-dnd";
 const MemoAddions = React.memo(ColorAdditons);
 
 function InputField({ input }) {
@@ -26,8 +26,6 @@ function InputField({ input }) {
     //     dIndex: result.destination.index,
     //   },
     // });
-
-    console.log(result);
 
     inputsDispatch({
       payload: {

@@ -124,7 +124,7 @@ export function InputContext(props) {
     return state.filter((input) => input.id !== action.payload.id);
   };
 
-  const listReOrder = (state, action) => {
+  const listReOrderHandeler = (state, action) => {
     const reOrderedList = state.map((input) => {
       if (input.inner && input.id === action.payload.id) {
         const refListArr = [...input.inner];
@@ -141,7 +141,7 @@ export function InputContext(props) {
         return input;
       }
     });
-    console.log(reOrderedList);
+
     return reOrderedList;
   };
 
@@ -152,11 +152,12 @@ export function InputContext(props) {
       case "removeElement":
         return removeElement(state, action);
       case "addListElement":
+        console.log("running");
         return addListElement(state, action);
       case "removeListElement":
         return removeListELement(state, action);
       case "listReOrder":
-        return listReOrder(state, action);
+        return listReOrderHandeler(state, action);
       case "clear":
         return initialState;
       default:
