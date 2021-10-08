@@ -170,8 +170,11 @@ main {
     border-radius: $border-radius-default;
     box-shadow: $boxShadow-default;
   }
-  input:focus {
-    box-shadow: inset $boxShadow-input !important;
+  input,
+  textarea {
+    &:focus {
+      box-shadow: inset $boxShadow-input !important;
+    }
   }
 }
 
