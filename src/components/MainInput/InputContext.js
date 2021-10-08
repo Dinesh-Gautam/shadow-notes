@@ -152,7 +152,6 @@ export function InputContext(props) {
       case "removeElement":
         return removeElement(state, action);
       case "addListElement":
-        console.log("running");
         return addListElement(state, action);
       case "removeListElement":
         return removeListELement(state, action);

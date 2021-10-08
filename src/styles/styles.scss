@@ -245,26 +245,20 @@ main {
         padding: $padding-less $padding-default;
       }
     }
-    .list_input_box {
-      transition: all 0.5s ease-in-out;
-    }
-    .list-container {
-      position: relative;
-      transition: all 0.5s ease-in-out;
-    }
-    .list-container.dragging::after {
-      position: absolute;
-      content: "";
-      background-color: rgba(0, 0, 0, 0.025);
-      box-shadow: $boxShadow-default;
-      border-radius: $border-radius-default;
-      z-index: 100;
-      width: 100%;
-      height: 100%;
-      top: -$padding-veryLess;
-      left: -$padding-veryLess;
-      padding: $padding-veryLess;
-    }
+
+    // .list-container.dragging::after {
+    //   position: absolute;
+    //   content: "";
+    //   background-color: rgba(0, 0, 0, 0.025);
+    //   box-shadow: $boxShadow-default;
+    //   border-radius: $border-radius-default;
+    //   z-index: 100;
+    //   width: 100%;
+    //   height: 100%;
+    //   top: -$padding-veryLess;
+    //   left: -$padding-veryLess;
+    //   padding: $padding-veryLess;
+    // }
     .list_input_box {
       flex: 1;
       input:not(input:last-child) {

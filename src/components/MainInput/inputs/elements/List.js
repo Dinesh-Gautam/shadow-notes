@@ -151,7 +151,6 @@ function List({
   listInputValue,
 }) {
   const [dragDisplay, setdragDisplay] = useState(false);
-
   return (
     <Draggable key={list.id} draggableId={list.id} index={index}>
       {(provided) => (
