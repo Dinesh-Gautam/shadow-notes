@@ -90,7 +90,8 @@ function InputField({ input }) {
             className="input-label"
             ref={labelRef}
             value={
-              inputValue[input.id]?.additionalValue?.labelValue !== undefined
+              inputValue[input.id]?.additionalValue?.labelValue !== undefined &&
+              inputValue[input.id]?.additionalValue?.labelValue !== null
                 ? inputValue[input.id]?.additionalValue?.labelValue
                 : input.value
             }
