@@ -228,13 +228,13 @@ export function InputContext(props) {
 
     console.log(finalInputSubmitValues);
 
-    // setisEditMode({ edit: false, editParameters: {} });
-    // inputsDispatch({
-    //   type: "clear",
-    // });
-    // inputValueDispatch({
-    //   type: "clear",
-    // });
+    setisEditMode({ edit: false, editParameters: {} });
+    inputsDispatch({
+      type: "clear",
+    });
+    inputValueDispatch({
+      type: "clear",
+    });
 
     if (isEditMode.edit) {
       const docId = isEditMode.editParameters;
