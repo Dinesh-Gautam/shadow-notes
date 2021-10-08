@@ -174,48 +174,52 @@ export function InputContext(props) {
   const formSubmitHandler = (e) => {
     e.preventDefault();
     let finalInputSubmitValues = inputs.map((input) => {
-      // const { value, name, id, inner } = input;
-      // const valueOfInput = inputValue[id] || "";
-      // const additionalValue = inputValue[id].additionalValue;
-      //   if (!valueOfInput) {
-      //     return null;
-      //   }
-      //   return inner
-      //     ? {
-      //         name,
-      //         value,
-      //         id,
-      //         additionalValue: {
-      //           labelValue:
-      //             additionalValue.labelValue === undefined
-      //               ? null
-      //               : additionalValue.labelValue,
-      //         },
-      //         inner:
-      //           valueOfInput &&
-      //           inner.map(
-      //             (list) =>
-      //               valueOfInput.inputChildren !== undefined &&
-      //               valueOfInput?.inputChildren?.[list.id]?.value?.trim() !==
-      //                 "" &&
-      //               valueOfInput?.inputChildren?.[list.id]?.value
-      //           ),
-      //       }
-      //     : valueOfInput &&
-      //         valueOfInput?.value.trim() &&
-      //         valueOfInput?.value !== "" && {
-      //           name,
-      //           inputValue:
-      //             valueOfInput?.value === undefined ? null : valueOfInput.value,
-      //           value,
-      //           additionalValue: {
-      //             labelValue:
-      //               additionalValue.labelValue === undefined
-      //                 ? null
-      //                 : additionalValue.labelValue,
-      //           },
-      //           id,
-      //         };
+      const { value, name, id, inner } = input;
+      const valueOfInput = inputValue[id] || "";
+      if (!valueOfInput) {
+        return null;
+      }
+      const additionalValue = inputValue[id].additionalValue;
+      return inner
+        ? {
+            name,
+            value,
+            id,
+            additionalValue: {
+              labelValue:
+                additionalValue.labelValue === undefined
+                  ? null
+                  : additionalValue.labelValue,
+            },
+            inner:
+              valueOfInput &&
+              inner
+                .map((list) =>
+                  valueOfInput?.inputChildren?.[list?.id]?.value === undefined
+                    ? null
+                    : valueOfInput?.inputChildren?.[list.id]?.value?.trim() !==
+                        "" && valueOfInput?.inputChildren?.[list.id]?.value
+                )
+                .filter((e) => e),
+          }
+        : valueOfInput && {
+            name,
+            inputValue:
+              valueOfInput?.value &&
+              valueOfInput?.value !== "" &&
+              valueOfInput?.value === undefined &&
+              valueOfInput.value.trim()
+                ? null
+                : valueOfInput.value || null,
+            value,
+            additionalValue: {
+              labelValue:
+                additionalValue.labelValue === undefined
+                  ? null
+                  : additionalValue.labelValue,
+            },
+            id,
+          };
     });
 
     /* 
@@ -232,19 +236,19 @@ export function InputContext(props) {
     //   type: "clear",
     // });
 
-    // if (isEditMode.edit) {
-    //   const docId = isEditMode.editParameters;
-    //   updateData_firestore(docId, {
-    //     data: finalInputSubmitValues.filter((e) => e !== null),
-    //   });
-    // } else {
-    //   setData_firestore({
-    //     delete: false,
-    //     options: false,
-    //     publishDate: serverTimestamp(),
-    //     data: finalInputSubmitValues.filter((e) => e !== null),
-    //   });
-    // }
+    if (isEditMode.edit) {
+      const docId = isEditMode.editParameters;
+      updateData_firestore(docId, {
+        data: finalInputSubmitValues.filter((e) => e !== null),
+      });
+    } else {
+      setData_firestore({
+        delete: false,
+        options: false,
+        publishDate: serverTimestamp(),
+        data: finalInputSubmitValues.filter((e) => e !== null),
+      });
+    }
   };
 
   const value = {
