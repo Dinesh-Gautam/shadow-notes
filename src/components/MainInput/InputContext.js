@@ -221,12 +221,7 @@ export function InputContext(props) {
             id,
           };
     });
-
-    /* 
-  REWRITE FINALSUBMIT CODE
-  */
-
-    console.log(finalInputSubmitValues);
+    // console.log(finalInputSubmitValues);
 
     setisEditMode({ edit: false, editParameters: {} });
     inputsDispatch({
