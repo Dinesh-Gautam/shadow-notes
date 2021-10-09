@@ -18,7 +18,7 @@ function OutputTemplet({ isInTrash, userData, publishDate, deletedOn }) {
             {name === "heading_input_value" || name === "color_input_value" || (
               <div className="label_container">
                 <label>
-                  {additionalValue?.labelValue === null
+                  {!additionalValue?.labelValue
                     ? value
                     : additionalValue?.labelValue}
                 </label>
