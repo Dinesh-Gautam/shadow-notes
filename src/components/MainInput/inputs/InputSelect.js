@@ -5,6 +5,7 @@ import InputField from "./InputField";
 import { inputOptions } from "./inputOptions";
 import { v4 as uuidv4 } from "uuid";
 import UseSvg from "../../elements/UseSvg";
+import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 
 function InputSelect() {
   const [inputSelect, setinputSelect] = useState("title");
@@ -16,6 +17,8 @@ function InputSelect() {
     setisEditMode,
     isEditMode,
   } = useContext(input_context);
+
+  const handleOnInputsDragEnd = () => {};
 
   const inputAdderHandler = () => {
     const uid = uuidv4();
@@ -45,12 +48,41 @@ function InputSelect() {
 
   return (
     <div className="input_select_container">
-      <div className="input_fields">
-        {inputs.map((input) => {
-          return <InputField key={input.id} input={input} />;
-        })}
-      </div>
-
+      <DragDropContext onDragEnd={handleOnInputsDragEnd}>
+        <Droppable droppableId="input_droppable">
+          {(provided) => (
+            <div
+              {...provided.droppableProps}
+              ref={provided.innerRef}
+              className="input_fields"
+            >
+              {inputs.map((input, index) => {
+                if (input.name === "heading_input_value") {
+                  return <InputField key={input.id} input={input} />;
+                } else {
+                  return (
+                    <Draggable
+                      key={input.id}
+                      draggableId={input.id}
+                      index={index}
+                    >
+                      {(provided) => (
+                        <InputField
+                          innerRef={provided.innerRef}
+                          draggableProps={provided.draggableProps}
+                          dragHandleProps={provided.dragHandleProps}
+                          input={input}
+                        />
+                      )}
+                    </Draggable>
+                  );
+                }
+              })}
+              {provided.placeholder}
+            </div>
+          )}
+        </Droppable>
+      </DragDropContext>
       <div className="input_selection">
         <div className="selection_input_btn">
           <select
