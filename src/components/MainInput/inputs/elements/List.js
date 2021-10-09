@@ -161,6 +161,9 @@ function List({
           onMouseEnter={() => {
             setdragDisplay(true);
           }}
+          onMouseOver={(e) => {
+            dragDisplay || setdragDisplay(true);
+          }}
           onMouseLeave={() => {
             setdragDisplay(false);
           }}
@@ -191,9 +194,10 @@ function List({
               }),
             value: listInputValue,
           })}
-          {index > 0 && (
+          {input.inner.length > 1 && (
             <Button
               attr={{
+                style: { display: dragDisplay ? "flex" : "none" },
                 id: list.id,
                 onClick: () => {
                   inputsDispatch({
