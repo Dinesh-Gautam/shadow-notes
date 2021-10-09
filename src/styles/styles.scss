@@ -240,6 +240,7 @@ main {
   box-shadow: $boxShadow-default;
   border-radius: $border-radius-default;
   padding-top: 0;
+  background-color: var(--default-color);
   .inputWaper {
     .list_control_btns {
       margin-top: $padding-medium;
