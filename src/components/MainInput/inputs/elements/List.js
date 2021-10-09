@@ -157,7 +157,6 @@ function List({
         <div
           ref={provided.innerRef}
           {...provided.draggableProps}
-          {...provided.dragHandleProps}
           onMouseEnter={() => {
             setdragDisplay(true);
           }}
@@ -171,6 +170,7 @@ function List({
           id={list.id}
         >
           <div
+            {...provided.dragHandleProps}
             style={{ display: dragDisplay ? "flex" : "none" }}
             className="list-drag"
           >
