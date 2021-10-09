@@ -210,6 +210,8 @@ main {
   justify-content: center;
   margin-right: -16px;
   cursor: grab;
+  border-radius: 6px 0 0 6px;
+  padding: 0 2px;
 }
 .added_input_box .inputWaper .list_input_box .list-drag svg {
   opacity: 0.3;

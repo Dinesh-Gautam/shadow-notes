@@ -273,6 +273,8 @@ main {
         justify-content: center;
         margin-right: -$padding-default;
         cursor: grab;
+        border-radius: $border-radius-default 0 0 $border-radius-default;
+        padding: 0 $padding-veryLess - 4px;
         svg {
           opacity: 0.3;
           height: $fontSize-medium;
