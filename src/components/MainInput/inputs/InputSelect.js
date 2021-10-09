@@ -58,7 +58,7 @@ function InputSelect() {
 
   return (
     <div className="input_select_container">
-      <DragDropContext onDragEnd={handleOnInputsDragEnd}>
+      <DragDropContext onDragEnd={inputDargHandler}>
         <Droppable droppableId="input_droppable">
           {(provided) => (
             <div
