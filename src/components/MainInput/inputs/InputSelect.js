@@ -17,6 +17,18 @@ function InputSelect() {
     isEditMode,
   } = useContext(input_context);
 
+  const inputDargHandler = (result) => {
+    if (!result.destination) return;
+
+    inputsDispatch({
+      payload: {
+        sIndex: result.source.index,
+        dIndex: result.destination.index,
+      },
+      type: "inputReOrder",
+    });
+  };
+
   const inputAdderHandler = () => {
     const uid = uuidv4();
 
