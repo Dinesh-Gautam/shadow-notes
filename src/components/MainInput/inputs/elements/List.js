@@ -174,7 +174,7 @@ function List({
             style={{ display: dragDisplay ? "flex" : "none" }}
             className="list-drag"
           >
-            <UseSvg type="drag" />
+            <UseSvg type="drag-handle" />
           </div>
           {React.createElement(list.tag, {
             ...list.attr,

@@ -159,10 +159,8 @@ main {
   justify-content: space-between;
 }
 .input_box_header button {
-  padding: 0;
   background: none;
   box-shadow: none;
-  padding: 0 16px;
 }
 .input_box_header input,
 .input_box_header label {
@@ -191,6 +189,7 @@ main {
   padding: 16px;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   border-radius: 6px;
+  padding-top: 0;
 }
 .added_input_box .inputWaper .list_control_btns {
   margin-top: 24px;

@@ -207,10 +207,8 @@ main {
   justify-content: space-between;
 
   button {
-    padding: 0;
     background: none;
     box-shadow: none;
-    padding: 0 $padding-default;
   }
   input,
   label {
@@ -241,6 +239,7 @@ main {
   padding: $padding-default;
   box-shadow: $boxShadow-default;
   border-radius: $border-radius-default;
+  padding-top: 0;
   .inputWaper {
     .list_control_btns {
       margin-top: $padding-medium;
