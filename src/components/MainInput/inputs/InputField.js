@@ -18,15 +18,6 @@ function InputField({ input }) {
   function handleOnDragEnd(result) {
     if (!result.destination) return;
 
-    // inputValueDispatch({
-    //   type: "listReOrder",
-    //   payload: {
-    //     id: input.id,
-    //     sIndex: result.source.index,
-    //     dIndex: result.destination.index,
-    //   },
-    // });
-
     inputsDispatch({
       payload: {
         id: input.id,
