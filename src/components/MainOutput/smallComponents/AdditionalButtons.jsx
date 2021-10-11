@@ -46,7 +46,7 @@ function AdditionalButtons({ docId, userData }) {
             });
             inputValueDispatch({
               type: "labelValue",
-              payload: { id: id, value: additionalValue.labelValue },
+              payload: { id: id, value: additionalValue?.labelValue },
             });
             e.inner.forEach((listInputValue, index) => {
               const uid = uuidv4();
@@ -88,7 +88,7 @@ function AdditionalButtons({ docId, userData }) {
             });
             inputValueDispatch({
               type: "labelValue",
-              payload: { id: id, value: additionalValue.labelValue },
+              payload: { id: id, value: additionalValue?.labelValue },
             });
             break;
         }

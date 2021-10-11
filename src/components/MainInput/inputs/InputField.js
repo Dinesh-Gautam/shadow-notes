@@ -7,7 +7,7 @@ import UseSvg from "../../elements/UseSvg";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
 const MemoAddions = React.memo(ColorAdditons);
 
-function InputField({ input }) {
+function InputField({ input, innerRef, draggableProps, dragHandleProps }) {
   const { inputsDispatch, inputValueDispatch, inputValue } = useInputs();
 
   const [imageLink, setimageLink] = useState("");
@@ -65,12 +65,14 @@ function InputField({ input }) {
 
   return (
     <div
+      ref={innerRef}
+      {...draggableProps}
       className={
         "input_box" +
         (input.name !== "heading_input_value" ? " added_input_box" : "")
       }
     >
-      <div className="input_box_header">
+      <div {...dragHandleProps} className="input_box_header">
         {input.name === "color_input_value" ? (
           <div></div>
         ) : input.name === "heading_input_value" ? (
