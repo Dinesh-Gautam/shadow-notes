@@ -192,7 +192,7 @@ function List({
                   value: e.target.value,
                 },
               }),
-            value: listInputValue,
+            value: listInputValue.value || listInputValue,
           })}
           {input.inner.length > 1 && (
             <Button

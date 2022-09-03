@@ -78,6 +78,7 @@ function Trash({ trashData, displayState, setdisplayState }) {
                     deletedOn={deletedOn}
                     isInTrash={true}
                     userData={data}
+                    docId={id}
                   />
                 </DropDown>
               );

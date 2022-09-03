@@ -25,7 +25,7 @@ export function InputContext(props) {
 
   const setinputValue = (state, action) => {
     const { payload } = action;
-
+    // console.log(state[payload.parentId].inputChildren[payload.childrenId]);
     switch (action.type) {
       case "normalValue":
         return {
@@ -42,7 +42,16 @@ export function InputContext(props) {
             additionalValue: { ...state[payload.parentId]?.additionalValue },
             inputChildren: {
               ...state[payload.parentId]?.inputChildren,
-              [payload.childrenId]: { value: payload.value },
+              [payload.childrenId]: {
+                value: payload?.value?.value
+                  ? payload.value
+                  : {
+                      ...state?.[payload.parentId]?.inputChildren?.[
+                        payload?.childrenId
+                      ]?.value,
+                      value: payload.value,
+                    },
+              },
             },
           },
         };
@@ -207,10 +216,13 @@ export function InputContext(props) {
               valueOfInput &&
               inner
                 .map((list) =>
-                  valueOfInput?.inputChildren?.[list?.id]?.value === undefined
+                  valueOfInput?.inputChildren?.[list?.id]?.value?.value ===
+                  undefined
                     ? null
-                    : valueOfInput?.inputChildren?.[list.id]?.value?.trim() !==
-                        "" && valueOfInput?.inputChildren?.[list.id]?.value
+                    : valueOfInput?.inputChildren?.[
+                        list.id
+                      ]?.value?.value?.trim() !== "" &&
+                      valueOfInput?.inputChildren?.[list.id]?.value
                 )
                 .filter((e) => e),
           }
