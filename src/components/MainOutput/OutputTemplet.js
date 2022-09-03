@@ -1,6 +1,8 @@
 import React from "react";
+import { useData } from "../../context/DatabaseContext";
 
-function OutputTemplet({ isInTrash, userData, publishDate, deletedOn }) {
+function OutputTemplet({ docId, isInTrash, userData, publishDate, deletedOn }) {
+  const { updateData_firestore } = useData();
   return (
     <div className="outputTemplet_wraper">
       {userData.map((data) => {
@@ -39,7 +41,31 @@ function OutputTemplet({ isInTrash, userData, publishDate, deletedOn }) {
             {name === "list_input_value" && (
               <ul className="list_input_ul">
                 {inner.map((listValue, index) => (
-                  <li key={index}>{listValue}</li>
+                  <li
+                    className={
+                      data.markedList && data.markedList.includes(index)
+                        ? "list-done"
+                        : ""
+                    }
+                    onClick={() => {
+                      console.log(data);
+                      const markedList =
+                        data.markedList && data.markedList.includes(index)
+                          ? data.markedList.filter((e) => e !== index)
+                          : data.markedList
+                          ? [...data.markedList, index]
+                          : [index];
+
+                      const updatedData = userData.map((e) =>
+                        e.id === id ? { ...e, markedList } : e
+                      );
+                      console.log(updatedData);
+                      updateData_firestore(docId, { data: updatedData });
+                    }}
+                    key={index}
+                  >
+                    {listValue.value || listValue}
+                  </li>
                 ))}
               </ul>
             )}

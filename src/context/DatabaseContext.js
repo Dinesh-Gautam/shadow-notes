@@ -178,6 +178,7 @@ export function DatabaseContext({ children }) {
   }
 
   function updateData_firestore(docId, data) {
+    console.log("updated");
     const toBeUpdatedDoc = doc(userDocCollection, docId);
     setDoc(toBeUpdatedDoc, data, { merge: true });
   }

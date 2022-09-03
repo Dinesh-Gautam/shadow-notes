@@ -8,6 +8,7 @@ import AdditionalButtons from "./smallComponents/AdditionalButtons";
 
 function MainOutput() {
   const { filtererdUserData, userData: originalData } = useData();
+  console.log(originalData);
   const outputFilterString = "Results For";
   const userData =
     Object.keys(filtererdUserData).length > 0
@@ -94,6 +95,7 @@ function MainOutput() {
                 <OutputTemplet
                   publishDate={publishDate}
                   userData={data}
+                  completeData={userData}
                   docId={id}
                 />
               </DropDown>

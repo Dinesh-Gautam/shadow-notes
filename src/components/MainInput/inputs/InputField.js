@@ -141,6 +141,7 @@ function InputField({ input, innerRef, draggableProps, dragHandleProps }) {
                       ref={provided.innerRef}
                     >
                       {input.inner.map((list, index) => {
+                        console.log(list);
                         return (
                           <List
                             key={list.id}
