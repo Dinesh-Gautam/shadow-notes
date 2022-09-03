@@ -12,6 +12,7 @@ function InputSelect() {
   const [disableColorSelect, setdisableColorSelect] = useState(false);
   const {
     inputs,
+    inputValue,
     inputsDispatch,
     inputValueDispatch,
     setisEditMode,
@@ -121,21 +122,23 @@ function InputSelect() {
           />
         </div>
         <div className="input_main_button">
-          <Button
-            attr={{
-              onClick: () => {
-                isEditMode.edit && setisEditMode(false);
-                inputsDispatch({
-                  type: "clear",
-                });
-                inputValueDispatch({
-                  type: "clear",
-                });
-              },
-            }}
-            text="Cancel"
-          />
-
+          {(Object.keys(inputValue).some((e) => inputValue[e].value) ||
+            isEditMode.edit) && (
+            <Button
+              attr={{
+                onClick: () => {
+                  isEditMode.edit && setisEditMode(false);
+                  inputsDispatch({
+                    type: "clear",
+                  });
+                  inputValueDispatch({
+                    type: "clear",
+                  });
+                },
+              }}
+              text="Cancel"
+            />
+          )}
           <Button
             attr={{ type: "submit" }}
             text={isEditMode.edit ? "Done" : "Submit"}

@@ -224,15 +224,32 @@ export function InputContext(props) {
     const LIsEditMode = JSON.parse(localStorage.getItem("isEditMode"));
 
     if (LInputValue || LInputs) {
-      alert(
-        "You have unsaved changes. Save them by clicking Submit or Done button"
-      );
+      // alert(
+      //   "You have unsaved changes. Save them by clicking Submit or Done button"
+      // );
 
       inputsDispatch({ type: "localStorage", payload: LInputs });
       inputValueDispatch({ type: "localStorage", payload: LInputValue });
       setisEditMode(LIsEditMode);
     }
   }, []);
+
+  function unloadPage() {
+    console.log(inputValue);
+    if (Object.keys(inputValue).some((e) => inputValue[e].value)) {
+      return "You have unsaved changes on this page. Do you want to leave this page and discard your changes or stay on this page?";
+    }
+  }
+
+  useEffect(() => {
+    if (window.onbeforeunload === null) {
+      window.onbeforeunload = unloadPage;
+    }
+
+    return () => {
+      window.onbeforeunload = null;
+    };
+  }, [inputValue]);
 
   const { setData_firestore, updateData_firestore } = useData();
 
