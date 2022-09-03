@@ -121,22 +121,21 @@ function InputSelect() {
           />
         </div>
         <div className="input_main_button">
-          {isEditMode.edit && (
-            <Button
-              attr={{
-                onClick: () => {
-                  setisEditMode(false);
-                  inputsDispatch({
-                    type: "clear",
-                  });
-                  inputValueDispatch({
-                    type: "clear",
-                  });
-                },
-              }}
-              text="Cancel"
-            />
-          )}
+          <Button
+            attr={{
+              onClick: () => {
+                isEditMode.edit && setisEditMode(false);
+                inputsDispatch({
+                  type: "clear",
+                });
+                inputValueDispatch({
+                  type: "clear",
+                });
+              },
+            }}
+            text="Cancel"
+          />
+
           <Button
             attr={{ type: "submit" }}
             text={isEditMode.edit ? "Done" : "Submit"}

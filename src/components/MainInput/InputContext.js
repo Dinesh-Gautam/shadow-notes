@@ -1,4 +1,11 @@
-import React, { createContext, useContext, useReducer, useState } from "react";
+import React, {
+  createContext,
+  useContext,
+  useEffect,
+  useReducer,
+  useRef,
+  useState,
+} from "react";
 import { v4 as uuidv4 } from "uuid";
 import { useData } from "../../context/DatabaseContext";
 import { serverTimestamp } from "firebase/firestore";
@@ -11,6 +18,7 @@ export function useInputs() {
 export const headingId = uuidv4();
 
 export function InputContext(props) {
+  const saveStateRef = useRef(null);
   const initialState = [
     {
       value: "Heading",
@@ -74,11 +82,15 @@ export function InputContext(props) {
         if (!list) return state;
         delete list[action.payload.childrenId];
         return state;
+      case "localStorage":
+        return action.payload;
       case "clear":
         return {};
       default:
         return state;
     }
+
+    // save state
   };
   const [inputValue, inputValueDispatch] = useReducer(setinputValue, {});
 
@@ -178,6 +190,8 @@ export function InputContext(props) {
         return listReOrder(state, action);
       case "inputReOrder":
         return inputReOrder(state, action);
+      case "localStorage":
+        return action.payload;
       case "clear":
         return initialState;
       default:
@@ -188,10 +202,40 @@ export function InputContext(props) {
   //////////
 
   const [inputs, inputsDispatch] = useReducer(setinputs, initialState);
+  const [isEditMode, setisEditMode] = useState({ edit: false, parameters: {} });
+  useEffect(() => {
+    clearTimeout(saveStateRef.current);
+    saveStateRef.current = setTimeout(() => {
+      if (Object.keys(inputValue).some((e) => inputValue[e].value)) {
+        localStorage.setItem("inputValue", JSON.stringify(inputValue));
+        localStorage.setItem("inputs", JSON.stringify(inputs));
+        localStorage.setItem("isEditMode", JSON.stringify(isEditMode));
+      } else {
+        localStorage.removeItem("inputs");
+        localStorage.removeItem("inputValue");
+        localStorage.removeItem("isEditMode");
+      }
+    }, 1000);
+  }, [inputValue, inputs, isEditMode]);
+
+  useEffect(() => {
+    const LInputValue = JSON.parse(localStorage.getItem("inputValue"));
+    const LInputs = JSON.parse(localStorage.getItem("inputs"));
+    const LIsEditMode = JSON.parse(localStorage.getItem("isEditMode"));
+
+    if (LInputValue || LInputs) {
+      alert(
+        "You have unsaved changes. Save them by clicking Submit or Done button"
+      );
+
+      inputsDispatch({ type: "localStorage", payload: LInputs });
+      inputValueDispatch({ type: "localStorage", payload: LInputValue });
+      setisEditMode(LIsEditMode);
+    }
+  }, []);
 
   const { setData_firestore, updateData_firestore } = useData();
 
-  const [isEditMode, setisEditMode] = useState({ edit: false, parameters: {} });
   const formSubmitHandler = (e) => {
     e.preventDefault();
     let finalInputSubmitValues = inputs.map((input) => {
