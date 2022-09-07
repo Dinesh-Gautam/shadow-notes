@@ -42,6 +42,10 @@ function OutputTemplet({ docId, isInTrash, userData, publishDate, deletedOn }) {
               <ul className="list_input_ul">
                 {inner.map((listValue, index) => (
                   <li
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                    }}
                     className={listValue.done ? "list-done" : ""}
                     onClick={() => {
                       const updatedInner = inner.map((e, i) =>
@@ -58,6 +62,15 @@ function OutputTemplet({ docId, isInTrash, userData, publishDate, deletedOn }) {
                     }}
                     key={index}
                   >
+                    <input
+                      style={{
+                        width: "fit-content",
+                        marginRight: 12,
+                      }}
+                      readOnly={true}
+                      checked={listValue.done}
+                      type="checkbox"
+                    />
                     {listValue.value || listValue}
                   </li>
                 ))}
