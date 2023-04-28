@@ -9,6 +9,7 @@ import AdditionalButtons from "./smallComponents/AdditionalButtons";
 function MainOutput() {
   const { filtererdUserData, userData: originalData } = useData();
   console.log(originalData);
+  console.log(filtererdUserData);
   const outputFilterString = "Results For";
   const userData =
     Object.keys(filtererdUserData).length > 0
@@ -26,7 +27,9 @@ function MainOutput() {
                 if (dataFields.name === "list_input_value") {
                   return dataFields.inner.some((listValue) => {
                     return RegExp(filtererdUserData[filter].toLowerCase()).test(
-                      listValue.toLowerCase()
+                      listValue.value
+                        ? listValue.value.toLowerCase()
+                        : listValue.toLowerCase()
                     );
                   });
                 } else {

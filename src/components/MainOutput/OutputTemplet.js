@@ -1,6 +1,37 @@
 import React from "react";
 import { useData } from "../../context/DatabaseContext";
 
+function HighlightTextOnSearchMatch({ text }) {
+  const { filtererdUserData } = useData();
+  if (filtererdUserData.searchFilter) {
+    const regex = new RegExp(`${filtererdUserData.searchFilter}`, "gi");
+    const search = text.search(regex);
+    const startIndex = search;
+    if (startIndex < 0) return text;
+    const textLength = filtererdUserData.searchFilter.length;
+    const firstSlice = text.slice(0, startIndex);
+    const secondSlice = text.slice(startIndex, startIndex + textLength);
+    const thirdSlice = text.slice(startIndex + textLength, text.length);
+    return (
+      <>
+        {firstSlice}
+        <span
+          style={{
+            fontSize: "inherit",
+            fontWeight: "inherit",
+            backgroundColor: "yellow",
+          }}
+        >
+          {secondSlice}
+        </span>
+        {thirdSlice}
+      </>
+    );
+  } else {
+    return text;
+  }
+}
+
 function OutputTemplet({ docId, isInTrash, userData, publishDate, deletedOn }) {
   const { updateData_firestore } = useData();
   return (
@@ -27,12 +58,18 @@ function OutputTemplet({ docId, isInTrash, userData, publishDate, deletedOn }) {
                 </label>
               </div>
             )}
-            {name === "title_input_value" && <h2>{inputValue}</h2>}
-            {name === "description_input_value" && <h5>{inputValue}</h5>}
-            {name === "Pragraph_input_value" && <p>{inputValue}</p>}
+            {name === "title_input_value" && (
+              <h2>{<HighlightTextOnSearchMatch text={inputValue} />}</h2>
+            )}
+            {name === "description_input_value" && (
+              <h5>{<HighlightTextOnSearchMatch text={inputValue} />}</h5>
+            )}
+            {name === "Pragraph_input_value" && (
+              <p>{<HighlightTextOnSearchMatch text={inputValue} />}</p>
+            )}
             {name === "link_input_value" && (
               <a rel="noreferrer" target="_blank" href={url.href}>
-                {url.hostname}
+                {<HighlightTextOnSearchMatch text={url.hostname} />}
               </a>
             )}
             {name === "image_input_value" && (
@@ -44,7 +81,7 @@ function OutputTemplet({ docId, isInTrash, userData, publishDate, deletedOn }) {
                   <li
                     style={{
                       display: "flex",
-                      alignItems: "center",
+                      alignItems: "baseline",
                     }}
                     className={listValue.done ? "list-done" : ""}
                     onClick={() => {
@@ -71,7 +108,11 @@ function OutputTemplet({ docId, isInTrash, userData, publishDate, deletedOn }) {
                       checked={listValue.done}
                       type="checkbox"
                     />
-                    {listValue.value || listValue}
+                    <div>
+                      <HighlightTextOnSearchMatch
+                        text={listValue.value || listValue}
+                      />
+                    </div>
                   </li>
                 ))}
               </ul>
