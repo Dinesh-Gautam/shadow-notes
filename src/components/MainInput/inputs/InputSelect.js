@@ -17,6 +17,7 @@ function InputSelect() {
     inputValueDispatch,
     setisEditMode,
     isEditMode,
+    hasAnyNotes,
   } = useContext(input_context);
 
   const inputDargHandler = (result) => {
@@ -122,8 +123,7 @@ function InputSelect() {
           />
         </div>
         <div className="input_main_button">
-          {(Object.keys(inputValue).some((e) => inputValue[e].value) ||
-            isEditMode.edit) && (
+          {(hasAnyNotes() || isEditMode.edit) && (
             <Button
               attr={{
                 onClick: () => {

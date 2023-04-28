@@ -206,7 +206,7 @@ export function InputContext(props) {
   useEffect(() => {
     clearTimeout(saveStateRef.current);
     saveStateRef.current = setTimeout(() => {
-      if (Object.keys(inputValue).some((e) => inputValue[e].value)) {
+      if (hasAnyNotes()) {
         localStorage.setItem("inputValue", JSON.stringify(inputValue));
         localStorage.setItem("inputs", JSON.stringify(inputs));
         localStorage.setItem("isEditMode", JSON.stringify(isEditMode));
@@ -236,12 +236,15 @@ export function InputContext(props) {
 
   function unloadPage() {
     console.log(inputValue);
-    if (Object.keys(inputValue).some((e) => inputValue[e].value)) {
+    if (hasAnyNotes()) {
       return "You have unsaved changes on this page. Do you want to leave this page and discard your changes or stay on this page?";
     }
   }
 
   useEffect(() => {
+    console.log(inputValue);
+    console.log(hasAnyNotes());
+
     if (window.onbeforeunload === null) {
       window.onbeforeunload = unloadPage;
     }
@@ -250,6 +253,20 @@ export function InputContext(props) {
       window.onbeforeunload = null;
     };
   }, [inputValue]);
+
+  function hasAnyNotes() {
+    return (
+      inputValue &&
+      Object.keys(inputValue).some(
+        (e) =>
+          inputValue?.[e].value ||
+          (inputValue[e].inputChildren &&
+            Object.keys(inputValue?.[e]?.inputChildren).some(
+              (ie) => inputValue?.[e].inputChildren?.[ie].value.value
+            ))
+      )
+    );
+  }
 
   const { setData_firestore, updateData_firestore } = useData();
 
@@ -339,6 +356,7 @@ export function InputContext(props) {
     inputValueDispatch,
     isEditMode,
     setisEditMode,
+    hasAnyNotes,
   };
   return (
     <input_context.Provider value={value}>
