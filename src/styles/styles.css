@@ -743,10 +743,15 @@ main {
 }
 .sidebar-container .user-info .user-name,
 .sidebar-container .user-info .user-email {
+  line-height: 120%;
+  font-size: 18px;
   max-width: 90%;
   display: block;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+.sidebar-container .user-info .user-email {
+  font-size: 12px;
 }
 .sidebar-container .user-buttons button {
   box-shadow: none;

@@ -858,12 +858,18 @@ main {
       width: $user-photo-height;
       border-radius: 50%;
     }
+
     .user-name,
     .user-email {
+      line-height: 120%;
+      font-size: $fontSize-medium;
       max-width: 90%;
       display: block;
       overflow: hidden;
       text-overflow: ellipsis;
+    }
+    .user-email {
+      font-size: $fontSize-small;
     }
   }
   .user-buttons {
