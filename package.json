@@ -1,21 +1,15 @@
 {
   "name": "list-app-react-2.0",
-  "version": "0.1.0",
+  "version": "2.1.0",
   "private": true,
   "dependencies": {
-    "@testing-library/jest-dom": "^5.11.9",
-    "@testing-library/react": "^11.2.3",
-    "@testing-library/user-event": "^12.6.2",
-    "firebase": "^9.0.1",
-    "gsap": "^3.8.0",
-    "node-sass": "^6.0.1",
-    "react": "^17.0.1",
-    "react-beautiful-dnd": "^13.1.0",
-    "react-dom": "^17.0.1",
-    "react-router-dom": "^5.3.0",
-    "react-scripts": "4.0.1",
-    "uuid": "^8.3.2",
-    "web-vitals": "^0.2.4"
+    "firebase": "^9.21.0",
+    "react": "^18.2.0",
+    "react-beautiful-dnd": "^13.1.1",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.11.1",
+    "react-scripts": "^5.0.1",
+    "uuid": "^9.0.0"
   },
   "scripts": {
     "scss": "sass -w src/styles/styles.scss src/styles/styles.css",
