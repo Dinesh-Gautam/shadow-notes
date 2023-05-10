@@ -13,6 +13,7 @@ import {
 } from "firebase/firestore";
 import { db } from "../firebase";
 import { useAuth } from "./AuthContext";
+
 const data_context = React.createContext();
 
 const users = collection(db, "users");
@@ -20,7 +21,9 @@ const users = collection(db, "users");
 export function useData() {
   return useContext(data_context);
 }
+
 let undoInterval = null;
+
 export function DatabaseContext({ children }) {
   const { currentUser } = useAuth();
   const [data, setdata] = useState();
@@ -62,6 +65,8 @@ export function DatabaseContext({ children }) {
         })
       );
     });
+
+    // used for migration maybe
 
     // const finalArr = [];
 

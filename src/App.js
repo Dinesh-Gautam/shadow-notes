@@ -11,6 +11,7 @@ import { useAuth } from "./context/AuthContext";
 import { DatabaseContext } from "./context/DatabaseContext";
 
 import "./styles/styles.css";
+import SideBar from "./components/SideBar";
 
 function App() {
   const { currentUser } = useAuth();
@@ -23,8 +24,9 @@ function App() {
       ) : (
         <DatabaseContext>
           <InputContext>
+            <SideBar />
             <div className="mainContainer">
-              <MainInput />
+              {/* <MainInput /> */}
               <OutputFilter
                 userDisplay={userDisplay}
                 setuserDisplay={setuserDisplay}
