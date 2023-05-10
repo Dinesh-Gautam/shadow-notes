@@ -99,7 +99,7 @@ select {
 
 main {
   display: grid;
-  grid-template-columns: 1fr 1336px 1fr;
+  grid-template-columns: 0.2fr 1fr;
   height: 100%;
   gap: 16px;
   margin: 0 16px;
@@ -666,13 +666,13 @@ main {
 
 @keyframes loading_animation {
   0% {
-    background: #f0f0f0;
+    background: rgb(240, 240, 240);
   }
   50% {
-    background: gainsboro;
+    background: rgb(220, 220, 220);
   }
   100% {
-    background: #f0f0f0;
+    background: rgb(240, 240, 240);
   }
 }
 .sign-in-container {
@@ -710,12 +710,55 @@ main {
   transform: rotate(-90deg);
 }
 
+.sidebar-container {
+  width: 100%;
+  padding-block: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-right: 16px;
+}
+.sidebar-container .upper-container .add-button {
+  width: 100%;
+  padding: 16px;
+  font-size: 18px;
+  background: var(--default-color);
+}
+.sidebar-container .bottom-container {
+  padding-top: 16px;
+  border-top: 1px solid var(--less-alpha-text-color);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.sidebar-container .user-info {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.sidebar-container .user-info .user-photo {
+  height: 42px;
+  width: 42px;
+  border-radius: 50%;
+}
+.sidebar-container .user-info .user-name,
+.sidebar-container .user-info .user-email {
+  max-width: 90%;
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.sidebar-container .user-buttons button {
+  box-shadow: none;
+  background: transparent;
+  padding: 12px;
+}
+
 @media screen and (max-width: 1400px) {
   main {
     grid-template-columns: 1fr;
     gap: 0;
   }
-
   .mainContainer {
     grid-column: 1/-1;
   }
@@ -726,24 +769,19 @@ main {
     width: 100%;
     min-width: min-content;
   }
-
   .mainContainer {
     min-width: 0;
   }
-
   .mainoutput_wraper {
     grid-template-columns: 1fr;
   }
-
   .search_filters {
     justify-content: center;
   }
-
   .color_filter {
     min-width: 30%;
     max-width: 100%;
   }
-
   .dropdown_container .dropdown_wraper {
     flex-direction: column;
   }
@@ -752,25 +790,21 @@ main {
     max-width: 100%;
     padding-bottom: 0;
   }
-
   .outputTemplet_wraper img {
     width: 100%;
     max-width: 400px;
   }
-
   .user-info-container {
     left: 0;
     max-width: 100%;
     right: 0;
   }
-
   #trash .trash_content_container {
     padding: 16px 0;
   }
   #trash .trash_content {
     grid-template-columns: 1fr;
   }
-
   .sign-in-container button {
     padding: 16px 16px;
     background: var(--default-color);
@@ -804,7 +838,7 @@ main {
   display: flex;
   align-items: center;
   gap: 16px;
-  background-color: #202020;
+  background-color: rgb(32, 32, 32);
   padding: 16px;
   color: var(--default-color);
   border-radius: 6px;
@@ -812,7 +846,7 @@ main {
 .undo-container button {
   margin-left: 32px;
   padding: 0;
-  color: #71a3ff;
+  color: rgb(113, 163, 255);
   background: transparent;
 }
 

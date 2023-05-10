@@ -145,7 +145,7 @@ select {
 
 main {
   display: grid;
-  grid-template-columns: 1fr 1336px 1fr;
+  grid-template-columns: 0.2fr 1fr;
   height: 100%;
   gap: $padding-default;
   margin: 0 $padding-default;
@@ -823,6 +823,58 @@ main {
   }
 }
 
+// SideBar
+
+.sidebar-container {
+  width: 100%;
+  padding-block: $padding-default;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-right: $padding-default;
+  .upper-container {
+    .add-button {
+      width: 100%;
+      padding: $padding-default;
+      font-size: $fontSize-medium;
+      background: var(--default-color);
+    }
+  }
+  .bottom-container {
+    padding-top: $padding-default;
+    border-top: 1px solid var(--less-alpha-text-color);
+    display: flex;
+    align-items: center;
+    gap: $padding-veryLess;
+  }
+
+  .user-info {
+    display: flex;
+    align-items: center;
+    gap: $padding-veryLess;
+    .user-photo {
+      $user-photo-height: 42px;
+      height: $user-photo-height;
+      width: $user-photo-height;
+      border-radius: 50%;
+    }
+    .user-name,
+    .user-email {
+      max-width: 90%;
+      display: block;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+  .user-buttons {
+    button {
+      box-shadow: none;
+      background: transparent;
+      padding: $padding-less;
+    }
+  }
+}
+
 @media screen and (max-width: 1400px) {
   main {
     grid-template-columns: 1fr;
@@ -934,7 +986,7 @@ main {
   }
 }
 
-.list-done{
+.list-done {
   // text-decoration: line-through ;
   // opacity: 0.5;
 }
