@@ -726,7 +726,7 @@ main {
 }
 .sidebar-container .bottom-container {
   padding-top: 16px;
-  border-top: 1px solid var(--less-alpha-text-color);
+  border-top: 3px solid var(--vless-alpha-text-color);
   display: flex;
   align-items: center;
   gap: 6px;
@@ -757,6 +757,17 @@ main {
   box-shadow: none;
   background: transparent;
   padding: 12px;
+}
+
+.menu-container {
+  background: var(--default-color);
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 6px;
+  position: absolute;
+}
+.menu-container button {
+  box-shadow: none;
+  background: transparent;
 }
 
 @media screen and (max-width: 1400px) {

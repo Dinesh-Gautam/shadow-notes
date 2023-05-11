@@ -842,7 +842,7 @@ main {
   }
   .bottom-container {
     padding-top: $padding-default;
-    border-top: 1px solid var(--less-alpha-text-color);
+    border-top: 3px solid var(--vless-alpha-text-color);
     display: flex;
     align-items: center;
     gap: $padding-veryLess;
@@ -878,6 +878,18 @@ main {
       background: transparent;
       padding: $padding-less;
     }
+  }
+}
+
+.menu-container {
+  background: var(--default-color);
+  box-shadow: $boxShadow-default;
+  border-radius: $border-radius-default;
+  position: absolute;
+
+  button {
+    box-shadow: none;
+    background: transparent;
   }
 }
 

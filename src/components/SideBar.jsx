@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import { useAuth } from "../context/AuthContext";
 import UseSvg from "./elements/UseSvg";
+import Menu from "./elements/Menu";
 
 function SideBar() {
   const { logout, currentUser } = useAuth();
   const { photoURL, displayName, email } = currentUser;
-
+  const menuButtonRef = useRef();
+  const [menuOpen, setMenuOpen] = useState(true);
   return (
     <div className="sidebar-container">
       <div className="upper-container">
@@ -22,11 +24,23 @@ function SideBar() {
           </div>
         </div>
         <div className="user-buttons">
-          <button>
+          <button
+            onBlur={() => setMenuOpen(false)}
+            onClick={() => setMenuOpen((prev) => !prev)}
+            ref={menuButtonRef}
+          >
             <UseSvg type="moreInfo" />
           </button>
         </div>
       </div>
+      {menuOpen && (
+        <Menu anchorRef={menuButtonRef}>
+          <button onClick={logout}>
+            <span> Sign Out </span>
+            <UseSvg type="logOut" />
+          </button>
+        </Menu>
+      )}
     </div>
   );
 }
