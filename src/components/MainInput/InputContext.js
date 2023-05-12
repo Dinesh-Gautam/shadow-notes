@@ -21,10 +21,17 @@ const addElement = (state, action) => {
   return [...state, { ...action.payload.selectedInput, id: action.payload.id }];
 };
 
+const removeElement = (state, action) => {
+  const id = action.payload.id;
+  return state.filter((e) => e.id !== id);
+};
+
 const setInputs = (state, action) => {
   switch (action.type) {
     case "addElement":
       return addElement(state, action);
+    case "removeElement":
+      return removeElement(state, action);
     // case "localStorage":
     //   return action.payload;
     // case "clear":

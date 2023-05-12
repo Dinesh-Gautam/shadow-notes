@@ -5,14 +5,21 @@ import { useInputs } from "./InputContext";
 function useInputActions() {
   const { inputsDispatch } = useInputs();
 
-  function addInputElement(payload) {
+  function addInputElement({ selectedInput, id }) {
     inputsDispatch({
       type: "addElement",
-      payload,
+      payload: { selectedInput, id },
     });
   }
 
-  return { addInputElement };
+  function removeElement({ id }) {
+    inputsDispatch({
+      type: "removeElement",
+      payload: { id },
+    });
+  }
+
+  return { addInputElement, removeElement };
 }
 
 export default useInputActions;

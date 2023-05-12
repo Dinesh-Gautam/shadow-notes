@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from "uuid";
 import Button from "./elements/Button";
 import UseSvg from "../../elements/UseSvg";
 import { inputOptions, input } from "./inputOptions";
-import useInputActions from "../useInputs";
+import useInputActions from "../useInputActions";
 
 function InputControls() {
   const [inputSelect, setInputSelect] = useState("title");

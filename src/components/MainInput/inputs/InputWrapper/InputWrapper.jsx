@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import styles from "./inputWraper.module.scss";
 import UseSvg from "../../../elements/UseSvg";
+import useInputActions from "../../useInputActions";
 
-function InputWrapper({ children }) {
+function InputWrapper({ id, children, noRemovable }) {
   const [hideHeader, setHideHeader] = useState(true);
+  const { removeElement } = useInputActions();
   return (
     <div
       onMouseLeave={() => setHideHeader(true)}
@@ -14,9 +16,11 @@ function InputWrapper({ children }) {
         <div className={styles.header}>
           <div>additions</div>
           <div className="buttons">
-            <button>
-              <UseSvg type="close" />
-            </button>
+            {!noRemovable && (
+              <button type="button" onClick={() => removeElement({ id })}>
+                <UseSvg type="close" />
+              </button>
+            )}
           </div>
         </div>
       )}
