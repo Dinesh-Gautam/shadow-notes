@@ -8,6 +8,8 @@
   background: var(--default-backgroundcolor);
   padding: $padding-default;
   z-index: 10000;
+  display: flex;
+  flex-direction: column;
 }
 
 .header {
@@ -21,4 +23,9 @@
     background: transparent;
     box-shadow: none;
   }
+}
+
+.body {
+  flex: 1;
+  overflow: hidden;
 }

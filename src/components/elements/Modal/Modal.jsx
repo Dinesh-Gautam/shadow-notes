@@ -13,7 +13,7 @@ function ModalPortal({ title, children, setOpen }) {
           </button>
         </div>
       </div>
-      <div>{children}</div>
+      <div className={styles.body}>{children}</div>
     </div>
   );
 }

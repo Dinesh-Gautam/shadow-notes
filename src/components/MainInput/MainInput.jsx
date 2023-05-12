@@ -3,18 +3,24 @@ import { useInputs } from "./InputContext";
 import InputBody from "./inputs/InputBody";
 import InputControls from "./inputs/InputControls";
 // import Button from "./inputs/elements/Button";
+import styles from "./mainInput.module.scss";
 
 function MainInput() {
   const { formSubmitHandler } = useInputs();
   return (
-    <div className="input_container">
-      <form
+    <form
+      className={styles.form}
       //  onSubmit={formSubmitHandler}
-      >
-        <InputBody />
+    >
+      <div className={styles.inputBody}>
+        <div>
+          <InputBody />
+        </div>
+      </div>
+      <div className={styles.inputControls}>
         <InputControls />
-      </form>
-    </div>
+      </div>
+    </form>
   );
 }
 
