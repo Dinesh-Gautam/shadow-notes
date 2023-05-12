@@ -1,5 +1,15 @@
 import { v4 as uuidv4 } from "uuid";
 
+export const input = {
+  title: "title_input_value",
+  description: "description_input_value",
+  paragraph: "paragraph_input_value",
+  link: "link_input_value",
+  image: "image_input_value",
+  list: "list_input_value",
+  color: "color_input_value",
+};
+
 export const inputOptions = [
   {
     value: "Title",
@@ -18,7 +28,7 @@ export const inputOptions = [
   },
   {
     value: "Paragraph",
-    name: "Pragraph_input_value",
+    name: "Paragraph_input_value",
     inputValue: "",
     attr: { type: "text" },
     tag: "textarea",

@@ -32,23 +32,6 @@ function InputSelect() {
     });
   };
 
-  const inputAdderHandler = () => {
-    const uid = uuidv4();
-
-    const selectedInput = inputOptions.find(
-      (input) => input.value.toLowerCase() === inputSelect.toLowerCase()
-    );
-
-    inputsDispatch({ type: "addElement", payload: { id: uid, selectedInput } });
-
-    if (selectedInput.name === "color_input_value") {
-      inputValueDispatch({
-        type: "normalValue",
-        payload: { id: uid, value: selectedInput.inputValue },
-      });
-    }
-  };
-
   useEffect(() => {
     if (inputs.some((e) => e.name === "color_input_value")) {
       setdisableColorSelect(true);

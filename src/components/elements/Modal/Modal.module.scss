@@ -7,6 +7,7 @@
   width: 100vw;
   background: var(--default-backgroundcolor);
   padding: $padding-default;
+  z-index: 10000;
 }
 
 .header {

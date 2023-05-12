@@ -3,6 +3,7 @@ import { useAuth } from "../context/AuthContext";
 import UseSvg from "./elements/UseSvg";
 import Menu from "./elements/Menu/Menu";
 import Modal from "./elements/Modal/Modal";
+import MainInput from "./MainInput/MainInput";
 
 function SideBar() {
   const { logout, currentUser } = useAuth();
@@ -44,7 +45,7 @@ function SideBar() {
         </Menu>
       )}
       <Modal open={modalOpen} setOpen={setModalOpen} title="Add Note">
-        <h2>This is children</h2>
+        <MainInput />
       </Modal>
     </div>
   );
