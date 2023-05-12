@@ -11,6 +11,12 @@ export const input = {
   color: "color_input_value",
 };
 
+export const headingState = {
+  value: "Heading",
+  name: "heading_input_value",
+  isRequired: true,
+};
+
 export const inputOptions = [
   {
     value: "Title",

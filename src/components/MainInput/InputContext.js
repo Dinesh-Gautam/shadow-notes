@@ -9,6 +9,7 @@ import React, {
 import { v4 as uuidv4 } from "uuid";
 import { useData } from "../../context/DatabaseContext";
 import { serverTimestamp } from "firebase/firestore";
+import { headingState } from "./inputs/inputOptions";
 export const input_context = createContext();
 
 export function useInputs() {
@@ -26,12 +27,22 @@ const removeElement = (state, action) => {
   return state.filter((e) => e.id !== id);
 };
 
+const changeInputValue = (state, action) => {
+  const { id, value } = action.payload;
+
+  return state.map((e) =>
+    e.id === id ? { ...e, state: { ...e.state, value } } : e
+  );
+};
+
 const setInputs = (state, action) => {
   switch (action.type) {
     case "addElement":
       return addElement(state, action);
     case "removeElement":
       return removeElement(state, action);
+    case "changeInputValue":
+      return changeInputValue(state, action);
     // case "localStorage":
     //   return action.payload;
     // case "clear":
@@ -42,17 +53,7 @@ const setInputs = (state, action) => {
 };
 
 export function InputContext(props) {
-  const initialState = [
-    {
-      value: "Heading",
-      id: headingId,
-      name: "heading_input_value",
-      inputValue: "",
-      attr: { required: true, type: "text" },
-      tag: "input",
-      isRequired: true,
-    },
-  ];
+  const initialState = [{ ...headingState, id: uuidv4() }];
 
   const [inputs, inputsDispatch] = useReducer(setInputs, initialState);
 

@@ -19,7 +19,14 @@ function useInputActions() {
     });
   }
 
-  return { addInputElement, removeElement };
+  function changeInputValue({ id, value }) {
+    inputsDispatch({
+      type: "changeInputValue",
+      payload: { id, value },
+    });
+  }
+
+  return { addInputElement, removeElement, changeInputValue };
 }
 
 export default useInputActions;
