@@ -17,8 +17,24 @@ export function useInputs() {
 
 export const headingId = uuidv4();
 
+const addElement = (state, action) => {
+  return [...state, { ...action.payload.selectedInput, id: action.payload.id }];
+};
+
+const setInputs = (state, action) => {
+  switch (action.type) {
+    case "addElement":
+      return addElement(state, action);
+    // case "localStorage":
+    //   return action.payload;
+    // case "clear":
+    //   return initialState;
+    default:
+      return state;
+  }
+};
+
 export function InputContext(props) {
-  const saveStateRef = useRef(null);
   const initialState = [
     {
       value: "Heading",
@@ -31,332 +47,11 @@ export function InputContext(props) {
     },
   ];
 
-  const setinputValue = (state, action) => {
-    const { payload } = action;
-    // console.log(state[payload.parentId].inputChildren[payload.childrenId]);
-    switch (action.type) {
-      case "normalValue":
-        return {
-          ...state,
-          [payload.id]: {
-            value: payload.value,
-            additionalValue: { ...state[payload.id]?.additionalValue },
-          },
-        };
-      case "listValue":
-        return {
-          ...state,
-          [payload.parentId]: {
-            additionalValue: { ...state[payload.parentId]?.additionalValue },
-            inputChildren: {
-              ...state[payload.parentId]?.inputChildren,
-              [payload.childrenId]: {
-                value: payload?.value?.value
-                  ? payload.value
-                  : {
-                      ...state?.[payload.parentId]?.inputChildren?.[
-                        payload?.childrenId
-                      ]?.value,
-                      value: payload.value,
-                    },
-              },
-            },
-          },
-        };
-      case "labelValue":
-        return {
-          ...state,
-          [payload.id]: {
-            ...state[payload.id],
-            additionalValue: {
-              ...state[payload.id]?.additionalValue,
-              labelValue: payload.value,
-            },
-          },
-        };
-      case "delete":
-        delete state[action.payload.id];
-        return state;
-      case "listDelete":
-        const list = state[action.payload.parentId]?.inputChildren;
-        if (!list) return state;
-        delete list[action.payload.childrenId];
-        return state;
-      case "localStorage":
-        return action.payload;
-      case "clear":
-        return {};
-      default:
-        return state;
-    }
-
-    // save state
-  };
-  const [inputValue, inputValueDispatch] = useReducer(setinputValue, {});
-
-  const addElement = (state, action) => {
-    return [
-      ...state,
-      { ...action.payload.selectedInput, id: action.payload.id },
-    ];
-  };
-
-  const removeListELement = (state, action) => {
-    inputValueDispatch({
-      type: "listDelete",
-      payload: {
-        parentId: action.payload.parentId,
-        childrenId: action.payload.id,
-      },
-    });
-    const listRemoved = state.map((input) => {
-      return input.id === action.payload.parentId
-        ? {
-            ...input,
-            inner: input.inner.filter((list) => list.id !== action.payload.id),
-          }
-        : input;
-    });
-    return [...listRemoved];
-  };
-
-  const addListElement = (state, action) => {
-    const listAdded = state.map((input) => {
-      return input.id === action.payload.id
-        ? {
-            ...input,
-            inner: [
-              ...input.inner,
-              {
-                id: action.payload.listId || uuidv4(),
-                attr: { type: "text" },
-                inputValue: "",
-                tag: "input",
-              },
-            ],
-          }
-        : input;
-    });
-    return [...listAdded];
-  };
-
-  const removeElement = (state, action) => {
-    inputValueDispatch({ type: "delete", payload: { id: action.payload.id } });
-    return state.filter((input) => input.id !== action.payload.id);
-  };
-
-  const listReOrder = (state, action) => {
-    const reOrderedList = state.map((input) => {
-      if (input.inner && input.id === action.payload.id) {
-        const refListArr = [...input.inner];
-
-        const [pickedListInput] = refListArr.splice(action.payload.sIndex, 1);
-
-        refListArr.splice(action.payload.dIndex, 0, pickedListInput);
-
-        return {
-          ...input,
-          inner: refListArr,
-        };
-      } else {
-        return input;
-      }
-    });
-
-    return reOrderedList;
-  };
-
-  const inputReOrder = (state, action) => {
-    const refInputArr = [...state];
-
-    const [pickedInput] = refInputArr.splice(action.payload.sIndex, 1);
-
-    refInputArr.splice(action.payload.dIndex, 0, pickedInput);
-
-    return refInputArr;
-  };
-
-  const setinputs = (state, action) => {
-    switch (action.type) {
-      case "addElement":
-        return addElement(state, action);
-      case "removeElement":
-        return removeElement(state, action);
-      case "addListElement":
-        return addListElement(state, action);
-      case "removeListElement":
-        return removeListELement(state, action);
-      case "listReOrder":
-        return listReOrder(state, action);
-      case "inputReOrder":
-        return inputReOrder(state, action);
-      case "localStorage":
-        return action.payload;
-      case "clear":
-        return initialState;
-      default:
-        return state;
-    }
-  };
-
-  //////////
-
-  const [inputs, inputsDispatch] = useReducer(setinputs, initialState);
-  const [isEditMode, setisEditMode] = useState({ edit: false, parameters: {} });
-  useEffect(() => {
-    clearTimeout(saveStateRef.current);
-    saveStateRef.current = setTimeout(() => {
-      if (hasAnyNotes()) {
-        localStorage.setItem("inputValue", JSON.stringify(inputValue));
-        localStorage.setItem("inputs", JSON.stringify(inputs));
-        localStorage.setItem("isEditMode", JSON.stringify(isEditMode));
-      } else {
-        localStorage.removeItem("inputs");
-        localStorage.removeItem("inputValue");
-        localStorage.removeItem("isEditMode");
-      }
-    }, 1000);
-  }, [inputValue, inputs, isEditMode]);
-
-  useEffect(() => {
-    const LInputValue = JSON.parse(localStorage.getItem("inputValue"));
-    const LInputs = JSON.parse(localStorage.getItem("inputs"));
-    const LIsEditMode = JSON.parse(localStorage.getItem("isEditMode"));
-
-    if (LInputValue || LInputs) {
-      // alert(
-      //   "You have unsaved changes. Save them by clicking Submit or Done button"
-      // );
-
-      inputsDispatch({ type: "localStorage", payload: LInputs });
-      inputValueDispatch({ type: "localStorage", payload: LInputValue });
-      setisEditMode(LIsEditMode);
-    }
-  }, []);
-
-  function unloadPage() {
-    console.log(inputValue);
-    if (hasAnyNotes()) {
-      return "You have unsaved changes on this page. Do you want to leave this page and discard your changes or stay on this page?";
-    }
-  }
-
-  useEffect(() => {
-    console.log(inputValue);
-    console.log(hasAnyNotes());
-
-    if (window.onbeforeunload === null) {
-      window.onbeforeunload = unloadPage;
-    }
-
-    return () => {
-      window.onbeforeunload = null;
-    };
-  }, [inputValue]);
-
-  function hasAnyNotes() {
-    return (
-      inputValue &&
-      Object.keys(inputValue).some(
-        (e) =>
-          inputValue?.[e].value ||
-          (inputValue[e].inputChildren &&
-            Object.keys(inputValue?.[e]?.inputChildren).some(
-              (ie) => inputValue?.[e].inputChildren?.[ie].value.value
-            ))
-      )
-    );
-  }
-
-  const { setData_firestore, updateData_firestore } = useData();
-
-  const formSubmitHandler = (e) => {
-    e.preventDefault();
-    let finalInputSubmitValues = inputs.map((input) => {
-      const { value, name, id, inner } = input;
-      const valueOfInput = inputValue[id] || "";
-      if (!valueOfInput) {
-        return null;
-      }
-      const additionalValue = inputValue[id].additionalValue;
-      return inner
-        ? {
-            name,
-            value,
-            id,
-            additionalValue: {
-              labelValue:
-                additionalValue.labelValue === undefined
-                  ? null
-                  : additionalValue.labelValue,
-            },
-            inner:
-              valueOfInput &&
-              inner
-                .map((list) =>
-                  valueOfInput?.inputChildren?.[list?.id]?.value?.value ===
-                  undefined
-                    ? null
-                    : valueOfInput?.inputChildren?.[
-                        list.id
-                      ]?.value?.value?.trim() !== "" &&
-                      valueOfInput?.inputChildren?.[list.id]?.value
-                )
-                .filter((e) => e),
-          }
-        : valueOfInput && {
-            name,
-            inputValue:
-              valueOfInput?.value &&
-              valueOfInput?.value !== "" &&
-              valueOfInput?.value === undefined &&
-              valueOfInput.value.trim()
-                ? null
-                : valueOfInput.value || null,
-            value,
-            additionalValue: {
-              labelValue:
-                additionalValue.labelValue === undefined
-                  ? null
-                  : additionalValue.labelValue,
-            },
-            id,
-          };
-    });
-    // console.log(finalInputSubmitValues);
-
-    setisEditMode({ edit: false, editParameters: {} });
-    inputsDispatch({
-      type: "clear",
-    });
-    inputValueDispatch({
-      type: "clear",
-    });
-
-    if (isEditMode.edit) {
-      const docId = isEditMode.editParameters;
-      updateData_firestore(docId, {
-        data: finalInputSubmitValues.filter((e) => e !== null),
-      });
-    } else {
-      setData_firestore({
-        delete: false,
-        options: false,
-        publishDate: serverTimestamp(),
-        data: finalInputSubmitValues.filter((e) => e !== null),
-      });
-    }
-  };
+  const [inputs, inputsDispatch] = useReducer(setInputs, initialState);
 
   const value = {
     inputs,
     inputsDispatch,
-    formSubmitHandler,
-    inputValue,
-    inputValueDispatch,
-    isEditMode,
-    setisEditMode,
-    hasAnyNotes,
   };
   return (
     <input_context.Provider value={value}>

@@ -1,0 +1,23 @@
+@import "../../../../styles/variables";
+
+.container {
+  position: relative;
+}
+
+.header {
+  background: var(--default-backgroundcolor);
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translateY(-100%);
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: $border-radius-default;
+  padding: 0 $padding-default;
+  button {
+    background-color: transparent;
+    box-shadow: none;
+  }
+}
