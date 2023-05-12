@@ -1,17 +1,19 @@
 import React, { useRef, useState } from "react";
 import { useAuth } from "../context/AuthContext";
 import UseSvg from "./elements/UseSvg";
-import Menu from "./elements/Menu";
+import Menu from "./elements/Menu/Menu";
+import Modal from "./elements/Modal/Modal";
 
 function SideBar() {
   const { logout, currentUser } = useAuth();
   const { photoURL, displayName, email } = currentUser;
   const menuButtonRef = useRef();
-  const [menuOpen, setMenuOpen] = useState(true);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [modalOpen, setModalOpen] = useState(true);
   return (
     <div className="sidebar-container">
       <div className="upper-container">
-        <button className="add-button">
+        <button onClick={() => setModalOpen(true)} className="add-button">
           <UseSvg type="add" /> <span>Add Note</span>
         </button>
       </div>
@@ -41,6 +43,9 @@ function SideBar() {
           </button>
         </Menu>
       )}
+      <Modal open={modalOpen} setOpen={setModalOpen} title="Add Note">
+        <h2>This is children</h2>
+      </Modal>
     </div>
   );
 }

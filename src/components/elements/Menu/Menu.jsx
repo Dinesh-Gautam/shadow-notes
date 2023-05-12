@@ -1,5 +1,7 @@
 import React, { useEffect, useRef } from "react";
 
+import styles from "./menu.module.scss";
+
 function Menu({ anchorRef, children }) {
   const menuRef = useRef();
 
@@ -18,11 +20,11 @@ function Menu({ anchorRef, children }) {
     const overflowingWindow = anchorY + menuOffsetHeight > windowHeight;
 
     if (overflowingWindow) {
+      // overflowing
       menu.style.top = anchor.offsetTop - menu.offsetHeight + "px";
       menu.style.left = anchor.offsetLeft + "px";
-      console.log("overflowing ");
     } else {
-      console.log("not overflowing");
+      // not overflowing
       menu.style.top = anchorY + "px";
       menu.style.left = anchor.offsetLeft + "px";
     }
@@ -31,7 +33,7 @@ function Menu({ anchorRef, children }) {
   }, []);
 
   return (
-    <div class="menu-container" ref={menuRef}>
+    <div className={styles.container} ref={menuRef}>
       {children}
     </div>
   );

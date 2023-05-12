@@ -1,0 +1,23 @@
+@import "../../../styles/variables";
+.container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background: var(--default-backgroundcolor);
+  padding: $padding-default;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 3px solid var(--vless-alpha-text-color);
+  padding-bottom: $padding-less;
+  margin-bottom: $padding-less;
+  button {
+    background: transparent;
+    box-shadow: none;
+  }
+}

@@ -10,7 +10,7 @@ import UserInfo from "./components/UserInfo";
 import { useAuth } from "./context/AuthContext";
 import { DatabaseContext } from "./context/DatabaseContext";
 
-import "./styles/styles.css";
+import "./styles/styles.scss";
 import SideBar from "./components/SideBar";
 
 function App() {

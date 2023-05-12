@@ -1,5 +1,5 @@
 @use "sass:math";
-
+@import "./variables";
 :root {
   --default-backgroundcolor: #f0f0f0;
   --default-color: #fafafa;
@@ -8,32 +8,6 @@
   --vless-alpha-text-color: rgba(0, 0, 0, 0.05);
   --link-text-color: #2372e9;
 }
-
-$padding-veryLess: 6px;
-$padding-less: 12px;
-$padding-default: 16px;
-$padding-medium: 24px;
-$padding-large: 32px;
-
-$dropdown-height-default: 72px;
-
-$font-default: "Poppins", sans-serif;
-
-$fontSize-extraSmall: 8px;
-$fontSize-small: 12px;
-$fontSize-default: 16px;
-$fontSize-medium: 18px;
-$fontSize-large: 28px;
-
-$boxShadow-small: 0px 2px 6px rgba(0, 0, 0, 0.1);
-$boxShadow-input: 0px 1px 4px rgba(0, 0, 0, 0.1);
-$boxShadow-default: 0px 4px 6px rgba(0, 0, 0, 0.1);
-
-$border-thin: 0.5px solid rgba(0, 0, 0, 0.2);
-$border-default: 1px solid rgba(0, 0, 0, 0.2);
-$border-bolder: 2px solid rgba(0, 0, 0, 0.05);
-
-$border-radius-default: 6px;
 
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
@@ -878,18 +852,6 @@ main {
       background: transparent;
       padding: $padding-less;
     }
-  }
-}
-
-.menu-container {
-  background: var(--default-color);
-  box-shadow: $boxShadow-default;
-  border-radius: $border-radius-default;
-  position: absolute;
-
-  button {
-    box-shadow: none;
-    background: transparent;
   }
 }
 
