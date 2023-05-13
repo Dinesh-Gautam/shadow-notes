@@ -9,15 +9,12 @@ form {
 
 .inputBody {
   height: 100%;
-  max-height: 92%;
+  max-height: 90%;
   overflow-y: auto;
   padding: $padding-less;
   input {
     margin-bottom: $padding-default;
     border: none;
-    &:hover {
-      outline: $border-default;
-    }
   }
 }
 

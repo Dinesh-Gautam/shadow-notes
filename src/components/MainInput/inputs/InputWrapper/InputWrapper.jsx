@@ -10,6 +10,9 @@ function InputWrapper({ id, children, noRemovable }) {
     <div
       onMouseLeave={() => setHideHeader(true)}
       onMouseEnter={() => setHideHeader(false)}
+      style={{
+        outline: !hideHeader ? "1px solid rgba(0, 0, 0, 0.2)" : "none",
+      }}
       className={styles.container}
     >
       {!hideHeader && (

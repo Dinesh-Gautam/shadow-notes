@@ -8,15 +8,13 @@ function InputField({ input }) {
   return (
     <>
       {input.name === InputOption.heading && (
-        <InputWrapper id={input.id} noRemovable>
-          <HeadingInputValue
-            onChange={(e) => {
-              changeInputValue({ id: input.id, value: e.target.value });
-            }}
-            value={input?.state?.value}
-            placeholder={input.value}
-          />
-        </InputWrapper>
+        <HeadingInputValue
+          onChange={(e) => {
+            changeInputValue({ id: input.id, value: e.target.value });
+          }}
+          value={input?.state?.value}
+          placeholder={input.value}
+        />
       )}
 
       {input.name === InputOption.title && (
