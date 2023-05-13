@@ -19,7 +19,9 @@ export function useInputs() {
 export const headingId = uuidv4();
 
 const addElement = (state, action) => {
-  return [...state, { ...action.payload.selectedInput, id: action.payload.id }];
+  const { selectedInput, id, parentId } = action.payload;
+
+  return [...state, { ...selectedInput, id, parentId }];
 };
 
 const removeElement = (state, action) => {

@@ -4,7 +4,7 @@ import UseSvg from "../../../elements/UseSvg";
 import useInputActions from "../../useInputActions";
 
 function InputWrapper({ input, children, noRemovable }) {
-  const [hideHeader, setHideHeader] = useState(false);
+  const [hideHeader, setHideHeader] = useState(true);
   const { removeElement, changeInputValue } = useInputActions();
   return (
     <div

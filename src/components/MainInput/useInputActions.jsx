@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { inputOptions, input } from "./inputs/inputOptions";
 import { useInputs } from "./InputContext";
-
+import { v4 as uuidv4 } from "uuid";
 function useInputActions() {
   const { inputsDispatch } = useInputs();
 
@@ -9,6 +9,16 @@ function useInputActions() {
     inputsDispatch({
       type: "addElement",
       payload: { selectedInput, id },
+    });
+  }
+
+  function addListElement({ selectedInput, parentId, id = uuidv4() }) {
+    if (!selectedInput) {
+      selectedInput = inputOptions.find((o) => o.name === input.list);
+    }
+    inputsDispatch({
+      type: "addElement",
+      payload: { selectedInput, id, parentId },
     });
   }
 
@@ -26,7 +36,7 @@ function useInputActions() {
     });
   }
 
-  return { addInputElement, removeElement, changeInputValue };
+  return { addInputElement, removeElement, changeInputValue, addListElement };
 }
 
 export default useInputActions;
