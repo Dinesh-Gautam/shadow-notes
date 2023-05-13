@@ -21,7 +21,7 @@ function InputField({ input }) {
 
       {input.name === InputOption.title && (
         <InputWrapper id={input.id}>
-          <HeadingInputValue
+          <TitleInputValue
             onChange={(e) => {
               changeInputValue({ id: input.id, value: e.target.value });
             }}
@@ -37,6 +37,21 @@ function InputField({ input }) {
 function HeadingInputValue({ value, onChange, placeholder }) {
   return (
     <input
+      value={value || ""}
+      onChange={onChange}
+      placeholder={placeholder}
+      type="text"
+    ></input>
+  );
+}
+
+function TitleInputValue({ value, onChange, placeholder }) {
+  return (
+    <input
+      style={{
+        fontSize: 24,
+        fontWeight: "bold",
+      }}
       value={value || ""}
       onChange={onChange}
       placeholder={placeholder}
