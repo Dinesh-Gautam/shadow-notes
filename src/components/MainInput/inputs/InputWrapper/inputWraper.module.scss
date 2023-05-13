@@ -44,13 +44,13 @@ $label-margin: 4px;
     font-family: "poppins";
     margin: 0 !important;
     min-width: 0 !important;
-    width: 100% !important;
+    width: 95% !important;
     max-width: 100% !important;
-    border-radius: $border-radius-default $border-radius-default 0 0;
     white-space: pre-wrap;
     text-overflow: none;
     overflow: visible;
     overflow-wrap: break-word;
+    border-radius: 0;
   }
 }
 

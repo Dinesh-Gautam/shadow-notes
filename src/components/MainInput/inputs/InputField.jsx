@@ -35,6 +35,9 @@ function InputField({ input }) {
 function HeadingInputValue({ value, onChange, placeholder }) {
   return (
     <input
+      style={{
+        marginBottom: "1em",
+      }}
       value={value || ""}
       onChange={onChange}
       placeholder={placeholder}
