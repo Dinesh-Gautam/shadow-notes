@@ -19,10 +19,10 @@ function useInputActions() {
     });
   }
 
-  function changeInputValue({ id, value }) {
+  function changeInputValue({ id, value, isLabel }) {
     inputsDispatch({
       type: "changeInputValue",
-      payload: { id, value },
+      payload: { id, value, isLabel },
     });
   }
 

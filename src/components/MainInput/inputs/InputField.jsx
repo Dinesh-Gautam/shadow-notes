@@ -18,7 +18,7 @@ function InputField({ input }) {
       )}
 
       {input.name === InputOption.title && (
-        <InputWrapper id={input.id}>
+        <InputWrapper input={input}>
           <TitleInputValue
             onChange={(e) => {
               changeInputValue({ id: input.id, value: e.target.value });

@@ -3,9 +3,9 @@ import styles from "./inputWraper.module.scss";
 import UseSvg from "../../../elements/UseSvg";
 import useInputActions from "../../useInputActions";
 
-function InputWrapper({ id, children, noRemovable }) {
-  const [hideHeader, setHideHeader] = useState(true);
-  const { removeElement } = useInputActions();
+function InputWrapper({ input, children, noRemovable }) {
+  const [hideHeader, setHideHeader] = useState(false);
+  const { removeElement, changeInputValue } = useInputActions();
   return (
     <div
       onMouseLeave={() => setHideHeader(true)}
@@ -17,16 +17,31 @@ function InputWrapper({ id, children, noRemovable }) {
     >
       {!hideHeader && (
         <div className={styles.header}>
-          <div>additions</div>
-          <div className="buttons">
+          <div className={styles.buttons}>
             {!noRemovable && (
-              <button type="button" onClick={() => removeElement({ id })}>
+              <button
+                type="button"
+                onClick={() => removeElement({ id: input.id })}
+              >
                 <UseSvg type="close" />
               </button>
             )}
           </div>
         </div>
       )}
+      <div className={styles.inputContainer}>
+        <input
+          type="text"
+          onChange={(e) =>
+            changeInputValue({
+              id: input.id,
+              isLabel: true,
+              value: e.target.value,
+            })
+          }
+          value={input?.state?.labelValue ?? input.value}
+        />
+      </div>
       <div className={styles.childContainer}>{children}</div>
     </div>
   );

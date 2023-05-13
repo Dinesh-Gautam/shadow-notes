@@ -1,24 +1,61 @@
 @import "../../../../styles/variables";
 
+$label-margin: 4px;
+
 .container {
   position: relative;
   border-radius: 0 0 $border-radius-default $border-radius-default;
+  margin-bottom: $padding-default;
 }
 
 .header {
   background: var(--default-backgroundcolor);
   position: absolute;
-  top: 4px;
+  top: $label-margin;
   left: 0;
   transform: translateY(-100%);
   width: 100%;
   display: flex;
-  justify-content: space-between;
   align-items: center;
   border-radius: $border-radius-default $border-radius-default 0 0;
   padding: 0 $padding-default;
+  .buttons {
+    margin-left: auto;
+    align-self: flex-end;
+  }
   button {
     background-color: transparent;
     box-shadow: none;
+    padding: 0;
   }
+}
+
+.inputContainer {
+  flex: 1;
+  position: absolute;
+  transform: translateY(-100%);
+  padding: 0 $padding-default;
+  top: $label-margin + 2px;
+  width: 100%;
+  input {
+    padding: 0;
+    background: transparent;
+    font-size: $fontSize-small;
+    font-family: "poppins";
+    margin: 0 !important;
+    min-width: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    border-radius: $border-radius-default $border-radius-default 0 0;
+    white-space: pre-wrap;
+    text-overflow: none;
+    overflow: visible;
+    overflow-wrap: break-word;
+  }
+}
+
+.labelContainer {
+  display: flex;
+  align-items: center;
+  font-size: $fontSize-small;
 }
