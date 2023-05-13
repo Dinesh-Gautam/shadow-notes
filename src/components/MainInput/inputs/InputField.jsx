@@ -45,6 +45,12 @@ function InputField({ input }) {
           />
         </InputWrapper>
       )}
+
+      {input.name === InputOption.link && (
+        <InputWrapper input={input}>
+          <LinkInput input={input} />
+        </InputWrapper>
+      )}
     </>
   );
 }
@@ -153,6 +159,34 @@ function ListInput({ value, onChange, placeholder }) {
       placeholder={placeholder}
       type="text"
     ></input>
+  );
+}
+
+function LinkInput({ input }) {
+  const { changeInputValue } = useInputActions();
+  return (
+    <div>
+      <input
+        value={input?.state?.value || ""}
+        onChange={(e) =>
+          changeInputValue({ id: input.id, value: e.target.value })
+        }
+        placeholder={"URL"}
+        type="text"
+      ></input>
+      <input
+        value={input?.state?.valueName || ""}
+        onChange={(e) =>
+          changeInputValue({
+            id: input.id,
+            valueName: e.target.value,
+            isLink: true,
+          })
+        }
+        placeholder={"link Name"}
+        type="text"
+      ></input>
+    </div>
   );
 }
 

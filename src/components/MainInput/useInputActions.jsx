@@ -29,10 +29,10 @@ function useInputActions() {
     });
   }
 
-  function changeInputValue({ id, value, isLabel }) {
+  function changeInputValue({ id, value, valueName, isLabel, isLink }) {
     inputsDispatch({
       type: "changeInputValue",
-      payload: { id, value, isLabel },
+      payload: { id, value, isLabel, isLink, valueName },
     });
   }
 

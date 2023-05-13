@@ -30,11 +30,18 @@ const removeElement = (state, action) => {
 };
 
 const changeInputValue = (state, action) => {
-  const { id, value, isLabel } = action.payload;
+  const { id, value, isLabel, isLink } = action.payload;
 
   if (isLabel) {
     return state.map((e) =>
       e.id === id ? { ...e, state: { ...e.state, labelValue: value } } : e
+    );
+  }
+
+  if (isLink) {
+    const { valueName } = action.payload;
+    return state.map((e) =>
+      e.id === id ? { ...e, state: { ...e.state, valueName } } : e
     );
   }
 
