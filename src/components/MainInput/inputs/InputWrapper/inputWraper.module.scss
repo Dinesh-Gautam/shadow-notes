@@ -1,18 +1,19 @@
 @import "../../../../styles/variables";
 
-$label-margin: 4px;
+$label-margin: 0px;
 
 .container {
   position: relative;
   border-radius: 0 0 $border-radius-default $border-radius-default;
-  margin-bottom: $padding-default;
-  padding-block: $padding-less;
+
+  // padding-block: $padding-less;
+  // padding-bottom: $padding-default / 2;
 }
 
 .header {
   background: var(--default-backgroundcolor);
   position: absolute;
-  top: $label-margin;
+  top: $label-margin + ($padding-default / 2);
   left: 0;
   transform: translateY(-100%);
   width: 100%;
@@ -20,6 +21,7 @@ $label-margin: 4px;
   align-items: center;
   border-radius: $border-radius-default $border-radius-default 0 0;
   padding: 0 $padding-default;
+
   .buttons {
     margin-left: auto;
     align-self: flex-end;
@@ -27,7 +29,6 @@ $label-margin: 4px;
   button {
     background-color: transparent;
     box-shadow: none;
-    padding: 0;
   }
 }
 
@@ -37,7 +38,7 @@ $label-margin: 4px;
   transform: translateY(-100%);
   padding: 0 $padding-default;
   top: $label-margin + 2px;
-  width: 100%;
+  width: 95%;
   input {
     padding: 0;
     background: transparent;
@@ -45,7 +46,7 @@ $label-margin: 4px;
     font-family: "poppins";
     margin: 0 !important;
     min-width: 0 !important;
-    width: 95% !important;
+    width: 100% !important;
     max-width: 100% !important;
     white-space: pre-wrap;
     text-overflow: none;
@@ -75,5 +76,11 @@ $label-margin: 4px;
   border-radius: 0 0 $border-radius-default $border-radius-default;
   button {
     background: var(--default-color);
+  }
+}
+
+.childContainer {
+  input {
+    padding-block: $padding-default / 4;
   }
 }

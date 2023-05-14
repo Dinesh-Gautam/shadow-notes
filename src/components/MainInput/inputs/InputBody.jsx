@@ -6,12 +6,12 @@ function InputBody() {
   const { inputs } = useInputs();
 
   return (
-    <div className="input_fields">
+    <>
       {inputs.map(
         (input, index) =>
           !input.parentId && <InputField key={input.id} input={input} />
       )}
-    </div>
+    </>
   );
 }
 

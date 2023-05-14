@@ -70,9 +70,6 @@ function ListFooterButtons({ id }) {
 function HeadingInput({ value, onChange, placeholder }) {
   return (
     <input
-      style={{
-        marginBottom: "1em",
-      }}
       value={value || ""}
       onChange={onChange}
       placeholder={placeholder}
@@ -120,9 +117,11 @@ function ListInputWrapper({ input, children }) {
       className={styles.listInputWrapper}
       onMouseEnter={() => setShow(true)}
       onMouseLeave={() => setShow(false)}
-      style={{
-        outline: show ? "1px solid rgba(0,0,0,0.2)" : "none",
-      }}
+      style={
+        {
+          // outline: show ? "1px solid rgba(0,0,0,0.2)" : "none",
+        }
+      }
     >
       {children}
 

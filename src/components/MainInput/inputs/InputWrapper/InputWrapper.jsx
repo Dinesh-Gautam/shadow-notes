@@ -10,9 +10,11 @@ function InputWrapper({ input, children, noRemovable, inputFooter }) {
     <div
       onMouseLeave={() => setShow(false)}
       onMouseEnter={() => setShow(true)}
-      style={{
-        outline: show ? "1px solid rgba(0, 0, 0, 0.2)" : "none",
-      }}
+      style={
+        {
+          // outline: show ? "2px solid rgba(0, 0, 0, 0.2)" : "none",
+        }
+      }
       className={styles.container}
     >
       {show && (

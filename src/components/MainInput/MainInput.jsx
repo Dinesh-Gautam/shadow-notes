@@ -13,9 +13,7 @@ function MainInput() {
       //  onSubmit={formSubmitHandler}
     >
       <div className={styles.inputBody}>
-        <div>
-          <InputBody />
-        </div>
+        <InputBody />
       </div>
       <div className={styles.inputControls}>
         <InputControls />
