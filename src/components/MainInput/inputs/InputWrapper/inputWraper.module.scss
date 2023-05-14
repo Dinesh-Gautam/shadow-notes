@@ -6,6 +6,7 @@ $label-margin: 4px;
   position: relative;
   border-radius: 0 0 $border-radius-default $border-radius-default;
   margin-bottom: $padding-default;
+  padding-block: $padding-less;
 }
 
 .header {
@@ -58,4 +59,21 @@ $label-margin: 4px;
   display: flex;
   align-items: center;
   font-size: $fontSize-small;
+}
+
+.inputButtons {
+  display: flex;
+  justify-content: flex-start;
+  padding: $padding-less $padding-default;
+  background: var(--default-backgroundcolor);
+  position: absolute;
+  bottom: 2px;
+  left: 0;
+  transform: translateY(100%);
+  width: 100%;
+  z-index: 100000;
+  border-radius: 0 0 $border-radius-default $border-radius-default;
+  button {
+    background: var(--default-color);
+  }
 }

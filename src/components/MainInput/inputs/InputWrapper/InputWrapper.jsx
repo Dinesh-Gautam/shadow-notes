@@ -3,19 +3,19 @@ import styles from "./inputWraper.module.scss";
 import UseSvg from "../../../elements/UseSvg";
 import useInputActions from "../../useInputActions";
 
-function InputWrapper({ input, children, noRemovable }) {
-  const [hideHeader, setHideHeader] = useState(true);
+function InputWrapper({ input, children, noRemovable, inputFooter }) {
+  const [show, setShow] = useState(false);
   const { removeElement, changeInputValue } = useInputActions();
   return (
     <div
-      onMouseLeave={() => setHideHeader(true)}
-      onMouseEnter={() => setHideHeader(false)}
+      onMouseLeave={() => setShow(false)}
+      onMouseEnter={() => setShow(true)}
       style={{
-        outline: !hideHeader ? "1px solid rgba(0, 0, 0, 0.2)" : "none",
+        outline: show ? "1px solid rgba(0, 0, 0, 0.2)" : "none",
       }}
       className={styles.container}
     >
-      {!hideHeader && (
+      {show && (
         <div className={styles.header}>
           <div className={styles.buttons}>
             {!noRemovable && (
@@ -43,6 +43,9 @@ function InputWrapper({ input, children, noRemovable }) {
         />
       </div>
       <div className={styles.childContainer}>{children}</div>
+      {show && inputFooter && (
+        <div className={styles.inputButtons}>{inputFooter}</div>
+      )}
     </div>
   );
 }

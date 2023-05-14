@@ -34,7 +34,10 @@ function InputField({ input }) {
       )}
 
       {input.name === InputOption.list && (
-        <InputWrapper input={input}>
+        <InputWrapper
+          input={input}
+          inputFooter={<ListFooterButtons id={input.id} />}
+        >
           <List
             onChange={(e) => {
               changeInputValue({ id: input.id, value: e.target.value });
@@ -52,6 +55,15 @@ function InputField({ input }) {
         </InputWrapper>
       )}
     </>
+  );
+}
+
+function ListFooterButtons({ id }) {
+  const { addListElement } = useInputActions();
+  return (
+    <button onClick={() => addListElement({ parentId: id })} type="button">
+      <UseSvg type="add" />
+    </button>
   );
 }
 
@@ -86,7 +98,6 @@ function TitleInput({ value, onChange, placeholder }) {
 
 function List({ input, value, onChange, placeholder }) {
   const { id } = input;
-  const { addListElement } = useInputActions();
   return (
     <ul className={styles.list}>
       <li>
@@ -97,11 +108,6 @@ function List({ input, value, onChange, placeholder }) {
         />
       </li>
       {GetListChildren(id)}
-      <div className={styles.inputButtons}>
-        <button onClick={() => addListElement({ parentId: id })} type="button">
-          <UseSvg type="add" />
-        </button>
-      </div>
     </ul>
   );
 }
@@ -137,7 +143,7 @@ function GetListChildren(parentId) {
   return inputs
     .filter((e) => e.parentId === parentId)
     .map((input, index) => (
-      <li>
+      <li key={input.id}>
         <ListInputWrapper input={input}>
           <input
             value={input?.state?.value || ""}
