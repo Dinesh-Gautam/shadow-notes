@@ -1,0 +1,20 @@
+@import "../../../styles/variables";
+
+.inputButtons {
+  display: flex;
+  justify-content: flex-start;
+  padding: $padding-default;
+}
+
+.listInputWrapper {
+  display: flex;
+  align-items: center;
+  border-radius: $border-radius-default;
+}
+
+.list {
+  padding-inline: $padding-default * 2;
+  input {
+    padding-inline: $padding-less;
+  }
+}

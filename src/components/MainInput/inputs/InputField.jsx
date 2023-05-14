@@ -2,9 +2,9 @@ import React, { useEffect, useRef, useState } from "react";
 import InputWrapper from "./InputWrapper/InputWrapper";
 import { input as InputOption } from "./inputOptions";
 import useInputActions from "../useInputActions";
-import styles from "./inputField.scss";
 import UseSvg from "../../elements/UseSvg";
 import { useInputs } from "../InputContext";
+import styles from "./inputField.module.scss";
 
 function InputField({ input }) {
   const { changeInputValue } = useInputActions();
@@ -88,7 +88,7 @@ function List({ input, value, onChange, placeholder }) {
   const { id } = input;
   const { addListElement } = useInputActions();
   return (
-    <ul>
+    <ul className={styles.list}>
       <li>
         <ListInput
           value={value || ""}
@@ -111,10 +111,11 @@ function ListInputWrapper({ input, children }) {
   const { removeElement } = useInputActions();
   return (
     <div
+      className={styles.listInputWrapper}
       onMouseEnter={() => setShow(true)}
       onMouseLeave={() => setShow(false)}
       style={{
-        display: "flex",
+        outline: show ? "1px solid rgba(0,0,0,0.2)" : "none",
       }}
     >
       {children}
