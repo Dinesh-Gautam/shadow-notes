@@ -74,6 +74,10 @@ $label-margin: 0px;
   width: 100%;
   z-index: 100000;
   border-radius: 0 0 $border-radius-default $border-radius-default;
+  gap: $padding-default;
+  input {
+    border-radius: $border-radius-default !important;
+  }
   button {
     background: var(--default-color);
   }

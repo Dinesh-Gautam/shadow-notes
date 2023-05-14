@@ -21,6 +21,15 @@ form {
     border-radius: 0;
     font-family: "Poppins";
   }
+  a {
+    margin-inline: $padding-default;
+    margin-block: $padding-less;
+    display: block;
+    width: fit-content;
+    &:hover {
+      text-decoration: underline !important;
+    }
+  }
 }
 
 .inputControls {

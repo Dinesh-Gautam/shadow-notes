@@ -50,8 +50,10 @@ function InputField({ input }) {
       )}
 
       {input.name === InputOption.link && (
-        <InputWrapper input={input}>
-          <LinkInput input={input} />
+        <InputWrapper input={input} inputFooter={<LinkInput input={input} />}>
+          <a target="_blank" rel="noreferrer" href={input?.state?.value || ""}>
+            {input?.state?.valueName || input?.state?.value}
+          </a>
         </InputWrapper>
       )}
     </>
@@ -171,7 +173,7 @@ function ListInput({ value, onChange, placeholder }) {
 function LinkInput({ input }) {
   const { changeInputValue } = useInputActions();
   return (
-    <div>
+    <>
       <input
         value={input?.state?.value || ""}
         onChange={(e) =>
@@ -192,7 +194,7 @@ function LinkInput({ input }) {
         placeholder={"link Name"}
         type="text"
       ></input>
-    </div>
+    </>
   );
 }
 
