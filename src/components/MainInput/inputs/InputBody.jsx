@@ -10,7 +10,7 @@ function InputBody() {
   return (
     <>
       {inputs.map((input, index) =>
-        input.name === inputNames.heading ? (
+        input.name === inputNames.heading || input.parentId ? (
           !input.parentId && (
             <div>
               <InputField input={input} />
