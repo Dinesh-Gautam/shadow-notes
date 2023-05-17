@@ -8,7 +8,6 @@ import styles from "./inputField.module.scss";
 
 function InputField({ input }) {
   const { changeInputValue } = useInputActions();
-  console.log(input);
   return (
     <>
       {input.name === InputOption.heading && (
@@ -51,20 +50,28 @@ function InputField({ input }) {
 
       {input.name === InputOption.link && (
         <InputWrapper input={input} inputFooter={<LinkInput input={input} />}>
-          <a target="_blank" rel="noreferrer" href={input?.state?.value || ""}>
-            {input?.state?.valueName || input?.state?.value}
-          </a>
+          {input?.state?.value && (
+            <a
+              target="_blank"
+              rel="noreferrer"
+              href={input?.state?.value || ""}
+            >
+              {input?.state?.valueName || input?.state?.value}
+            </a>
+          )}
         </InputWrapper>
       )}
 
       {input.name === InputOption.image && (
         <InputWrapper input={input} inputFooter={<ImageInput input={input} />}>
-          <img
-            className={styles.image}
-            height={200}
-            src={input?.state?.value}
-            alt={input?.state?.value}
-          />
+          {input?.state?.value && (
+            <img
+              height={200}
+              className={styles.image}
+              src={input?.state?.value}
+              alt={input?.state?.value}
+            />
+          )}
         </InputWrapper>
       )}
     </>

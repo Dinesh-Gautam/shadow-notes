@@ -36,7 +36,25 @@ function useInputActions() {
     });
   }
 
-  return { addInputElement, removeElement, changeInputValue, addListElement };
+  function onDragEnd(sIndex, dIndex) {
+    console.log(sIndex, dIndex);
+    if (!dIndex) {
+      return;
+    }
+
+    inputsDispatch({
+      type: "onDragEnd",
+      payload: { sIndex, dIndex },
+    });
+  }
+
+  return {
+    addInputElement,
+    removeElement,
+    changeInputValue,
+    addListElement,
+    onDragEnd,
+  };
 }
 
 export default useInputActions;

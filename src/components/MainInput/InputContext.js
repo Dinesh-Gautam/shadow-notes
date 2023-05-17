@@ -50,6 +50,15 @@ const changeInputValue = (state, action) => {
   );
 };
 
+const onDragEnd = (state, action) => {
+  const { sIndex, dIndex } = action.payload;
+
+  const newItems = [...state];
+  const [removed] = newItems.splice(sIndex, 1);
+  newItems.splice(dIndex, 0, removed);
+  return newItems;
+};
+
 const setInputs = (state, action) => {
   switch (action.type) {
     case "addElement":
@@ -58,6 +67,8 @@ const setInputs = (state, action) => {
       return removeElement(state, action);
     case "changeInputValue":
       return changeInputValue(state, action);
+    case "onDragEnd":
+      return onDragEnd(state, action);
     // case "localStorage":
     //   return action.payload;
     // case "clear":
