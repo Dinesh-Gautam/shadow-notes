@@ -15,7 +15,10 @@ form {
   padding: $padding-less;
   display: flex;
   flex-direction: column;
-  gap: $padding-default * 2;
+
+  & > div {
+    margin-bottom: $padding-default * 2;
+  }
   input {
     border: none;
     border-radius: 0;

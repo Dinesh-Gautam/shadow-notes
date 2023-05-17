@@ -38,7 +38,7 @@ function useInputActions() {
 
   function onDragEnd(sIndex, dIndex) {
     console.log(sIndex, dIndex);
-    if (!dIndex) {
+    if (dIndex === undefined) {
       return;
     }
 

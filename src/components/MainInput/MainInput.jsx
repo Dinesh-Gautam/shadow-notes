@@ -18,7 +18,7 @@ function MainInput() {
     >
       <DragDropContext
         onDragEnd={(result) =>
-          onDragEnd(result.source.index, result.destination.index)
+          onDragEnd(result?.source?.index, result?.destination?.index)
         }
       >
         <Droppable droppableId="droppable">

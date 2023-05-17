@@ -4,7 +4,7 @@ $label-margin: 0px;
 
 .container {
   position: relative;
-  border-radius: 0 0 $border-radius-default $border-radius-default;
+  // border-radius: 0 0 $border-radius-default $border-radius-default;
 
   // padding-block: $padding-less;
   // padding-bottom: $padding-default / 2;
@@ -38,7 +38,7 @@ $label-margin: 0px;
   transform: translateY(-100%);
   padding: 0 $padding-default;
   top: $label-margin + 2px;
-  width: 95%;
+  width: fit-content;
   input {
     padding: 0;
     background: transparent;
