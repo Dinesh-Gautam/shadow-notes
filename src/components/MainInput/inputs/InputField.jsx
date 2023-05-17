@@ -56,7 +56,31 @@ function InputField({ input }) {
           </a>
         </InputWrapper>
       )}
+
+      {input.name === InputOption.image && (
+        <InputWrapper input={input} inputFooter={<ImageInput input={input} />}>
+          <img
+            className={styles.image}
+            height={200}
+            src={input?.state?.value}
+            alt={input?.state?.value}
+          />
+        </InputWrapper>
+      )}
     </>
+  );
+}
+
+function ImageInput({ input }) {
+  const { changeInputValue } = useInputActions();
+  return (
+    <input
+      value={input?.state?.value}
+      placeholder="Image URL"
+      onChange={(e) =>
+        changeInputValue({ id: input.id, value: e.target.value })
+      }
+    />
   );
 }
 

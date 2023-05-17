@@ -84,6 +84,8 @@ $label-margin: 0px;
 }
 
 .childContainer {
+  display: flex;
+  align-items: center;
   input {
     padding-block: $padding-default / 4;
   }
