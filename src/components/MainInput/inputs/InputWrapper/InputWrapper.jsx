@@ -33,6 +33,11 @@ function InputWrapper({ input, children, noRemovable, inputFooter }) {
       )}
       <div className={styles.inputContainer}>
         <input
+          style={{
+            width:
+              (input?.state?.labelValue?.length || input.value.length) * 6 +
+              "px",
+          }}
           type="text"
           onChange={(e) =>
             changeInputValue({

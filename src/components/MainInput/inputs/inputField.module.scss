@@ -8,8 +8,12 @@
 
 .list {
   padding-inline: $padding-default * 2;
+  width: 100%;
   input {
     padding-inline: $padding-less;
+  }
+  button {
+    position: relative;
   }
 }
 
