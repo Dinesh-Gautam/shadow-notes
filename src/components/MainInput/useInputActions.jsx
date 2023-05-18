@@ -36,15 +36,22 @@ function useInputActions() {
     });
   }
 
-  function onDragEnd(sIndex, dIndex) {
+  function onDragEnd(result) {
+    console.log(result);
+    const sIndex = result?.source?.index;
+    const dIndex = result?.destination?.index;
+    const destinationId = result?.destination?.droppableId;
+    const sourceId = result?.source?.droppableId;
+    const draggableId = result?.draggableId;
     console.log(sIndex, dIndex);
+
     if (dIndex === undefined) {
       return;
     }
 
     inputsDispatch({
       type: "onDragEnd",
-      payload: { sIndex, dIndex },
+      payload: { sIndex, dIndex, destinationId, sourceId, draggableId },
     });
   }
 

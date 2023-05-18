@@ -51,11 +51,26 @@ const changeInputValue = (state, action) => {
 };
 
 const onDragEnd = (state, action) => {
-  const { sIndex, dIndex } = action.payload;
+  const { sIndex, dIndex, destinationId, sourceId, draggableId } =
+    action.payload;
 
-  const newItems = [...state];
+  let newItems = [...state];
   const [removed] = newItems.splice(sIndex, 1);
-  newItems.splice(dIndex, 0, removed);
+  console.log(sourceId, destinationId);
+  // newItems.splice(dIndex, 0, removed);
+  if (sourceId !== destinationId) {
+    if (sIndex >= dIndex) {
+      newItems.splice(dIndex, 0, removed);
+    } else {
+      newItems.splice(dIndex - 1, 0, removed);
+    }
+    newItems = newItems.map((e) =>
+      e.id === draggableId ? { ...e, parentId: destinationId } : e
+    );
+  } else {
+    newItems.splice(dIndex, 0, removed);
+  }
+
   return newItems;
 };
 

@@ -16,11 +16,7 @@ function MainInput() {
       className={styles.form}
       //  onSubmit={formSubmitHandler}
     >
-      <DragDropContext
-        onDragEnd={(result) =>
-          onDragEnd(result?.source?.index, result?.destination?.index)
-        }
-      >
+      <DragDropContext onDragEnd={onDragEnd}>
         <Droppable droppableId="droppable">
           {(provided, snapshot) => (
             <div
