@@ -1,10 +1,11 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import InputWrapper from "./InputWrapper/InputWrapper";
 import { input as InputOption } from "./inputOptions";
 import useInputActions from "../useInputActions";
 import UseSvg from "../../elements/UseSvg";
 import { useInputs } from "../InputContext";
 import styles from "./inputField.module.scss";
+import { Draggable, Droppable } from "react-beautiful-dnd";
 
 function InputField({ input }) {
   const { changeInputValue } = useInputActions();
@@ -129,16 +130,27 @@ function TitleInput({ value, onChange, placeholder }) {
 function List({ input, value, onChange, placeholder }) {
   const { id } = input;
   return (
-    <ul className={styles.list}>
-      <li>
-        <ListInput
-          value={value || ""}
-          onChange={onChange}
-          placeholder={placeholder}
-        />
-      </li>
-      {GetListChildren(id)}
-    </ul>
+    <Droppable droppableId={input.id} type="list">
+      {(provided, snapshot) => (
+        <ul
+          className={styles.list}
+          {...provided.droppableProps}
+          ref={provided.innerRef}
+        >
+          <li>
+            <ListInput
+              value={value || ""}
+              onChange={onChange}
+              placeholder={placeholder}
+            />
+          </li>
+
+          <GetListChildren parentId={id} />
+
+          {provided.placeholder}
+        </ul>
+      )}
+    </Droppable>
   );
 }
 
@@ -169,25 +181,40 @@ function ListInputWrapper({ input, children }) {
   );
 }
 
-function GetListChildren(parentId) {
+function GetListChildren({ parentId }) {
   const { inputs } = useInputs();
   const { changeInputValue } = useInputActions();
-  return inputs
-    .filter((e) => e.parentId === parentId)
-    .map((input, index) => (
-      <li key={input.id}>
-        <ListInputWrapper input={input}>
-          <input
-            value={input?.state?.value || ""}
-            onChange={(e) =>
-              changeInputValue({ id: input.id, value: e.target.value })
-            }
-            placeholder={input.value + (index + 1)}
-            type="text"
-          ></input>
-        </ListInputWrapper>
-      </li>
-    ));
+  const children = inputs.filter((e) => e.parentId === parentId);
+
+  return children.map((input, index) => (
+    <Draggable
+      key={input.id}
+      draggableId={input.id}
+      index={inputs.findIndex((e) => e.id === input.id)}
+    >
+      {(provided, snapshot) => (
+        <div
+          ref={provided.innerRef}
+          {...provided.draggableProps}
+          {...provided.dragHandleProps}
+          key={input.id}
+        >
+          <li>
+            <ListInputWrapper input={input}>
+              <input
+                value={input?.state?.value || ""}
+                onChange={(e) =>
+                  changeInputValue({ id: input.id, value: e.target.value })
+                }
+                placeholder={input.value + (index + 1)}
+                type="text"
+              ></input>
+            </ListInputWrapper>
+          </li>
+        </div>
+      )}
+    </Draggable>
+  ));
 }
 
 function ListInput({ value, onChange, placeholder }) {

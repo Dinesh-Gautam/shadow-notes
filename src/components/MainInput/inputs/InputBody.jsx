@@ -12,7 +12,7 @@ function InputBody() {
       {inputs.map((input, index) =>
         input.name === inputNames.heading || input.parentId ? (
           !input.parentId && (
-            <div>
+            <div key={input.id}>
               <InputField input={input} />
             </div>
           )
@@ -21,7 +21,6 @@ function InputBody() {
             {(provided, snapshot) => (
               <div
                 ref={provided.innerRef}
-                snapshot={snapshot}
                 {...provided.draggableProps}
                 {...provided.dragHandleProps}
               >
