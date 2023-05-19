@@ -20,11 +20,7 @@ function useKeyboardEvents() {
     };
     e.stopPropagation();
 
-    if (input.name === InputOption.heading) {
-      return;
-    }
-
-    if (e.code === codes.deleteKey) {
+    if (e.code === codes.deleteKey && input.name !== InputOption.heading) {
       const index = getIndex(input, 1);
       setInputFocusId(inputs[index].id);
       removeElement({ id: input.id });
@@ -37,15 +33,34 @@ function useKeyboardEvents() {
     }
 
     if (e.code === codes.arrowUpKey) {
-      // todo : this will work if implemented for all inputs
+      //todo : this is not working
       const index = getIndex(input, -1);
-      setInputFocusId(inputs[index].id);
+      const nextInput = getInput(index);
+      setInputFocusId(nextInput.id);
+      console.log(index);
     }
 
     if (e.code === codes.arrowDownKey) {
       const index = getIndex(input, 1);
-      setInputFocusId(inputs[index].id);
+      const nextInput = getInput(index);
+      setInputFocusId(nextInput.id);
+      console.log(index);
     }
+  }
+
+  function getInput(index) {
+    let nextInput = inputs[index];
+    console.log(nextInput);
+    if (
+      nextInput.name === InputOption.list &&
+      nextInput.parentId === undefined
+    ) {
+      console.log("it is a list input");
+      const parentId = nextInput.id;
+      nextInput = inputs.find((i) => i.parentId === parentId);
+    }
+
+    return nextInput;
   }
 
   function getIndex(input, direction = 0) {
@@ -60,31 +75,45 @@ function useKeyboardEvents() {
   return { onKeyDown };
 }
 
-function InputField({ input }) {
-  const { changeInputValue } = useInputActions();
-
+function useInputProps() {
+  const { changeInputValue, inputFocusId } = useInputActions();
+  const inputRef = useRef({});
   const { onKeyDown } = useKeyboardEvents();
+
+  useEffect(() => {
+    inputRef.current &&
+      inputRef?.current[inputFocusId] &&
+      inputRef.current[inputFocusId].focus();
+  }, [inputFocusId]);
+
+  function attachProps(input) {
+    return {
+      ref: (e) => (inputRef.current[input.id] = e),
+      onKeyDown: (e) => onKeyDown(e, input),
+      value: input?.state?.value || "",
+      onChange: (e) =>
+        changeInputValue({ id: input.id, value: e.target.value }),
+    };
+  }
+
+  return { attachProps };
+}
+
+function Input(props) {
+  const { attachProps } = useInputProps();
+  return <input {...attachProps(props.input)} {...props} />;
+}
+
+function InputField({ input }) {
   return (
-    <div onKeyDown={(e) => onKeyDown(e, input)}>
+    <>
       {input.name === InputOption.heading && (
-        <HeadingInput
-          onChange={(e) => {
-            changeInputValue({ id: input.id, value: e.target.value });
-          }}
-          value={input?.state?.value}
-          placeholder={input.value}
-        />
+        <HeadingInput input={input} placeholder={input.value} />
       )}
 
       {input.name === InputOption.title && (
         <InputWrapper input={input}>
-          <TitleInput
-            onChange={(e) => {
-              changeInputValue({ id: input.id, value: e.target.value });
-            }}
-            value={input?.state?.value}
-            placeholder={input.value}
-          />
+          <TitleInput input={input} placeholder={input.value} />
         </InputWrapper>
       )}
 
@@ -123,21 +152,12 @@ function InputField({ input }) {
           )}
         </InputWrapper>
       )}
-    </div>
+    </>
   );
 }
 
 function ImageInput({ input }) {
-  const { changeInputValue } = useInputActions();
-  return (
-    <input
-      value={input?.state?.value}
-      placeholder="Image URL"
-      onChange={(e) =>
-        changeInputValue({ id: input.id, value: e.target.value })
-      }
-    />
-  );
+  return <Input input={input} placeholder="Image URL" />;
 }
 
 function ListFooterButtons({ id }) {
@@ -149,33 +169,25 @@ function ListFooterButtons({ id }) {
   );
 }
 
-function HeadingInput({ value, onChange, placeholder }) {
-  return (
-    <input
-      value={value || ""}
-      onChange={onChange}
-      placeholder={placeholder}
-      type="text"
-    ></input>
-  );
+function HeadingInput({ input, placeholder }) {
+  return <Input input={input} placeholder={placeholder} type="text"></Input>;
 }
 
-function TitleInput({ value, onChange, placeholder }) {
+function TitleInput({ input, placeholder }) {
   return (
-    <input
+    <Input
+      input={input}
       style={{
         fontSize: 24,
         fontWeight: "bold",
       }}
-      value={value || ""}
-      onChange={onChange}
       placeholder={placeholder}
       type="text"
-    ></input>
+    ></Input>
   );
 }
 
-function List({ input, value, onChange, placeholder }) {
+function List({ input, placeholder }) {
   const { id } = input;
   return (
     <Droppable droppableId={input.id} type="list">
@@ -223,18 +235,7 @@ function ListInputWrapper({ input, children }) {
 
 function GetListChildren({ parentId }) {
   const { inputs } = useInputs();
-  const { changeInputValue, inputFocusId } = useInputActions();
   const children = inputs.filter((e) => e.parentId === parentId);
-  const { onKeyDown } = useKeyboardEvents();
-
-  const inputRef = useRef({});
-
-  useEffect(() => {
-    console.log(inputRef);
-    inputRef.current &&
-      inputRef?.current[inputFocusId] &&
-      inputRef.current[inputFocusId].focus();
-  }, [inputFocusId]);
 
   return children.map((input, index) => (
     <Draggable
@@ -251,16 +252,11 @@ function GetListChildren({ parentId }) {
         >
           <li>
             <ListInputWrapper input={input}>
-              <input
-                ref={(e) => (inputRef.current[input.id] = e)}
-                onKeyDown={(e) => onKeyDown(e, input)}
-                value={input?.state?.value || ""}
-                onChange={(e) =>
-                  changeInputValue({ id: input.id, value: e.target.value })
-                }
+              <Input
+                input={input}
                 placeholder={input.value + " " + (index + 1)}
                 type="text"
-              ></input>
+              ></Input>
             </ListInputWrapper>
           </li>
         </div>
@@ -271,16 +267,10 @@ function GetListChildren({ parentId }) {
 
 function LinkInput({ input }) {
   const { changeInputValue } = useInputActions();
+  const { attachProps } = useInputProps();
   return (
     <>
-      <input
-        value={input?.state?.value || ""}
-        onChange={(e) =>
-          changeInputValue({ id: input.id, value: e.target.value })
-        }
-        placeholder={"URL"}
-        type="text"
-      ></input>
+      <input {...attachProps(input)} placeholder={"URL"} type="text"></input>
       <input
         value={input?.state?.valueName || ""}
         onChange={(e) =>
