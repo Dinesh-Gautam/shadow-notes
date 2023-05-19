@@ -3,23 +3,25 @@ import { inputOptions, input } from "./inputs/inputOptions";
 import { useInputs } from "./InputContext";
 import { v4 as uuidv4 } from "uuid";
 function useInputActions() {
-  const { inputsDispatch } = useInputs();
+  const { inputsDispatch, setInputFocusId, inputFocusId } = useInputs();
 
   function addInputElement({ selectedInput, id }) {
     inputsDispatch({
       type: "addElement",
       payload: { selectedInput, id },
     });
+    setInputFocusId(id);
   }
 
-  function addListElement({ selectedInput, parentId, id = uuidv4() }) {
+  function addListElement({ selectedInput, parentId, id = uuidv4(), index }) {
     if (!selectedInput) {
       selectedInput = inputOptions.find((o) => o.name === input.list);
     }
     inputsDispatch({
       type: "addElement",
-      payload: { selectedInput, id, parentId },
+      payload: { selectedInput, id, parentId, index },
     });
+    setInputFocusId(id);
   }
 
   function removeElement({ id }) {
@@ -61,6 +63,7 @@ function useInputActions() {
     changeInputValue,
     addListElement,
     onDragEnd,
+    inputFocusId,
   };
 }
 

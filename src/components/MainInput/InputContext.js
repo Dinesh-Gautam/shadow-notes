@@ -19,9 +19,16 @@ export function useInputs() {
 export const headingId = uuidv4();
 
 const addElement = (state, action) => {
-  const { selectedInput, id, parentId } = action.payload;
+  const { selectedInput, id, parentId, index } = action.payload;
 
-  return [...state, { ...selectedInput, id, parentId }];
+  if (index === undefined)
+    return [...state, { ...selectedInput, id, parentId }];
+  else
+    return [
+      ...state.slice(0, index),
+      { ...selectedInput, id, parentId },
+      ...state.slice(index),
+    ];
 };
 
 const removeElement = (state, action) => {
@@ -94,6 +101,7 @@ const setInputs = (state, action) => {
 };
 
 export function InputContext(props) {
+  const [inputFocusId, setInputFocusId] = useState(null);
   const initialState = [{ ...headingState, id: uuidv4() }];
 
   const [inputs, inputsDispatch] = useReducer(setInputs, initialState);
@@ -101,6 +109,8 @@ export function InputContext(props) {
   const value = {
     inputs,
     inputsDispatch,
+    inputFocusId,
+    setInputFocusId,
   };
   return (
     <input_context.Provider value={value}>

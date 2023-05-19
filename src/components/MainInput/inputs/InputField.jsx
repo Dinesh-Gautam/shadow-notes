@@ -7,10 +7,60 @@ import { useInputs } from "../InputContext";
 import styles from "./inputField.module.scss";
 import { Draggable, Droppable } from "react-beautiful-dnd";
 
+function useKeyboardEvents() {
+  const { removeElement, addListElement } = useInputActions();
+  const { inputs, setInputFocusId } = useInputs();
+
+  function onKeyDown(e, input) {
+    const codes = {
+      deleteKey: "Delete",
+      enterKey: "Enter",
+      arrowUpKey: "ArrowUp",
+      arrowDownKey: "ArrowDown",
+    };
+    e.stopPropagation();
+
+    if (input.name === InputOption.heading) {
+      return;
+    }
+
+    if (e.code === codes.deleteKey) {
+      removeElement({ id: input.id });
+      return;
+    }
+
+    if (e.code === codes.enterKey) {
+      const currentIndex = inputs.findIndex((i) => i.id === input.id);
+      const nextIndex = currentIndex + 1;
+      addListElement({ parentId: input.parentId, index: nextIndex });
+    }
+
+    if (e.code === codes.arrowUpKey) {
+      const index = getIndex(input, -1);
+      setInputFocusId(inputs[index].id);
+    }
+
+    if (e.code === codes.arrowDownKey) {
+      const index = getIndex(input, 1);
+      setInputFocusId(inputs[index].id);
+    }
+  }
+
+  function getIndex(input, direction = 0) {
+    const currentIndex = inputs.findIndex((i) => i.id === input.id);
+    const prevIndex = currentIndex + direction;
+    return prevIndex;
+  }
+
+  return { onKeyDown };
+}
+
 function InputField({ input }) {
   const { changeInputValue } = useInputActions();
+
+  const { onKeyDown } = useKeyboardEvents();
   return (
-    <>
+    <div onKeyDown={(e) => onKeyDown(e, input)}>
       {input.name === InputOption.heading && (
         <HeadingInput
           onChange={(e) => {
@@ -38,14 +88,7 @@ function InputField({ input }) {
           input={input}
           inputFooter={<ListFooterButtons id={input.id} />}
         >
-          <List
-            onChange={(e) => {
-              changeInputValue({ id: input.id, value: e.target.value });
-            }}
-            value={input?.state?.value}
-            placeholder={input.value}
-            input={input}
-          />
+          <List input={input} />
         </InputWrapper>
       )}
 
@@ -75,7 +118,7 @@ function InputField({ input }) {
           )}
         </InputWrapper>
       )}
-    </>
+    </div>
   );
 }
 
@@ -131,20 +174,12 @@ function List({ input, value, onChange, placeholder }) {
   const { id } = input;
   return (
     <Droppable droppableId={input.id} type="list">
-      {(provided, snapshot) => (
+      {(provided) => (
         <ul
           className={styles.list}
           {...provided.droppableProps}
           ref={provided.innerRef}
         >
-          <li>
-            <ListInput
-              value={value || ""}
-              onChange={onChange}
-              placeholder={placeholder}
-            />
-          </li>
-
           <GetListChildren parentId={id} />
 
           {provided.placeholder}
@@ -183,8 +218,18 @@ function ListInputWrapper({ input, children }) {
 
 function GetListChildren({ parentId }) {
   const { inputs } = useInputs();
-  const { changeInputValue } = useInputActions();
+  const { changeInputValue, inputFocusId } = useInputActions();
   const children = inputs.filter((e) => e.parentId === parentId);
+  const { onKeyDown } = useKeyboardEvents();
+
+  const inputRef = useRef({});
+
+  useEffect(() => {
+    console.log(inputRef);
+    inputRef.current &&
+      inputRef?.current[inputFocusId] &&
+      inputRef.current[inputFocusId].focus();
+  }, [inputFocusId]);
 
   return children.map((input, index) => (
     <Draggable
@@ -192,7 +237,7 @@ function GetListChildren({ parentId }) {
       draggableId={input.id}
       index={inputs.findIndex((e) => e.id === input.id)}
     >
-      {(provided, snapshot) => (
+      {(provided) => (
         <div
           ref={provided.innerRef}
           {...provided.draggableProps}
@@ -202,11 +247,13 @@ function GetListChildren({ parentId }) {
           <li>
             <ListInputWrapper input={input}>
               <input
+                ref={(e) => (inputRef.current[input.id] = e)}
+                onKeyDown={(e) => onKeyDown(e, input)}
                 value={input?.state?.value || ""}
                 onChange={(e) =>
                   changeInputValue({ id: input.id, value: e.target.value })
                 }
-                placeholder={input.value + (index + 1)}
+                placeholder={input.value + " " + (index + 1)}
                 type="text"
               ></input>
             </ListInputWrapper>
@@ -215,17 +262,6 @@ function GetListChildren({ parentId }) {
       )}
     </Draggable>
   ));
-}
-
-function ListInput({ value, onChange, placeholder }) {
-  return (
-    <input
-      value={value || ""}
-      onChange={onChange}
-      placeholder={placeholder}
-      type="text"
-    ></input>
-  );
 }
 
 function LinkInput({ input }) {
