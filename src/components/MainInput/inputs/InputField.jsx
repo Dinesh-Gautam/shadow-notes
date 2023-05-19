@@ -25,17 +25,19 @@ function useKeyboardEvents() {
     }
 
     if (e.code === codes.deleteKey) {
+      const index = getIndex(input, 1);
+      setInputFocusId(inputs[index].id);
       removeElement({ id: input.id });
       return;
     }
 
-    if (e.code === codes.enterKey) {
-      const currentIndex = inputs.findIndex((i) => i.id === input.id);
-      const nextIndex = currentIndex + 1;
-      addListElement({ parentId: input.parentId, index: nextIndex });
+    if (e.code === codes.enterKey && input.name === InputOption.list) {
+      const index = getIndex(input, 1);
+      addListElement({ parentId: input.parentId, index });
     }
 
     if (e.code === codes.arrowUpKey) {
+      // todo : this will work if implemented for all inputs
       const index = getIndex(input, -1);
       setInputFocusId(inputs[index].id);
     }
@@ -48,8 +50,11 @@ function useKeyboardEvents() {
 
   function getIndex(input, direction = 0) {
     const currentIndex = inputs.findIndex((i) => i.id === input.id);
-    const prevIndex = currentIndex + direction;
-    return prevIndex;
+    const index = currentIndex + direction;
+    if (index >= inputs.length) {
+      return 0;
+    }
+    return index;
   }
 
   return { onKeyDown };
