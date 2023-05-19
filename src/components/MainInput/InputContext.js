@@ -26,7 +26,7 @@ const addElement = (state, action) => {
 
 const removeElement = (state, action) => {
   const id = action.payload.id;
-  return state.filter((e) => e.id !== id);
+  return state.filter((e) => e.id !== id && e.parentId !== id);
 };
 
 const changeInputValue = (state, action) => {
