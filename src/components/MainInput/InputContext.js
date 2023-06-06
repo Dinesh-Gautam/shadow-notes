@@ -196,7 +196,7 @@ import React, {
 import { v4 as uuidv4 } from "uuid";
 import { useData } from "../../context/DatabaseContext";
 import { serverTimestamp } from "firebase/firestore";
-import { headingState } from "./inputs/inputOptions";
+import { headingState, input } from "./inputs/inputOptions";
 import { reauthenticateWithRedirect } from "firebase/auth";
 export const input_context = createContext();
 
@@ -252,15 +252,13 @@ const onDragEnd = (state, action) => {
     action.payload;
 
   let newItems = [...state];
-  const destination = newItems[dIndex + 1];
-  let removed = newItems.splice(sIndex, 1);
-  // get all children
-  const childrenArr = newItems.filter((e) => e.parentId === draggableId);
-  newItems = newItems.filter((e) => e.parentId !== draggableId);
-  console.log(removed);
+
   console.log(sourceId, destinationId);
+  console.log(draggableId);
   // newItems.splice(dIndex, 0, removed);
   if (sourceId !== destinationId) {
+    let removed = newItems.splice(sIndex, 1)[0];
+
     if (sIndex >= dIndex) {
       newItems.splice(dIndex, 0, removed);
     } else {
@@ -270,7 +268,33 @@ const onDragEnd = (state, action) => {
       e.id === draggableId ? { ...e, parentId: destinationId } : e
     );
   } else {
-    newItems.splice(dIndex, 0, removed.concat(childrenArr));
+    // remove all children
+    const selected = newItems.find((e) => e.id === draggableId);
+    if (selected.parentId) {
+      let removed = newItems.splice(sIndex, 1)[0];
+      newItems.splice(dIndex, 0, removed);
+    } else {
+      const childrenArray = [];
+      // todo : don't hardcode the heading name, check if the input is moveable or not same for the input body file
+      const nonMoveableLength = newItems.filter(
+        (e) => e.name === input.heading
+      ).length;
+      newItems = newItems
+        .map((e) => {
+          if (e.parentId) {
+            childrenArray.push(e);
+            return null;
+          } else {
+            return e;
+          }
+        })
+        .filter((e) => e);
+
+      console.log(newItems);
+      let removed = newItems.splice(sIndex + nonMoveableLength, 1)[0];
+      newItems.splice(dIndex + nonMoveableLength, 0, removed);
+      newItems.push(childrenArray);
+    }
   }
 
   const flatArray = newItems.flat();

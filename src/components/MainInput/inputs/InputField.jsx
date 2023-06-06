@@ -33,7 +33,6 @@ function useKeyboardEvents() {
     }
 
     if (e.code === codes.arrowUpKey) {
-      //todo : this is not working
       const index = getIndex(input, -1);
       const nextInput = getInput(index);
       setInputFocusId(nextInput.id);

@@ -9,14 +9,17 @@ function InputBody() {
 
   return (
     <>
-      {inputs.map((input, index) =>
-        input.name === inputNames.heading || input.parentId ? (
-          !input.parentId && (
+      {inputs.map(
+        (input, index) =>
+          input.name === inputNames.heading && (
             <div key={input.id}>
               <InputField input={input} />
             </div>
           )
-        ) : (
+      )}
+      {inputs
+        .filter((input) => !input.parentId && input.name !== inputNames.heading)
+        .map((input, index) => (
           <Draggable key={input.id} draggableId={input.id} index={index}>
             {(provided, snapshot) => (
               <div
@@ -28,8 +31,7 @@ function InputBody() {
               </div>
             )}
           </Draggable>
-        )
-      )}
+        ))}
     </>
   );
 }
