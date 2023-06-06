@@ -280,8 +280,12 @@ const onDragEnd = (state, action) => {
 
 function sortArray(array) {
   const copyArray = [...array];
+  const sortedParents = [];
   for (let ele of copyArray) {
     if (ele.parentId) {
+      if (sortedParents.some((e) => e === ele.parentId)) {
+        continue;
+      }
       // it is a child
       const splicedChildren = [];
       // get parent index
@@ -293,6 +297,7 @@ function sortArray(array) {
         splicedChildren.push(copyArray.splice(childIndex, 1)[0]);
       }
       copyArray.splice(parentIndex + 1, 0, ...splicedChildren);
+      sortedParents.push(ele.parentId);
     }
   }
   console.log(copyArray);
