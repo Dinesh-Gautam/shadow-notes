@@ -50,16 +50,6 @@ function useKeyboardEvents() {
 
   function getInput(index) {
     let nextInput = inputs[index];
-    console.log(nextInput);
-    if (
-      nextInput.name === InputOption.list &&
-      nextInput.parentId === undefined
-    ) {
-      console.log("it is a list input");
-      const parentId = nextInput.id;
-      nextInput = inputs.find((i) => i.parentId === parentId);
-    }
-
     return nextInput;
   }
 
@@ -68,6 +58,9 @@ function useKeyboardEvents() {
     const index = currentIndex + direction;
     if (index >= inputs.length) {
       return 0;
+    }
+    if (index < 0) {
+      return inputs.length - 1;
     }
     return index;
   }
@@ -197,6 +190,9 @@ function List({ input, placeholder }) {
           {...provided.droppableProps}
           ref={provided.innerRef}
         >
+          <div>
+            <Input input={input} type="text" placeholder="List description" />
+          </div>
           <GetListChildren parentId={id} />
 
           {provided.placeholder}
