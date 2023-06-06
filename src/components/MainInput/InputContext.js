@@ -230,15 +230,8 @@ const addElement = (state, action) => {
 };
 
 const removeElement = (state, action) => {
-  // const id = action.payload.id;
-  // const elementsToRemove = state.filter(
-  //   (e) => e.parentId === id || e.id === id
-  // );
-  // let newState;
-  // elementsToRemove.forEach((element) => {
-  //   newState = state.remove(element.id);
-  // });
-  // return newState;
+  const { id } = action.payload;
+  return state.filter((e) => e.id !== id && e.parentId !== id);
 };
 
 const changeInputValue = (state, action) => {
