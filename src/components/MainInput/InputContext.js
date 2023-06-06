@@ -210,16 +210,8 @@ const addElement = (state, action) => {
   const { selectedInput, id, parentId, index } = action.payload;
 
   if (index === undefined) {
-    // return state.addToLast({ ...selectedInput, id, parentId });
-    if (parentId) {
-      const parentIndex = state.findIndex((e) => e.id === parentId);
-      return [
-        ...state.slice(0, parentIndex),
-        { ...selectedInput, id, parentId },
-        ...state.slice(parentIndex),
-      ];
-    }
-    return [...state, { ...selectedInput, id, parentId }];
+    // return state.addToLast({ ...selectedInput, id, parentId })
+    return sortArray([...state, { ...selectedInput, id, parentId }]);
   } else {
     return [
       ...state.slice(0, index),
@@ -283,27 +275,29 @@ const onDragEnd = (state, action) => {
 
   const flatArray = newItems.flat();
 
-  // find all the children of the current parent
-
-  console.log("destination");
-  console.log(destination);
-  if (destination?.parentId) {
-    // it is a child
-    const children = flatArray.filter(
-      (e) => e.parentId === destination.parentId
-    );
-    const parentIndex = flatArray.findIndex(
-      (e) => e.id === destination.parentId
-    );
-    for (const child of children) {
-      const index = flatArray.findIndex((e) => e.id === child.id);
-      flatArray.splice(index, 1);
-    }
-    flatArray.splice(parentIndex, 0, ...children);
-  }
-
-  return flatArray;
+  return sortArray(flatArray);
 };
+
+function sortArray(array) {
+  const copyArray = [...array];
+  for (let ele of copyArray) {
+    if (ele.parentId) {
+      // it is a child
+      const splicedChildren = [];
+      // get parent index
+      const parentIndex = copyArray.findIndex((e) => e.id === ele.parentId);
+      // get siblings
+      const children = copyArray.filter((e) => e.parentId === ele.parentId);
+      for (let child of children) {
+        const childIndex = copyArray.findIndex((e) => e.id === child.id);
+        splicedChildren.push(copyArray.splice(childIndex, 1)[0]);
+      }
+      copyArray.splice(parentIndex + 1, 0, ...splicedChildren);
+    }
+  }
+  console.log(copyArray);
+  return copyArray.flat();
+}
 
 const setInputs = (state, action) => {
   switch (action.type) {
