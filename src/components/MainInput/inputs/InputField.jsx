@@ -182,7 +182,7 @@ function TitleInput({ input, placeholder }) {
 function List({ input, placeholder }) {
   const { id } = input;
   return (
-    <Droppable droppableId={input.id} type="list">
+    <Droppable droppableId={input.id} type={"list"}>
       {(provided) => (
         <ul
           className={styles.list}
@@ -193,7 +193,6 @@ function List({ input, placeholder }) {
             <Input input={input} type="text" placeholder="List description" />
           </div>
           <GetListChildren parentId={id} />
-
           {provided.placeholder}
         </ul>
       )}
