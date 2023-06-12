@@ -7,26 +7,28 @@ import styles from "./mainInput.module.scss";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import useInputActions from "./useInputActions";
 
-function MainInput() {
-  const { formSubmitHandler } = useInputs();
-  const { onDragEnd } = useInputActions();
-  function getStyle(style, snapshot) {
-    console.log(snapshot);
-    if (!snapshot.isDraggingOver) {
-      return {
-        ...style,
-        borderRadius: "6px",
-        margin: 6,
-      };
-    }
-
+export function getStyle(style, snapshot) {
+  console.log(snapshot);
+  if (!snapshot.isDraggingOver) {
     return {
       ...style,
       borderRadius: "6px",
       margin: 6,
-      outline: "3px dashed rgba(0,0,0,0.1)",
     };
   }
+
+  return {
+    ...style,
+    borderRadius: "6px",
+    margin: 6,
+    outline: "3px dashed rgba(0,0,0,0.1)",
+  };
+}
+
+function MainInput() {
+  const { formSubmitHandler } = useInputs();
+  const { onDragEnd } = useInputActions();
+
   return (
     <form
       className={styles.form}

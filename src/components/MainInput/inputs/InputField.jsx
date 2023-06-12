@@ -6,6 +6,7 @@ import UseSvg from "../../elements/UseSvg";
 import { useInputs } from "../InputContext";
 import styles from "./inputField.module.scss";
 import { Draggable, Droppable } from "react-beautiful-dnd";
+import { getStyle } from "../MainInput";
 
 function useKeyboardEvents() {
   const { removeElement, addListElement } = useInputActions();
@@ -183,11 +184,12 @@ function List({ input, placeholder }) {
   const { id } = input;
   return (
     <Droppable droppableId={input.id} type={"list"}>
-      {(provided) => (
+      {(provided, snapshot) => (
         <ul
           className={styles.list}
           {...provided.droppableProps}
           ref={provided.innerRef}
+          style={getStyle(provided.droppableProps.style, snapshot)}
         >
           <div>
             <Input input={input} type="text" placeholder="List description" />
