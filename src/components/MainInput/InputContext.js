@@ -307,9 +307,6 @@ function sortArray(array) {
   const sortedParents = [];
   for (let ele of copyArray) {
     if (ele.parentId) {
-      if (sortedParents.some((e) => e === ele.parentId)) {
-        continue;
-      }
       // it is a child
       const splicedChildren = [];
       // get parent index
@@ -324,6 +321,7 @@ function sortArray(array) {
       sortedParents.push(ele.parentId);
     }
   }
+
   console.log(copyArray);
   return copyArray.flat();
 }
