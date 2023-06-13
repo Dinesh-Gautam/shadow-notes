@@ -224,6 +224,18 @@ const addElement = (state, action) => {
   }
 };
 
+const changeListType = (state, action) => {
+  const { id, type } = action.payload;
+  return state.map((e) => (e.id === id ? { ...e, type } : e));
+};
+
+const changeInputChecked = (state, action) => {
+  const { id, checked } = action.payload;
+  return state.map((e) =>
+    e.id === id ? { ...e, state: { ...e.state, checked } } : e
+  );
+};
+
 const removeElement = (state, action) => {
   const { id } = action.payload;
   return state.filter((e) => e.id !== id && e.parentId !== id);
@@ -339,6 +351,10 @@ const setInputs = (state, action) => {
       return changeInputValue(state, action);
     case "onDragEnd":
       return onDragEnd(state, action);
+    case "changeListType":
+      return changeListType(state, action);
+    case "changeInputChecked":
+      return changeInputChecked(state, action);
     // case "localStorage":
     //   return action.payload;
     // case "clear":

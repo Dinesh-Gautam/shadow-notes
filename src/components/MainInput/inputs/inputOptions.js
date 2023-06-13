@@ -17,6 +17,11 @@ export const headingState = {
   isRequired: true,
 };
 
+export const listTypes = {
+  default: "default",
+  checked: "checked",
+};
+
 export const inputOptions = [
   {
     value: "Title",

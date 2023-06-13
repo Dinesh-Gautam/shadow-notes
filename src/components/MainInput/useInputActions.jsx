@@ -38,6 +38,20 @@ function useInputActions() {
     });
   }
 
+  function changeInputChecked({ id, checked }) {
+    inputsDispatch({
+      type: "changeInputChecked",
+      payload: { id, checked },
+    });
+  }
+
+  function changeListType({ id, type }) {
+    inputsDispatch({
+      type: "changeListType",
+      payload: { id, type },
+    });
+  }
+
   function onDragEnd(result) {
     console.log(result);
     const sIndex = result?.source?.index;
@@ -64,6 +78,8 @@ function useInputActions() {
     addListElement,
     onDragEnd,
     inputFocusId,
+    changeListType,
+    changeInputChecked,
   };
 }
 

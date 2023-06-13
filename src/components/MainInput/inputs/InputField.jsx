@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import InputWrapper from "./InputWrapper/InputWrapper";
-import { input as InputOption } from "./inputOptions";
+import { input as InputOption, listTypes } from "./inputOptions";
 import useInputActions from "../useInputActions";
 import UseSvg from "../../elements/UseSvg";
 import { useInputs } from "../InputContext";
@@ -118,7 +118,7 @@ function InputField({ input }) {
       {input.name === InputOption.list && (
         <InputWrapper
           input={input}
-          inputFooter={<ListFooterButtons id={input.id} />}
+          inputFooter={<ListFooterButtons id={input.id} type={input.type} />}
         >
           <List input={input} />
         </InputWrapper>
@@ -158,12 +158,32 @@ function ImageInput({ input }) {
   return <Input input={input} placeholder="Image URL" />;
 }
 
-function ListFooterButtons({ id }) {
-  const { addListElement } = useInputActions();
+function ListFooterButtons({ id, type }) {
+  const { addListElement, changeListType } = useInputActions();
+  console.log(type);
   return (
-    <button onClick={() => addListElement({ parentId: id })} type="button">
-      <UseSvg type="add" />
-    </button>
+    <>
+      <button onClick={() => addListElement({ parentId: id })} type="button">
+        <UseSvg type="add" />
+      </button>
+      <div>
+        <label htmlFor="list_type">type:</label>
+
+        <select
+          id="list_type"
+          value={type || listTypes.default}
+          onChange={(e) => {
+            changeListType({ id, type: e.target.value });
+          }}
+        >
+          {Object.keys(listTypes).map((type) => (
+            <option key={type} value={listTypes[type]}>
+              {listTypes[type]}
+            </option>
+          ))}
+        </select>
+      </div>
+    </>
   );
 }
 
@@ -185,7 +205,7 @@ function TitleInput({ input, placeholder }) {
   );
 }
 
-function List({ input, placeholder }) {
+function List({ input }) {
   const { id } = input;
   return (
     <Droppable droppableId={input.id} type={"list"}>
@@ -194,9 +214,12 @@ function List({ input, placeholder }) {
           className={styles.list}
           {...provided.droppableProps}
           ref={provided.innerRef}
-          style={getStyle(provided.droppableProps.style, snapshot)}
+          style={{
+            ...getStyle(provided.droppableProps.style, snapshot),
+            listStyle: input.type === listTypes.checked ? "none" : "initial",
+          }}
         >
-          <GetListChildren parentId={id} />
+          <GetListChildren parentId={id} type={input.type} />
           {provided.placeholder}
         </ul>
       )}
@@ -231,8 +254,9 @@ function ListInputWrapper({ input, children }) {
   );
 }
 
-function GetListChildren({ parentId }) {
+function GetListChildren({ parentId, type }) {
   const { inputs } = useInputs();
+  const { changeInputChecked } = useInputActions();
   const children = inputs.filter((e) => e.parentId === parentId);
 
   return children.map((input, index) => (
@@ -249,6 +273,19 @@ function GetListChildren({ parentId }) {
           key={input.id}
         >
           <li>
+            {type === listTypes.checked && (
+              <input
+                className={styles.listCheckbox}
+                type="checkbox"
+                checked={input.state?.checked || false}
+                onChange={(e) =>
+                  changeInputChecked({
+                    id: input.id,
+                    checked: e.target.checked,
+                  })
+                }
+              />
+            )}
             <ListInputWrapper input={input}>
               <Input
                 input={input}

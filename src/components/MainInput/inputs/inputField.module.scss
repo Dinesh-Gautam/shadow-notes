@@ -15,6 +15,17 @@
   button {
     position: relative;
   }
+
+  li {
+    position: relative;
+  }
+  .listCheckbox {
+    position: absolute;
+    left: -$padding-default;
+    width: fit-content;
+    top: 50%;
+    transform: translateY(-50%);
+  }
 }
 
 .image {
