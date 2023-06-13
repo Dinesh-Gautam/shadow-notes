@@ -15,8 +15,13 @@ function InputControls() {
     const selectedInput = inputOptions.find(
       (input) => input.value.toLowerCase() === inputSelect.toLowerCase()
     );
-
-    addInputElement({ id: uid, selectedInput });
+    console.log(selectedInput.name);
+    console.log(input.list);
+    addInputElement({
+      id: uid,
+      selectedInput,
+      isFocusable: !(selectedInput.name === input.list),
+    });
   };
   return (
     <div className="input_selection">

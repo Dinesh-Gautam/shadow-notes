@@ -5,10 +5,10 @@ import { v4 as uuidv4 } from "uuid";
 function useInputActions() {
   const { inputsDispatch, setInputFocusId, inputFocusId } = useInputs();
 
-  function addInputElement({ selectedInput, id }) {
+  function addInputElement({ selectedInput, id, isFocusable }) {
     inputsDispatch({
       type: "addElement",
-      payload: { selectedInput, id },
+      payload: { selectedInput, id, isFocusable },
     });
     setInputFocusId(id);
   }

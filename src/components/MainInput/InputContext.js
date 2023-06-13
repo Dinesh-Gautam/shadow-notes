@@ -207,11 +207,14 @@ export function useInputs() {
 export const headingId = uuidv4();
 
 const addElement = (state, action) => {
-  const { selectedInput, id, parentId, index } = action.payload;
+  const { selectedInput, id, parentId, isFocusable, index } = action.payload;
 
   if (index === undefined) {
     // return state.addToLast({ ...selectedInput, id, parentId })
-    return sortArray([...state, { ...selectedInput, id, parentId }]);
+    return sortArray([
+      ...state,
+      { ...selectedInput, id, parentId, isFocusable },
+    ]);
   } else {
     return [
       ...state.slice(0, index),

@@ -55,13 +55,18 @@ function useKeyboardEvents() {
 
   function getIndex(input, direction = 0) {
     const currentIndex = inputs.findIndex((i) => i.id === input.id);
-    const index = currentIndex + direction;
-    if (index >= inputs.length) {
-      return 0;
-    }
-    if (index < 0) {
-      return inputs.length - 1;
-    }
+    let index = currentIndex;
+
+    do {
+      index += direction;
+      if (index >= inputs.length) {
+        index = 0;
+      }
+      if (index < 0) {
+        index = inputs.length - 1;
+      }
+    } while (inputs[index]?.isFocusable === false);
+
     return index;
   }
 
@@ -191,9 +196,6 @@ function List({ input, placeholder }) {
           ref={provided.innerRef}
           style={getStyle(provided.droppableProps.style, snapshot)}
         >
-          <div>
-            <Input input={input} type="text" placeholder="List description" />
-          </div>
           <GetListChildren parentId={id} />
           {provided.placeholder}
         </ul>
