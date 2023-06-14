@@ -70,9 +70,9 @@ function Trash({ trashData, displayState, setdisplayState }) {
                   }
                   DropdownBackgroundColor={
                     DropdownBackgroundColor &&
-                    DropdownBackgroundColor.inputValue
+                    DropdownBackgroundColor.state.value
                   }
-                  mainText={headingText.inputValue}
+                  mainText={headingText.state.value}
                 >
                   <OutputTemplet
                     deletedOn={deletedOn}

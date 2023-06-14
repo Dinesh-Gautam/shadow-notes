@@ -91,9 +91,9 @@ function MainOutput() {
                 key={id}
                 extraButtons={<AdditionalButtons userData={data} docId={id} />}
                 DropdownBackgroundColor={
-                  DropdownBackgroundColor && DropdownBackgroundColor.inputValue
+                  DropdownBackgroundColor && DropdownBackgroundColor.state.value
                 }
-                mainText={headingText.inputValue}
+                mainText={headingText.state.value}
               >
                 <OutputTemplet
                   publishDate={publishDate}
