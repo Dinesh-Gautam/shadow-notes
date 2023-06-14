@@ -52,6 +52,12 @@ function useInputActions() {
     });
   }
 
+  function inputFormCancel() {
+    inputsDispatch({
+      type: "cancel",
+    });
+  }
+
   function onDragEnd(result) {
     console.log(result);
     const sIndex = result?.source?.index;
@@ -80,6 +86,7 @@ function useInputActions() {
     inputFocusId,
     changeListType,
     changeInputChecked,
+    inputFormCancel,
   };
 }
 

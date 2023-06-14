@@ -27,7 +27,7 @@ export function getStyle(style, snapshot) {
 
 function MainInput() {
   const { formSubmitHandler } = useInputs();
-  const { onDragEnd } = useInputActions();
+  const { onDragEnd, inputFormCancel } = useInputActions();
 
   return (
     <form
@@ -52,6 +52,12 @@ function MainInput() {
 
       <div className={styles.inputControls}>
         <InputControls />
+        <div className={styles.formControls}>
+          <button type="button" onClick={() => inputFormCancel()}>
+            Cancel
+          </button>
+          <button>Submit</button>
+        </div>
       </div>
     </form>
   );

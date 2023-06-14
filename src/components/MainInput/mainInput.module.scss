@@ -40,5 +40,12 @@ form {
   display: flex;
   align-items: center;
   padding: $padding-default;
+  justify-content: space-between;
   // height: 10%;
+}
+
+.formControls {
+  display: flex;
+  align-items: center;
+  gap: $padding-default;
 }

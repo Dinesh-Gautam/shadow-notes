@@ -24,27 +24,29 @@ function InputControls() {
     });
   };
   return (
-    <div className="input_selection">
-      <div className="selection_input_btn">
-        <select
-          name="inputs_options"
-          value={inputSelect}
-          onChange={(e) => setInputSelect(e.target.value)}
-        >
-          {inputOptions.map((inputType) => {
-            return (
-              <option key={inputType.name} value={inputType.value}>
-                {inputType.value}
-              </option>
-            );
-          })}
-        </select>
-        <Button
-          attr={{ onClick: inputAdderHandler }}
-          text={<UseSvg type="add" />}
-        />
+    <>
+      <div className="input_selection">
+        <div className="selection_input_btn">
+          <select
+            name="inputs_options"
+            value={inputSelect}
+            onChange={(e) => setInputSelect(e.target.value)}
+          >
+            {inputOptions.map((inputType) => {
+              return (
+                <option key={inputType.name} value={inputType.value}>
+                  {inputType.value}
+                </option>
+              );
+            })}
+          </select>
+          <Button
+            attr={{ onClick: inputAdderHandler }}
+            text={<UseSvg type="add" />}
+          />
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 
