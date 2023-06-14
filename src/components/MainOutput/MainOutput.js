@@ -5,38 +5,30 @@ import Loading from "../elements/Loading";
 import Button from "../MainInput/inputs/elements/Button";
 import OutputTemplet from "./OutputTemplet";
 import AdditionalButtons from "./smallComponents/AdditionalButtons";
+import { input } from "../MainInput/inputs/inputOptions";
 
 function MainOutput() {
-  const { filtererdUserData, userData: originalData } = useData();
+  const { filtererdUserData: filteredUserData, userData: originalData } =
+    useData();
   console.log(originalData);
-  console.log(filtererdUserData);
+  console.log(filteredUserData);
   const outputFilterString = "Results For";
   const userData =
-    Object.keys(filtererdUserData).length > 0
+    Object.keys(filteredUserData).length > 0
       ? originalData &&
         originalData.filter(({ data }) => {
-          return Object.keys(filtererdUserData).every((filter) => {
+          return Object.keys(filteredUserData).every((filter) => {
             if (filter === "colorFIlter") {
               return data.some(
                 (dataFields) =>
-                  dataFields.name === "color_input_value" &&
-                  dataFields.inputValue === filtererdUserData.colorFIlter
+                  dataFields.name === input.color &&
+                  dataFields.state.value === filteredUserData.colorFIlter
               );
             } else if (filter === "searchFilter") {
               return data.some((dataFields) => {
-                if (dataFields.name === "list_input_value") {
-                  return dataFields.inner.some((listValue) => {
-                    return RegExp(filtererdUserData[filter].toLowerCase()).test(
-                      listValue.value
-                        ? listValue.value.toLowerCase()
-                        : listValue.toLowerCase()
-                    );
-                  });
-                } else {
-                  return RegExp(filtererdUserData[filter].toLowerCase()).test(
-                    dataFields.inputValue.toLowerCase()
-                  );
-                }
+                return RegExp(filteredUserData[filter].toLowerCase()).test(
+                  dataFields.state?.value.toLowerCase()
+                );
               });
             }
 
@@ -47,28 +39,28 @@ function MainOutput() {
 
   return (
     <div className="mainoutput_container">
-      {Object.keys(filtererdUserData).length > 0 ? (
+      {Object.keys(filteredUserData).length > 0 ? (
         <span className="output_filter_label">
-          {filtererdUserData.colorFIlter && (
+          {filteredUserData.colorFIlter && (
             <div className="color_filter_container output">
               {outputFilterString}
               <Button
                 attr={{
-                  value: filtererdUserData.colorFIlter,
+                  value: filteredUserData.colorFIlter,
                   name: "color_input_value",
-                  style: { backgroundColor: filtererdUserData.colorFIlter },
+                  style: { backgroundColor: filteredUserData.colorFIlter },
                   className: "random-color-btn colro-btn",
                 }}
               />
             </div>
           )}
 
-          {filtererdUserData.searchFilter &&
+          {filteredUserData.searchFilter &&
             `${
-              Object.keys(filtererdUserData).length < 2
+              Object.keys(filteredUserData).length < 2
                 ? outputFilterString
                 : " and"
-            } "${filtererdUserData.searchFilter}"`}
+            } "${filteredUserData.searchFilter}"`}
         </span>
       ) : null}
       <div className="mainoutput_wraper">
@@ -81,10 +73,10 @@ function MainOutput() {
         ) : (
           userData.map(({ data, id, publishDate }) => {
             const headingText = data.find(
-              (data) => data.name === "heading_input_value"
+              (data) => data.name === input.heading
             );
             const DropdownBackgroundColor = data.find(
-              (data) => data.name === "color_input_value"
+              (data) => data.name === input.color
             );
             return (
               <DropDown
