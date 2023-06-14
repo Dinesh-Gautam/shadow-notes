@@ -182,12 +182,42 @@ export function InputContext(props) {
   const [inputFocusId, setInputFocusId] = useState(null);
 
   const [inputs, inputsDispatch] = useReducer(setInputs, initialState);
+  const { setData_firestore, updateData_firestore } = useData();
+  const formSubmitHandler = (e) => {
+    e.preventDefault();
+
+    // setisEditMode({ edit: false, editParameters: {} });
+    inputsDispatch({
+      type: "clear",
+    });
+
+    const filteredInputs = inputs.filter(
+      (e) => e?.state?.value && e.state.value !== ""
+    );
+
+    console.log(filteredInputs);
+
+    // if (isEditMode.edit) {
+    //   const docId = isEditMode.editParameters;
+    //   updateData_firestore(docId, {
+    //     data: finalInputSubmitValues.filter((e) => e !== null),
+    //   });
+    // } else {
+    // setData_firestore({
+    //   delete: false,
+    //   options: false,
+    //   publishDate: serverTimestamp(),
+    //   data: filteredInputs,
+    // });
+    // }
+  };
 
   const value = {
     inputs,
     inputsDispatch,
     inputFocusId,
     setInputFocusId,
+    formSubmitHandler,
   };
   return (
     <input_context.Provider value={value}>

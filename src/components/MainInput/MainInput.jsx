@@ -53,10 +53,15 @@ function MainInput() {
       <div className={styles.inputControls}>
         <InputControls />
         <div className={styles.formControls}>
-          <button type="button" onClick={() => inputFormCancel()}>
+          <button
+            type="button"
+            onClick={() => {
+              inputFormCancel();
+            }}
+          >
             Cancel
           </button>
-          <button>Submit</button>
+          <button onClick={() => formSubmitHandler()}>Submit</button>
         </div>
       </div>
     </form>
