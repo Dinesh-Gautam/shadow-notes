@@ -1,6 +1,6 @@
 import React from "react";
 import { useData } from "../context/DatabaseContext";
-import DropDown from "./elements/DropDown";
+import DropDown from "./elements/DropDown/DropDown";
 import Loading from "./elements/Loading";
 import Separator from "./elements/Separator";
 import UseSvg from "./elements/UseSvg";

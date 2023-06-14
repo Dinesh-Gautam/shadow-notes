@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import Separator from "./Separator";
-import UseSvg from "./UseSvg";
-
+import Separator from "../Separator";
+import UseSvg from "../UseSvg";
+import styles from "./DropDown.module.scss";
 function DropDown({
   children,
   className,
@@ -10,28 +10,30 @@ function DropDown({
   DropdownBackgroundColor,
   id,
 }) {
-  const [dropdownDisplay, setdropdownDisplay] = useState(false);
+  const [dropdownDisplay, setDropdownDisplay] = useState(false);
 
   const dropInnerContainer = () => {
-    setdropdownDisplay((prev) => !prev);
+    setDropdownDisplay((prev) => !prev);
   };
 
   return (
     <div
-      className={`dropdown_container ${dropdownDisplay ? "visible" : false}`}
+      className={
+        styles.container + " " + (dropInnerContainer ? styles.visible : "")
+      }
       id={id}
     >
-      <div className="dropdown_wraper">
+      <div className={styles.wrapper}>
         <div
           style={{ backgroundColor: DropdownBackgroundColor || "" }}
-          className="dropdown_header_side_color"
+          className={styles.headerSideColor}
         ></div>
-        <div className="dropdown_heading">
-          <h1 className={className || "default_dropdown_main_container"}>
+        <div onClick={dropInnerContainer} className={styles.heading}>
+          <h1 className={className || styles.defaultDropDownMainContainer}>
             {mainText}
           </h1>
         </div>
-        <div className="dropdown_btn_container">
+        <div className={styles.buttonContainer}>
           {extraButtons}
           <Separator type="vertical-medium" />
           <button
@@ -44,7 +46,9 @@ function DropDown({
           </button>
         </div>
       </div>
-      <div className="dropdown_inner_container">{children}</div>
+      {dropdownDisplay && (
+        <div className={styles.innerContainer}>{children}</div>
+      )}
     </div>
   );
 }
