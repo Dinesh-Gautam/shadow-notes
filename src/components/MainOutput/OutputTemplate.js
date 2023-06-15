@@ -1,6 +1,7 @@
 import React from "react";
 import { useData } from "../../context/DatabaseContext";
-
+import { input, listTypes } from "../MainInput/inputs/inputOptions";
+import inputStyles from "../MainInput/inputs/inputField.module.scss";
 export function HighlightTextOnSearchMatch({ text }) {
   const { filterData } = useData();
   if (filterData.searchFilter) {
@@ -45,7 +46,7 @@ function OutputTemplate({
       {userData
         .filter((data) => !data.parentId)
         .map((data) => {
-          const { name, value, state, id } = data;
+          const { name, value, state, id, type } = data;
           const inputValue = state?.value;
           const additionalValue = state?.labelValue;
 
@@ -89,13 +90,31 @@ function OutputTemplate({
               )}
 
               {}
-              {name === "list_input_value" && (
-                <ul className="list_input_ul">
+              {name === input.list && (
+                <ul
+                  style={{
+                    listStyle: type === listTypes.checked ? "none" : "initial",
+                  }}
+                  className="list_input_ul"
+                >
                   {userData
                     .filter((e) => e.parentId === id)
                     .map((data) => {
                       return (
-                        <li>
+                        <li
+                          style={{
+                            position: "relative",
+                          }}
+                          key={data.id}
+                        >
+                          {type === listTypes.checked && (
+                            <input
+                              className={inputStyles.listCheckbox}
+                              type="checkbox"
+                              checked={data.state.checked}
+                            />
+                          )}
+
                           <HighlightTextOnSearchMatch text={data.state.value} />
                         </li>
                       );

@@ -19,15 +19,14 @@
   li {
     position: relative;
   }
-  .listCheckbox {
-    position: absolute;
-    left: -$padding-default;
-    width: fit-content;
-    top: 50%;
-    transform: translateY(-50%);
-  }
 }
-
+.listCheckbox {
+  position: absolute;
+  left: -$padding-default;
+  width: fit-content;
+  top: 50%;
+  transform: translateY(-50%);
+}
 .image {
   padding: $padding-default;
 }

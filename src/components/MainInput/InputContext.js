@@ -196,9 +196,7 @@ export function InputContext(props) {
       type: "clear",
     });
 
-    const filteredInputs = inputs.filter(
-      (e) => e?.state?.value && e.state.value !== ""
-    );
+    const filteredInputs = inputs.filter((e) => e?.state?.value !== "");
 
     console.log(filteredInputs);
 
