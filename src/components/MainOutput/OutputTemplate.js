@@ -109,6 +109,23 @@ function OutputTemplate({
                         >
                           {type === listTypes.checked && (
                             <input
+                              onClick={() => {
+                                const updatedData = userData.map((e) =>
+                                  e.id === id
+                                    ? {
+                                        ...e,
+                                        state: {
+                                          ...e.state,
+                                          checked: !e?.state?.checked ?? true,
+                                        },
+                                      }
+                                    : e
+                                );
+
+                                updateData_fireStore(docId, {
+                                  data: updatedData,
+                                });
+                              }}
                               className={inputStyles.listCheckbox}
                               type="checkbox"
                               checked={data.state.checked}
