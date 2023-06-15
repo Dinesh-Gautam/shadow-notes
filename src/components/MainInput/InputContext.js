@@ -27,7 +27,12 @@ const addElement = (state, action) => {
     // return state.addToLast({ ...selectedInput, id, parentId })
     return sortArray([
       ...state,
-      { ...selectedInput, id, parentId, isFocusable },
+      {
+        ...selectedInput,
+        id,
+        parentId: parentId || null,
+        isFocusable: isFocusable || null,
+      },
     ]);
   } else {
     return [
@@ -182,7 +187,7 @@ export function InputContext(props) {
   const [inputFocusId, setInputFocusId] = useState(null);
 
   const [inputs, inputsDispatch] = useReducer(setInputs, initialState);
-  const { setData_firestore, updateData_firestore } = useData();
+  const { setData_fireStore, updateData_fireStore } = useData();
   const formSubmitHandler = (e) => {
     e.preventDefault();
 
@@ -199,16 +204,16 @@ export function InputContext(props) {
 
     // if (isEditMode.edit) {
     //   const docId = isEditMode.editParameters;
-    //   updateData_firestore(docId, {
+    //   updateData_fireStore(docId, {
     //     data: finalInputSubmitValues.filter((e) => e !== null),
     //   });
     // } else {
-    // setData_firestore({
-    //   delete: false,
-    //   options: false,
-    //   publishDate: serverTimestamp(),
-    //   data: filteredInputs,
-    // });
+    setData_fireStore({
+      delete: false,
+      options: false,
+      publishDate: serverTimestamp(),
+      data: filteredInputs,
+    });
     // }
   };
 

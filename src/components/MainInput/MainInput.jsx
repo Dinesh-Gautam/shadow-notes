@@ -61,7 +61,7 @@ function MainInput() {
           >
             Cancel
           </button>
-          <button onClick={() => formSubmitHandler()}>Submit</button>
+          <button onClick={formSubmitHandler}>Submit</button>
         </div>
       </div>
     </form>

@@ -11,7 +11,7 @@ import { serverTimestamp } from "firebase/firestore";
 function AdditionalButtons({ docId, userData }) {
   const { inputsDispatch, inputValueDispatch, setisEditMode } = useInputs();
 
-  const { updateData_firestore } = useData();
+  const { updateData_fireStore } = useData();
 
   const editButtonHandler = () => {
     setisEditMode((prev) => {
@@ -118,7 +118,7 @@ function AdditionalButtons({ docId, userData }) {
             delete: true,
             deletedOn: serverTimestamp(),
           };
-          updateData_firestore(docId, data);
+          updateData_fireStore(docId, data);
         }}
       >
         <UseSvg type="close" />

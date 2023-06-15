@@ -8,7 +8,7 @@ import UseSvg from "../elements/UseSvg";
 import { input } from "../MainInput/inputs/inputOptions";
 
 function OutputFilter({ userDisplay, setuserDisplay }) {
-  const { trashData, settrashData, userData, setfiltererdUserData } = useData();
+  const { trashData, settrashData, userData, setfilterData } = useData();
   return (
     <>
       <div className="search_filters">
@@ -33,11 +33,11 @@ function OutputFilter({ userDisplay, setuserDisplay }) {
                   .filter((e) => e)
               }
               data={userData}
-              setData={setfiltererdUserData}
+              setData={setfilterData}
             />
           )}
         {userData && userData.length > 0 && (
-          <SearchFilter setData={setfiltererdUserData} />
+          <SearchFilter setData={setfilterData} />
         )}
       </div>
     </>

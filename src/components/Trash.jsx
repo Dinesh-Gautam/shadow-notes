@@ -5,10 +5,10 @@ import Loading from "./elements/Loading";
 import Separator from "./elements/Separator";
 import UseSvg from "./elements/UseSvg";
 import Button from "./MainInput/inputs/elements/Button";
-import OutputTemplet from "./MainOutput/OutputTemplet";
+import OutputTemplate from "./MainOutput/OutputTemplate";
 
 function Trash({ trashData, displayState, setdisplayState }) {
-  const { updateData_firestore, setundoTrigger } = useData();
+  const { updateData_fireStore, setundoTrigger } = useData();
 
   return (
     <div id="trash" style={{ display: displayState }}>
@@ -49,7 +49,7 @@ function Trash({ trashData, displayState, setdisplayState }) {
                           const data = {
                             delete: false,
                           };
-                          updateData_firestore(id, data);
+                          updateData_fireStore(id, data);
                         }}
                       >
                         Restore
@@ -74,7 +74,7 @@ function Trash({ trashData, displayState, setdisplayState }) {
                   }
                   mainText={headingText.state.value}
                 >
-                  <OutputTemplet
+                  <OutputTemplate
                     deletedOn={deletedOn}
                     isInTrash={true}
                     userData={data}

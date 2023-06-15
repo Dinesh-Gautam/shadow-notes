@@ -2,13 +2,13 @@ import React from "react";
 import { useData } from "../../context/DatabaseContext";
 
 export function HighlightTextOnSearchMatch({ text }) {
-  const { filtererdUserData } = useData();
-  if (filtererdUserData.searchFilter) {
-    const regex = new RegExp(`${filtererdUserData.searchFilter}`, "gi");
+  const { filterData } = useData();
+  if (filterData.searchFilter) {
+    const regex = new RegExp(`${filterData.searchFilter}`, "gi");
     const search = text.search(regex);
     const startIndex = search;
     if (startIndex < 0) return text;
-    const textLength = filtererdUserData.searchFilter.length;
+    const textLength = filterData.searchFilter.length;
     const firstSlice = text.slice(0, startIndex);
     const secondSlice = text.slice(startIndex, startIndex + textLength);
     const thirdSlice = text.slice(startIndex + textLength, text.length);
@@ -32,10 +32,16 @@ export function HighlightTextOnSearchMatch({ text }) {
   }
 }
 
-function OutputTemplet({ docId, isInTrash, userData, publishDate, deletedOn }) {
-  const { updateData_firestore } = useData();
+function OutputTemplate({
+  docId,
+  isInTrash,
+  userData,
+  publishDate,
+  deletedOn,
+}) {
+  const { updateData_fireStore } = useData();
   return (
-    <div className="outputTemplet_wraper">
+    <div className="OutputTemplate_wraper">
       {userData
         .filter((data) => !data.parentId)
         .map((data) => {
@@ -113,4 +119,4 @@ function OutputTemplet({ docId, isInTrash, userData, publishDate, deletedOn }) {
   );
 }
 
-export default OutputTemplet;
+export default OutputTemplate;

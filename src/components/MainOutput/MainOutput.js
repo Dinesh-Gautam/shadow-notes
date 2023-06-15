@@ -3,13 +3,12 @@ import { useData } from "../../context/DatabaseContext";
 import DropDown from "../elements/DropDown/DropDown";
 import Loading from "../elements/Loading";
 import Button from "../MainInput/inputs/elements/Button";
-import OutputTemplet, { HighlightTextOnSearchMatch } from "./OutputTemplet";
+import OutputTemplate, { HighlightTextOnSearchMatch } from "./OutputTemplate";
 import AdditionalButtons from "./smallComponents/AdditionalButtons";
 import { input } from "../MainInput/inputs/inputOptions";
 
 function MainOutput() {
-  const { filtererdUserData: filteredUserData, userData: originalData } =
-    useData();
+  const { filterData: filteredUserData, userData: originalData } = useData();
   console.log(originalData);
   console.log(filteredUserData);
   const outputFilterString = "Results For";
@@ -89,7 +88,7 @@ function MainOutput() {
                   <HighlightTextOnSearchMatch text={headingText.state.value} />
                 }
               >
-                <OutputTemplet
+                <OutputTemplate
                   publishDate={publishDate}
                   userData={data}
                   completeData={userData}

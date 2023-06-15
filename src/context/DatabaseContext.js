@@ -45,7 +45,7 @@ export function DatabaseContext({ children }) {
     if (undoTrigger.trigger) {
       undoInterval = setTimeout(() => {
         undoTrigger.id.forEach((eachId) => {
-          deleteData_firestore(eachId);
+          deleteData_fireStore(eachId);
         });
         setUndoTrigger({ trigger: false, id: [] });
       }, 10000);
@@ -144,7 +144,7 @@ export function DatabaseContext({ children }) {
         // add newData to userDocCollection
         Promise.all(deleteDocs).then(() => {
           newData.forEach((eachData) => {
-            setData_firestore(eachData);
+            setData_fireStore(eachData);
           });
 
           window.alert("migrated");
@@ -162,7 +162,8 @@ export function DatabaseContext({ children }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userID]);
 
-  function setData_firestore(data) {
+  function setData_fireStore(data) {
+    console.log(data);
     setDoc(
       userDoc,
       {
@@ -179,13 +180,13 @@ export function DatabaseContext({ children }) {
     });
   }
 
-  function updateData_firestore(docId, data) {
+  function updateData_fireStore(docId, data) {
     console.log("updated");
     const toBeUpdatedDoc = doc(userDocCollection, docId);
     setDoc(toBeUpdatedDoc, data, { merge: true });
   }
 
-  function deleteData_firestore(docId) {
+  function deleteData_fireStore(docId) {
     const toBeDeletedDoc = doc(userDocCollection, docId);
     deleteDoc(toBeDeletedDoc);
   }
@@ -193,16 +194,16 @@ export function DatabaseContext({ children }) {
   const value = {
     data,
     setdata: setData,
-    setData_firestore,
-    updateData_firestore,
+    setData_fireStore,
+    updateData_fireStore,
     userData,
     setuserData: setUserData,
     trashData,
     settrashData: setTrashData,
     userID,
-    filtererdUserData: filterData,
-    setfiltererdUserData: setFilterData,
-    deleteData_firestore,
+    filterData: filterData,
+    setfilterData: setFilterData,
+    deleteData_fireStore,
     undoTrigger,
     setundoTrigger: setUndoTrigger,
   };
