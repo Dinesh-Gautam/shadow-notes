@@ -3,7 +3,7 @@ import { useData } from "../../context/DatabaseContext";
 import DropDown from "../elements/DropDown/DropDown";
 import Loading from "../elements/Loading";
 import Button from "../MainInput/inputs/elements/Button";
-import OutputTemplet from "./OutputTemplet";
+import OutputTemplet, { HighlightTextOnSearchMatch } from "./OutputTemplet";
 import AdditionalButtons from "./smallComponents/AdditionalButtons";
 import { input } from "../MainInput/inputs/inputOptions";
 
@@ -85,7 +85,9 @@ function MainOutput() {
                 DropdownBackgroundColor={
                   DropdownBackgroundColor && DropdownBackgroundColor.state.value
                 }
-                mainText={headingText.state.value}
+                mainText={
+                  <HighlightTextOnSearchMatch text={headingText.state.value} />
+                }
               >
                 <OutputTemplet
                   publishDate={publishDate}

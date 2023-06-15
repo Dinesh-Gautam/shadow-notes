@@ -15,6 +15,7 @@ import {
 import { db } from "../firebase";
 import { useAuth } from "./AuthContext";
 import { uuidv4 } from "@firebase/util";
+import { listTypes } from "../components/MainInput/inputs/inputOptions";
 
 const data_context = React.createContext();
 
@@ -28,11 +29,11 @@ let undoInterval = null;
 
 export function DatabaseContext({ children }) {
   const { currentUser } = useAuth();
-  const [data, setdata] = useState();
-  const [userData, setuserData] = useState(null);
-  const [trashData, settrashData] = useState(null);
-  const [filtererdUserData, setfiltererdUserData] = useState({});
-  const [undoTrigger, setundoTrigger] = useState({ trigger: false, id: [] });
+  const [data, setData] = useState();
+  const [userData, setUserData] = useState(null);
+  const [trashData, setTrashData] = useState(null);
+  const [filterData, setFilterData] = useState({});
+  const [undoTrigger, setUndoTrigger] = useState({ trigger: false, id: [] });
 
   const userID = currentUser?.uid || null;
 
@@ -46,7 +47,7 @@ export function DatabaseContext({ children }) {
         undoTrigger.id.forEach((eachId) => {
           deleteData_firestore(eachId);
         });
-        setundoTrigger({ trigger: false, id: [] });
+        setUndoTrigger({ trigger: false, id: [] });
       }, 10000);
     } else {
       undoInterval && clearInterval(undoInterval);
@@ -61,7 +62,7 @@ export function DatabaseContext({ children }) {
       orderBy("publishDate", "desc")
     );
     let unsubscribe = onSnapshot(q, (snapshot) => {
-      setuserData(
+      setUserData(
         snapshot.docs.map((doc) => {
           return { id: doc.id, ...doc.data() };
         })
@@ -79,6 +80,7 @@ export function DatabaseContext({ children }) {
         migrateV2DataToV3();
       }
     }
+
     function migrateV2DataToV3() {
       console.log(userDocCollection);
       // get all the documents from the v2 collection
@@ -106,6 +108,7 @@ export function DatabaseContext({ children }) {
                   state: { inputValue, checked },
                   id: uuidv4(),
                   parentId: id,
+                  type: listTypes.checked,
                 };
               });
               return [
@@ -189,19 +192,19 @@ export function DatabaseContext({ children }) {
 
   const value = {
     data,
-    setdata,
+    setdata: setData,
     setData_firestore,
     updateData_firestore,
     userData,
-    setuserData,
+    setuserData: setUserData,
     trashData,
-    settrashData,
+    settrashData: setTrashData,
     userID,
-    filtererdUserData,
-    setfiltererdUserData,
+    filtererdUserData: filterData,
+    setfiltererdUserData: setFilterData,
     deleteData_firestore,
     undoTrigger,
-    setundoTrigger,
+    setundoTrigger: setUndoTrigger,
   };
   return (
     <data_context.Provider value={value}>{children}</data_context.Provider>

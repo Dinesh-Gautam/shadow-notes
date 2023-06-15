@@ -1,7 +1,7 @@
 import React from "react";
 import { useData } from "../../context/DatabaseContext";
 
-function HighlightTextOnSearchMatch({ text }) {
+export function HighlightTextOnSearchMatch({ text }) {
   const { filtererdUserData } = useData();
   if (filtererdUserData.searchFilter) {
     const regex = new RegExp(`${filtererdUserData.searchFilter}`, "gi");

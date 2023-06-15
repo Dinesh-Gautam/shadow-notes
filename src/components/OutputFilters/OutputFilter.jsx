@@ -5,6 +5,7 @@ import SearchFilter from "./filterComponents/SearchFilter";
 import { useData } from "../../context/DatabaseContext";
 import Button from "../MainInput/inputs/elements/Button";
 import UseSvg from "../elements/UseSvg";
+import { input } from "../MainInput/inputs/inputOptions";
 
 function OutputFilter({ userDisplay, setuserDisplay }) {
   const { trashData, settrashData, userData, setfiltererdUserData } = useData();
@@ -13,19 +14,18 @@ function OutputFilter({ userDisplay, setuserDisplay }) {
       <div className="search_filters">
         <TrashBtn data={trashData} setData={settrashData} />
         {userData &&
-          userData.filter((e) =>
-            e.data.some((i) => i.name === "color_input_value")
-          ).length > 0 && (
+          userData.filter((e) => e.data.some((i) => i.name === input.color))
+            .length > 0 && (
             <ColorFilter
               appliedColors={
                 userData &&
                 userData
                   .map(({ data }) => {
                     const colorValue = data.find(
-                      (dataValue) => dataValue.name === "color_input_value"
+                      (dataValue) => dataValue.name === input.color
                     );
                     if (colorValue) {
-                      return colorValue.inputValue;
+                      return colorValue.state.value;
                     } else {
                       return false;
                     }
@@ -39,17 +39,6 @@ function OutputFilter({ userDisplay, setuserDisplay }) {
         {userData && userData.length > 0 && (
           <SearchFilter setData={setfiltererdUserData} />
         )}
-        <Button
-          attr={{
-            className: "user-info-btn",
-            onClick: () => {
-              setuserDisplay((prev) => !prev);
-            },
-          }}
-          text={
-            userDisplay ? <UseSvg type="close" /> : <UseSvg type="moreInfo" />
-          }
-        />
       </div>
     </>
   );
