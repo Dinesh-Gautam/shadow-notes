@@ -3,7 +3,8 @@ import { inputOptions, input } from "./inputs/inputOptions";
 import { useInputs } from "./InputContext";
 import { v4 as uuidv4 } from "uuid";
 function useInputActions() {
-  const { inputsDispatch, setInputFocusId, inputFocusId } = useInputs();
+  const { inputsDispatch, setInputFocusId, inputFocusId, setModalOpen } =
+    useInputs();
 
   function addInputElement({ selectedInput, id, isFocusable }) {
     inputsDispatch({
@@ -56,6 +57,7 @@ function useInputActions() {
     inputsDispatch({
       type: "cancel",
     });
+    setModalOpen(false);
   }
 
   function onDragEnd(result) {

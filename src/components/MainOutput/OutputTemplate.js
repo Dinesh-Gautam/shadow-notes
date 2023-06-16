@@ -48,7 +48,7 @@ function OutputTemplate({
         .map((data) => {
           const { name, value, state, id, type } = data;
           const inputValue = state?.value;
-          const additionalValue = state?.labelValue;
+          const additionalValue = state;
 
           let url = null;
           if (name === "link_input_value") {

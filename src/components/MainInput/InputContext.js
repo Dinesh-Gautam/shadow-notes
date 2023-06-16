@@ -161,6 +161,7 @@ function sortArray(array) {
 }
 
 const setInputs = (state, action) => {
+  console.log(action);
   switch (action.type) {
     case "addElement":
       return addElement(state, action);
@@ -174,8 +175,10 @@ const setInputs = (state, action) => {
       return changeListType(state, action);
     case "changeInputChecked":
       return changeInputChecked(state, action);
-    // case "localStorage":
-    //   return action.payload;
+    case "localStorage":
+      return action.payload;
+    case "edit":
+      return action.payload;
     case "cancel":
       return initialState;
     default:
@@ -184,35 +187,92 @@ const setInputs = (state, action) => {
 };
 
 export function InputContext(props) {
+  const saveStateRef = useRef(null);
   const [inputFocusId, setInputFocusId] = useState(null);
-
   const [inputs, inputsDispatch] = useReducer(setInputs, initialState);
   const { setData_fireStore, updateData_fireStore } = useData();
+  const [editMode, setEditMode] = useState({ edit: false, parameters: {} });
+  const [modalOpen, setModalOpen] = useState(false);
+
+  useEffect(() => {
+    clearTimeout(saveStateRef.current);
+    saveStateRef.current = setTimeout(() => {
+      if (hasAnyNotes()) {
+        localStorage.setItem("inputs", JSON.stringify(inputs));
+        localStorage.setItem("editMode", JSON.stringify(editMode));
+      } else {
+        localStorage.removeItem("inputs");
+        localStorage.removeItem("editMode");
+      }
+    }, 1000);
+  }, [inputs, editMode]);
+
+  useEffect(() => {
+    const LInputs = JSON.parse(localStorage.getItem("inputs"));
+    const LeditMode = JSON.parse(localStorage.getItem("editMode"));
+
+    if (LInputs) {
+      // alert(
+      //   "You have unsaved changes. Save them by clicking Submit or Done button"
+      // );
+
+      inputsDispatch({ type: "localStorage", payload: LInputs });
+      setEditMode(LeditMode);
+    }
+  }, []);
+
+  function unloadPage() {
+    if (hasAnyNotes()) {
+      return "You have unsaved changes on this page. Do you want to leave this page and discard your changes or stay on this page?";
+    }
+  }
+
+  useEffect(() => {
+    console.log(hasAnyNotes());
+
+    if (window.onbeforeunload === null) {
+      window.onbeforeunload = unloadPage;
+    }
+
+    return () => {
+      window.onbeforeunload = null;
+    };
+  }, [inputs]);
+
+  function hasAnyNotes() {
+    return inputs.some((e) => e?.state?.value && e?.state?.value !== "");
+  }
+
   const formSubmitHandler = (e) => {
     e.preventDefault();
+    const filteredInputs = inputs.filter((e) => e?.state?.value !== "");
 
-    // setisEditMode({ edit: false, editParameters: {} });
+    setEditMode({ edit: false, editParameters: {} });
+    setModalOpen(false);
+
     inputsDispatch({
-      type: "clear",
+      type: "cancel",
     });
 
-    const filteredInputs = inputs.filter((e) => e?.state?.value !== "");
+    if (!hasAnyNotes()) {
+      return null;
+    }
 
     console.log(filteredInputs);
 
-    // if (isEditMode.edit) {
-    //   const docId = isEditMode.editParameters;
-    //   updateData_fireStore(docId, {
-    //     data: finalInputSubmitValues.filter((e) => e !== null),
-    //   });
-    // } else {
-    setData_fireStore({
-      delete: false,
-      options: false,
-      publishDate: serverTimestamp(),
-      data: filteredInputs,
-    });
-    // }
+    if (editMode.edit) {
+      const docId = editMode.editParameters;
+      updateData_fireStore(docId, {
+        data: filteredInputs,
+      });
+    } else {
+      setData_fireStore({
+        delete: false,
+        options: false,
+        publishDate: serverTimestamp(),
+        data: filteredInputs,
+      });
+    }
   };
 
   const value = {
@@ -221,6 +281,11 @@ export function InputContext(props) {
     inputFocusId,
     setInputFocusId,
     formSubmitHandler,
+    editMode,
+    setEditMode,
+    hasAnyNotes,
+    modalOpen,
+    setModalOpen,
   };
   return (
     <input_context.Provider value={value}>

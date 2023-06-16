@@ -9,98 +9,22 @@ import Separator from "../../elements/Separator";
 import { serverTimestamp } from "firebase/firestore";
 
 function AdditionalButtons({ docId, userData }) {
-  const { inputsDispatch, inputValueDispatch, setisEditMode } = useInputs();
+  const { inputsDispatch, setEditMode } = useInputs();
+  const { setModalOpen } = useInputs();
 
   const { updateData_fireStore } = useData();
 
   const editButtonHandler = () => {
-    setisEditMode((prev) => {
+    setEditMode((prev) => {
       return { edit: true, editParameters: docId };
     });
     inputsDispatch({
-      type: "clear",
-    });
-    inputValueDispatch({
-      type: "clear",
+      type: "cancel",
     });
 
-    userData.forEach((e) => {
-      const { inputValue, name, id, additionalValue } = e;
-
-      const selectedInput = inputOptions.find((input) => input.name === name);
-
-      const firsInputId = uuidv4();
-
-      if (selectedInput) {
-        switch (name) {
-          case "list_input_value":
-            inputsDispatch({
-              type: "addElement",
-              payload: {
-                id: id,
-                selectedInput: {
-                  ...selectedInput,
-                  inner: [{ ...selectedInput.inner[0], id: firsInputId }],
-                },
-              },
-            });
-            inputValueDispatch({
-              type: "labelValue",
-              payload: { id: id, value: additionalValue?.labelValue },
-            });
-            e.inner.forEach((listInputValue, index) => {
-              const uid = uuidv4();
-
-              if (index < 1) {
-                inputValueDispatch({
-                  type: "listValue",
-                  payload: {
-                    parentId: id,
-                    childrenId: firsInputId,
-                    value: listInputValue,
-                  },
-                });
-              } else {
-                inputsDispatch({
-                  payload: { id, listId: uid },
-                  type: "addListElement",
-                });
-                inputValueDispatch({
-                  type: "listValue",
-                  payload: {
-                    parentId: id,
-                    childrenId: uid,
-                    value: listInputValue,
-                  },
-                });
-              }
-            });
-            break;
-
-          default:
-            inputsDispatch({
-              type: "addElement",
-              payload: { id: id, selectedInput },
-            });
-            inputValueDispatch({
-              type: "normalValue",
-              payload: { id: id, value: inputValue },
-            });
-            inputValueDispatch({
-              type: "labelValue",
-              payload: { id: id, value: additionalValue?.labelValue },
-            });
-            break;
-        }
-      } else {
-        if (name === "heading_input_value") {
-          inputValueDispatch({
-            type: "normalValue",
-            payload: { id: headingId, value: inputValue },
-          });
-        }
-      }
-    });
+    console.log(userData);
+    inputsDispatch({ type: "edit", payload: userData });
+    setModalOpen(true);
   };
 
   return (

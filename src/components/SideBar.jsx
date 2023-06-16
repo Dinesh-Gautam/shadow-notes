@@ -4,13 +4,15 @@ import UseSvg from "./elements/UseSvg";
 import Menu from "./elements/Menu/Menu";
 import Modal from "./elements/Modal/Modal";
 import MainInput from "./MainInput/MainInput";
+import { useInputs } from "./MainInput/InputContext";
 
 function SideBar() {
   const { logout, currentUser } = useAuth();
   const { photoURL, displayName, email } = currentUser;
   const menuButtonRef = useRef();
   const [menuOpen, setMenuOpen] = useState(false);
-  const [modalOpen, setModalOpen] = useState(true);
+  const { modalOpen, setModalOpen } = useInputs();
+
   return (
     <div className="sidebar-container">
       <div className="upper-container">
