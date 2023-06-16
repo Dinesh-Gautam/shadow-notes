@@ -6,19 +6,31 @@ import { input as inputNames } from "./inputOptions";
 import { getStyle } from "../MainInput";
 import styles from "./InputBody.module.scss";
 import useInputActions from "../useInputActions";
+
+function ColorInput({ input }) {
+  return (
+    <div
+      style={{
+        backgroundColor: input?.state?.value,
+      }}
+      className={styles.colorInput}
+    ></div>
+  );
+}
+
 function InputBody() {
   const { inputs } = useInputs();
   const { onDragEnd } = useInputActions();
   return (
     <>
-      {inputs.map(
-        (input, index) =>
-          input.name === inputNames.heading && (
-            <div key={input.id}>
-              <InputField input={input} />
-            </div>
-          )
-      )}
+      <div className={styles.heading}>
+        {inputs.map((input, index) => (
+          <>
+            {input.name === inputNames.color && <ColorInput input={input} />}
+            {input.name === inputNames.heading && <InputField input={input} />}
+          </>
+        ))}
+      </div>
 
       <DragDropContext onDragEnd={onDragEnd}>
         <Droppable droppableId="droppable" type="main">
@@ -32,7 +44,9 @@ function InputBody() {
               {inputs
                 .filter(
                   (input) =>
-                    !input.parentId && input.name !== inputNames.heading
+                    !input.parentId &&
+                    input.name !== inputNames.heading &&
+                    input.name !== inputNames.color
                 )
                 .map((input, index) => (
                   <Draggable

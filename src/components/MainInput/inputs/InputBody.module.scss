@@ -1,5 +1,26 @@
 @import "../../../styles/variables";
 
+.heading {
+  border-radius: $border-radius-default;
+  overflow: hidden;
+  box-shadow: $boxShadow-default;
+  margin-bottom: $padding-less;
+  display: flex;
+  input {
+    padding: $padding-default;
+    border: none;
+    border-radius: 0;
+    order: 1;
+  }
+}
+
+.colorInput {
+  height: 100%;
+  width: 32px;
+  background: red;
+  order: 0;
+}
+
 .inputBody {
   height: 100%;
   overflow-y: auto;
@@ -8,9 +29,10 @@
   display: flex;
   flex-direction: column;
   background: var(--default-color);
+  box-shadow: $boxShadow-default;
 
   & > div {
-    margin-bottom: $padding-default * 2;
+    margin-bottom: $padding-default;
   }
   input {
     border: none;

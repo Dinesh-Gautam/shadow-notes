@@ -13,14 +13,13 @@ export function getStyle(style, snapshot) {
     return {
       ...style,
       borderRadius: "6px",
-      margin: 6,
     };
   }
 
   return {
     ...style,
     borderRadius: "6px",
-    margin: 6,
+    outlineOffset: "-6px",
     outline: "3px dashed rgba(0,0,0,0.1)",
   };
 }

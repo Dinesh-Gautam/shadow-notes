@@ -5,14 +5,14 @@ import Menu from "./elements/Menu/Menu";
 import Modal from "./elements/Modal/Modal";
 import MainInput from "./MainInput/MainInput";
 import { useInputs } from "./MainInput/InputContext";
+import useMenu from "./elements/Menu/Menu";
 
 function SideBar() {
   const { logout, currentUser } = useAuth();
   const { photoURL, displayName, email } = currentUser;
-  const menuButtonRef = useRef();
-  const [menuOpen, setMenuOpen] = useState(false);
-  const { modalOpen, setModalOpen, editMode } = useInputs();
 
+  const { modalOpen, setModalOpen, editMode } = useInputs();
+  const { Menu, AnchorWrapper } = useMenu();
   return (
     <div className="sidebar-container">
       <div className="upper-container">
@@ -29,23 +29,21 @@ function SideBar() {
           </div>
         </div>
         <div className="user-buttons">
-          <button
-            onBlur={() => setMenuOpen(false)}
-            onClick={() => setMenuOpen((prev) => !prev)}
-            ref={menuButtonRef}
-          >
-            <UseSvg type="moreInfo" />
-          </button>
+          <AnchorWrapper>
+            <button>
+              <UseSvg type="moreInfo" />
+            </button>
+          </AnchorWrapper>
         </div>
       </div>
-      {menuOpen && (
-        <Menu anchorRef={menuButtonRef}>
-          <button onClick={logout}>
-            <span> Sign Out </span>
-            <UseSvg type="logOut" />
-          </button>
-        </Menu>
-      )}
+
+      <Menu>
+        <button onClick={logout}>
+          <span> Sign Out </span>
+          <UseSvg type="logOut" />
+        </button>
+      </Menu>
+
       <Modal
         open={modalOpen}
         setOpen={setModalOpen}
