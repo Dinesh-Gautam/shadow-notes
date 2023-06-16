@@ -3,36 +3,9 @@ form {
   height: 100%;
   max-height: 100%;
   overflow: hidden;
-  background: var(--default-color);
-  border-radius: $border-radius-default;
+  // border-radius: $border-radius-default;
   display: grid;
-  grid-template-rows: 1fr auto;
-}
-
-.inputBody {
-  height: 100%;
-  overflow-y: auto;
-  padding: $padding-less;
-  display: flex;
-  flex-direction: column;
-
-  & > div {
-    margin-bottom: $padding-default * 2;
-  }
-  input {
-    border: none;
-    border-radius: 0;
-    font-family: "Poppins";
-  }
-  a {
-    margin-inline: $padding-default;
-    margin-block: $padding-less;
-    display: block;
-    width: fit-content;
-    &:hover {
-      text-decoration: underline !important;
-    }
-  }
+  grid-template-rows: min-content 1fr auto;
 }
 
 .inputControls {
@@ -40,12 +13,20 @@ form {
   display: flex;
   align-items: center;
   padding: $padding-default;
+  // padding-bottom: 0;
   justify-content: space-between;
   // height: 10%;
+  button {
+    background: var(--default-color);
+  }
 }
 
 .formControls {
   display: flex;
   align-items: center;
   gap: $padding-default;
+
+  button {
+    background: var(--default-color);
+  }
 }

@@ -192,7 +192,7 @@ export function InputContext(props) {
   const [inputs, inputsDispatch] = useReducer(setInputs, initialState);
   const { setData_fireStore, updateData_fireStore } = useData();
   const [editMode, setEditMode] = useState({ edit: false, parameters: {} });
-  const [modalOpen, setModalOpen] = useState(false);
+  const [modalOpen, setModalOpen] = useState(true);
 
   useEffect(() => {
     clearTimeout(saveStateRef.current);

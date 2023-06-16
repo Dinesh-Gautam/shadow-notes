@@ -1,0 +1,29 @@
+@import "../../../styles/variables";
+
+.inputBody {
+  height: 100%;
+  overflow-y: auto;
+  padding: $padding-less;
+  padding-top: $padding-default * 2;
+  display: flex;
+  flex-direction: column;
+  background: var(--default-color);
+
+  & > div {
+    margin-bottom: $padding-default * 2;
+  }
+  input {
+    border: none;
+    border-radius: 0;
+    font-family: "Poppins";
+  }
+  a {
+    margin-inline: $padding-default;
+    margin-block: $padding-less;
+    display: block;
+    width: fit-content;
+    &:hover {
+      text-decoration: underline !important;
+    }
+  }
+}

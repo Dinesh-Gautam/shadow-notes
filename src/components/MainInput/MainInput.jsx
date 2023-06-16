@@ -34,21 +34,7 @@ function MainInput() {
       className={styles.form}
       //  onSubmit={formSubmitHandler}
     >
-      <DragDropContext onDragEnd={onDragEnd}>
-        <Droppable droppableId="droppable" type="main">
-          {(provided, snapshot) => (
-            <div
-              {...provided.droppableProps}
-              ref={provided.innerRef}
-              className={styles.inputBody}
-              style={getStyle(provided.droppableProps.style, snapshot)}
-            >
-              <InputBody />
-              {provided.placeholder}
-            </div>
-          )}
-        </Droppable>
-      </DragDropContext>
+      <InputBody />
 
       <div className={styles.inputControls}>
         <InputControls />

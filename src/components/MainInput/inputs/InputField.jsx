@@ -115,6 +115,12 @@ function InputField({ input }) {
         </InputWrapper>
       )}
 
+      {input.name === InputOption.description && (
+        <InputWrapper input={input}>
+          <TitleInput input={input} placeholder={input.value} />
+        </InputWrapper>
+      )}
+
       {input.name === InputOption.list && (
         <InputWrapper
           input={input}
@@ -187,7 +193,7 @@ function ListFooterButtons({ id, type }) {
   );
 }
 
-function HeadingInput({ input, placeholder }) {
+export function HeadingInput({ input, placeholder }) {
   return <Input input={input} placeholder={placeholder} type="text"></Input>;
 }
 
