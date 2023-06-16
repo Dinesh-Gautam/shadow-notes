@@ -52,7 +52,7 @@ export const inputOptions = [
     value: "Color",
     name: "color_input_value",
     isOption: true,
-    defaultValue: "#000000",
+    state: { value: "#000000" },
   },
   // {
   //   value: "Remider",

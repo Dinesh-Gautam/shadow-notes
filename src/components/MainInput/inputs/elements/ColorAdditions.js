@@ -4,25 +4,35 @@ import { useData } from "../../../../context/DatabaseContext";
 import useInputActions from "../../useInputActions";
 import { useMemo } from "react";
 
-const colors = () => ({
-  colors: Array.from({ length: 20 }, () => {
-    const HexColor = () =>
-      "#" + Math.floor(Math.random() * 16777215).toString(16);
-    const color = HexColor();
-    return color.length <= 6 ? "#000000" : color;
-  }),
+const randomColors = Array.from({ length: 20 }, () => {
+  const HexColor = () =>
+    "#" + Math.floor(Math.random() * 16777215).toString(16);
+  const color = HexColor();
+  return color.length <= 6 ? "#000000" : color;
 });
 
 function ColorAdditions({ input }) {
   const { userData } = useData();
   const { changeInputValue } = useInputActions();
 
-  const randomColors = useMemo(colors, []);
   return (
     <>
+      <div>
+        <input
+          type="color"
+          onChange={(e) =>
+            changeInputValue({
+              id: input.id,
+              value: e.target.value,
+            })
+          }
+          value={input?.state?.value}
+          className="color_input"
+        />
+      </div>
       <label> Random Colors </label>
       <div className="random_color">
-        {randomColors.colors.map((colorValue, index) => (
+        {randomColors.map((colorValue, index) => (
           <Button
             key={index}
             attr={{
@@ -79,4 +89,4 @@ function ColorAdditions({ input }) {
   );
 }
 
-export default ColorAdditions;
+export default memo(ColorAdditions);

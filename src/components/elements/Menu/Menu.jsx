@@ -9,7 +9,10 @@ function useMenu() {
     AnchorWrapper: ({ children }) => {
       return (
         <div
-          onBlur={() => setMenuOpen(false)}
+          className={styles.anchorWrapper}
+          onBlur={(e) => {
+            setMenuOpen(false);
+          }}
           onClick={() => setMenuOpen((prev) => !prev)}
           ref={anchorRef}
         >
