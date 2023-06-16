@@ -1,27 +1,36 @@
-import React from "react";
+import React, { memo } from "react";
 import Button from "./Button";
 import { useData } from "../../../../context/DatabaseContext";
+import useInputActions from "../../useInputActions";
+import { useMemo } from "react";
 
-function ColorAdditons({ inputValueDispatch, parentId }) {
+const colors = () => ({
+  colors: Array.from({ length: 20 }, () => {
+    const HexColor = () =>
+      "#" + Math.floor(Math.random() * 16777215).toString(16);
+    const color = HexColor();
+    return color.length <= 6 ? "#000000" : color;
+  }),
+});
+
+function ColorAdditions({ input }) {
   const { userData } = useData();
+  const { changeInputValue } = useInputActions();
+
+  const randomColors = useMemo(colors, []);
   return (
     <>
       <label> Random Colors </label>
       <div className="random_color">
-        {Array.from({ length: 20 }, () => {
-          const HexColor = () =>
-            "#" + Math.floor(Math.random() * 16777215).toString(16);
-          const color = HexColor();
-          return color.length <= 6 ? "#000000" : color;
-        }).map((colorValue, index) => (
+        {randomColors.colors.map((colorValue, index) => (
           <Button
             key={index}
             attr={{
               value: colorValue,
               onClick: () => {
-                inputValueDispatch({
-                  type: "normalValue",
-                  payload: { id: parentId, value: colorValue },
+                changeInputValue({
+                  id: input.id,
+                  value: colorValue,
                 });
               },
               name: "color_input_value",
@@ -40,7 +49,7 @@ function ColorAdditons({ inputValueDispatch, parentId }) {
                 (dataValue) => dataValue.name === "color_input_value"
               );
               if (colorValue) {
-                return colorValue.inputValue;
+                return colorValue.state.value;
               } else {
                 return false;
               }
@@ -53,9 +62,9 @@ function ColorAdditons({ inputValueDispatch, parentId }) {
                   attr={{
                     value: value,
                     onClick: () => {
-                      inputValueDispatch({
-                        type: "normalValue",
-                        payload: { id: parentId, value: value },
+                      changeInputValue({
+                        id: input.id,
+                        value,
                       });
                     },
                     name: "color_input_value",
@@ -70,4 +79,4 @@ function ColorAdditons({ inputValueDispatch, parentId }) {
   );
 }
 
-export default ColorAdditons;
+export default ColorAdditions;

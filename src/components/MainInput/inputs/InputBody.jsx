@@ -6,6 +6,8 @@ import { input as inputNames } from "./inputOptions";
 import { getStyle } from "../MainInput";
 import styles from "./InputBody.module.scss";
 import useInputActions from "../useInputActions";
+import useMenu from "../../elements/Menu/Menu";
+import ColorAdditions from "./elements/ColorAdditions";
 
 function ColorInput({ input }) {
   return (
@@ -21,12 +23,23 @@ function ColorInput({ input }) {
 function InputBody() {
   const { inputs } = useInputs();
   const { onDragEnd } = useInputActions();
+  const { Menu, AnchorWrapper } = useMenu();
+
   return (
     <>
       <div className={styles.heading}>
         {inputs.map((input, index) => (
           <>
-            {input.name === inputNames.color && <ColorInput input={input} />}
+            {input.name === inputNames.color && (
+              <>
+                <AnchorWrapper>
+                  <ColorInput input={input} />
+                </AnchorWrapper>
+                <Menu>
+                  <ColorAdditions input={input} />
+                </Menu>
+              </>
+            )}
             {input.name === inputNames.heading && <InputField input={input} />}
           </>
         ))}
