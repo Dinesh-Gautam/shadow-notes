@@ -109,14 +109,14 @@ function OutputTemplate({
                         >
                           {type === listTypes.checked && (
                             <input
-                              onClick={() => {
+                              onChange={(event) => {
                                 const updatedData = userData.map((e) =>
-                                  e.id === id
+                                  e.id === data.id
                                     ? {
                                         ...e,
                                         state: {
                                           ...e.state,
-                                          checked: !e?.state?.checked ?? true,
+                                          checked: event.target.checked,
                                         },
                                       }
                                     : e
@@ -128,7 +128,7 @@ function OutputTemplate({
                               }}
                               className={inputStyles.listCheckbox}
                               type="checkbox"
-                              checked={data.state.checked}
+                              checked={data.state.checked ?? false}
                             />
                           )}
 
