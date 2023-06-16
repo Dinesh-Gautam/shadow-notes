@@ -11,7 +11,7 @@ function SideBar() {
   const { photoURL, displayName, email } = currentUser;
   const menuButtonRef = useRef();
   const [menuOpen, setMenuOpen] = useState(false);
-  const { modalOpen, setModalOpen } = useInputs();
+  const { modalOpen, setModalOpen, editMode } = useInputs();
 
   return (
     <div className="sidebar-container">
@@ -46,7 +46,11 @@ function SideBar() {
           </button>
         </Menu>
       )}
-      <Modal open={modalOpen} setOpen={setModalOpen} title="Add Note">
+      <Modal
+        open={modalOpen}
+        setOpen={setModalOpen}
+        title={editMode.edit ? "Edit Note" : "Add Note"}
+      >
         <MainInput />
       </Modal>
     </div>
