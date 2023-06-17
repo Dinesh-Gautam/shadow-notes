@@ -45,7 +45,7 @@ function ColorSelection({ value, id }) {
 
 function InputBody() {
   const { inputs } = useInputs();
-  const { onDragEnd, changeInputValue } = useInputActions();
+  const { onDragEnd } = useInputActions();
 
   return (
     <>
@@ -58,8 +58,10 @@ function InputBody() {
                   <ColorInput input={input} />
                 </AnchorWrapper>
                 <Menu>
-                  <ColorSelection value={input?.state?.value} id={input.id} />
-                  <ColorAdditions input={input} />
+                  <div className={styles.colorMenu}>
+                    <ColorSelection value={input?.state?.value} id={input.id} />
+                    <ColorAdditions input={input} />
+                  </div>
                 </Menu>
               </MenuProvider>
             )}

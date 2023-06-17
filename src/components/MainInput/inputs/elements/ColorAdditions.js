@@ -6,17 +6,19 @@ import { useMemo } from "react";
 import { useState } from "react";
 import { useEffect } from "react";
 
-const randomColors = Array.from({ length: 20 }, () => {
-  const HexColor = () =>
-    "#" + Math.floor(Math.random() * 16777215).toString(16);
-  const color = HexColor();
-  return color.length <= 6 ? "#000000" : color;
-});
-
 function ColorAdditions({ input }) {
   const { userData } = useData();
   const { changeInputValue } = useInputActions();
-
+  const randomColors = useMemo(
+    () =>
+      Array.from({ length: 20 }, () => {
+        const HexColor = () =>
+          "#" + Math.floor(Math.random() * 16777215).toString(16);
+        const color = HexColor();
+        return color.length <= 6 ? "#000000" : color;
+      }),
+    []
+  );
   return (
     <div>
       <label> Random Colors </label>

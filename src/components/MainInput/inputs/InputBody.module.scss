@@ -21,6 +21,14 @@
   order: 0;
 }
 
+.colorMenu {
+  padding: $padding-default;
+  input {
+    padding: 0;
+    border-radius: $border-radius-default;
+  }
+}
+
 .inputBody {
   height: 100%;
   overflow-y: auto;
