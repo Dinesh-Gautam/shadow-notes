@@ -110,9 +110,7 @@ const onDragEnd = (state, action) => {
     } else {
       const childrenArray = [];
       // todo : don't hardcode the heading name, check if the input is moveable or not same for the input body file
-      const nonMoveableLength = newItems.filter(
-        (e) => e.name === input.heading
-      ).length;
+      const nonMoveableLength = newItems.filter((e) => e.nonMoveable).length;
       newItems = newItems
         .map((e) => {
           if (e.parentId) {
@@ -140,6 +138,13 @@ function sortArray(array) {
   const copyArray = [...array];
   const sortedParents = [];
   for (let ele of copyArray) {
+    if (ele.nonMoveable) {
+      // remove the element and insert it at the start of the array
+      const index = copyArray.findIndex((e) => e.id === ele.id);
+      copyArray.splice(index, 1);
+      copyArray.unshift(ele);
+      continue;
+    }
     if (ele.parentId) {
       // it is a child
       const splicedChildren = [];

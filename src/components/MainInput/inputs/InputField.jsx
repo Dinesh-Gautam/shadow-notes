@@ -99,7 +99,13 @@ function useInputProps() {
 
 function Input(props) {
   const { attachProps } = useInputProps();
-  return <input {...attachProps(props.input)} {...props} />;
+  const { input, ...otherProps } = props;
+  console.log(props);
+  return props.type === "textarea" ? (
+    <textarea {...attachProps(props.input)} {...otherProps} />
+  ) : (
+    <input {...attachProps(props.input)} {...otherProps} />
+  );
 }
 
 function InputField({ input }) {
@@ -117,7 +123,13 @@ function InputField({ input }) {
 
       {input.name === InputOption.description && (
         <InputWrapper input={input}>
-          <TitleInput input={input} placeholder={input.value} />
+          <DescriptionInput input={input} placeholder={input.value} />
+        </InputWrapper>
+      )}
+
+      {input.name === InputOption.paragraph && (
+        <InputWrapper input={input}>
+          <ParagraphInput input={input} placeholder={input.value} />
         </InputWrapper>
       )}
 
@@ -194,7 +206,14 @@ function ListFooterButtons({ id, type }) {
 }
 
 export function HeadingInput({ input, placeholder }) {
-  return <Input input={input} placeholder={placeholder} type="text"></Input>;
+  return (
+    <Input
+      className={styles.heading}
+      input={input}
+      placeholder={placeholder}
+      type="text"
+    ></Input>
+  );
 }
 
 function TitleInput({ input, placeholder }) {
@@ -208,6 +227,26 @@ function TitleInput({ input, placeholder }) {
       placeholder={placeholder}
       type="text"
     ></Input>
+  );
+}
+
+function DescriptionInput({ input, placeholder }) {
+  return (
+    <Input
+      input={input}
+      style={{
+        fontSize: 24,
+        fontWeight: "bold",
+      }}
+      placeholder={placeholder}
+      type="text"
+    ></Input>
+  );
+}
+
+function ParagraphInput({ input, placeholder }) {
+  return (
+    <Input input={input} placeholder={placeholder} type="textarea"></Input>
   );
 }
 

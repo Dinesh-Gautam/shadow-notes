@@ -4,7 +4,7 @@ export const input = {
   heading: "heading_input_value",
   title: "title_input_value",
   description: "description_input_value",
-  paragraph: "paragraph_input_value",
+  paragraph: "Paragraph_input_value",
   link: "link_input_value",
   image: "image_input_value",
   list: "list_input_value",
@@ -15,6 +15,7 @@ export const headingState = {
   value: "Heading",
   name: "heading_input_value",
   isRequired: true,
+  nonMoveable: true,
 };
 
 export const listTypes = {
@@ -51,6 +52,7 @@ export const inputOptions = [
   {
     value: "Color",
     name: "color_input_value",
+    nonMoveable: true,
     isOption: true,
     state: { value: "#000000" },
   },

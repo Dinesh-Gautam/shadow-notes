@@ -42,7 +42,8 @@
   & > div {
     margin-bottom: $padding-default;
   }
-  input {
+  input,
+  textarea {
     border: none;
     border-radius: 0;
     font-family: "Poppins";

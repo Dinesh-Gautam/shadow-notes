@@ -77,6 +77,13 @@ input {
   width: 100%;
 }
 
+input,
+select,
+textarea,
+button {
+  font-family: $font-default;
+}
+
 textarea {
   width: 100%;
   max-width: 100%;
