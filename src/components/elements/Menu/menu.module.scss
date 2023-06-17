@@ -5,7 +5,7 @@
   box-shadow: $boxShadow-more-depth;
   border-radius: $border-radius-default;
   position: absolute;
-
+  z-index: 100;
   button {
     box-shadow: none;
     background: transparent;

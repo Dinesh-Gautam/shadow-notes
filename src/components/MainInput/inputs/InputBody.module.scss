@@ -58,3 +58,27 @@
     }
   }
 }
+
+.addInput {
+  position: relative;
+  padding-block: $padding-default;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    height: 50%;
+    // padding-block: $padding-less;
+    border-radius: $border-radius-default;
+
+    width: 100%;
+    transform: translateY(-50%);
+  }
+  &:hover {
+    &::after {
+      border: 2px dashed rgb(0, 0, 0, 0.05);
+      background: rgb(0, 0, 0, 0.05);
+    }
+  }
+}

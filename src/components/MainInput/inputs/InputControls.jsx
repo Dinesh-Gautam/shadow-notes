@@ -6,15 +6,59 @@ import UseSvg from "../../elements/UseSvg";
 import { inputOptions, input } from "./inputOptions";
 import useInputActions from "../useInputActions";
 
+import styles from "./InputControls.module.scss";
+
+// function InputControls() {
+//   const [inputSelect, setInputSelect] = useState("title");
+//   const { addInputElement } = useInputActions();
+//   const inputAdderHandler = () => {
+//     const uid = uuidv4();
+
+//     const selectedInput = inputOptions.find(
+//       (input) => input.value.toLowerCase() === inputSelect.toLowerCase()
+//     );
+//     console.log(selectedInput.name);
+//     console.log(input.list);
+//     addInputElement({
+//       id: uid,
+//       selectedInput,
+//       isFocusable: !(selectedInput.name === input.list),
+//     });
+//   };
+//   return (
+//     <>
+//       <div className="input_selection">
+//         <div className="selection_input_btn">
+//           <select
+//             name="inputs_options"
+//             value={inputSelect}
+//             onChange={(e) => setInputSelect(e.target.value)}
+//           >
+//             {inputOptions.map((inputType) => {
+//               return (
+//                 <option key={inputType.name} value={inputType.value}>
+//                   {inputType.value}
+//                 </option>
+//               );
+//             })}
+//           </select>
+//           <Button
+//             attr={{ onClick: inputAdderHandler }}
+//             text={<UseSvg type="add" />}
+//           />
+//         </div>
+//       </div>
+//     </>
+//   );
+// }
+
 function InputControls() {
-  const [inputSelect, setInputSelect] = useState("title");
   const { addInputElement } = useInputActions();
-  const inputAdderHandler = () => {
+
+  const inputAdderHandler = ({ inputSelect }) => {
     const uid = uuidv4();
 
-    const selectedInput = inputOptions.find(
-      (input) => input.value.toLowerCase() === inputSelect.toLowerCase()
-    );
+    const selectedInput = inputSelect;
     console.log(selectedInput.name);
     console.log(input.list);
     addInputElement({
@@ -24,29 +68,19 @@ function InputControls() {
     });
   };
   return (
-    <>
-      <div className="input_selection">
-        <div className="selection_input_btn">
-          <select
-            name="inputs_options"
-            value={inputSelect}
-            onChange={(e) => setInputSelect(e.target.value)}
-          >
-            {inputOptions.map((inputType) => {
-              return (
-                <option key={inputType.name} value={inputType.value}>
-                  {inputType.value}
-                </option>
-              );
-            })}
-          </select>
-          <Button
-            attr={{ onClick: inputAdderHandler }}
-            text={<UseSvg type="add" />}
-          />
-        </div>
-      </div>
-    </>
+    <div className={styles.container}>
+      {inputOptions.map((input) => (
+        <button
+          type={"button"}
+          onClick={() => inputAdderHandler({ inputSelect: input })}
+        >
+          <div>{input.value[0].toUpperCase()} </div>
+          <div>
+            <span>{input.value}</span>
+          </div>
+        </button>
+      ))}
+    </div>
   );
 }
 

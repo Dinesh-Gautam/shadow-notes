@@ -77,7 +77,7 @@ function OutputTemplate({
               {name === "description_input_value" && (
                 <h5>{<HighlightTextOnSearchMatch text={inputValue} />}</h5>
               )}
-              {name === "Pragraph_input_value" && (
+              {name === input.paragraph && (
                 <p>{<HighlightTextOnSearchMatch text={inputValue} />}</p>
               )}
               {name === "link_input_value" && (
@@ -132,7 +132,9 @@ function OutputTemplate({
                             />
                           )}
 
-                          <HighlightTextOnSearchMatch text={data.state.value} />
+                          <HighlightTextOnSearchMatch
+                            text={data?.state?.value}
+                          />
                         </li>
                       );
                     })}

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useInputs } from "../InputContext";
 import InputField from "./InputField";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
@@ -12,6 +12,7 @@ import useMenu, {
   MenuProvider,
 } from "../../elements/Menu/Menu";
 import ColorAdditions from "./elements/ColorAdditions";
+import InputControls from "./InputControls";
 
 function ColorInput({ input }) {
   return (
@@ -86,7 +87,7 @@ function InputBody() {
                     input.name !== inputNames.heading &&
                     input.name !== inputNames.color
                 )
-                .map((input, index) => (
+                .map((input, index, arr) => (
                   <Draggable
                     key={input.id}
                     draggableId={input.id}
@@ -98,11 +99,18 @@ function InputBody() {
                         {...provided.draggableProps}
                         {...provided.dragHandleProps}
                       >
-                        {!input.parentId && <InputField input={input} />}
+                        {!input.parentId && (
+                          <>
+                            <InputField input={input} />
+
+                            {index < arr.length - 1 && <AddInput />}
+                          </>
+                        )}
                       </div>
                     )}
                   </Draggable>
                 ))}
+              <AddInput />
 
               {provided.placeholder}
             </div>
@@ -110,6 +118,19 @@ function InputBody() {
         </Droppable>
       </DragDropContext>
     </>
+  );
+}
+
+function AddInput() {
+  const [visible, setVisible] = useState(false);
+  return (
+    <div
+      onMouseEnter={() => setVisible(true)}
+      onMouseLeave={() => setVisible(false)}
+      className={styles.addInput}
+    >
+      {visible && <InputControls />}
+    </div>
   );
 }
 

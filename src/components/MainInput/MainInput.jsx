@@ -36,7 +36,6 @@ function MainInput() {
       <InputBody />
 
       <div className={styles.inputControls}>
-        <InputControls />
         <div className={styles.formControls}>
           <button
             type="button"

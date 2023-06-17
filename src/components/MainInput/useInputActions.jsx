@@ -3,8 +3,14 @@ import { inputOptions, input } from "./inputs/inputOptions";
 import { useInputs } from "./InputContext";
 import { v4 as uuidv4 } from "uuid";
 function useInputActions() {
-  const { inputsDispatch, setInputFocusId, inputFocusId, setModalOpen } =
-    useInputs();
+  const {
+    inputsDispatch,
+    setInputFocusId,
+    inputFocusId,
+    setModalOpen,
+    setEditMode,
+    f,
+  } = useInputs();
 
   function addInputElement({ selectedInput, id, isFocusable }) {
     inputsDispatch({
@@ -57,6 +63,8 @@ function useInputActions() {
     inputsDispatch({
       type: "cancel",
     });
+    setEditMode({ edit: false, editParameters: {} });
+
     setModalOpen(false);
   }
 
