@@ -6,7 +6,11 @@ import { input as inputNames } from "./inputOptions";
 import { getStyle } from "../MainInput";
 import styles from "./InputBody.module.scss";
 import useInputActions from "../useInputActions";
-import useMenu from "../../elements/Menu/Menu";
+import useMenu, {
+  AnchorWrapper,
+  Menu,
+  MenuProvider,
+} from "../../elements/Menu/Menu";
 import ColorAdditions from "./elements/ColorAdditions";
 
 function ColorInput({ input }) {
@@ -20,28 +24,47 @@ function ColorInput({ input }) {
   );
 }
 
+function ColorSelection({ value, id }) {
+  const { changeInputValue } = useInputActions();
+  return (
+    <div>
+      <input
+        type="color"
+        onChange={(e) =>
+          changeInputValue({
+            id: id,
+            value: e.target.value,
+          })
+        }
+        value={value}
+        className="color_input"
+      />
+    </div>
+  );
+}
+
 function InputBody() {
   const { inputs } = useInputs();
-  const { onDragEnd } = useInputActions();
-  const { Menu, AnchorWrapper } = useMenu();
+  const { onDragEnd, changeInputValue } = useInputActions();
 
   return (
     <>
       <div className={styles.heading}>
         {inputs.map((input, index) => (
-          <>
+          <React.Fragment key={input.id}>
             {input.name === inputNames.color && (
-              <>
+              <MenuProvider>
                 <AnchorWrapper>
                   <ColorInput input={input} />
                 </AnchorWrapper>
                 <Menu>
+                  <ColorSelection value={input?.state?.value} id={input.id} />
                   <ColorAdditions input={input} />
                 </Menu>
-              </>
+              </MenuProvider>
             )}
             {input.name === inputNames.heading && <InputField input={input} />}
-          </>
+          </React.Fragment>
         ))}
       </div>
 

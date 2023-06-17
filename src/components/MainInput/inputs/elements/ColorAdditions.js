@@ -3,6 +3,8 @@ import Button from "./Button";
 import { useData } from "../../../../context/DatabaseContext";
 import useInputActions from "../../useInputActions";
 import { useMemo } from "react";
+import { useState } from "react";
+import { useEffect } from "react";
 
 const randomColors = Array.from({ length: 20 }, () => {
   const HexColor = () =>
@@ -16,20 +18,7 @@ function ColorAdditions({ input }) {
   const { changeInputValue } = useInputActions();
 
   return (
-    <>
-      <div>
-        <input
-          type="color"
-          onChange={(e) =>
-            changeInputValue({
-              id: input.id,
-              value: e.target.value,
-            })
-          }
-          value={input?.state?.value}
-          className="color_input"
-        />
-      </div>
+    <div>
       <label> Random Colors </label>
       <div className="random_color">
         {randomColors.map((colorValue, index) => (
@@ -85,8 +74,8 @@ function ColorAdditions({ input }) {
               );
             })}
       </div>
-    </>
+    </div>
   );
 }
 
-export default memo(ColorAdditions);
+export default ColorAdditions;

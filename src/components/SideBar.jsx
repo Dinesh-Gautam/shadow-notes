@@ -1,18 +1,16 @@
 import React, { useRef, useState } from "react";
 import { useAuth } from "../context/AuthContext";
 import UseSvg from "./elements/UseSvg";
-import Menu from "./elements/Menu/Menu";
+import { Menu, AnchorWrapper, MenuProvider } from "./elements/Menu/Menu";
 import Modal from "./elements/Modal/Modal";
 import MainInput from "./MainInput/MainInput";
 import { useInputs } from "./MainInput/InputContext";
-import useMenu from "./elements/Menu/Menu";
 
 function SideBar() {
   const { logout, currentUser } = useAuth();
   const { photoURL, displayName, email } = currentUser;
 
   const { modalOpen, setModalOpen, editMode } = useInputs();
-  const { Menu, AnchorWrapper } = useMenu();
   return (
     <div className="sidebar-container">
       <div className="upper-container">
@@ -29,20 +27,21 @@ function SideBar() {
           </div>
         </div>
         <div className="user-buttons">
-          <AnchorWrapper>
-            <button>
-              <UseSvg type="moreInfo" />
-            </button>
-          </AnchorWrapper>
+          <MenuProvider>
+            <AnchorWrapper>
+              <button>
+                <UseSvg type="moreInfo" />
+              </button>
+            </AnchorWrapper>
+            <Menu>
+              <button onClick={logout}>
+                <span> Sign Out </span>
+                <UseSvg type="logOut" />
+              </button>
+            </Menu>
+          </MenuProvider>
         </div>
       </div>
-
-      <Menu>
-        <button onClick={logout}>
-          <span> Sign Out </span>
-          <UseSvg type="logOut" />
-        </button>
-      </Menu>
 
       <Modal
         open={modalOpen}
