@@ -10,23 +10,28 @@ export function useMenu() {
 }
 
 export const AnchorWrapper = ({ children }) => {
-  const { anchorRef, setMenuOpen } = useMenu();
-
+  const { anchorRef, setMenuOpen, isMouseInsideMenu } = useMenu();
   return (
-    <div
+    <button
+      type={"button"}
       className={styles.anchorWrapper}
       onBlur={(e) => {
-        setMenuOpen(false);
+        if (!isMouseInsideMenu) {
+          setMenuOpen(false);
+        } else {
+          console.log("focusing");
+          e.target.focus();
+        }
       }}
       onClick={() => setMenuOpen((prev) => !prev)}
       ref={anchorRef}
     >
       {children}
-    </div>
+    </button>
   );
 };
 export const Menu = ({ children }) => {
-  const { anchorRef, menuOpen } = useMenu();
+  const { anchorRef, menuOpen, setIsMouseInsideMenu } = useMenu();
   const menuRef = useRef();
 
   useEffect(() => {
@@ -58,7 +63,12 @@ export const Menu = ({ children }) => {
   }, [anchorRef, menuOpen]);
   return (
     menuOpen && (
-      <div className={styles.container} ref={menuRef}>
+      <div
+        onMouseEnter={() => setIsMouseInsideMenu(true)}
+        onMouseLeave={() => setIsMouseInsideMenu(false)}
+        className={styles.container}
+        ref={menuRef}
+      >
         {children}
       </div>
     )
@@ -68,11 +78,15 @@ export const Menu = ({ children }) => {
 export function MenuProvider({ children }) {
   const anchorRef = useRef();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [isMouseInsideMenu, setIsMouseInsideMenu] = useState(false);
 
+  console.log(isMouseInsideMenu);
   const value = {
     anchorRef,
     menuOpen,
     setMenuOpen,
+    isMouseInsideMenu,
+    setIsMouseInsideMenu,
   };
   return <MenuContext.Provider value={value}>{children}</MenuContext.Provider>;
 }
