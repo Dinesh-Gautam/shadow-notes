@@ -8,6 +8,12 @@ import useInputActions from "../useInputActions";
 
 import styles from "./InputControls.module.scss";
 
+import TitleIcon from "@mui/icons-material/Title";
+import ListIcon from "@mui/icons-material/List";
+import ImageIcon from "@mui/icons-material/Image";
+import LinkIcon from "@mui/icons-material/Link";
+import PaletteIcon from "@mui/icons-material/Palette";
+
 // function InputControls() {
 //   const [inputSelect, setInputSelect] = useState("title");
 //   const { addInputElement } = useInputActions();
@@ -52,6 +58,26 @@ import styles from "./InputControls.module.scss";
 //   );
 // }
 
+function getInputIcon(inputName) {
+  const commonProps = {
+    fontSize: "small",
+  };
+  switch (inputName) {
+    case input.title:
+      return <TitleIcon {...commonProps} />;
+    case input.list:
+      return <ListIcon {...commonProps} />;
+    case input.image:
+      return <ImageIcon {...commonProps} />;
+    case input.link:
+      return <LinkIcon {...commonProps} />;
+    case input.color:
+      return <PaletteIcon {...commonProps} />;
+    default:
+      return inputName[0].toUpperCase();
+  }
+}
+
 function InputControls() {
   const { addInputElement } = useInputActions();
 
@@ -74,7 +100,7 @@ function InputControls() {
           type={"button"}
           onClick={() => inputAdderHandler({ inputSelect: input })}
         >
-          <div>{input.value[0].toUpperCase()} </div>
+          <div>{getInputIcon(input.name)}</div>
           <div>
             <span>{input.value}</span>
           </div>
