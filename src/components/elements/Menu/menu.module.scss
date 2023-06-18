@@ -5,9 +5,13 @@
   box-shadow: $boxShadow-more-depth;
   border-radius: $border-radius-default;
   position: absolute;
-  z-index: 100;
+  z-index: 1000;
   button {
     box-shadow: none;
     background: transparent;
   }
+}
+
+.anchorWrapper {
+  padding: 0;
 }
