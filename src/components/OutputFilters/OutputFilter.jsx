@@ -12,7 +12,6 @@ function OutputFilter({ userDisplay, setuserDisplay }) {
   return (
     <>
       <div className="search_filters">
-        <TrashBtn data={trashData} setData={settrashData} />
         {userData &&
           userData.filter((e) => e.data.some((i) => i.name === input.color))
             .length > 0 && (

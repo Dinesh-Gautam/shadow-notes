@@ -129,7 +129,7 @@ select {
 
 main {
   display: grid;
-  grid-template-columns: 0.2fr 1fr;
+  grid-template-columns: auto 1fr;
   height: 100%;
   gap: $padding-default;
   margin: 0 $padding-default;
@@ -728,18 +728,21 @@ main {
 // SideBar
 
 .sidebar-container {
-  width: 100%;
+  width: fit-content;
   padding-block: $padding-default;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   padding-right: $padding-default;
   .upper-container {
-    .add-button {
+    button {
       width: 100%;
+      background: var(--default-color);
+      padding: $padding-less;
+    }
+    .add-button {
       padding: $padding-default;
       font-size: $fontSize-medium;
-      background: var(--default-color);
     }
   }
   .bottom-container {
@@ -753,7 +756,9 @@ main {
   .user-info {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: $padding-veryLess;
+    width: 100%;
     .user-photo {
       $user-photo-height: 42px;
       height: $user-photo-height;
@@ -775,9 +780,16 @@ main {
     }
   }
   .user-buttons {
-    button {
+    button,
+    .button {
       box-shadow: none;
       background: transparent;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    button {
       padding: $padding-less;
     }
   }

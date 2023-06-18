@@ -100,6 +100,7 @@ function InputControls({ index }) {
         .filter((e) => !e.nonMoveable)
         .map((input) => (
           <button
+            key={input.name}
             type={"button"}
             onClick={() => inputAdderHandler({ inputSelect: input })}
           >

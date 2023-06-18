@@ -12,15 +12,26 @@ function useInputActions() {
     f,
   } = useInputs();
 
-  function addInputElement({ selectedInput, id, isFocusable, index }) {
+  function addInputElement({
+    selectedInput,
+    id = uuidv4(),
+    isFocusable,
+    index,
+    parentId = null,
+  }) {
     inputsDispatch({
       type: "addElement",
-      payload: { selectedInput, id, isFocusable, index },
+      payload: { selectedInput, id, isFocusable, index, parentId },
     });
     setInputFocusId(id);
   }
 
-  function addListElement({ selectedInput, parentId, id = uuidv4(), index }) {
+  function addListElement({
+    selectedInput,
+    parentId = null,
+    id = uuidv4(),
+    index,
+  }) {
     if (!selectedInput) {
       selectedInput = inputOptions.find((o) => o.name === input.list);
     }

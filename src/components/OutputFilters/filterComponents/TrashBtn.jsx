@@ -15,7 +15,7 @@ import {
 
 const users = collection(db, "users");
 
-function TrashBtn({ data, setData }) {
+function TrashBtn({ data, setData, text }) {
   const trashData = data,
     settrashData = setData;
 
@@ -59,7 +59,12 @@ function TrashBtn({ data, setData }) {
               !initialRequest && setinitialRequest(true);
             },
           }}
-          text={<UseSvg type="trash" />}
+          text={
+            <>
+              <UseSvg type="trash" />
+              {text}
+            </>
+          }
         />
       </div>
 
