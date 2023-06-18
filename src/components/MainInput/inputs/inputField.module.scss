@@ -28,7 +28,11 @@
   transform: translateY(-50%);
 }
 .image {
-  padding: $padding-default;
+  margin: $padding-default;
+  background: red;
+
+  border-radius: $border-radius-default;
+  overflow: hidden;
 }
 
 .heading {

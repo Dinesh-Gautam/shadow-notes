@@ -48,6 +48,10 @@ function InputBody() {
   const { inputs } = useInputs();
   const { onDragEnd } = useInputActions();
 
+  function hasInnerNotes() {
+    return inputs.filter((e) => !e.nonMoveable).length > 0;
+  }
+
   return (
     <>
       <div className={styles.heading}>
@@ -100,17 +104,16 @@ function InputBody() {
                         {...provided.dragHandleProps}
                       >
                         {!input.parentId && (
-                          <>
+                          <div>
                             <InputField input={input} />
-
-                            {index < arr.length - 1 && <AddInput />}
-                          </>
+                            <AddInput />
+                          </div>
                         )}
                       </div>
                     )}
                   </Draggable>
                 ))}
-              <AddInput />
+              {!hasInnerNotes() && <AddInput />}
 
               {provided.placeholder}
             </div>

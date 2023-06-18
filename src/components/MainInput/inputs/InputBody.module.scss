@@ -40,13 +40,14 @@
   box-shadow: $boxShadow-default;
 
   & > div {
-    margin-bottom: $padding-default;
+    // margin-bottom: $padding-default;
   }
   input,
   textarea {
     border: none;
     border-radius: 0;
     font-family: "Poppins";
+    background-color: transparent;
   }
   a {
     margin-inline: $padding-default;
@@ -67,13 +68,13 @@
     content: "";
     position: absolute;
     top: 50%;
-    left: 0;
+    left: 50%;
     height: 50%;
     // padding-block: $padding-less;
-    border-radius: $border-radius-default;
-
-    width: 100%;
-    transform: translateY(-50%);
+    // border-radius: $border-radius-default;
+    // margin-inline: $padding-default;
+    width: calc(100% - $padding-default);
+    transform: translate(-50%, -50%);
   }
   &:hover {
     &::after {

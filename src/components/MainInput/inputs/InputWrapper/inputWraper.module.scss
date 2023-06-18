@@ -4,12 +4,14 @@ $label-margin: 0px;
 
 .container {
   position: relative;
+  box-shadow: $boxShadow-input;
+  border-radius: $border-radius-default;
 }
 
 .header {
   background: var(--default-backgroundcolor);
   position: absolute;
-  top: $label-margin + ($padding-default / 2);
+  top: $label-margin + ($padding-default * 2);
   left: 0;
   transform: translateY(-100%);
   width: 100%;
@@ -30,8 +32,8 @@ $label-margin: 0px;
 
 .inputContainer {
   flex: 1;
-  position: absolute;
-  transform: translateY(-100%);
+  position: relative;
+  // transform: translateY(-100%);
   padding: 0 $padding-default;
   top: $label-margin + 2px;
   width: fit-content;
@@ -72,6 +74,8 @@ $label-margin: 0px;
   gap: $padding-default;
   input {
     border-radius: $border-radius-default !important;
+    background-color: var(--default-color) !important;
+    padding-block: 0;
   }
   button {
     background: var(--default-color);
