@@ -118,7 +118,7 @@ function InputBody() {
                         {!input.parentId && (
                           <div>
                             <InputField input={input} />
-                            <AddInput />
+                            <AddInput input={input} />
                           </div>
                         )}
                       </div>
@@ -136,15 +136,19 @@ function InputBody() {
   );
 }
 
-function AddInput() {
+function AddInput({ input }) {
   const [visible, setVisible] = useState(false);
+  const { inputs } = useInputs();
+
   return (
     <div
       onMouseEnter={() => setVisible(true)}
       onMouseLeave={() => setVisible(false)}
       className={styles.addInput}
     >
-      {visible && <InputControls />}
+      {visible && (
+        <InputControls index={inputs.findIndex((e) => e.id === input?.id)} />
+      )}
     </div>
   );
 }

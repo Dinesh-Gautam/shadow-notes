@@ -22,7 +22,7 @@ const initialState = [{ ...headingState, id: headingId }];
 
 const addElement = (state, action) => {
   const { selectedInput, id, parentId, isFocusable, index } = action.payload;
-
+  console.log("value of index is: ", index);
   if (index === undefined) {
     // return state.addToLast({ ...selectedInput, id, parentId })
     return sortArray([
@@ -35,11 +35,11 @@ const addElement = (state, action) => {
       },
     ]);
   } else {
-    return [
-      ...state.slice(0, index),
+    return sortArray([
+      ...state.slice(0, index + 1),
       { ...selectedInput, id, parentId },
-      ...state.slice(index),
-    ];
+      ...state.slice(index + 1),
+    ]);
   }
 };
 

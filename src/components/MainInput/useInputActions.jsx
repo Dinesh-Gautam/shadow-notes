@@ -12,10 +12,10 @@ function useInputActions() {
     f,
   } = useInputs();
 
-  function addInputElement({ selectedInput, id, isFocusable }) {
+  function addInputElement({ selectedInput, id, isFocusable, index }) {
     inputsDispatch({
       type: "addElement",
-      payload: { selectedInput, id, isFocusable },
+      payload: { selectedInput, id, isFocusable, index },
     });
     setInputFocusId(id);
   }

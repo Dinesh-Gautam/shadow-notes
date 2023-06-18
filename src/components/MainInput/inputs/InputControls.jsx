@@ -78,7 +78,7 @@ function getInputIcon(inputName) {
   }
 }
 
-function InputControls() {
+function InputControls({ index }) {
   const { addInputElement } = useInputActions();
 
   const inputAdderHandler = ({ inputSelect }) => {
@@ -90,6 +90,7 @@ function InputControls() {
     addInputElement({
       id: uid,
       selectedInput,
+      index,
       isFocusable: !(selectedInput.name === input.list),
     });
   };
