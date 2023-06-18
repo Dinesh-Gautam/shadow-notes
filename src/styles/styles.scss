@@ -600,6 +600,7 @@ main {
   width: 100vw;
   height: 100vh;
   z-index: 100;
+  background: var(--default-color);
   .trash_header {
     display: flex;
     align-items: center;

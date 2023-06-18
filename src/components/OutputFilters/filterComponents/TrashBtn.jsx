@@ -12,6 +12,7 @@ import {
   where,
   orderBy,
 } from "firebase/firestore";
+import { createPortal } from "react-dom";
 
 const users = collection(db, "users");
 
@@ -68,12 +69,15 @@ function TrashBtn({ data, setData, text }) {
         />
       </div>
 
-      <Trash
-        trashData={trashData}
-        settrashData={settrashData}
-        setdisplayState={setdisplayState}
-        displayState={displayState}
-      />
+      {createPortal(
+        <Trash
+          trashData={trashData}
+          settrashData={settrashData}
+          setdisplayState={setdisplayState}
+          displayState={displayState}
+        />,
+        document.body
+      )}
     </>
   );
 }
