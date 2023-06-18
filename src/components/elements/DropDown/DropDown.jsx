@@ -19,7 +19,7 @@ function DropDown({
   return (
     <div
       className={
-        styles.container + " " + (dropInnerContainer ? styles.visible : "")
+        styles.container + " " + (dropdownDisplay ? styles.visible : "")
       }
       id={id}
     >
