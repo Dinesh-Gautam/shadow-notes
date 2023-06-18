@@ -6,6 +6,10 @@ $label-margin: 0px;
   position: relative;
   box-shadow: $boxShadow-input;
   border-radius: $border-radius-default;
+  background: var(--default-color);
+  &.dragging {
+    box-shadow: $boxShadow-default;
+  }
 }
 
 .header {

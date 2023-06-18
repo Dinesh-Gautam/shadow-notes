@@ -3,7 +3,13 @@ import styles from "./inputWraper.module.scss";
 import UseSvg from "../../../elements/UseSvg";
 import useInputActions from "../../useInputActions";
 
-function InputWrapper({ input, children, noRemovable, inputFooter }) {
+function InputWrapper({
+  input,
+  children,
+  noRemovable,
+  inputFooter,
+  isDragging,
+}) {
   const [show, setShow] = useState(false);
   const { removeElement, changeInputValue } = useInputActions();
   return (
@@ -15,7 +21,7 @@ function InputWrapper({ input, children, noRemovable, inputFooter }) {
           // outline: show ? "2px solid rgba(0, 0, 0, 0.2)" : "none",
         }
       }
-      className={styles.container}
+      className={styles.container + " " + (isDragging ? styles.dragging : "")}
     >
       {show && (
         <div className={styles.header}>

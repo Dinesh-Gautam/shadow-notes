@@ -95,17 +95,19 @@ function InputControls() {
   };
   return (
     <div className={styles.container}>
-      {inputOptions.map((input) => (
-        <button
-          type={"button"}
-          onClick={() => inputAdderHandler({ inputSelect: input })}
-        >
-          <div>{getInputIcon(input.name)}</div>
-          <div>
-            <span>{input.value}</span>
-          </div>
-        </button>
-      ))}
+      {inputOptions
+        .filter((e) => !e.nonMoveable)
+        .map((input) => (
+          <button
+            type={"button"}
+            onClick={() => inputAdderHandler({ inputSelect: input })}
+          >
+            <div>{getInputIcon(input.name)}</div>
+            <div>
+              <span>{input.value}</span>
+            </div>
+          </button>
+        ))}
     </div>
   );
 }

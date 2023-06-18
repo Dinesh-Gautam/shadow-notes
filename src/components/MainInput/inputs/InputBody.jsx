@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useInputs } from "../InputContext";
 import InputField from "./InputField";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
-import { input as inputNames } from "./inputOptions";
+import { input as inputNames, inputOptions } from "./inputOptions";
 import { getStyle } from "../MainInput";
 import styles from "./InputBody.module.scss";
 import useInputActions from "../useInputActions";
@@ -46,15 +46,27 @@ function ColorSelection({ value, id }) {
 
 function InputBody() {
   const { inputs } = useInputs();
-  const { onDragEnd } = useInputActions();
+  const { onDragEnd, addInputElement } = useInputActions();
 
   function hasInnerNotes() {
     return inputs.filter((e) => !e.nonMoveable).length > 0;
   }
 
+  function addColorInput() {
+    const colorInput = inputOptions.find((e) => e.name === inputNames.color);
+    addInputElement({
+      selectedInput: colorInput,
+    });
+  }
+
   return (
     <>
       <div className={styles.heading}>
+        {!inputs.some((e) => e.name === inputNames.color) && (
+          <button type="button" onClick={() => addColorInput()}>
+            +
+          </button>
+        )}
         {inputs.map((input, index) => (
           <React.Fragment key={input.id}>
             {input.name === inputNames.color && (
