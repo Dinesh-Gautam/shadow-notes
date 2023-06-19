@@ -42,7 +42,17 @@ function SideBar() {
 
       <div className="bottom-container">
         <div className="user-info">
-          <img src={photoURL} className="user-photo" alt="user" />
+          <MenuProvider>
+            <AnchorWrapper>
+              <img src={photoURL} className="user-photo" alt="user" />
+            </AnchorWrapper>
+            <Menu>
+              <button onClick={logout}>
+                <span> Sign Out </span>
+                <UseSvg type="logOut" />
+              </button>
+            </Menu>
+          </MenuProvider>
           <HideWhenSideBarIsClosed>
             <div className="user-credentials">
               <h3 className="user-name">{displayName}</h3>
@@ -50,23 +60,18 @@ function SideBar() {
             </div>
           </HideWhenSideBarIsClosed>
         </div>
-        <HideWhenSideBarIsClosed>
+        {/* <HideWhenSideBarIsClosed>
           <div className="user-buttons">
             <MenuProvider>
-              <AnchorWrapper>
+           
                 <div className="button">
                   <UseSvg type="moreInfo" />
                 </div>
-              </AnchorWrapper>
-              <Menu>
-                <button onClick={logout}>
-                  <span> Sign Out </span>
-                  <UseSvg type="logOut" />
-                </button>
-              </Menu>
+           
+             
             </MenuProvider>
           </div>
-        </HideWhenSideBarIsClosed>
+        </HideWhenSideBarIsClosed> */}
       </div>
 
       <Modal

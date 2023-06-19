@@ -13,5 +13,10 @@
 }
 
 .anchorWrapper {
+  all: revert;
   padding: 0;
+  border: none;
+  :active {
+    box-shadow: none;
+  }
 }
