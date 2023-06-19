@@ -19,6 +19,7 @@
 html,
 body {
   height: 100%;
+  overflow: hidden;
 }
 
 #root {
@@ -28,6 +29,7 @@ body {
   background-color: var(--default-backgroundcolor);
   font-family: $font-default;
   font-weight: 400;
+  max-height: 100vh;
 }
 
 a {
@@ -139,6 +141,7 @@ main {
   grid-column: 2/3;
   display: flex;
   flex-direction: column;
+  overflow: auto;
 }
 
 .input_container {
@@ -642,7 +645,7 @@ main {
 .separator {
   &.horizontal-bold {
     width: 100%;
-    height: 3px;
+    min-height: 3px;
     background-color: var(--vless-alpha-text-color);
     margin: $padding-default 0;
   }
