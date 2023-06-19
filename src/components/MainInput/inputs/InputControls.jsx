@@ -87,12 +87,23 @@ function InputControls({ index }) {
     const selectedInput = inputSelect;
     console.log(selectedInput.name);
     console.log(input.list);
+
     addInputElement({
       id: uid,
       selectedInput,
       index,
       isFocusable: !(selectedInput.name === input.list),
     });
+
+    if (selectedInput.name === input.list) {
+      addInputElement({
+        id: uuidv4(),
+        parentId: uid,
+        selectedInput,
+        index,
+        isFocusable: true,
+      });
+    }
   };
   return (
     <div className={styles.container}>
