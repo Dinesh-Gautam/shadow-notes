@@ -286,6 +286,13 @@ function ListInputWrapper({ input, children }) {
         }
       }
     >
+      {show && (
+        <div className={styles.dragHandle}>
+          <button type="button">
+            <UseSvg type="drag-handle" />
+          </button>
+        </div>
+      )}
       {children}
 
       {show && (

@@ -7,13 +7,14 @@ $label-margin: 0px;
   box-shadow: $boxShadow-input;
   border-radius: $border-radius-default;
   background: var(--default-color);
+  min-height: $padding-default * 2;
   &.dragging {
     box-shadow: $boxShadow-default;
   }
 }
 
 .header {
-  background: var(--default-backgroundcolor);
+  // background: var(--default-backgroundcolor);
   position: absolute;
   top: $label-margin + ($padding-default * 2);
   left: 0;
@@ -29,8 +30,9 @@ $label-margin: 0px;
     align-self: flex-end;
   }
   button {
-    background-color: transparent;
-    box-shadow: none;
+    // background-color: transparent;
+    // box-shadow: none;
+    transform: translateY(-50%);
   }
 }
 

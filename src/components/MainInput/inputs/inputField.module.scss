@@ -4,6 +4,8 @@
   display: flex;
   align-items: center;
   border-radius: $border-radius-default;
+  position: relative;
+  z-index: 10000000;
 }
 
 .list {
@@ -27,6 +29,19 @@
   top: 50%;
   transform: translateY(-50%);
 }
+
+.dragHandle {
+  position: absolute;
+  left: 2px;
+  transform: translateX(-100%);
+  z-index: 10000;
+  button {
+    padding: 0;
+    box-shadow: none;
+    background-color: var(--default-color);
+  }
+}
+
 .image {
   margin: $padding-default;
   background: red;
