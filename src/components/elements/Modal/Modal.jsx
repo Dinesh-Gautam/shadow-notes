@@ -1,14 +1,23 @@
-import React from "react";
+import React, { createContext, useContext, useState } from "react";
 import { createPortal } from "react-dom";
 import UseSvg from "../UseSvg";
 import styles from "./Modal.module.scss";
-function ModalPortal({ title, children, setOpen }) {
+
+const ModalContext = createContext();
+
+export function useModal() {
+  return useContext(ModalContext);
+}
+
+function ModalPortal({ title, children }) {
+  const { setModalOpen } = useModal();
+
   return (
     <div className={styles.container}>
       <div className={styles.header}>
         <h1>{title || "Modal"}</h1>
         <div>
-          <button onClick={() => setOpen(false)}>
+          <button onClick={() => setModalOpen(false)}>
             <UseSvg type="close" />
           </button>
         </div>
@@ -19,7 +28,24 @@ function ModalPortal({ title, children, setOpen }) {
 }
 
 function Modal(props) {
-  return props.open && createPortal(<ModalPortal {...props} />, document.body);
+  const { modalOpen } = useModal();
+  return modalOpen && createPortal(<ModalPortal {...props} />, document.body);
+}
+
+export function ModalProvider({ children }) {
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const modalToggle = () => {
+    setModalOpen((prev) => !prev);
+  };
+  const value = {
+    modalOpen,
+    setModalOpen,
+    modalToggle,
+  };
+  return (
+    <ModalContext.Provider value={value}>{children}</ModalContext.Provider>
+  );
 }
 
 export default Modal;

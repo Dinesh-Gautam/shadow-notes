@@ -13,15 +13,14 @@ import {
   orderBy,
 } from "firebase/firestore";
 import { createPortal } from "react-dom";
+import Modal, { useModal } from "../../elements/Modal/Modal";
 
 const users = collection(db, "users");
 
-function TrashBtn({ data, setData, text }) {
-  const trashData = data,
-    settrashData = setData;
-
+function TrashBtn({ text }) {
+  const { trashData, settrashData } = useData();
+  const { setModalOpen } = useModal();
   const [initialRequest, setinitialRequest] = useState(false);
-  const [displayState, setdisplayState] = useState("none");
 
   const { userID } = useData();
 
@@ -56,7 +55,7 @@ function TrashBtn({ data, setData, text }) {
         <Button
           attr={{
             onClick: () => {
-              setdisplayState("block");
+              setModalOpen(true);
               !initialRequest && setinitialRequest(true);
             },
           }}
@@ -69,15 +68,9 @@ function TrashBtn({ data, setData, text }) {
         />
       </div>
 
-      {createPortal(
-        <Trash
-          trashData={trashData}
-          settrashData={settrashData}
-          setdisplayState={setdisplayState}
-          displayState={displayState}
-        />,
-        document.body
-      )}
+      <Modal>
+        <Trash trashData={trashData} settrashData={settrashData} />
+      </Modal>
     </>
   );
 }

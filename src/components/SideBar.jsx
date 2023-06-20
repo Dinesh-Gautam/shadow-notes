@@ -2,7 +2,7 @@ import React, { Fragment, useRef, useState } from "react";
 import { useAuth } from "../context/AuthContext";
 import UseSvg from "./elements/UseSvg";
 import { Menu, AnchorWrapper, MenuProvider } from "./elements/Menu/Menu";
-import Modal from "./elements/Modal/Modal";
+import Modal, { ModalProvider, useModal } from "./elements/Modal/Modal";
 import MainInput from "./MainInput/MainInput";
 import { useInputs } from "./MainInput/InputContext";
 import Separator from "./elements/Separator";
@@ -12,9 +12,7 @@ import TrashBtn from "./OutputFilters/filterComponents/TrashBtn";
 function SideBar() {
   const { logout, currentUser } = useAuth();
   const { photoURL, displayName, email } = currentUser;
-  const { trashData, settrashData } = useData();
-
-  const { modalOpen, setModalOpen, editMode } = useInputs();
+  const { setModalOpen } = useModal();
   return (
     <div className="sidebar-container">
       <div className="upper-container">
@@ -28,15 +26,15 @@ function SideBar() {
         <Separator type="horizontal-bold" />
 
         <div>
-          <TrashBtn
-            text={
-              <HideWhenSideBarIsClosed>
-                <span>Trash</span>
-              </HideWhenSideBarIsClosed>
-            }
-            data={trashData}
-            setData={settrashData}
-          />
+          <ModalProvider>
+            <TrashBtn
+              text={
+                <HideWhenSideBarIsClosed>
+                  <span>Trash</span>
+                </HideWhenSideBarIsClosed>
+              }
+            />
+          </ModalProvider>
         </div>
       </div>
 
@@ -73,14 +71,6 @@ function SideBar() {
           </div>
         </HideWhenSideBarIsClosed> */}
       </div>
-
-      <Modal
-        open={modalOpen}
-        setOpen={setModalOpen}
-        title={editMode.edit ? "Edit Note" : "Add Note"}
-      >
-        <MainInput />
-      </Modal>
     </div>
   );
 }

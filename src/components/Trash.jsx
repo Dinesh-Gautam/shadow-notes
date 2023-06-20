@@ -7,23 +7,11 @@ import UseSvg from "./elements/UseSvg";
 import Button from "./MainInput/inputs/elements/Button";
 import OutputTemplate from "./MainOutput/OutputTemplate";
 
-function Trash({ trashData, displayState, setdisplayState }) {
+function Trash({ trashData }) {
   const { updateData_fireStore, setundoTrigger } = useData();
 
   return (
-    <div id="trash" style={{ display: displayState }}>
-      <div className="trash_header">
-        <h1>Trash</h1>
-        <Button
-          attr={{
-            onClick: (e) => {
-              setdisplayState("none");
-            },
-          }}
-          text={<UseSvg type="close" />}
-        />
-      </div>
-
+    <div id="trash">
       <div className="trash_content_container">
         <div className="trash_content">
           {!trashData ? (
