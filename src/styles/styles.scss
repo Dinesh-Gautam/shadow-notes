@@ -593,45 +593,6 @@ main {
   }
 }
 
-#trash {
-  height: 100%;
-  .trash_header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    h1 {
-      font-size: $fontSize-large;
-      text-transform: uppercase;
-      color: var(--default-text-color);
-    }
-    border-bottom: 3px solid var(--vless-alpha-text-color);
-    padding-bottom: $padding-default;
-  }
-  .trash_content_container {
-    // margin-top: $padding-default;
-    padding: $padding-default;
-    overflow-y: auto;
-    height: 94%;
-  }
-  .trash_content {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: $padding-default;
-    position: relative;
-
-    > span {
-      position: absolute;
-      width: 100%;
-      text-align: center;
-      margin-top: $padding-large;
-      font-size: $fontSize-large;
-      opacity: 0.5;
-      font-weight: 700;
-      top: $padding-medium;
-    }
-  }
-}
-
 // Separator
 .separator {
   &.horizontal-bold {

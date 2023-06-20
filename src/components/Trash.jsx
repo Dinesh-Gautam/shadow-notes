@@ -6,14 +6,15 @@ import Separator from "./elements/Separator";
 import UseSvg from "./elements/UseSvg";
 import Button from "./MainInput/inputs/elements/Button";
 import OutputTemplate from "./MainOutput/OutputTemplate";
-
+import styles from "./trash.module.scss";
+import { input } from "./MainInput/inputs/inputOptions";
 function Trash({ trashData }) {
   const { updateData_fireStore, setundoTrigger } = useData();
 
   return (
-    <div id="trash">
-      <div className="trash_content_container">
-        <div className="trash_content">
+    <div className={styles.container}>
+      <div className={styles.contentContainer}>
+        <div className={styles.content}>
           {!trashData ? (
             Array(10)
               .fill("")
@@ -21,10 +22,10 @@ function Trash({ trashData }) {
           ) : trashData.length > 0 ? (
             trashData.map(({ data, id, deletedOn }) => {
               const headingText = data.find(
-                (data) => data.name === "heading_input_value"
+                (data) => data.name === input.heading
               );
               const DropdownBackgroundColor = data.find(
-                (data) => data.name === "color_input_value"
+                (data) => data.name === input.color
               );
               return (
                 <DropDown
