@@ -11,6 +11,7 @@ import { useData } from "../../context/DatabaseContext";
 import { serverTimestamp } from "firebase/firestore";
 import { headingState, input } from "./inputs/inputOptions";
 import { reauthenticateWithRedirect } from "firebase/auth";
+import { useModal } from "../elements/Modal/Modal";
 export const input_context = createContext();
 
 export function useInputs() {
@@ -197,7 +198,7 @@ export function InputContext(props) {
   const [inputs, inputsDispatch] = useReducer(setInputs, initialState);
   const { setData_fireStore, updateData_fireStore } = useData();
   const [editMode, setEditMode] = useState({ edit: false, parameters: {} });
-  const [modalOpen, setModalOpen] = useState(false);
+  const { modalOpen, setModalOpen } = useModal(false);
 
   useEffect(() => {
     clearTimeout(saveStateRef.current);

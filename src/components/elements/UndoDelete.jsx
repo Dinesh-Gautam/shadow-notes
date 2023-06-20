@@ -1,12 +1,14 @@
 import React from "react";
 import { useData } from "../../context/DatabaseContext";
 
+import styles from "./Undo.module.scss";
+
 function UndoDelete() {
   const { undoTrigger, setundoTrigger } = useData();
   return (
     <div
       style={{ display: undoTrigger.trigger ? "flex" : "none" }}
-      className="undo-container"
+      className={styles.undoContainer}
     >
       <span>
         {undoTrigger.id.length > 1

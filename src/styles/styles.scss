@@ -404,62 +404,6 @@ main {
   display: flex;
 }
 
-.user-info-btn {
-  background: var(--default-color);
-  svg {
-    height: 100%;
-  }
-}
-
-// .user-info-container {
-//   // grid-column: 3/-1;
-//   height: fit-content;
-//   width: 100%;
-//   display: flex;
-//   justify-content: center;
-//   align-items: flex-end;
-//   padding: $padding-default;
-//   margin: $padding-default 0;
-//   box-shadow: $boxShadow-default;
-//   border-radius: $border-radius-default;
-//   background: var(--default-color);
-//   flex-direction: column;
-//   gap: $padding-default;
-//   max-width: 400px;
-//   position: absolute;
-//   top: 0;
-//   right: $padding-default;
-//   .user-info {
-//     display: flex;
-//     // gap: $padding-default;
-//     align-items: center;
-//     flex-wrap: wrap;
-//     align-self: flex-start;
-//   }
-//   .user-photo {
-//     border-radius: 50%;
-//     height: $padding-large * 1.5;
-//     width: $padding-large * 1.5;
-//     box-shadow: $boxShadow-default;
-//     margin-right: $padding-default;
-//   }
-//   .user-credentials {
-//     display: flex;
-//     flex-direction: column;
-//     justify-content: center;
-//   }
-//   .user-name {
-//     font-size: $fontSize-medium;
-//     font-weight: 600;
-//   }
-//   .user-email {
-//     font-size: $fontSize-small + 2;
-//     color: var(--default-text-color);
-//   }
-// }
-
-// loading
-
 .sign-in-container {
   position: absolute;
   top: 50%;
@@ -500,76 +444,6 @@ main {
   // right: 0;
   svg {
     transform: rotate(-90deg);
-  }
-}
-
-// SideBar
-
-.sidebar-container {
-  width: fit-content;
-  padding-block: $padding-default;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding-right: $padding-default;
-  .upper-container {
-    button {
-      width: 100%;
-      background: var(--default-color);
-      padding: $padding-less;
-    }
-    .add-button {
-      padding: $padding-default;
-      font-size: $fontSize-medium;
-    }
-  }
-  .bottom-container {
-    padding-top: $padding-default;
-    border-top: 3px solid var(--vless-alpha-text-color);
-    display: flex;
-    align-items: center;
-    gap: $padding-veryLess;
-  }
-
-  .user-info {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: $padding-veryLess;
-    width: 100%;
-    .user-photo {
-      $user-photo-height: 42px;
-      height: $user-photo-height;
-      width: $user-photo-height;
-      border-radius: 50%;
-    }
-
-    .user-name,
-    .user-email {
-      line-height: 120%;
-      font-size: $fontSize-medium;
-      max-width: 90%;
-      display: block;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-    .user-email {
-      font-size: $fontSize-small;
-    }
-  }
-  .user-buttons {
-    button,
-    .button {
-      box-shadow: none;
-      background: transparent;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    button {
-      padding: $padding-less;
-    }
   }
 }
 
@@ -662,29 +536,4 @@ main {
       }
     }
   }
-}
-
-.undo-container {
-  position: fixed;
-  left: $padding-default;
-  bottom: $padding-default;
-  z-index: 999999;
-  display: flex;
-  align-items: center;
-  gap: $padding-default;
-  background-color: rgb(32, 32, 32);
-  padding: $padding-default;
-  color: var(--default-color);
-  border-radius: $border-radius-default;
-  button {
-    margin-left: $padding-default * 2;
-    padding: 0;
-    color: rgb(113, 163, 255);
-    background: transparent;
-  }
-}
-
-.list-done {
-  // text-decoration: line-through ;
-  // opacity: 0.5;
 }

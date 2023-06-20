@@ -1,0 +1,69 @@
+@import "../styles/variables";
+
+.sideBarContainer {
+  width: fit-content;
+  padding-block: $padding-default;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-right: $padding-default;
+  .upperContainer {
+    button {
+      width: 100%;
+      background: var(--default-color);
+      padding: $padding-less;
+    }
+    .addButton {
+      padding: $padding-default;
+      font-size: $fontSize-medium;
+    }
+  }
+  .bottomContainer {
+    padding-top: $padding-default;
+    border-top: 3px solid var(--vless-alpha-text-color);
+    display: flex;
+    align-items: center;
+    gap: $padding-veryLess;
+  }
+
+  .userInfo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: $padding-veryLess;
+    width: 100%;
+    .userPhoto {
+      $user-photo-height: 42px;
+      height: $user-photo-height;
+      width: $user-photo-height;
+      border-radius: 50%;
+    }
+
+    .userName,
+    .userEmail {
+      line-height: 120%;
+      font-size: $fontSize-medium;
+      max-width: 90%;
+      display: block;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .userEmail {
+      font-size: $fontSize-small;
+    }
+  }
+  .userButtons {
+    button,
+    .button {
+      box-shadow: none;
+      background: transparent;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    button {
+      padding: $padding-less;
+    }
+  }
+}

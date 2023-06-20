@@ -9,14 +9,16 @@ import Separator from "./elements/Separator/Separator";
 import { useData } from "../context/DatabaseContext";
 import TrashBtn from "./TrashBtn";
 
+import styles from "./SideBar.module.scss";
+
 function SideBar() {
   const { logout, currentUser } = useAuth();
   const { photoURL, displayName, email } = currentUser;
   const { setModalOpen } = useModal();
   return (
-    <div className="sidebar-container">
-      <div className="upper-container">
-        <button onClick={() => setModalOpen(true)} className="add-button">
+    <div className={styles.sideBarContainer}>
+      <div className={styles.upperContainer}>
+        <button onClick={() => setModalOpen(true)} className={styles.addButton}>
           <UseSvg type="add" />
 
           <HideWhenSideBarIsClosed>
@@ -38,11 +40,11 @@ function SideBar() {
         </div>
       </div>
 
-      <div className="bottom-container">
-        <div className="user-info">
+      <div className={styles.bottomContainer}>
+        <div className={styles.userInfo}>
           <MenuProvider>
             <AnchorWrapper>
-              <img src={photoURL} className="user-photo" alt="user" />
+              <img src={photoURL} className={styles.userPhoto} alt="user" />
             </AnchorWrapper>
             <Menu>
               <button onClick={logout}>
@@ -52,24 +54,12 @@ function SideBar() {
             </Menu>
           </MenuProvider>
           <HideWhenSideBarIsClosed>
-            <div className="user-credentials">
-              <h3 className="user-name">{displayName}</h3>
-              <span className="user-email">{email}</span>
+            <div className={styles.userCredentials}>
+              <h3 className={styles.userName}>{displayName}</h3>
+              <span className={styles.userEmail}>{email}</span>
             </div>
           </HideWhenSideBarIsClosed>
         </div>
-        {/* <HideWhenSideBarIsClosed>
-          <div className="user-buttons">
-            <MenuProvider>
-           
-                <div className="button">
-                  <UseSvg type="moreInfo" />
-                </div>
-           
-             
-            </MenuProvider>
-          </div>
-        </HideWhenSideBarIsClosed> */}
       </div>
     </div>
   );
