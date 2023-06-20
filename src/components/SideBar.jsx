@@ -7,7 +7,7 @@ import MainInput from "./MainInput/MainInput";
 import { useInputs } from "./MainInput/InputContext";
 import Separator from "./elements/Separator";
 import { useData } from "../context/DatabaseContext";
-import TrashBtn from "./OutputFilters/filterComponents/TrashBtn";
+import TrashBtn from "./TrashBtn";
 
 function SideBar() {
   const { logout, currentUser } = useAuth();

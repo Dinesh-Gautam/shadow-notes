@@ -1,0 +1,28 @@
+@import "../../../../styles/variables";
+.colorAdditionInputs {
+  display: flex;
+  flex-direction: column;
+  gap: $padding-default;
+  justify-content: center;
+  flex: 1;
+  width: 100%;
+  margin: 0;
+}
+
+.randomColor {
+  display: flex;
+  align-items: center;
+  gap: $padding-default;
+  flex-wrap: wrap;
+  button {
+    padding: $padding-default;
+    box-shadow: $boxShadow-small;
+    border: 3px solid rgba(255, 255, 255, 0.8);
+    transition: transform 0.2s ease-in-out;
+    height: $padding-less;
+    width: $padding-less;
+    &:hover {
+      transform: scale(1.2);
+    }
+  }
+}

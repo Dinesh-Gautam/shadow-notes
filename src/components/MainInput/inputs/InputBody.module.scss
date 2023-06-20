@@ -17,8 +17,24 @@
 .colorInput {
   height: 100%;
   width: 32px;
-  background: red;
   order: 0;
+  border: none;
+}
+
+.color {
+  height: $padding-large * 2;
+  width: $padding-large * 2;
+  padding: 0;
+  border-radius: $border-radius-default;
+  overflow: hidden;
+  box-shadow: $boxShadow-default;
+  cursor: pointer;
+  &::-webkit-color-swatch-wrapper {
+    padding: 0;
+  }
+  &::-webkit-color-swatch {
+    border: none;
+  }
 }
 
 .colorMenu {

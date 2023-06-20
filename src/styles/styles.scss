@@ -165,147 +165,22 @@ main {
   }
 }
 
-.input_selection {
-  display: flex;
-  // margin-top: $padding-medium;
-  row-gap: $padding-medium;
-  gap: $padding-medium;
-  .selection_input_btn {
-    flex: 1;
-    display: flex;
-    justify-content: flex-start;
-    gap: $padding-default;
-  }
-  .input_main_button {
-    flex: 1;
-    display: flex;
-    justify-content: flex-end;
-    gap: $padding-default;
-  }
-  button {
-    padding: math.div($padding-less, 1.5) $padding-default;
-    align-self: center;
-    height: 100%;
-  }
-}
-
-.input_box_header {
-  display: flex;
-  justify-content: space-between;
-
-  button {
-    background: none;
-    box-shadow: none;
-  }
-  input,
-  label {
-    text-transform: uppercase;
-    font-size: $fontSize-small;
-    height: fit-content;
-    width: fit-content;
-    min-width: 0;
-    min-height: 0;
-    max-width: 98%;
-    margin-top: auto;
-    background: var(--default-backgroundcolor);
-    padding: math.div($padding-default, 3) $padding-medium;
-
-    border-radius: $border-radius-default $border-radius-default 0 0;
-    font-weight: 600;
-    opacity: 0.7;
-    border: none;
-    white-space: pre-wrap;
-    text-overflow: none;
-    overflow: visible;
-    overflow-wrap: break-word;
-  }
-}
-
-.added_input_box {
-  margin-top: $padding-default;
-  padding: $padding-default;
-  box-shadow: $boxShadow-default;
-  border-radius: $border-radius-default;
-  padding-top: 0;
-  background-color: var(--default-color);
-  .inputWaper {
-    .list_control_btns {
-      margin-top: $padding-medium;
-      button {
-        padding: $padding-less $padding-default;
-      }
-    }
-
-    // .list-container.dragging::after {
-    //   position: absolute;
-    //   content: "";
-    //   background-color: rgba(0, 0, 0, 0.025);
-    //   box-shadow: $boxShadow-default;
-    //   border-radius: $border-radius-default;
-    //   z-index: 100;
-    //   width: 100%;
-    //   height: 100%;
-    //   top: -$padding-veryLess;
-    //   left: -$padding-veryLess;
-    //   padding: $padding-veryLess;
-    // }
-    .list_input_box {
-      flex: 1;
-      input:not(input:last-child) {
-        border-radius: $border-radius-default;
-      }
-      .list-drag {
-        background-color: var(--default-backgroundcolor);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-right: -$padding-default;
-        cursor: grab;
-        border-radius: $border-radius-default 0 0 $border-radius-default;
-        padding: 0 $padding-veryLess - 4px;
-        svg {
-          opacity: 0.3;
-          height: $fontSize-medium;
-        }
-      }
-    }
-    .input .list_input_box .list-container {
-      margin-bottom: $padding-default;
-      gap: $padding-default;
-      display: flex;
-    }
-    .list_control_btns {
-      display: flex;
-      justify-content: flex-end;
-    }
-  }
-}
-
-.color_input {
-  border: none;
-  height: $padding-large * 2;
-  width: $padding-large * 2;
-  padding: 0;
-  border-radius: $border-radius-default;
-  overflow: hidden;
-  box-shadow: $boxShadow-default;
-  cursor: pointer;
-  &::-webkit-color-swatch-wrapper {
-    padding: 0;
-  }
-  &::-webkit-color-swatch {
-    border: none;
-  }
-}
-.color_addition_inputs {
-  display: flex;
-  flex-direction: column;
-  gap: $padding-default;
-  justify-content: center;
-  flex: 1;
-  width: 100%;
-  margin: 0;
-}
+// .color_input {
+//   border: none;
+//   height: $padding-large * 2;
+//   width: $padding-large * 2;
+//   padding: 0;
+//   border-radius: $border-radius-default;
+//   overflow: hidden;
+//   box-shadow: $boxShadow-default;
+//   cursor: pointer;
+//   &::-webkit-color-swatch-wrapper {
+//     padding: 0;
+//   }
+//   &::-webkit-color-swatch {
+//     border: none;
+//   }
+// }
 
 .random_color {
   display: flex;

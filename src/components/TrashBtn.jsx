@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { useData } from "../../../context/DatabaseContext";
-import { db } from "../../../firebase";
-import UseSvg from "../../elements/UseSvg";
-import Button from "../../MainInput/inputs/elements/Button";
-import Trash from "../../Trash";
+import { useData } from "../context/DatabaseContext";
+import { db } from "../firebase";
+import UseSvg from "./elements/UseSvg";
+import Button from "./MainInput/inputs/elements/Button";
+import Trash from "./Trash";
 import {
   collection,
   doc,
@@ -13,7 +13,7 @@ import {
   orderBy,
 } from "firebase/firestore";
 import { createPortal } from "react-dom";
-import Modal, { useModal } from "../../elements/Modal/Modal";
+import Modal, { useModal } from "./elements/Modal/Modal";
 
 const users = collection(db, "users");
 

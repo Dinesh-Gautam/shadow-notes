@@ -1,5 +1,5 @@
 import React from "react";
-import TrashBtn from "./filterComponents/TrashBtn";
+import TrashBtn from "../TrashBtn";
 import ColorFilter from "./filterComponents/ColorFilter";
 import SearchFilter from "./filterComponents/SearchFilter";
 import { useData } from "../../context/DatabaseContext";
@@ -8,7 +8,7 @@ import UseSvg from "../elements/UseSvg";
 import { input } from "../MainInput/inputs/inputOptions";
 
 function OutputFilter({ userDisplay, setuserDisplay }) {
-  const { trashData, settrashData, userData, setfilterData } = useData();
+  const { userData, setfilterData } = useData();
   return (
     <>
       <div className="search_filters">

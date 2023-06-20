@@ -38,7 +38,7 @@ function ColorSelection({ value, id }) {
           })
         }
         value={value}
-        className="color_input"
+        className={styles.color}
       />
     </div>
   );

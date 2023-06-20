@@ -6,6 +6,8 @@ import { useMemo } from "react";
 import { useState } from "react";
 import { useEffect } from "react";
 
+import styles from "./ColorAdditions.module.scss";
+
 function ColorAdditions({ input }) {
   const { userData } = useData();
   const { changeInputValue } = useInputActions();
@@ -22,7 +24,7 @@ function ColorAdditions({ input }) {
   return (
     <div>
       <label> Random Colors </label>
-      <div className="random_color">
+      <div className={styles.randomColor}>
         {randomColors.map((colorValue, index) => (
           <Button
             key={index}
@@ -42,7 +44,7 @@ function ColorAdditions({ input }) {
         ))}
       </div>
       <label> Applied Colors </label>
-      <div className="random_color">
+      <div className={styles.randomColor}>
         {userData &&
           userData
             .map(({ data, index }) => {
