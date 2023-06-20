@@ -2,16 +2,16 @@ import React, { useContext } from "react";
 import { inputOptions, input } from "./inputs/inputOptions";
 import { useInputs } from "./InputContext";
 import { v4 as uuidv4 } from "uuid";
+import { useModal } from "../elements/Modal/Modal";
 function useInputActions() {
   const {
     inputsDispatch,
     setInputFocusId,
     inputFocusId,
-    setModalOpen,
-    setEditMode,
-    f,
-  } = useInputs();
 
+    setEditMode,
+  } = useInputs();
+  const { setModalOpen } = useModal();
   function addInputElement({
     selectedInput,
     id = uuidv4(),
