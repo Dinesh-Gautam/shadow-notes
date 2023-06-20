@@ -5,7 +5,7 @@ import { headingId, useInputs } from "../../MainInput/InputContext";
 import { inputOptions } from "../../MainInput/inputs/inputOptions";
 import { v4 as uuidv4 } from "uuid";
 import Button from "../../MainInput/inputs/elements/Button";
-import Separator from "../../elements/Separator";
+import Separator from "../../elements/Separator/Separator";
 import { serverTimestamp } from "firebase/firestore";
 
 function AdditionalButtons({ docId, userData }) {

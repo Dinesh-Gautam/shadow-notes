@@ -2,7 +2,7 @@ import React from "react";
 import { useData } from "../context/DatabaseContext";
 import DropDown from "./elements/DropDown/DropDown";
 import Loading from "./elements/Loading";
-import Separator from "./elements/Separator";
+import Separator from "./elements/Separator/Separator";
 import UseSvg from "./elements/UseSvg";
 import Button from "./MainInput/inputs/elements/Button";
 import OutputTemplate from "./MainOutput/OutputTemplate";

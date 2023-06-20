@@ -5,7 +5,7 @@ import { Menu, AnchorWrapper, MenuProvider } from "./elements/Menu/Menu";
 import Modal, { ModalProvider, useModal } from "./elements/Modal/Modal";
 import MainInput from "./MainInput/MainInput";
 import { useInputs } from "./MainInput/InputContext";
-import Separator from "./elements/Separator";
+import Separator from "./elements/Separator/Separator";
 import { useData } from "../context/DatabaseContext";
 import TrashBtn from "./TrashBtn";
 

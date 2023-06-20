@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Separator from "../Separator";
+import Separator from "../Separator/Separator";
 import UseSvg from "../UseSvg";
 import styles from "./DropDown.module.scss";
 function DropDown({

@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import Separator from "../../elements/Separator";
+import Separator from "../../elements/Separator/Separator";
 import Button from "../../MainInput/inputs/elements/Button";
 import UseSvg from "../../elements/UseSvg";
 

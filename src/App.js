@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Separator from "./components/elements/Separator";
+import Separator from "./components/elements/Separator/Separator";
 import UndoDelete from "./components/elements/UndoDelete";
 import { InputContext, useInputs } from "./components/MainInput/InputContext";
 import MainInput from "./components/MainInput/MainInput";

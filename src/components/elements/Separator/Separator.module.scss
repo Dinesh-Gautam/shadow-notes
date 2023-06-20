@@ -1,0 +1,14 @@
+@import "../../../styles/variables";
+
+.horizontal-bold {
+  width: 100%;
+  min-height: 3px;
+  background-color: var(--vless-alpha-text-color);
+  margin: $padding-default 0;
+}
+.vertical-medium {
+  height: 60%;
+  width: 1px;
+  background-color: rgba(0, 0, 0, 0.15);
+  margin: 0 $padding-default;
+}
