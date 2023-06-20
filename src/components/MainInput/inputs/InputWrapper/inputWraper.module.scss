@@ -65,11 +65,12 @@ $label-margin: 0px;
   font-size: $fontSize-small;
 }
 
-.inputButtons {
+.inputFooter {
   display: flex;
   justify-content: flex-start;
   padding: $padding-less $padding-default;
   background: var(--default-backgroundcolor);
+  box-shadow: $boxShadow-default;
   position: absolute;
   bottom: 2px;
   left: 0;

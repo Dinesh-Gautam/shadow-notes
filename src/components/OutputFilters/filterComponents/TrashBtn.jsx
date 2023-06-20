@@ -68,7 +68,7 @@ function TrashBtn({ text }) {
         />
       </div>
 
-      <Modal>
+      <Modal title="Trash">
         <Trash trashData={trashData} settrashData={settrashData} />
       </Modal>
     </>

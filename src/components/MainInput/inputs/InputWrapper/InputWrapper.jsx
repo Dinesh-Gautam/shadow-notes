@@ -82,7 +82,7 @@ function InputWrapper({
       </div>
       <div className={styles.childContainer}>{children}</div>
       {show && inputFooter && (
-        <div className={styles.inputButtons}>{inputFooter}</div>
+        <div className={styles.inputFooter}>{inputFooter}</div>
       )}
     </div>
   );
