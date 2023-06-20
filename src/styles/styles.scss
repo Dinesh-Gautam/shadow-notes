@@ -460,27 +460,6 @@ main {
 
 // loading
 
-.simple-card {
-  // background-color: rgb(200, 200, 200);
-  height: 10%;
-  width: 100%;
-  padding: $padding-large;
-  border-radius: $border-radius-default;
-  animation: loading_animation 2s linear infinite;
-}
-
-@keyframes loading_animation {
-  0% {
-    background: rgb(240, 240, 240);
-  }
-  50% {
-    background: rgb(220, 220, 220);
-  }
-  100% {
-    background: rgb(240, 240, 240);
-  }
-}
-
 .sign-in-container {
   position: absolute;
   top: 50%;
