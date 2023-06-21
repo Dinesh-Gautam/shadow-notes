@@ -302,23 +302,6 @@ main {
   }
 }
 
-// .color_filter_container {
-//   @extend .random_color;
-//   gap: $padding-less;
-//   padding: 0 $padding-less - 4px;
-//   scroll-behavior: smooth;
-//   height: 100%;
-//   max-width: 100%;
-//   overflow: hidden;
-//   button {
-//     padding: math.div($padding-default, 1.6);
-//     border: 2px solid rgba(255, 255, 255, 0.8);
-//   }
-//   &.mr {
-//     margin-right: $padding-default;
-//   }
-// }
-
 .output_filter_label {
   display: flex;
   gap: $padding-veryLess;

@@ -1,0 +1,12 @@
+.filterBySearch {
+  flex: 1;
+  min-width: 40%;
+
+  button {
+    &.searchClearButton {
+      svg {
+        opacity: 0.6;
+      }
+    }
+  }
+}

@@ -3,6 +3,8 @@ import React, { useRef } from "react";
 import UseSvg from "../../elements/UseSvg";
 import Button from "../../MainInput/inputs/elements/Button";
 
+import styles from "./SearchFilter.module.scss";
+
 function SearchFilter({ setData }) {
   const input = useRef(null);
 
@@ -24,7 +26,7 @@ function SearchFilter({ setData }) {
     handleSearchFilter({ target: { value: "" } });
   };
   return (
-    <div className="filter-by-search">
+    <div className={styles.filterBySearch}>
       {/* !! DONT REMOVE BELOW CODE  !! */}
 
       {/* <select name="search-select">
@@ -41,7 +43,7 @@ function SearchFilter({ setData }) {
       <Button
         attr={{
           onClick: handleSearchClear,
-          className: "search_clear_button",
+          className: styles.searchClearButton,
           style: {
             display: input.current?.value.length > 0 ? "flex" : "none",
           },
