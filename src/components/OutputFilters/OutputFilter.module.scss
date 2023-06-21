@@ -1,0 +1,48 @@
+@import "../../styles/variables";
+
+.filters {
+  display: flex;
+  gap: $padding-default;
+  margin-top: $padding-default;
+  flex-wrap: wrap;
+  // position: sticky;
+  // top: 0;
+  // z-index: 9999;
+  // background: rgba($color: #ffffff, $alpha: 1);
+
+  & > div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--default-color);
+    box-shadow: $boxShadow-default;
+    border-radius: $border-radius-default;
+    button,
+    select,
+    input {
+      background: var(--default-color);
+      padding: $padding-less $padding-default;
+      border: none;
+      box-shadow: none;
+    }
+
+    select,
+    button {
+      text-transform: capitalize;
+    }
+    button {
+      svg {
+        height: 100%;
+      }
+      &.search_clear_button {
+        svg {
+          opacity: 0.6;
+        }
+      }
+    }
+  }
+  .filter-by-search {
+    flex: 1;
+    min-width: 40%;
+  }
+}

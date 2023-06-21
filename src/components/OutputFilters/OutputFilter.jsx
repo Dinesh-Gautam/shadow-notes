@@ -6,12 +6,13 @@ import { useData } from "../../context/DatabaseContext";
 import Button from "../MainInput/inputs/elements/Button";
 import UseSvg from "../elements/UseSvg";
 import { input } from "../MainInput/inputs/inputOptions";
+import styles from "./OutputFilter.module.scss";
 
 function OutputFilter({ userDisplay, setuserDisplay }) {
   const { userData, setfilterData } = useData();
   return (
     <>
-      <div className="search_filters">
+      <div className={styles.filters}>
         {userData &&
           userData.filter((e) => e.data.some((i) => i.name === input.color))
             .length > 0 && (

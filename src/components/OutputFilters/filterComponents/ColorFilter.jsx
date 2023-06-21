@@ -3,6 +3,8 @@ import Separator from "../../elements/Separator/Separator";
 import Button from "../../MainInput/inputs/elements/Button";
 import UseSvg from "../../elements/UseSvg";
 
+import styles from "./ColorFilter.module.scss";
+
 function ColorFilter({ setData, appliedColors }) {
   const colorFilterBtnRef = useRef(null);
 
@@ -58,8 +60,9 @@ function ColorFilter({ setData, appliedColors }) {
       return { ...prev, colorFIlter: value };
     });
   };
+
   return (
-    <div className="color_filter">
+    <div className={styles.colorFilter}>
       <Button
         attr={{
           onClick: () => {
@@ -72,14 +75,26 @@ function ColorFilter({ setData, appliedColors }) {
         text="All"
       />
       <Separator
-        type={ScrollDisplay.all ? "vertical-medium m0" : "vertical-medium ml0"}
+        type={ScrollDisplay.all ? "vertical-medium" : "vertical-medium"}
       />
-      <div className="color_container">
+      <div
+        style={
+          ScrollDisplay.all
+            ? {
+                marginLeft: 0,
+              }
+            : {}
+        }
+        className={styles.colorContainer}
+      >
         {ScrollDisplay.all && (
           <Button
             attr={{
               onClick: colorFIlterScrollHandlerLeft,
-              className: "color-filter-scrollBtn color-filter-arrowLeft",
+              className: [
+                styles.colorFilterScrollBtn,
+                styles.colorFilterArrowLeft,
+              ].join(" "),
             }}
             text={<UseSvg type="expand" />}
           />
@@ -88,8 +103,8 @@ function ColorFilter({ setData, appliedColors }) {
           ref={colorFilterBtnRef}
           className={
             ScrollDisplay.all
-              ? "color_filter_container"
-              : "color_filter_container mr"
+              ? styles.colorFilterContainer
+              : [styles.colorFilterContainer, styles.mr].join(" ")
           }
         >
           {uniqueAppliedColors.map((inputValue, index) => {
@@ -101,7 +116,6 @@ function ColorFilter({ setData, appliedColors }) {
                   onClick: handleColorFilterClick,
                   name: "color_input_value",
                   style: { backgroundColor: inputValue },
-                  className: "random-color-btn colro-btn",
                 }}
               />
             );
@@ -111,7 +125,10 @@ function ColorFilter({ setData, appliedColors }) {
           <Button
             attr={{
               onClick: colorFIlterScrollHandlerRight,
-              className: "color-filter-scrollBtn color-filter-arrowRight",
+              className: [
+                styles.colorFilterScrollBtn,
+                styles.colorFilterArrowRight,
+              ].join(" "),
             }}
             text={<UseSvg type="expand" />}
           />

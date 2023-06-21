@@ -1,0 +1,67 @@
+@import "../../../styles/variables";
+@import "../../../styles/styles.scss";
+
+.colorFilterContainer {
+  @extend .random_color;
+  gap: $padding-less;
+  padding: 0 $padding-less - 4px;
+  scroll-behavior: smooth;
+  height: 100%;
+  max-width: 100%;
+  overflow: hidden;
+  flex-wrap: nowrap;
+  button {
+    padding: $padding-default / 1.6 !important;
+    border: 2px solid rgba(255, 255, 255, 0.8) !important;
+  }
+  &.mr {
+    margin-right: $padding-default !important;
+  }
+  &.output {
+    height: auto;
+    button {
+      cursor: default;
+      &:hover {
+        transform: scale(1);
+      }
+    }
+  }
+}
+
+.colorFilter {
+  max-width: 40%;
+  overflow: hidden;
+  display: flex;
+}
+
+.colorContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  overflow: hidden;
+  height: 100%;
+  margin-left: $padding-default;
+}
+.colorFilterScrollBtn {
+  // position: absolute;
+  // top: 0;
+  height: 100%;
+  border-radius: 0;
+  position: relative;
+  z-index: 100;
+}
+
+.colorFilterArrowLeft {
+  // left: 0;
+  svg {
+    transform: rotate(90deg);
+  }
+}
+
+.colorFilterArrowRight {
+  // right: 0;
+  svg {
+    transform: rotate(-90deg);
+  }
+}

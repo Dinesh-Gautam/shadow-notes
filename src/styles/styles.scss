@@ -108,8 +108,8 @@ select {
       var(--less-alpha-text-color) 50%
     ),
     linear-gradient(135deg, var(--less-alpha-text-color) 50%, transparent 50%);
-  background-position: calc(100% - 20px) calc(1em + 2px),
-    calc(100% - 15px) calc(1em + 2px), calc(100% - 2.5em) 0.5em;
+  background-position: calc(100% - 20px) calc(1em), calc(100% - 15px) calc(1em),
+    calc(100% - 2.5em) 0.5em;
   background-size: 5px 5px, 5px 5px, 1px 1.5em;
   height: 100%;
   box-sizing: content-box;
@@ -302,106 +302,27 @@ main {
   }
 }
 
-// filters
-.search_filters {
-  display: flex;
-  gap: $padding-default;
-  margin-top: $padding-default;
-  flex-wrap: wrap;
-  // position: sticky;
-  // top: 0;
-  // z-index: 9999;
-  // background: rgba($color: #ffffff, $alpha: 1);
-
-  & > div {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--default-color);
-    box-shadow: $boxShadow-default;
-    border-radius: $border-radius-default;
-    button,
-    select,
-    input {
-      background: var(--default-color);
-      padding: $padding-less $padding-default;
-      border: none;
-      box-shadow: none;
-    }
-
-    select,
-    button {
-      text-transform: capitalize;
-    }
-    button {
-      svg {
-        height: 100%;
-      }
-      &.search_clear_button {
-        svg {
-          opacity: 0.6;
-        }
-      }
-    }
-  }
-  .filter-by-search {
-    flex: 1;
-    min-width: 40%;
-  }
-  .color_filter_container {
-    @extend .random_color;
-    gap: $padding-less;
-    padding: 0 $padding-less - 4px;
-    scroll-behavior: smooth;
-    height: 100%;
-    max-width: 100%;
-    overflow: hidden;
-    flex-wrap: nowrap;
-    button {
-      padding: math.div($padding-default, 1.6);
-      border: 2px solid rgba(255, 255, 255, 0.8);
-    }
-    &.mr {
-      margin-right: $padding-default;
-    }
-  }
-}
-.color_filter_container {
-  @extend .random_color;
-  gap: $padding-less;
-  padding: 0 $padding-less - 4px;
-  scroll-behavior: smooth;
-  height: 100%;
-  max-width: 100%;
-  overflow: hidden;
-  button {
-    padding: math.div($padding-default, 1.6);
-    border: 2px solid rgba(255, 255, 255, 0.8);
-  }
-  &.mr {
-    margin-right: $padding-default;
-  }
-
-  &.output {
-    height: auto;
-    button {
-      cursor: default;
-      &:hover {
-        transform: scale(1);
-      }
-    }
-  }
-}
+// .color_filter_container {
+//   @extend .random_color;
+//   gap: $padding-less;
+//   padding: 0 $padding-less - 4px;
+//   scroll-behavior: smooth;
+//   height: 100%;
+//   max-width: 100%;
+//   overflow: hidden;
+//   button {
+//     padding: math.div($padding-default, 1.6);
+//     border: 2px solid rgba(255, 255, 255, 0.8);
+//   }
+//   &.mr {
+//     margin-right: $padding-default;
+//   }
+// }
 
 .output_filter_label {
   display: flex;
   gap: $padding-veryLess;
   margin-bottom: $padding-default;
-}
-.color_filter {
-  max-width: 40%;
-  overflow: hidden;
-  display: flex;
 }
 
 .sign-in-container {
@@ -415,35 +336,6 @@ main {
     background: var(--default-color);
     display: flex;
     gap: $padding-default;
-  }
-}
-
-.color_container {
-  position: relative;
-  display: flex;
-  align-items: center;
-  width: 100%;
-  overflow: hidden;
-  height: 100%;
-}
-.color-filter-scrollBtn {
-  // position: absolute;
-  // top: 0;
-  height: 100%;
-  border-radius: 0;
-}
-
-.color-filter-arrowLeft {
-  // left: 0;
-  svg {
-    transform: rotate(90deg);
-  }
-}
-
-.color-filter-arrowRight {
-  // right: 0;
-  svg {
-    transform: rotate(-90deg);
   }
 }
 
