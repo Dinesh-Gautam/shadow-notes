@@ -48,7 +48,6 @@ function MainOutput() {
                   value: filteredUserData.colorFIlter,
                   name: "color_input_value",
                   style: { backgroundColor: filteredUserData.colorFIlter },
-                  className: "random-color-btn colro-btn",
                 }}
               />
             </div>
