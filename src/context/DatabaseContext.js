@@ -11,6 +11,8 @@ import {
   query,
   orderBy,
   getDocs,
+  getDoc,
+  updateDoc,
 } from "firebase/firestore";
 import { db } from "../firebase";
 import { useAuth } from "./AuthContext";
@@ -81,9 +83,20 @@ export function DatabaseContext({ children }) {
       }
     }
 
-    function migrateV2DataToV3() {
+    async function migrateV2DataToV3() {
       console.log(userDocCollection);
       // get all the documents from the v2 collection
+      const docSnap = await getDoc(userDoc);
+      //check if the data is migrated
+      if (docSnap.exists()) {
+        const data = docSnap.data();
+        if (data.version === 3) {
+          console.warn("Data already migrated!");
+          localStorage.setItem("isMigratedToV3", true);
+          return;
+        }
+      }
+
       const v2Docs = query(userDocCollection);
       // get all docs
       getDocs(v2Docs).then((snapshot) => {
@@ -149,6 +162,9 @@ export function DatabaseContext({ children }) {
 
           window.alert("migrated");
           localStorage.setItem("isMigratedToV3", true);
+          updateDoc(userDoc, {
+            version: 3,
+          });
         });
 
         console.log(newData);

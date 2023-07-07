@@ -1,4 +1,5 @@
 @import "../styles/variables";
+@import "../styles/mixins";
 
 .sideBarContainer {
   width: fit-content;
@@ -7,7 +8,26 @@
   flex-direction: column;
   justify-content: space-between;
   padding-right: $padding-default;
+  @include breakpoint(xxl, max) {
+    flex-direction: row;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 10000;
+    width: 100%;
+    background-color: var(--default-backgroundcolor);
+    padding-inline: $padding-default;
+    align-items: center;
+    border-top: 3px solid var(--vless-alpha-text-color);
+    padding-block: $padding-less;
+  }
   .upperContainer {
+    @include breakpoint(xxl, max) {
+      display: flex;
+      gap: $padding-default * 2;
+      align-items: center;
+      order: 1;
+    }
     button {
       width: 100%;
       background: var(--default-color);
@@ -16,6 +36,9 @@
     .addButton {
       padding: $padding-default;
       font-size: $fontSize-medium;
+      @include breakpoint(xxl, max) {
+        order: 1;
+      }
     }
   }
   .bottomContainer {
@@ -24,6 +47,11 @@
     display: flex;
     align-items: center;
     gap: $padding-veryLess;
+    @include breakpoint(xxl, max) {
+      border: none;
+      border: none;
+      padding: 0;
+    }
   }
 
   .userInfo {
@@ -36,6 +64,8 @@
       $user-photo-height: 42px;
       height: $user-photo-height;
       width: $user-photo-height;
+      min-height: $user-photo-height;
+      min-width: $user-photo-height;
       border-radius: 50%;
     }
 

@@ -1,4 +1,5 @@
 @import "../../../styles/variables";
+@import "../../../styles/mixins";
 @import "../../../styles/styles.scss";
 
 .colorFilterContainer {
@@ -32,6 +33,10 @@
   max-width: 40%;
   overflow: hidden;
   display: flex;
+  @include breakpoint(lg, max) {
+    min-width: 30%;
+    max-width: 100%;
+  }
 }
 
 .colorContainer {

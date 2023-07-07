@@ -1,15 +1,23 @@
 @import "../../../styles/variables";
+@import "../../../styles/mixins";
 .container {
   display: flex;
   background-color: var(--default-color);
   border-radius: $border-radius-default;
-  box-shadow: $boxShadow-default;
+  box-shadow: $boxShadow-more-depth;
   padding-block: $padding-veryLess;
   z-index: 100;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+
+  @include breakpoint(sm, max) {
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+    z-index: 1000;
+  }
 
   button {
     background: transparent;
@@ -21,6 +29,9 @@
     padding-block: 0;
     border-radius: 0;
     justify-content: space-between;
+    @include breakpoint(sm, max) {
+      border: none;
+    }
     div {
       display: flex;
       align-items: center;

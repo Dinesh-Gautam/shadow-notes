@@ -326,9 +326,12 @@ main {
   main {
     grid-template-columns: 1fr;
     gap: 0;
+    margin-right: 0;
   }
   .mainContainer {
     grid-column: 1/-1;
+    padding-right: $padding-default;
+    margin-bottom: $padding-default * 5;
   }
 }
 
@@ -344,13 +347,7 @@ main {
   .mainoutput_wraper {
     grid-template-columns: 1fr;
   }
-  .search_filters {
-    justify-content: center;
-  }
-  .color_filter {
-    min-width: 30%;
-    max-width: 100%;
-  }
+
   .dropdown_container {
     .dropdown_wraper {
       flex-direction: column;

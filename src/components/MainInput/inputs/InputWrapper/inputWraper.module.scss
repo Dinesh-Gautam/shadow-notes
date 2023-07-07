@@ -9,7 +9,7 @@ $label-margin: 0px;
   background: var(--default-color);
   min-height: $padding-default * 2;
   &.dragging {
-    box-shadow: $boxShadow-default;
+    box-shadow: none;
   }
 }
 
