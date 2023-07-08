@@ -10,12 +10,6 @@ const container = document.getElementById("root");
 const root = createRoot(container);
 root.render(
   <AuthProvider>
-    <DatabaseContext>
-      <ModalProvider>
-        <InputContext>
-          <App />
-        </InputContext>
-      </ModalProvider>
-    </DatabaseContext>
+    <App />
   </AuthProvider>
 );

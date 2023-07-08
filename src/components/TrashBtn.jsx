@@ -24,14 +24,18 @@ function TrashBtn({ text }) {
 
   const { userID } = useData();
 
-  const userDoc = doc(users, userID);
-  const userDocCollection = query(
-    collection(userDoc, "userData"),
-    where("delete", "==", true),
-    orderBy("deletedOn", "desc")
-  );
-
   useEffect(() => {
+    let userDoc, userDocCollection;
+    if (users && userID) {
+      userDoc = doc(users, userID);
+      userDocCollection = query(
+        collection(userDoc, "userData"),
+        where("delete", "==", true),
+        orderBy("deletedOn", "desc")
+      );
+    } else {
+      return;
+    }
     let unsubscribe;
     if (trashData === null && initialRequest) {
       unsubscribe = onSnapshot(userDocCollection, (snapshot) => {

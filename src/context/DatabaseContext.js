@@ -90,6 +90,7 @@ export function DatabaseContext({ children }) {
       //check if the data is migrated
       if (docSnap.exists()) {
         const data = docSnap.data();
+
         if (data.version === 3) {
           console.warn("Data already migrated!");
           localStorage.setItem("isMigratedToV3", true);
@@ -99,9 +100,12 @@ export function DatabaseContext({ children }) {
 
       const v2Docs = query(userDocCollection);
       // get all docs
+
       getDocs(v2Docs).then((snapshot) => {
         const allDocs = snapshot.docs;
-
+        // const json = allDocs.map((e) => e.data());
+        // console.log(JSON.stringify(json));
+        // return;
         let newData = allDocs.map((doc) => {
           const newDocData = doc.data().data.map((data) => {
             const { additionalValue, id, inner, name, value, inputValue } =
@@ -183,12 +187,11 @@ export function DatabaseContext({ children }) {
     setDoc(
       userDoc,
       {
-        user: {
-          uid: currentUser.uid,
-        },
+        users: [],
         groups: false,
         favourits: false,
         tags: false,
+        version: 3,
       },
       { merge: true }
     ).then(() => {

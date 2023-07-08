@@ -12,37 +12,49 @@ import { DatabaseContext } from "./context/DatabaseContext";
 
 import "./styles/styles.scss";
 import SideBar from "./components/SideBar";
-import Modal from "./components/elements/Modal/Modal";
+import Modal, { ModalProvider } from "./components/elements/Modal/Modal";
 
 function App() {
   const { currentUser } = useAuth();
-  const [userDisplay, setuserDisplay] = useState(false);
-  const { editMode } = useInputs();
 
   return (
     <main>
       {!currentUser ? (
         <SignWithGoogle />
       ) : (
-        <>
-          <SideBar />
-          <div className="mainContainer">
-            {/* <MainInput /> */}
-            <OutputFilter
-              userDisplay={userDisplay}
-              setuserDisplay={setuserDisplay}
-            />
-            <Separator type="horizontal-bold" />
-            <MainOutput />
-          </div>
-          {userDisplay && <UserInfo />}
-          <UndoDelete />
-          <Modal title={editMode.edit ? "Edit Note" : "Add Note"}>
-            <MainInput />
-          </Modal>
-        </>
+        <DatabaseContext>
+          <ModalProvider>
+            <InputContext>
+              <Main />
+            </InputContext>
+          </ModalProvider>
+        </DatabaseContext>
       )}
     </main>
+  );
+}
+
+function Main() {
+  const [userDisplay, setuserDisplay] = useState(false);
+  const { editMode } = useInputs();
+  return (
+    <>
+      <SideBar />
+      <div className="mainContainer">
+        {/* <MainInput /> */}
+        <OutputFilter
+          userDisplay={userDisplay}
+          setuserDisplay={setuserDisplay}
+        />
+        <Separator type="horizontal-bold" />
+        <MainOutput />
+      </div>
+      {userDisplay && <UserInfo />}
+      <UndoDelete />
+      <Modal title={editMode.edit ? "Edit Note" : "Add Note"}>
+        <MainInput />
+      </Modal>
+    </>
   );
 }
 
