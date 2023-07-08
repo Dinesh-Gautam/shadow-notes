@@ -21,7 +21,7 @@ function useInputActions() {
   }) {
     inputsDispatch({
       type: "addElement",
-      payload: { selectedInput, id, isFocusable, index, parentId },
+      payload: { selectedInput, id, isFocusable: isFocusable, index, parentId },
     });
     setInputFocusId(id);
   }

@@ -6,7 +6,8 @@
   box-shadow: $boxShadow-default;
   margin-bottom: $padding-less;
   display: flex;
-  input {
+  input,
+  span[data-input="true"] {
     padding: $padding-less;
     border: none;
     border-radius: 0;
@@ -59,7 +60,8 @@
     // margin-bottom: $padding-default;
   }
   input,
-  textarea {
+  textarea,
+  span[data-input="true"] {
     border: none;
     border-radius: 0;
     font-family: "Poppins";

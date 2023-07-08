@@ -28,10 +28,11 @@ function useKeyboardEvents() {
       return;
     }
 
-    if (e.code === codes.enterKey && input.name === InputOption.list) {
-      const index = getIndex(input, 1);
-      addListElement({ parentId: input.parentId, index });
-    }
+    // if (e.code === codes.enterKey && input.name === InputOption.list) {
+    //   e.preventDefault();
+    //   const index = getIndex(input, 1);
+    //   addListElement({ parentId: input.parentId, index });
+    // }
 
     if (e.code === codes.arrowUpKey) {
       const index = getIndex(input, -1);
@@ -59,7 +60,7 @@ function useKeyboardEvents() {
 
     do {
       index += direction;
-      if (index >= inputs.length) {
+      if (index > inputs.length - 1) {
         index = 0;
       }
       if (index < 0) {
@@ -89,8 +90,12 @@ function useInputProps() {
       ref: (e) => (inputRef.current[input.id] = e),
       onKeyDown: (e) => onKeyDown(e, input),
       value: input?.state?.value || "",
-      onChange: (e) =>
-        changeInputValue({ id: input.id, value: e.target.value }),
+      onChange: (e) => {
+        e.target.style.height = "auto";
+        e.target.style.height = e.target.scrollHeight + "px";
+
+        changeInputValue({ id: input.id, value: e.target.value });
+      },
     };
   }
 

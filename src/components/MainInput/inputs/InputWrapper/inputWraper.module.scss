@@ -44,7 +44,8 @@ $label-margin: 0px;
   top: $label-margin + 2px;
   width: fit-content;
 
-  input {
+  input,
+  span[data-input="true"] {
     padding: 0;
     background: transparent;
     font-size: $fontSize-small;
@@ -79,7 +80,8 @@ $label-margin: 0px;
   z-index: 100;
   border-radius: 0 0 $border-radius-default $border-radius-default;
   gap: $padding-default;
-  input {
+  input,
+  span[data-input="true"] {
     border-radius: $border-radius-default !important;
     background-color: var(--default-color) !important;
     padding-block: 0;
@@ -92,7 +94,21 @@ $label-margin: 0px;
 .childContainer {
   display: flex;
   align-items: center;
-  input {
+  input,
+  span[data-input="true"] {
     padding-block: $padding-default / 4;
+    text-rendering: auto;
+    letter-spacing: normal;
+    word-spacing: normal;
+    line-height: normal;
+    text-transform: none;
+    text-indent: 0px;
+    display: inline-block;
+    text-align: start;
+    appearance: auto;
+    -webkit-rtl-ordering: logical;
+    cursor: text;
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
   }
 }

@@ -65,7 +65,8 @@ button {
 
 input,
 select,
-textarea {
+textarea,
+span[data-input="true"] {
   padding: math.div($padding-default, 2) $padding-default;
   background-color: var(--default-color);
   border: $border-default;
@@ -75,14 +76,16 @@ textarea {
   font-size: $fontSize-medium;
   color: var(--default-text-color);
 }
-input {
+input,
+span[data-input="true"] {
   width: 100%;
 }
 
 input,
 select,
 textarea,
-button {
+button,
+span {
   font-family: $font-default;
 }
 
@@ -165,7 +168,8 @@ main {
     box-shadow: $boxShadow-default;
   }
   input,
-  textarea {
+  textarea,
+  span {
     &:focus {
       box-shadow: inset $boxShadow-input !important;
     }

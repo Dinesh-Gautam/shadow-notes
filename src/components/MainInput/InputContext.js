@@ -23,6 +23,7 @@ const initialState = [{ ...headingState, id: headingId }];
 
 const addElement = (state, action) => {
   const { selectedInput, id, parentId, isFocusable, index } = action.payload;
+  console.log("focusable", isFocusable);
   console.log("value of index is: ", index);
   if (index === undefined) {
     // return state.addToLast({ ...selectedInput, id, parentId })
@@ -32,13 +33,18 @@ const addElement = (state, action) => {
         ...selectedInput,
         id,
         parentId: parentId || null,
-        isFocusable: isFocusable || null,
+        isFocusable: isFocusable === undefined ? null : isFocusable,
       },
     ]);
   } else {
     return sortArray([
       ...state.slice(0, index + 1),
-      { ...selectedInput, id, parentId },
+      {
+        ...selectedInput,
+        id,
+        parentId,
+        isFocusable: isFocusable === undefined ? null : isFocusable,
+      },
       ...state.slice(index + 1),
     ]);
   }

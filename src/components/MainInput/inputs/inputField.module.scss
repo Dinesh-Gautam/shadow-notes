@@ -11,7 +11,8 @@
 .list {
   padding-inline: $padding-default * 2;
   width: 100%;
-  input {
+  input,
+  span[data-input="true"] {
     padding-inline: $padding-less;
   }
   button {
