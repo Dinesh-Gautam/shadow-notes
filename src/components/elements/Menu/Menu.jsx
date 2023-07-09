@@ -44,19 +44,21 @@ export const Menu = ({ children }) => {
 
     const menu = menuRef.current;
     const menuOffsetHeight = menu.offsetHeight;
-    const anchorY = anchor.offsetTop + anchor.offsetHeight;
+    const anchorRect = anchor.getBoundingClientRect();
+    const anchorY = anchorRect.top + window.scrollY + anchorRect.height;
     const windowHeight = window.innerHeight;
 
     const overflowingWindow = anchorY + menuOffsetHeight > windowHeight;
 
     if (overflowingWindow) {
       // overflowing
+      console.log("overflowing");
       menu.style.top = anchor.offsetTop - menu.offsetHeight + "px";
-      menu.style.left = anchor.offsetLeft + "px";
+      menu.style.left = anchorRect.left + "px";
     } else {
       // not overflowing
       menu.style.top = anchorY + "px";
-      menu.style.left = anchor.offsetLeft + "px";
+      menu.style.left = anchorRect.left + "px";
     }
 
     console.log(anchor);
