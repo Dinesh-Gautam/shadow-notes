@@ -35,7 +35,7 @@ export const inputOptions = [
   },
   {
     value: "Paragraph",
-    name: "Pragraph_input_value",
+    name: "Paragraph_input_value",
   },
   {
     value: "Link",
