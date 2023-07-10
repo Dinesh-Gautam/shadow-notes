@@ -8,10 +8,11 @@ function useInputActions() {
     inputsDispatch,
     setInputFocusId,
     inputFocusId,
-
     setEditMode,
+    addToHistory,
   } = useInputs();
   const { setModalOpen } = useModal();
+
   function addInputElement({
     selectedInput,
     id = uuidv4(),
@@ -24,6 +25,7 @@ function useInputActions() {
       payload: { selectedInput, id, isFocusable: isFocusable, index, parentId },
     });
     setInputFocusId(id);
+    addToHistory();
   }
 
   function addListElement({
@@ -40,6 +42,7 @@ function useInputActions() {
       payload: { selectedInput, id, parentId, index },
     });
     setInputFocusId(id);
+    addToHistory();
   }
 
   function removeElement({ id }) {
@@ -47,6 +50,7 @@ function useInputActions() {
       type: "removeElement",
       payload: { id },
     });
+    addToHistory();
   }
 
   function changeInputValue({ id, value, valueName, isLabel, isLink }) {
@@ -54,6 +58,8 @@ function useInputActions() {
       type: "changeInputValue",
       payload: { id, value, isLabel, isLink, valueName },
     });
+
+    addToHistory({ useTimeout: true });
   }
 
   function changeInputChecked({ id, checked }) {
@@ -75,7 +81,6 @@ function useInputActions() {
       type: "cancel",
     });
     setEditMode({ edit: false, editParameters: {} });
-
     setModalOpen(false);
   }
 

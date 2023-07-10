@@ -25,7 +25,7 @@ export function getStyle(style, snapshot) {
 }
 
 function MainInput() {
-  const { formSubmitHandler } = useInputs();
+  const { formSubmitHandler, undo, redo } = useInputs();
   const { onDragEnd, inputFormCancel } = useInputActions();
 
   return (
@@ -37,6 +37,15 @@ function MainInput() {
 
       <div className={styles.inputControls}>
         <div className={styles.formControls}>
+          <button type="button" onClick={undo}>
+            Undo
+          </button>
+
+          <button type="button" onClick={redo}>
+            Redo
+          </button>
+        </div>
+        <div className={styles.formControls}>
           <button
             type="button"
             onClick={() => {
@@ -45,7 +54,9 @@ function MainInput() {
           >
             Cancel
           </button>
-          <button onClick={formSubmitHandler}>Submit</button>
+          <button type="submit" onClick={formSubmitHandler}>
+            Submit
+          </button>
         </div>
       </div>
     </form>
