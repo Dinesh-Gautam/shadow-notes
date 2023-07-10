@@ -225,10 +225,7 @@ function TitleInput({ input, placeholder }) {
   return (
     <Input
       input={input}
-      style={{
-        fontSize: 24,
-        fontWeight: "bold",
-      }}
+      className={styles.title}
       placeholder={placeholder}
       type="text"
     ></Input>
@@ -239,10 +236,7 @@ function DescriptionInput({ input, placeholder }) {
   return (
     <Input
       input={input}
-      style={{
-        fontSize: 24,
-        fontWeight: "bold",
-      }}
+      className={styles.description}
       placeholder={placeholder}
       type="text"
     ></Input>
