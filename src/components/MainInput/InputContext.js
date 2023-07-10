@@ -116,7 +116,6 @@ const onDragEnd = (state, action) => {
       newItems.splice(dIndex, 0, removed);
     } else {
       const childrenArray = [];
-      // todo : don't hardcode the heading name, check if the input is moveable or not same for the input body file
       const nonMoveableLength = newItems.filter((e) => e.nonMoveable).length;
       newItems = newItems
         .map((e) => {
@@ -205,6 +204,46 @@ export function InputContext(props) {
   const { setData_fireStore, updateData_fireStore } = useData();
   const [editMode, setEditMode] = useState({ edit: false, parameters: {} });
   const { modalOpen, setModalOpen } = useModal(false);
+
+  const [history, setHistory] = useState({ undo: [], redo: [] });
+  const historyChangeRef = useRef(null);
+
+  function addToHistory({ useTimeout = false } = {}) {
+    if (useTimeout) {
+      clearInterval(historyChangeRef.current);
+      historyChangeRef.current = setTimeout(
+        () =>
+          setHistory((prev) => ({ undo: [...prev.undo, inputs], redo: [] })),
+        500
+      );
+    } else {
+      setHistory((prev) => ({ undo: [...prev.undo, inputs], redo: [] }));
+    }
+  }
+
+  function undo() {
+    if (history.undo.length > 0) {
+      const lastStateInHistory = history.undo[history.undo.length - 1];
+      setHistory((prev) => ({
+        undo: prev.undo.slice(0, prev.undo.length - 1),
+        redo: [...prev.redo, inputs],
+      }));
+
+      inputsDispatch({ type: "edit", payload: lastStateInHistory });
+    }
+  }
+
+  function redo() {
+    if (history.redo.length > 0) {
+      const lastStateInHistory = history.redo[history.redo.length - 1];
+      setHistory((prev) => ({
+        redo: prev.redo.slice(0, prev.redo.length - 1),
+        undo: [...prev.undo, inputs],
+      }));
+
+      inputsDispatch({ type: "edit", payload: lastStateInHistory });
+    }
+  }
 
   useEffect(() => {
     clearTimeout(saveStateRef.current);
@@ -298,6 +337,11 @@ export function InputContext(props) {
     hasAnyNotes,
     modalOpen,
     setModalOpen,
+    undo,
+    redo,
+    setHistory,
+    history,
+    addToHistory,
   };
   return (
     <input_context.Provider value={value}>
