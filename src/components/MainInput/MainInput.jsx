@@ -6,6 +6,8 @@ import InputControls from "./inputs/InputControls";
 import styles from "./mainInput.module.scss";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import useInputActions from "./useInputActions";
+import UndoIcon from "@mui/icons-material/Undo";
+import RedoIcon from "@mui/icons-material/Redo";
 
 export function getStyle(style, snapshot) {
   console.log(snapshot);
@@ -25,11 +27,12 @@ export function getStyle(style, snapshot) {
 }
 
 function MainInput() {
-  const { formSubmitHandler, undo, redo } = useInputs();
+  const { formSubmitHandler, history, undo, redo } = useInputs();
   const { onDragEnd, inputFormCancel } = useInputActions();
 
   return (
     <form
+      onSubmit={formSubmitHandler}
       className={styles.form}
       //  onSubmit={formSubmitHandler}
     >
@@ -37,13 +40,16 @@ function MainInput() {
 
       <div className={styles.inputControls}>
         <div className={styles.formControls}>
-          <button type="button" onClick={undo}>
-            Undo
-          </button>
-
-          <button type="button" onClick={redo}>
-            Redo
-          </button>
+          {history.undo.length > 0 && (
+            <button title="Undo" type="button" onClick={undo}>
+              <UndoIcon />
+            </button>
+          )}
+          {history.redo.length > 0 && (
+            <button title="Redo" type="button" onClick={redo}>
+              <RedoIcon />
+            </button>
+          )}
         </div>
         <div className={styles.formControls}>
           <button
@@ -54,9 +60,7 @@ function MainInput() {
           >
             Cancel
           </button>
-          <button type="submit" onClick={formSubmitHandler}>
-            Submit
-          </button>
+          <button type="submit">Submit</button>
         </div>
       </div>
     </form>
