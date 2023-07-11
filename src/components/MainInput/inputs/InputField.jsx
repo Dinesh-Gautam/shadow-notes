@@ -96,6 +96,7 @@ function useInputProps() {
 
         changeInputValue({ id: input.id, value: e.target.value });
       },
+      required: input?.isRequired || false,
     };
   }
 
@@ -105,6 +106,7 @@ function useInputProps() {
 function Input(props) {
   const { attachProps } = useInputProps();
   const { input, ...otherProps } = props;
+
   console.log(props);
   return props.type === "textarea" ? (
     <textarea {...attachProps(props.input)} {...otherProps} />

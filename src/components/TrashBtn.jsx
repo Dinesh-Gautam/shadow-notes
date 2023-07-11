@@ -58,6 +58,7 @@ function TrashBtn({ text }) {
       <div>
         <Button
           attr={{
+            title: "Trash",
             onClick: () => {
               setModalOpen(true);
               !initialRequest && setinitialRequest(true);

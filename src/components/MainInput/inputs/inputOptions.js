@@ -27,7 +27,6 @@ export const inputOptions = [
   {
     value: "Title",
     name: "title_input_value",
-    isRequired: true,
   },
   {
     value: "Description",

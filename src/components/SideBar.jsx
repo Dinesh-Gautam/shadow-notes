@@ -18,7 +18,11 @@ function SideBar() {
   return (
     <div className={styles.sideBarContainer}>
       <div className={styles.upperContainer}>
-        <button onClick={() => setModalOpen(true)} className={styles.addButton}>
+        <button
+          title="Add Note"
+          onClick={() => setModalOpen(true)}
+          className={styles.addButton}
+        >
           <UseSvg type="add" />
 
           <HideWhenSideBarIsClosed>
