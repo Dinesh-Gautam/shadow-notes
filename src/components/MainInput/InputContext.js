@@ -189,7 +189,7 @@ const setInputs = (state, action) => {
     case "localStorage":
       return action.payload;
     case "edit":
-      return action.payload;
+      return sortArray(action.payload);
     case "cancel":
       return initialState;
     default:
