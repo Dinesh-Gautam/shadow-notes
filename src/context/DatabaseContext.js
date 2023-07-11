@@ -175,6 +175,7 @@ export function DatabaseContext({ children }) {
 
           window.alert("migrated");
           localStorage.setItem("isMigratedToV3", true);
+          localStorage.removeItem("inputs");
           updateDoc(userDoc, {
             version: 3,
           });
