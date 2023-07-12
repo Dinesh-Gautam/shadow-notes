@@ -7,11 +7,11 @@ import { v4 as uuidv4 } from "uuid";
 import Button from "../../MainInput/inputs/elements/Button";
 import Separator from "../../elements/Separator/Separator";
 import { serverTimestamp } from "firebase/firestore";
+import ShareButton from "./ShareButton";
 
 function AdditionalButtons({ docId, userData }) {
   const { inputsDispatch, setEditMode } = useInputs();
   const { setModalOpen } = useInputs();
-
   const { updateData_fireStore } = useData();
 
   const editButtonHandler = () => {
@@ -29,6 +29,7 @@ function AdditionalButtons({ docId, userData }) {
 
   return (
     <div className="dropdown_extraButtons">
+      <ShareButton docId={docId} />
       <Button
         attr={{
           onClick: editButtonHandler,

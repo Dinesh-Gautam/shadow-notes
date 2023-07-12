@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useRef, useState } from "react";
 
 import styles from "./menu.module.scss";
 import { memo } from "react";
+import { createPortal } from "react-dom";
 
 const MenuContext = React.createContext();
 
@@ -17,7 +18,7 @@ export const AnchorWrapper = ({ children }) => {
       className={styles.anchorWrapper}
       onBlur={(e) => {
         if (!isMouseInsideMenu) {
-          setMenuOpen(false);
+          // setMenuOpen(false);
         } else {
           console.log("focusing");
           e.target.focus();
@@ -30,7 +31,7 @@ export const AnchorWrapper = ({ children }) => {
     </button>
   );
 };
-export const Menu = ({ children }) => {
+export const Menu = ({ outer, children }) => {
   const { anchorRef, menuOpen, setIsMouseInsideMenu } = useMenu();
   const menuRef = useRef();
 
@@ -64,7 +65,20 @@ export const Menu = ({ children }) => {
     console.log(anchor);
   }, [anchorRef, menuOpen]);
   return (
-    menuOpen && (
+    menuOpen &&
+    (outer ? (
+      createPortal(
+        <div
+          onMouseEnter={() => setIsMouseInsideMenu(true)}
+          onMouseLeave={() => setIsMouseInsideMenu(false)}
+          className={styles.container}
+          ref={menuRef}
+        >
+          {children}
+        </div>,
+        document.body
+      )
+    ) : (
       <div
         onMouseEnter={() => setIsMouseInsideMenu(true)}
         onMouseLeave={() => setIsMouseInsideMenu(false)}
@@ -73,7 +87,7 @@ export const Menu = ({ children }) => {
       >
         {children}
       </div>
-    )
+    ))
   );
 };
 
