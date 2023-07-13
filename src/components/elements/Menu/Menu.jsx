@@ -13,12 +13,12 @@ export function useMenu() {
 export const AnchorWrapper = ({ children }) => {
   const { anchorRef, setMenuOpen, isMouseInsideMenu } = useMenu();
   return (
-    <button
+    <div
       type={"button"}
       className={styles.anchorWrapper}
       onBlur={(e) => {
         if (!isMouseInsideMenu) {
-          // setMenuOpen(false);
+          setMenuOpen(false);
         } else {
           console.log("focusing");
           e.target.focus();
@@ -28,7 +28,7 @@ export const AnchorWrapper = ({ children }) => {
       ref={anchorRef}
     >
       {children}
-    </button>
+    </div>
   );
 };
 export const Menu = ({ outer, children }) => {

@@ -221,6 +221,11 @@ export function DatabaseContext({ children }) {
     deleteDoc(toBeDeletedDoc);
   }
 
+  async function updateDocField(docId, data) {
+    const toBeUpdatedDoc = doc(userDocCollection, docId);
+    await updateDoc(toBeUpdatedDoc, data);
+  }
+
   const value = {
     data,
     setdata: setData,
@@ -236,6 +241,7 @@ export function DatabaseContext({ children }) {
     deleteData_fireStore,
     undoTrigger,
     setundoTrigger: setUndoTrigger,
+    updateDocField,
   };
   return (
     <data_context.Provider value={value}>

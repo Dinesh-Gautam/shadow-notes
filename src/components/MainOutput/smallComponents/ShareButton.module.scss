@@ -1,0 +1,16 @@
+@import "../../../styles/variables";
+
+.container {
+  padding: $padding-less;
+  display: flex;
+  flex-direction: column;
+  gap: $padding-default;
+}
+
+.linkContainer {
+  padding: $padding-less;
+  border-radius: $border-radius-default;
+  background: var(--default-backgroundcolor);
+  max-width: 40%;
+  overflow-x: scroll;
+}

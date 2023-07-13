@@ -69,7 +69,7 @@ function MainOutput() {
         ) : userData.length < 1 ? (
           <span> Nothing Here. </span>
         ) : (
-          userData.map(({ data, id, publishDate }) => {
+          userData.map(({ data, id, publishDate, linkSharing }) => {
             const headingText = data.find(
               (data) => data.name === input.heading
             );
@@ -79,7 +79,13 @@ function MainOutput() {
             return (
               <DropDown
                 key={id}
-                extraButtons={<AdditionalButtons userData={data} docId={id} />}
+                extraButtons={
+                  <AdditionalButtons
+                    userData={data}
+                    docId={id}
+                    data={{ linkSharing }}
+                  />
+                }
                 DropdownBackgroundColor={
                   DropdownBackgroundColor && DropdownBackgroundColor.state.value
                 }

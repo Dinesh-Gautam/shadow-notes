@@ -9,7 +9,7 @@ import Separator from "../../elements/Separator/Separator";
 import { serverTimestamp } from "firebase/firestore";
 import ShareButton from "./ShareButton";
 
-function AdditionalButtons({ docId, userData }) {
+function AdditionalButtons({ docId, userData, data }) {
   const { inputsDispatch, setEditMode } = useInputs();
   const { setModalOpen } = useInputs();
   const { updateData_fireStore } = useData();
@@ -29,7 +29,7 @@ function AdditionalButtons({ docId, userData }) {
 
   return (
     <div className="dropdown_extraButtons">
-      <ShareButton docId={docId} />
+      <ShareButton docId={docId} data={data} />
       <Button
         attr={{
           onClick: editButtonHandler,

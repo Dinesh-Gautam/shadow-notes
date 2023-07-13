@@ -1,15 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import { AnchorWrapper, Menu, MenuProvider } from "../../elements/Menu/Menu";
 import {
   Box,
+  Button,
   FormControl,
   FormControlLabel,
   Paper,
+  Snackbar,
   Switch,
 } from "@mui/material";
 import { useAuth } from "../../../context/AuthContext";
 
-function ShareButton({ docId }) {
+import styles from "./ShareButton.module.scss";
+import { useData } from "../../../context/DatabaseContext";
+
+function ShareButton({ docId, data }) {
+  const { updateDocField } = useData();
   const sharingUrl = useSharedUrl(docId);
   console.log(sharingUrl);
   return (
@@ -19,35 +25,57 @@ function ShareButton({ docId }) {
       </AnchorWrapper>
 
       <Menu outer={true}>
-        <Box sx={{ minWidth: 0, p: 2 }}>
+        <div className={styles.container}>
           <FormControl component="fieldset">
             <FormControlLabel
               sx={{
                 gap: 4,
               }}
               value="Link Sharing"
-              control={<Switch color="primary" />}
-              label="Enable Link Sharing"
+              control={
+                <Switch
+                  onChange={(e) => {
+                    updateDocField(docId, {
+                      linkSharing: e.target.checked,
+                    });
+                  }}
+                  checked={data?.linkSharing ?? false}
+                  color="primary"
+                />
+              }
+              label="Enable Sharing"
               labelPlacement="start"
             />
           </FormControl>
-
-          <Paper
-            sx={{
-              maxWidth: "40%",
-              overflow: "hidden",
-              textOverflow: "ellipsis",
-              p: 1,
-            }}
-            variant="outlined"
-          >
-            {sharingUrl}
-          </Paper>
-        </Box>
+          {/* <div className={styles.linkContainer}>
+            <span>{sharingUrl}</span>
+          </div> */}
+          {sharingUrl && <CopyToClipboardButton text={sharingUrl} />}
+        </div>
       </Menu>
     </MenuProvider>
   );
 }
+
+const CopyToClipboardButton = ({ text }) => {
+  const [open, setOpen] = useState(false);
+  const handleClick = () => {
+    setOpen(true);
+    navigator.clipboard.writeText(text);
+  };
+
+  return (
+    <>
+      <button onClick={handleClick}>Copy Link</button>
+      <Snackbar
+        open={open}
+        onClose={() => setOpen(false)}
+        autoHideDuration={2000}
+        message="Link Copied."
+      />
+    </>
+  );
+};
 
 function useSharedUrl(docId) {
   const { currentUser } = useAuth();
