@@ -8,6 +8,7 @@ import Button from "../../MainInput/inputs/elements/Button";
 import Separator from "../../elements/Separator/Separator";
 import { serverTimestamp } from "firebase/firestore";
 import ShareButton from "./ShareButton";
+import { Delete, Edit } from "@mui/icons-material";
 
 function AdditionalButtons({ docId, userData, data }) {
   const { inputsDispatch, setEditMode } = useInputs();
@@ -28,15 +29,19 @@ function AdditionalButtons({ docId, userData, data }) {
   };
 
   return (
-    <div className="dropdown_extraButtons">
+    <>
       <ShareButton docId={docId} data={data} />
       <Button
         attr={{
           onClick: editButtonHandler,
         }}
-        text={<UseSvg type="edit" />}
+        text={
+          <>
+            <Edit fontSize="sm" /> <span>Edit</span>
+          </>
+        }
       />
-      <Separator type="vertical-medium" />
+
       <button
         onClick={() => {
           const data = {
@@ -46,9 +51,10 @@ function AdditionalButtons({ docId, userData, data }) {
           updateData_fireStore(docId, data);
         }}
       >
-        <UseSvg type="close" />
+        <Delete fontSize="sm" />
+        <span>Trash</span>
       </button>
-    </div>
+    </>
   );
 }
 

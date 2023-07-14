@@ -31,7 +31,7 @@ export const AnchorWrapper = ({ children }) => {
     </div>
   );
 };
-export const Menu = ({ outer, children }) => {
+export const Menu = ({ outer, className, children }) => {
   const { anchorRef, menuOpen, setIsMouseInsideMenu } = useMenu();
   const menuRef = useRef();
 
@@ -64,6 +64,7 @@ export const Menu = ({ outer, children }) => {
 
     console.log(anchor);
   }, [anchorRef, menuOpen]);
+
   return (
     menuOpen &&
     (outer ? (
@@ -71,7 +72,7 @@ export const Menu = ({ outer, children }) => {
         <div
           onMouseEnter={() => setIsMouseInsideMenu(true)}
           onMouseLeave={() => setIsMouseInsideMenu(false)}
-          className={styles.container}
+          className={[styles.container, className].join(" ")}
           ref={menuRef}
         >
           {children}
@@ -82,7 +83,7 @@ export const Menu = ({ outer, children }) => {
       <div
         onMouseEnter={() => setIsMouseInsideMenu(true)}
         onMouseLeave={() => setIsMouseInsideMenu(false)}
-        className={styles.container}
+        className={[styles.container, className].join(" ")}
         ref={menuRef}
       >
         {children}

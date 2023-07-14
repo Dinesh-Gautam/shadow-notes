@@ -326,6 +326,16 @@ main {
   }
 }
 
+.vertical-menu {
+  display: flex;
+  flex-direction: column;
+  button {
+    width: 100%;
+    display: grid;
+    grid-template-columns: auto 1fr;
+  }
+}
+
 @media screen and (max-width: 1400px) {
   main {
     grid-template-columns: 1fr;

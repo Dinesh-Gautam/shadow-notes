@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import Separator from "../Separator/Separator";
 import UseSvg from "../UseSvg";
 import styles from "./DropDown.module.scss";
+import { AnchorWrapper, Menu, MenuProvider } from "../Menu/Menu";
+import { MoreVert } from "@mui/icons-material";
+
 function DropDown({
   children,
   className,
@@ -33,18 +36,33 @@ function DropDown({
             {mainText}
           </h1>
         </div>
-        <div className={styles.buttonContainer}>
-          {extraButtons}
-          <Separator type="vertical-medium" />
-          <button
+        {extraButtons && (
+          <div className={styles.buttonContainer}>
+            {/* {extraButtons} */}
+
+            <MenuProvider>
+              <AnchorWrapper>
+                <button>
+                  <MoreVert />
+                </button>
+              </AnchorWrapper>
+
+              <Menu className="vertical-menu" outer={true}>
+                {extraButtons}
+              </Menu>
+            </MenuProvider>
+
+            {/* <Separator type="vertical-medium" /> */}
+            {/* <button
             style={{
               transform: dropdownDisplay ? "rotate(180deg)" : "rotate(0deg)",
             }}
             onClick={dropInnerContainer}
           >
             <UseSvg type="expand" />
-          </button>
-        </div>
+          </button> */}
+          </div>
+        )}
       </div>
       {dropdownDisplay && (
         <div className={styles.innerContainer}>{children}</div>

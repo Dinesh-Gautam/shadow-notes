@@ -13,6 +13,7 @@ import { useAuth } from "../../../context/AuthContext";
 
 import styles from "./ShareButton.module.scss";
 import { useData } from "../../../context/DatabaseContext";
+import ShareIcon from "@mui/icons-material/Share";
 
 function ShareButton({ docId, data }) {
   const { updateDocField } = useData();
@@ -21,7 +22,10 @@ function ShareButton({ docId, data }) {
   return (
     <MenuProvider>
       <AnchorWrapper>
-        <button>Share</button>
+        <button>
+          <ShareIcon fontSize="sm" />
+          <span>Share</span>
+        </button>
       </AnchorWrapper>
 
       <Menu outer={true}>
