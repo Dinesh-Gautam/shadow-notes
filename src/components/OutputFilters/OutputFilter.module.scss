@@ -14,12 +14,13 @@
   @include breakpoint(lg, max) {
     justify-content: center;
   }
+
   & > div {
     display: flex;
     align-items: center;
     justify-content: center;
     background: var(--default-color);
-    box-shadow: $boxShadow-default;
+    box-shadow: $boxShadow-default !important;
     border-radius: $border-radius-default;
     button,
     select,

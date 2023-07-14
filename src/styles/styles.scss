@@ -181,6 +181,7 @@ main {
   align-items: center;
   gap: $padding-default;
   flex-wrap: wrap;
+
   button {
     padding: $padding-default;
     box-shadow: $boxShadow-small;
@@ -190,6 +191,20 @@ main {
     width: $padding-less;
     &:hover {
       transform: scale(1.2);
+    }
+  }
+  &_small {
+    display: flex;
+    align-items: center;
+    gap: $padding-less;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    button {
+      border: 3px solid rgba(255, 255, 255, 0.8);
+
+      padding: $padding-less / 1.2;
+      height: $padding-veryLess;
+      width: $padding-veryLess;
     }
   }
 }

@@ -14,7 +14,6 @@ export const AnchorWrapper = ({ children }) => {
   const { anchorRef, setMenuOpen, isMouseInsideMenu } = useMenu();
   return (
     <div
-      type={"button"}
       className={styles.anchorWrapper}
       onBlur={(e) => {
         if (!isMouseInsideMenu) {
@@ -47,6 +46,11 @@ export const Menu = ({ outer, className, children }) => {
     const menuOffsetHeight = menu.offsetHeight;
     const anchorRect = anchor.getBoundingClientRect();
     const anchorY = anchorRect.top + window.scrollY + anchorRect.height;
+    const diff = anchorRect.left + menu.offsetWidth - window.innerWidth;
+    let anchorLeft = 0;
+    if (diff > 0) {
+      anchorLeft += diff;
+    }
     const windowHeight = window.innerHeight;
 
     const overflowingWindow = anchorY + menuOffsetHeight > windowHeight;
@@ -55,11 +59,11 @@ export const Menu = ({ outer, className, children }) => {
       // overflowing
       console.log("overflowing");
       menu.style.top = anchor.offsetTop - menu.offsetHeight + "px";
-      menu.style.left = anchorRect.left + "px";
+      menu.style.left = anchorRect.left - anchorLeft + "px";
     } else {
       // not overflowing
       menu.style.top = anchorY + "px";
-      menu.style.left = anchorRect.left + "px";
+      menu.style.left = anchorRect.left - anchorLeft + "px";
     }
 
     console.log(anchor);

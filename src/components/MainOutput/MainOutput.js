@@ -15,7 +15,7 @@ function MainOutput() {
   const userData =
     Object.keys(filteredUserData).length > 0
       ? originalData &&
-        originalData.filter(({ data }) => {
+        originalData.filter(({ data, linkSharing }) => {
           return Object.keys(filteredUserData).every((filter) => {
             if (filter === "colorFIlter") {
               return data.some(
@@ -29,8 +29,9 @@ function MainOutput() {
                   dataFields.state?.value.toLowerCase()
                 );
               });
+            } else if (filter === "shareFilter") {
+              return linkSharing;
             }
-
             return false;
           });
         })
@@ -41,7 +42,7 @@ function MainOutput() {
       {Object.keys(filteredUserData).length > 0 ? (
         <span className="output_filter_label">
           {filteredUserData.colorFIlter && (
-            <div className="color_filter_container output">
+            <div className="color_filter_container random_color_small output">
               {outputFilterString}
               <Button
                 attr={{
@@ -59,6 +60,13 @@ function MainOutput() {
                 ? outputFilterString
                 : " and"
             } "${filteredUserData.searchFilter}"`}
+
+          {filteredUserData.shareFilter &&
+            `${
+              Object.keys(filteredUserData).length < 2
+                ? outputFilterString
+                : " and"
+            } "Shared Notes"`}
         </span>
       ) : null}
       <div className="mainoutput_wraper">

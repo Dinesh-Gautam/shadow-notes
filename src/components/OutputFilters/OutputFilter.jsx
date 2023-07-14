@@ -7,6 +7,8 @@ import Button from "../MainInput/inputs/elements/Button";
 import UseSvg from "../elements/UseSvg";
 import { input } from "../MainInput/inputs/inputOptions";
 import styles from "./OutputFilter.module.scss";
+import { FilterList } from "@mui/icons-material";
+import FilterButton from "./filterComponents/FilterButton";
 
 function OutputFilter({ userDisplay, setuserDisplay }) {
   const { userData, setfilterData } = useData();
@@ -39,6 +41,7 @@ function OutputFilter({ userDisplay, setuserDisplay }) {
         {userData && userData.length > 0 && (
           <SearchFilter setData={setfilterData} />
         )}
+        <FilterButton />
       </div>
     </>
   );
