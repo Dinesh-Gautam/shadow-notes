@@ -19,7 +19,7 @@ function FilterButton() {
             sx={{
               gap: 4,
             }}
-            value="Link Sharing"
+            value="Shared Notes"
             control={
               <Switch
                 onChange={(e) => {
@@ -41,7 +41,7 @@ function FilterButton() {
                 color="primary"
               />
             }
-            label="Enable Sharing"
+            label="Shared Notes "
             labelPlacement="start"
           />
         </FormControl>
