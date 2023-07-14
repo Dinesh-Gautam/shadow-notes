@@ -1,11 +1,9 @@
 import React, { useState } from "react";
 import { AnchorWrapper, Menu, MenuProvider } from "../../elements/Menu/Menu";
 import {
-  Box,
-  Button,
+  Badge,
   FormControl,
   FormControlLabel,
-  Paper,
   Snackbar,
   Switch,
 } from "@mui/material";
@@ -23,7 +21,14 @@ function ShareButton({ docId, data }) {
     <MenuProvider>
       <AnchorWrapper>
         <button>
-          <ShareIcon fontSize="sm" />
+          <Badge
+            color="primary"
+            variant="dot"
+            fontSize="small"
+            invisible={!data?.linkSharing ?? true}
+          >
+            <ShareIcon fontSize="small" />
+          </Badge>
           <span>Share</span>
         </button>
       </AnchorWrapper>
