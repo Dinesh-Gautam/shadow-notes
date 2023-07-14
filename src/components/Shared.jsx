@@ -18,6 +18,9 @@ import { input } from "./MainInput/inputs/inputOptions";
 import SimpleOutputTemplate from "./MainOutput/SimpleOutputTemplet";
 import { useAuth } from "../context/AuthContext";
 
+import styles from "./Shared.module.scss";
+import { Error } from "@mui/icons-material";
+
 function Shared() {
   let { userId, docId } = useParams();
 
@@ -63,38 +66,44 @@ function Shared() {
 
   console.log(data);
 
-  return error ? (
-    <div>
-      <h1>{error.message}</h1>
-    </div>
-  ) : data ? (
+  return (
     <>
-      <div>
+      <div className={styles.topContainer}>
         <Link to={"/"}>
           <button>Go to home</button>
         </Link>
       </div>
-      <div>
-        <DropDown
-          key={data.id}
-          DropdownBackgroundColor={
-            data.data.find((data) => data.name === input.color).state.value
-          }
-          mainText={
-            data.data.find((data) => data.name === input.heading).state.value
-          }
-        >
-          <SimpleOutputTemplate
-            publishDate={data.publishDate}
-            userData={data.data}
-            completeData={data}
-            docId={data.id}
-          />
-        </DropDown>
-      </div>
+      {error ? (
+        <div className={styles.errorContainer}>
+          <Error fontSize="large" color="error" />
+          <h1>{error.message}</h1>
+        </div>
+      ) : data ? (
+        <>
+          <div>
+            <DropDown
+              key={data.id}
+              DropdownBackgroundColor={
+                data.data.find((data) => data.name === input.color).state.value
+              }
+              mainText={
+                data.data.find((data) => data.name === input.heading).state
+                  .value
+              }
+            >
+              <SimpleOutputTemplate
+                publishDate={data.publishDate}
+                userData={data.data}
+                completeData={data}
+                docId={data.id}
+              />
+            </DropDown>
+          </div>
+        </>
+      ) : (
+        <div>Loading...</div>
+      )}
     </>
-  ) : (
-    <div>Loading...</div>
   );
 }
 

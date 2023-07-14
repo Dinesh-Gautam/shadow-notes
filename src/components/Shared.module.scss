@@ -1,0 +1,24 @@
+@import "../styles/variables";
+
+.topContainer {
+  display: flex;
+  padding: $padding-default;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  button {
+    background: var(--default-color);
+  }
+}
+
+.errorContainer {
+  padding: $padding-large * 2;
+  background: var(--default-color);
+  box-shadow: $boxShadow-default;
+  border-radius: $border-radius-default;
+  display: flex;
+  align-items: center;
+  max-width: fit-content;
+  margin: auto;
+  gap: $padding-default;
+}
