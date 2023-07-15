@@ -27,10 +27,13 @@ function DropDown({
       }
       id={id}
     >
-      <div className={styles.badge}>
-        {data.linkSharing && <Share />}
-        {data.star && <Star />}
-      </div>
+      {" "}
+      {(data?.linkSharing || data?.star) && (
+        <div className={styles.badge}>
+          {data.linkSharing && <Share />}
+          {data.star && <Star />}
+        </div>
+      )}
       <div className={styles.wrapper}>
         <div
           style={{ backgroundColor: DropdownBackgroundColor || "" }}
