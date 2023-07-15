@@ -8,12 +8,12 @@ import Button from "../../MainInput/inputs/elements/Button";
 import Separator from "../../elements/Separator/Separator";
 import { serverTimestamp } from "firebase/firestore";
 import ShareButton from "./ShareButton";
-import { Delete, Edit } from "@mui/icons-material";
+import { Delete, Edit, Star } from "@mui/icons-material";
 
 function AdditionalButtons({ docId, userData, data }) {
   const { inputsDispatch, setEditMode } = useInputs();
   const { setModalOpen } = useInputs();
-  const { updateData_fireStore } = useData();
+  const { updateData_fireStore, updateDocField } = useData();
 
   const editButtonHandler = () => {
     setEditMode((prev) => {
@@ -30,6 +30,15 @@ function AdditionalButtons({ docId, userData, data }) {
 
   return (
     <>
+      <button
+        onClick={() => {
+          console.log(data);
+          updateDocField(docId, { star: !data?.star ?? true });
+        }}
+      >
+        <Star fontSize="small" color={data?.star ? "warning" : "default"} />
+        <span>Star</span>
+      </button>
       <ShareButton docId={docId} data={data} />
       <Button
         attr={{

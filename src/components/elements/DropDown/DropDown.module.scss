@@ -2,6 +2,26 @@
 .container {
   width: 100%;
   min-width: 0;
+
+  .badge {
+    background: var(--default-backgroundcolor);
+    position: absolute;
+    top: 0;
+    left: $padding-default * 2;
+    transform: translateY(-50%);
+    z-index: 100;
+    padding-inline: $padding-less;
+    padding-block: $padding-less / 2;
+    border-radius: $border-radius-default;
+    box-shadow: $boxShadow-default;
+    display: flex;
+    gap: $padding-less;
+    svg {
+      opacity: 0.5;
+      font-size: $fontSize-large / 2;
+    }
+  }
+
   .wrapper {
     display: flex;
     align-items: center;
@@ -11,6 +31,7 @@
     box-shadow: $boxShadow-default;
     position: relative;
     overflow: hidden;
+
     .headerSideColor {
       position: absolute;
       top: 0;

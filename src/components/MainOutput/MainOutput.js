@@ -6,6 +6,7 @@ import Button from "../MainInput/inputs/elements/Button";
 import OutputTemplate, { HighlightTextOnSearchMatch } from "./OutputTemplate";
 import AdditionalButtons from "./smallComponents/AdditionalButtons";
 import { input } from "../MainInput/inputs/inputOptions";
+import { Badge } from "@mui/material";
 
 function MainOutput() {
   const { filterData: filteredUserData, userData: originalData } = useData();
@@ -15,7 +16,7 @@ function MainOutput() {
   const userData =
     Object.keys(filteredUserData).length > 0
       ? originalData &&
-        originalData.filter(({ data, linkSharing }) => {
+        originalData.filter(({ data, linkSharing, star }) => {
           return Object.keys(filteredUserData).every((filter) => {
             if (filter === "colorFIlter") {
               return data.some(
@@ -31,6 +32,8 @@ function MainOutput() {
               });
             } else if (filter === "shareFilter") {
               return linkSharing;
+            } else if (filter === "staredFilter") {
+              return star;
             }
             return false;
           });
@@ -77,7 +80,7 @@ function MainOutput() {
         ) : userData.length < 1 ? (
           <span> Nothing Here. </span>
         ) : (
-          userData.map(({ data, id, publishDate, linkSharing }) => {
+          userData.map(({ data, id, publishDate, linkSharing, star }) => {
             const headingText = data.find(
               (data) => data.name === input.heading
             );
@@ -87,11 +90,12 @@ function MainOutput() {
             return (
               <DropDown
                 key={id}
+                data={{ linkSharing, star }}
                 extraButtons={
                   <AdditionalButtons
                     userData={data}
                     docId={id}
-                    data={{ linkSharing }}
+                    data={{ linkSharing, star }}
                   />
                 }
                 DropdownBackgroundColor={

@@ -3,7 +3,7 @@ import Separator from "../Separator/Separator";
 import UseSvg from "../UseSvg";
 import styles from "./DropDown.module.scss";
 import { AnchorWrapper, Menu, MenuProvider } from "../Menu/Menu";
-import { MoreVert } from "@mui/icons-material";
+import { MoreVert, Share, Star } from "@mui/icons-material";
 
 function DropDown({
   children,
@@ -12,6 +12,7 @@ function DropDown({
   extraButtons,
   DropdownBackgroundColor,
   id,
+  data,
 }) {
   const [dropdownDisplay, setDropdownDisplay] = useState(false);
 
@@ -26,6 +27,10 @@ function DropDown({
       }
       id={id}
     >
+      <div className={styles.badge}>
+        {data.linkSharing && <Share />}
+        {data.star && <Star />}
+      </div>
       <div className={styles.wrapper}>
         <div
           style={{ backgroundColor: DropdownBackgroundColor || "" }}
