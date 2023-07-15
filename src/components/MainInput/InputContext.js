@@ -8,10 +8,10 @@ import React, {
 } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { useData } from "../../context/DatabaseContext";
-import { serverTimestamp } from "firebase/firestore";
+
 import { headingState, input } from "./inputs/inputOptions";
-import { reauthenticateWithRedirect } from "firebase/auth";
 import { useModal } from "../elements/Modal/Modal";
+import { serverTimestamp } from "@firebase/firestore";
 export const input_context = createContext();
 
 export function useInputs() {
