@@ -4,9 +4,10 @@ import { AnchorWrapper, Menu, MenuProvider } from "../../elements/Menu/Menu";
 import { FormControl, FormControlLabel, Switch } from "@mui/material";
 import { useData } from "../../../context/DatabaseContext";
 import { Box } from "@mui/system";
+import { filters } from "../../../context/useOutputFilters";
 
 function FilterButton() {
-  const { filterData, setfilterData } = useData();
+  const { filterData, updateFilterValue } = useData();
   return (
     <MenuProvider>
       <AnchorWrapper>
@@ -25,20 +26,9 @@ function FilterButton() {
               <Switch
                 onChange={(e) => {
                   const checked = e.target.checked;
-
-                  if (!checked) {
-                    setfilterData((prev) => {
-                      delete prev.shareFilter;
-                      return { ...prev };
-                    });
-                  } else {
-                    setfilterData((prev) => ({
-                      ...prev,
-                      shareFilter: checked,
-                    }));
-                  }
+                  updateFilterValue(checked, filters.sharedFilter.name);
                 }}
-                checked={filterData?.shareFilter ?? false}
+                checked={filterData?.[filters.sharedFilter.name] ?? false}
                 color="primary"
               />
             }
@@ -58,19 +48,9 @@ function FilterButton() {
                 onChange={(e) => {
                   const checked = e.target.checked;
 
-                  if (!checked) {
-                    setfilterData((prev) => {
-                      delete prev.staredFilter;
-                      return { ...prev };
-                    });
-                  } else {
-                    setfilterData((prev) => ({
-                      ...prev,
-                      staredFilter: checked,
-                    }));
-                  }
+                  updateFilterValue(checked, filters.staredFilter.name);
                 }}
-                checked={filterData?.staredFilter ?? false}
+                checked={filterData?.[filters.staredFilter.name] ?? false}
                 color="primary"
               />
             }

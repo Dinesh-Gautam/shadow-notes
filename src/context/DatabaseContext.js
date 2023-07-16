@@ -19,6 +19,7 @@ import { db } from "../firebase";
 import { useAuth } from "./AuthContext";
 import { uuidv4 } from "@firebase/util";
 import { input, listTypes } from "../components/MainInput/inputs/inputOptions";
+import useOutputFilters from "./useOutputFilters";
 
 const data_context = React.createContext();
 
@@ -35,7 +36,7 @@ export function DatabaseContext({ children }) {
   const [data, setData] = useState();
   const [userData, setUserData] = useState(null);
   const [trashData, setTrashData] = useState(null);
-  const [filterData, setFilterData] = useState({});
+  const filterData = useOutputFilters();
   const [undoTrigger, setUndoTrigger] = useState({ trigger: false, id: [] });
 
   const [loading, setLoading] = useState(true);
@@ -237,11 +238,13 @@ export function DatabaseContext({ children }) {
     settrashData: setTrashData,
     userID,
     filterData: filterData,
-    setfilterData: setFilterData,
+
     deleteData_fireStore,
     undoTrigger,
     setundoTrigger: setUndoTrigger,
     updateDocField,
+
+    ...filterData,
   };
   return (
     <data_context.Provider value={value}>

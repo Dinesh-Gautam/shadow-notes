@@ -7,42 +7,61 @@ import OutputTemplate, { HighlightTextOnSearchMatch } from "./OutputTemplate";
 import AdditionalButtons from "./smallComponents/AdditionalButtons";
 import { input } from "../MainInput/inputs/inputOptions";
 import { Badge } from "@mui/material";
+import { filters } from "../../context/useOutputFilters";
 
 function MainOutput() {
-  const { filterData: filteredUserData, userData: originalData } = useData();
-  console.log(originalData);
-  console.log(filteredUserData);
-  const outputFilterString = "Results For";
-  const userData =
-    Object.keys(filteredUserData).length > 0
-      ? originalData &&
-        originalData.filter(({ data, linkSharing, star }) => {
-          return Object.keys(filteredUserData).every((filter) => {
-            if (filter === "colorFIlter") {
-              return data.some(
-                (dataFields) =>
-                  dataFields.name === input.color &&
-                  dataFields.state.value === filteredUserData.colorFIlter
-              );
-            } else if (filter === "searchFilter") {
-              return data.some((dataFields) => {
-                return RegExp(filteredUserData[filter].toLowerCase()).test(
-                  dataFields.state?.value.toLowerCase()
-                );
-              });
-            } else if (filter === "shareFilter") {
-              return linkSharing;
-            } else if (filter === "staredFilter") {
-              return star;
-            }
-            return false;
-          });
-        })
-      : originalData;
+  const {
+    filterData: filteredUserData,
+    userData: originalData,
+    getOutputFilterText,
+  } = useData();
 
+  function isAnyFilterApplied() {
+    return Object.keys(filteredUserData).length > 0;
+  }
+
+  function getFilteredData() {
+    return originalData.filter((data) => {
+      return Object.keys(filteredUserData).every((filterKey) => {
+        return filters[filterKey].filterFn(data, filteredUserData[filterKey]);
+      });
+    });
+  }
+
+  // originalData.filter(({ data, linkSharing, star }) => {
+  //   return Object.keys(filteredUserData).every((filter) => {
+  // if (filter === "colorFIlter") {
+  //   return data.some(
+  //     (dataFields) =>
+  //       dataFields.name === input.color &&
+  //       dataFields.state.value === filteredUserData.colorFIlter
+  //   );
+  // } else if (filter === "searchFilter") {
+  //   return data.some((dataFields) => {
+  //     return RegExp(filteredUserData[filter].toLowerCase()).test(
+  //       dataFields.state?.value.toLowerCase()
+  //     );
+  //   });
+  // } else if (filter === "shareFilter") {
+  //   return linkSharing;
+  // } else if (filter === "staredFilter") {
+  //   return star;
+  // }
+  //     return false;
+  //   });
+  // })
+
+  const userData = isAnyFilterApplied()
+    ? originalData && getFilteredData()
+    : originalData;
+
+  const filterOutputLabel = getOutputFilterText();
   return (
     <div className="mainoutput_container">
-      {Object.keys(filteredUserData).length > 0 ? (
+      {filterOutputLabel && (
+        <span className="output_filter_label">{filterOutputLabel}</span>
+      )}
+      {/* {Object.keys(filteredUserData).length > 0 ? (
         <span className="output_filter_label">
           {filteredUserData.colorFIlter && (
             <div className="color_filter_container random_color_small output">
@@ -71,7 +90,7 @@ function MainOutput() {
                 : " and"
             } "Shared Notes"`}
         </span>
-      ) : null}
+      ) : null} */}
       <div className="mainoutput_wraper">
         {!userData ? (
           Array(10)

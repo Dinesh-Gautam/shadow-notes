@@ -11,7 +11,7 @@ import { FilterList } from "@mui/icons-material";
 import FilterButton from "./filterComponents/FilterButton";
 
 function OutputFilter({ userDisplay, setuserDisplay }) {
-  const { userData, setfilterData } = useData();
+  const { userData } = useData();
   return (
     <>
       <div className={styles.filters}>
@@ -35,12 +35,9 @@ function OutputFilter({ userDisplay, setuserDisplay }) {
                   .filter((e) => e)
               }
               data={userData}
-              setData={setfilterData}
             />
           )}
-        {userData && userData.length > 0 && (
-          <SearchFilter setData={setfilterData} />
-        )}
+        {userData && userData.length > 0 && <SearchFilter />}
         <FilterButton />
       </div>
     </>

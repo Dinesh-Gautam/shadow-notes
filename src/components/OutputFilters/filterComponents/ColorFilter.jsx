@@ -4,8 +4,12 @@ import Button from "../../MainInput/inputs/elements/Button";
 import UseSvg from "../../elements/UseSvg";
 
 import styles from "./ColorFilter.module.scss";
+import { useData } from "../../../context/DatabaseContext";
+import { filters } from "../../../context/useOutputFilters";
 
-function ColorFilter({ setData, appliedColors }) {
+function ColorFilter({ appliedColors }) {
+  const { updateFilterValue } = useData();
+
   const colorFilterBtnRef = useRef(null);
 
   const [ScrollDisplay, setScrollDisplay] = useState({
@@ -56,9 +60,7 @@ function ColorFilter({ setData, appliedColors }) {
 
   const handleColorFilterClick = (e) => {
     const value = e.target.value;
-    setData((prev) => {
-      return { ...prev, colorFIlter: value };
-    });
+    updateFilterValue(value, filters.colorFilter.name);
   };
 
   return (
@@ -66,10 +68,7 @@ function ColorFilter({ setData, appliedColors }) {
       <Button
         attr={{
           onClick: () => {
-            setData((prev) => {
-              delete prev.colorFIlter;
-              return { ...prev };
-            });
+            updateFilterValue(null, filters.colorFilter.name);
           },
         }}
         text="All"

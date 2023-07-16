@@ -4,22 +4,15 @@ import UseSvg from "../../elements/UseSvg";
 import Button from "../../MainInput/inputs/elements/Button";
 
 import styles from "./SearchFilter.module.scss";
+import { useData } from "../../../context/DatabaseContext";
+import { filters } from "../../../context/useOutputFilters";
 
-function SearchFilter({ setData }) {
+function SearchFilter() {
   const input = useRef(null);
-
+  const { updateFilterValue } = useData();
   const handleSearchFilter = (e) => {
     const value = e.target.value;
-    if (value.trim() === "") {
-      setData((prev) => {
-        delete prev.searchFilter;
-        return { ...prev };
-      });
-    } else {
-      setData((prev) => {
-        return { ...prev, searchFilter: value };
-      });
-    }
+    updateFilterValue(value.trim(), filters.searchFilter.name);
   };
   const handleSearchClear = () => {
     input.current.value = "";
