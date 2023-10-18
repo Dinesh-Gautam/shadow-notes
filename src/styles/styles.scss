@@ -137,7 +137,10 @@ main {
   grid-template-columns: auto 1fr;
   height: 100%;
   gap: $padding-default;
-  margin: 0 $padding-default;
+  // padding: 0 $padding-default;
+}
+.container {
+  padding-inline: $padding-default;
 }
 
 .ml0 {
@@ -152,6 +155,7 @@ main {
   display: flex;
   flex-direction: column;
   overflow: auto;
+  padding: 0 $padding-default;
 }
 
 .input_container {

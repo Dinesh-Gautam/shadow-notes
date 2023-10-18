@@ -67,7 +67,7 @@ function Shared() {
   console.log(data);
 
   return (
-    <>
+    <div className="container">
       <div className={styles.topContainer}>
         <Link to={"/"}>
           <button>Go to home</button>
@@ -83,6 +83,7 @@ function Shared() {
           <div>
             <DropDown
               key={data.id}
+              open={true}
               DropdownBackgroundColor={
                 data.data.find((data) => data.name === input.color).state.value
               }
@@ -103,7 +104,7 @@ function Shared() {
       ) : (
         <div>Loading...</div>
       )}
-    </>
+    </div>
   );
 }
 

@@ -7,6 +7,7 @@ import { MoreVert, Share, Star } from "@mui/icons-material";
 
 function DropDown({
   children,
+  open,
   className,
   mainText,
   extraButtons,
@@ -14,7 +15,7 @@ function DropDown({
   id,
   data,
 }) {
-  const [dropdownDisplay, setDropdownDisplay] = useState(false);
+  const [dropdownDisplay, setDropdownDisplay] = useState(open || false);
 
   const dropInnerContainer = () => {
     setDropdownDisplay((prev) => !prev);
@@ -27,7 +28,6 @@ function DropDown({
       }
       id={id}
     >
-      {" "}
       {(data?.linkSharing || data?.star) && (
         <div className={styles.badge}>
           {data.linkSharing && <Share />}
