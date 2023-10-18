@@ -140,7 +140,9 @@ main {
   // padding: 0 $padding-default;
 }
 .container {
-  padding-inline: $padding-default;
+  padding: $padding-default;
+  height: 100%;
+  overflow: auto;
 }
 
 .ml0 {
