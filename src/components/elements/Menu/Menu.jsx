@@ -7,12 +7,13 @@ import { memo } from "react";
 import { Menu as MuiMenu, styled } from "@mui/material";
 
 const StyledMenu = styled((props) => <MuiMenu {...props} />)(({ theme }) => ({
-  "& .MuiPaper-root": {
+  ".MuiPaper-root": {
     borderRadius: 6,
     minWidth: 100,
     boxShadow:
       "0px 0px 8px rgba(0, 0, 0, 0.1), 0px 4px 32px rgba(0, 0, 0, 0.1)",
     background: "#fafafa",
+    color: "#000",
   },
 }));
 

@@ -30,7 +30,7 @@ export const filters = {
     filterFn: (data, filterValue) => {
       return data.data.some((dataFields) => {
         return RegExp(filterValue.toLowerCase()).test(
-          dataFields.state?.value.toLowerCase()
+          dataFields.state?.value?.toLowerCase()
         );
       });
     },
