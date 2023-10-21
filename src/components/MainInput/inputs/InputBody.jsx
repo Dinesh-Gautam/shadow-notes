@@ -46,7 +46,7 @@ function ColorSelection({ value, id }) {
 
 function InputBody() {
   const { inputs } = useInputs();
-  const { onDragEnd, addInputElement } = useInputActions();
+  const { onDragEnd, addInputElement, removeElement } = useInputActions();
 
   function hasInnerNotes() {
     return inputs.filter((e) => !e.nonMoveable).length > 0;
@@ -76,7 +76,22 @@ function InputBody() {
                 </AnchorWrapper>
                 <Menu>
                   <div className={styles.colorMenu}>
-                    <ColorSelection value={input?.state?.value} id={input.id} />
+                    <div className={styles.colorMenuHeader}>
+                      <div>
+                        <ColorSelection
+                          value={input?.state?.value}
+                          id={input.id}
+                        />
+                      </div>
+                      <div>
+                        <button
+                          type="button"
+                          onClick={() => removeElement({ id: input.id })}
+                        >
+                          Remove
+                        </button>
+                      </div>
+                    </div>
                     <ColorAdditions input={input} />
                   </div>
                 </Menu>

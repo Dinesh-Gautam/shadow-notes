@@ -46,6 +46,19 @@
   }
 }
 
+.colorMenuHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  button {
+    background: var(--default-backgroundcolor) !important;
+    box-shadow: $boxShadow-default !important;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
 .inputBody {
   height: 100%;
   overflow-y: auto;
