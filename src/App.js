@@ -13,6 +13,7 @@ import { DatabaseContext } from "./context/DatabaseContext";
 import "./styles/styles.scss";
 import SideBar from "./components/SideBar";
 import Modal, { ModalProvider } from "./components/elements/Modal/Modal";
+import { FilterProvider } from "./context/useOutputFilters";
 
 function App() {
   const { currentUser } = useAuth();
@@ -22,13 +23,15 @@ function App() {
       {!currentUser ? (
         <SignWithGoogle />
       ) : (
-        <DatabaseContext>
-          <ModalProvider>
-            <InputContext>
-              <Main />
-            </InputContext>
-          </ModalProvider>
-        </DatabaseContext>
+        <FilterProvider>
+          <DatabaseContext>
+            <ModalProvider>
+              <InputContext>
+                <Main />
+              </InputContext>
+            </ModalProvider>
+          </DatabaseContext>
+        </FilterProvider>
       )}
     </main>
   );

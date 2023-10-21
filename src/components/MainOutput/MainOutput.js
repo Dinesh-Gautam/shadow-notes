@@ -13,7 +13,7 @@ function MainOutput() {
   const {
     filterData: filteredUserData,
     userData: originalData,
-    getOutputFilterText,
+    GetOutputFilterTags,
   } = useData();
 
   function isAnyFilterApplied() {
@@ -55,12 +55,9 @@ function MainOutput() {
     ? originalData && getFilteredData()
     : originalData;
 
-  const filterOutputLabel = getOutputFilterText();
   return (
     <div className="mainoutput_container">
-      {filterOutputLabel && (
-        <span className="output_filter_label">{filterOutputLabel}</span>
-      )}
+      <GetOutputFilterTags />
       {/* {Object.keys(filteredUserData).length > 0 ? (
         <span className="output_filter_label">
           {filteredUserData.colorFIlter && (

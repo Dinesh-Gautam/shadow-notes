@@ -1,6 +1,9 @@
-import React, { useState } from "react";
+import React, { createContext, useContext, useState } from "react";
 import { input } from "../components/MainInput/inputs/inputOptions";
 import Button from "../components/MainInput/inputs/elements/Button";
+import { Box, Chip } from "@mui/material";
+
+const filterContext = createContext();
 
 export const filters = {
   colorFilter: {
@@ -53,7 +56,7 @@ export const filters = {
 };
 
 function useOutputFilters() {
-  const [filterData, setFilterData] = useState({});
+  const [filterData, setFilterData] = useContext(filterContext);
 
   function updateFilterValue(value, name) {
     if (!value) {
@@ -69,30 +72,40 @@ function useOutputFilters() {
     }
   }
 
-  function getOutputFilterText() {
+  function GetOutputFilterTags() {
+    console.log(filterData);
     const filtersKey = Object.keys(filterData);
     if (filtersKey.length < 1) {
       return null;
     }
-    const preString = "Results for";
-    const afterString = filtersKey.map((key, index, arr) => {
-      const finalArr = [];
-      if (arr.length > 1 && index === arr.length - 1) {
-        finalArr.push(" and ");
-      } else if (arr.length > 2) {
-        finalArr.push(", ");
-      } else {
-        finalArr.push(" ");
-      }
-      finalArr.push(filters[key].label(filterData[key]));
-
-      return finalArr;
-    });
-
-    return [preString, ...afterString].flat();
+    return (
+      <Box sx={{ display: "flex", marginBottom: "1rem", gap: 2 }}>
+        {filtersKey.map((key, index, arr) => {
+          const label = filters[key].label(filterData[key]);
+          return (
+            <Chip
+              // icon={icon}
+              label={label}
+              onDelete={() => {
+                updateFilterValue(null, key);
+              }}
+            />
+          );
+        })}
+      </Box>
+    );
   }
 
-  return { filterData, setFilterData, updateFilterValue, getOutputFilterText };
+  return { filterData, setFilterData, updateFilterValue, GetOutputFilterTags };
 }
+
+export const FilterProvider = ({ children }) => {
+  const [filterData, setFilterData] = useState({});
+
+  const value = [filterData, setFilterData];
+  return (
+    <filterContext.Provider value={value}>{children}</filterContext.Provider>
+  );
+};
 
 export default useOutputFilters;

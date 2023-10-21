@@ -5,18 +5,19 @@ import Button from "../../MainInput/inputs/elements/Button";
 
 import styles from "./SearchFilter.module.scss";
 import { useData } from "../../../context/DatabaseContext";
-import { filters } from "../../../context/useOutputFilters";
+import useOutputFilters, { filters } from "../../../context/useOutputFilters";
 
 function SearchFilter() {
-  const input = useRef(null);
   const { updateFilterValue } = useData();
+  const { filterData } = useOutputFilters();
+  console.log(filterData);
   const handleSearchFilter = (e) => {
     const value = e.target.value;
     updateFilterValue(value.trim(), filters.searchFilter.name);
   };
   const handleSearchClear = () => {
-    input.current.value = "";
-    handleSearchFilter({ target: { value: "" } });
+    updateFilterValue(null, filters.searchFilter.name);
+    // handleSearchFilter({ target: { value: "" } });
   };
   return (
     <div className={styles.filterBySearch}>
@@ -28,8 +29,8 @@ function SearchFilter() {
       {/* <Separator type="vertical-medium" /> */}
 
       <input
-        ref={input}
         onChange={handleSearchFilter}
+        value={filterData?.searchFilter || ""}
         type="text"
         placeholder="Search"
       />
@@ -38,7 +39,7 @@ function SearchFilter() {
           onClick: handleSearchClear,
           className: styles.searchClearButton,
           style: {
-            display: input.current?.value.length > 0 ? "flex" : "none",
+            display: filterData?.searchFilter?.length > 0 ? "flex" : "none",
           },
         }}
         text={<UseSvg type="close" />}
