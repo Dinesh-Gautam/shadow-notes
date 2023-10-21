@@ -47,6 +47,7 @@ function OutputTemplate({
         .filter((data) => !data.parentId)
         .map((data) => {
           const { name, value, state, id, type } = data;
+          console.log(data);
           const inputValue = state?.value;
           const additionalValue = state;
 
@@ -82,7 +83,11 @@ function OutputTemplate({
               )}
               {name === "link_input_value" && (
                 <a rel="noreferrer" target="_blank" href={url.href}>
-                  {<HighlightTextOnSearchMatch text={url.hostname} />}
+                  {state?.valueName ? (
+                    <HighlightTextOnSearchMatch text={state?.valueName} />
+                  ) : (
+                    <HighlightTextOnSearchMatch text={url.hostname} />
+                  )}
                 </a>
               )}
               {name === "image_input_value" && (
