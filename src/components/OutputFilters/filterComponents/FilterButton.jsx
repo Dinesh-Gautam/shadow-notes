@@ -16,7 +16,7 @@ function FilterButton() {
         </button>
       </AnchorWrapper>
       <Menu>
-        <FormControl sx={{ p: 2 }} component="fieldset">
+        <FormControl sx={{ px: 2 }} component="fieldset">
           <FormControlLabel
             sx={{
               gap: 4,
@@ -40,7 +40,9 @@ function FilterButton() {
 
           <FormControlLabel
             sx={{
-              gap: 4,
+              display: "flex",
+              justifyContent: "space-between",
+              gap: 2,
             }}
             value="Stared"
             control={
@@ -67,9 +69,18 @@ function FilterButton() {
 
 function Label({ icon, text }) {
   return (
-    <Box gap={2} display={"flex"} alignItems={"center"}>
+    <Box
+      sx={{
+        display: "grid",
+        alignItems: "center",
+        gridTemplateColumns: "auto 1fr",
+        justifyItems: "start",
+        gap: 2,
+      }}
+    >
       {icon}
-      {text}
+
+      <span>{text}</span>
     </Box>
   );
 }

@@ -10,8 +10,15 @@
     // background: red;
   }
   button {
+    width: 100%;
     box-shadow: none;
     background: transparent;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    justify-items: start;
+    &:active {
+      box-shadow: none;
+    }
   }
 }
 
