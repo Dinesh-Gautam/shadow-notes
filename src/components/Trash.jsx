@@ -8,9 +8,45 @@ import Button from "./MainInput/inputs/elements/Button";
 import OutputTemplate from "./MainOutput/OutputTemplate";
 import styles from "./trash.module.scss";
 import { input } from "./MainInput/inputs/inputOptions";
-function Trash({ trashData }) {
-  const { updateData_fireStore, setundoTrigger } = useData();
+import { useMenu } from "./elements/Menu/Menu";
+import { DeleteForever, RestoreFromTrash } from "@mui/icons-material";
 
+function TrashAdditionalButtons({ id }) {
+  const { updateData_fireStore, setundoTrigger } = useData();
+  const { setMenuOpen } = useMenu();
+
+  return (
+    <>
+      <button
+        onClick={() => {
+          const data = {
+            delete: false,
+          };
+          updateData_fireStore(id, data);
+          setMenuOpen(false);
+        }}
+      >
+        <RestoreFromTrash />
+        <span>Restore</span>
+      </button>
+      <Separator type="vertical-medium" />
+      <button
+        onClick={() => {
+          setundoTrigger((prev) => {
+            return { trigger: true, id: [...prev.id, id] };
+          });
+          setMenuOpen(false);
+          document.getElementById(id).style.display = "none";
+        }}
+      >
+        <DeleteForever />
+        <span>Delete Forever</span>
+      </button>
+    </>
+  );
+}
+
+function Trash({ trashData }) {
   return (
     <div className={styles.container}>
       <div className={styles.contentContainer}>
@@ -31,32 +67,7 @@ function Trash({ trashData }) {
                 <DropDown
                   key={id}
                   id={id}
-                  extraButtons={
-                    <div className="dropdown_extraButtons">
-                      <button
-                        onClick={() => {
-                          const data = {
-                            delete: false,
-                          };
-                          updateData_fireStore(id, data);
-                        }}
-                      >
-                        Restore
-                      </button>
-                      <Separator type="vertical-medium" />
-                      <button
-                        onClick={() => {
-                          setundoTrigger((prev) => {
-                            return { trigger: true, id: [...prev.id, id] };
-                          });
-
-                          document.getElementById(id).style.display = "none";
-                        }}
-                      >
-                        {<UseSvg type="trash" />}
-                      </button>
-                    </div>
-                  }
+                  extraButtons={<TrashAdditionalButtons id={id} />}
                   DropdownBackgroundColor={
                     DropdownBackgroundColor &&
                     DropdownBackgroundColor.state.value

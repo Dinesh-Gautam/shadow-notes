@@ -1,11 +1,14 @@
 @import "../../../styles/variables";
 
 .container {
-  background: var(--default-color);
-  box-shadow: $boxShadow-more-depth;
+  // background: var(--default-color);
+  // box-shadow: $boxShadow-more-depth;
   border-radius: $border-radius-default;
-  position: absolute;
-  z-index: 100000;
+  // position: absolute;
+  z-index: 10000 !important;
+  div {
+    // background: red;
+  }
   button {
     box-shadow: none;
     background: transparent;

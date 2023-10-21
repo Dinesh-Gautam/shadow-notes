@@ -55,9 +55,7 @@ function DropDown({
                 </button>
               </AnchorWrapper>
 
-              <Menu className="vertical-menu" outer={true}>
-                {extraButtons}
-              </Menu>
+              <Menu>{extraButtons}</Menu>
             </MenuProvider>
 
             {/* <Separator type="vertical-medium" /> */}

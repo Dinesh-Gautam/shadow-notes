@@ -9,12 +9,13 @@ import Separator from "../../elements/Separator/Separator";
 import { serverTimestamp } from "firebase/firestore";
 import ShareButton from "./ShareButton";
 import { Delete, Edit, Star } from "@mui/icons-material";
+import { useMenu } from "../../elements/Menu/Menu";
 
 function AdditionalButtons({ docId, userData, data }) {
   const { inputsDispatch, setEditMode } = useInputs();
   const { setModalOpen } = useInputs();
   const { updateData_fireStore, updateDocField } = useData();
-
+  const { setMenuOpen } = useMenu();
   const editButtonHandler = () => {
     setEditMode((prev) => {
       return { edit: true, editParameters: docId };
@@ -25,6 +26,7 @@ function AdditionalButtons({ docId, userData, data }) {
 
     console.log(userData);
     inputsDispatch({ type: "edit", payload: userData });
+    setMenuOpen(false);
     setModalOpen(true);
   };
 
