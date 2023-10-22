@@ -28,10 +28,23 @@
       align-items: center;
       order: 1;
     }
-    button {
+    button,
+    a {
+      color: #000;
+      box-shadow: $boxShadow-default;
+      border-radius: $border-radius-default;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
       width: 100%;
       background: var(--default-color);
       padding: $padding-less;
+
+      svg {
+        font-size: $fontSize-medium;
+        opacity: 0.8;
+      }
     }
     .addButton {
       padding: $padding-default;
@@ -39,6 +52,15 @@
       @include breakpoint(xxl, max) {
         order: 1;
       }
+    }
+  }
+  .linksContainer {
+    display: flex;
+    flex-direction: column;
+    gap: $padding-default / 2;
+    @include breakpoint(xxl, max) {
+      flex-direction: row;
+      align-items: center;
     }
   }
   .bottomContainer {

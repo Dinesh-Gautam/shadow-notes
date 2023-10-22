@@ -10,6 +10,8 @@ import { useData } from "../context/DatabaseContext";
 import TrashBtn from "./TrashBtn";
 
 import styles from "./SideBar.module.scss";
+import { GroupOutlined } from "@mui/icons-material";
+import { Link } from "react-router-dom";
 
 function SideBar() {
   const { logout, currentUser } = useAuth();
@@ -31,7 +33,7 @@ function SideBar() {
         </button>
         <Separator type="horizontal-bold" />
 
-        <div>
+        <div className={styles.linksContainer}>
           <ModalProvider>
             <TrashBtn
               text={
@@ -41,6 +43,13 @@ function SideBar() {
               }
             />
           </ModalProvider>
+          <Link title="Shared Notes with you" to={"/shared"}>
+            <GroupOutlined />
+
+            <HideWhenSideBarIsClosed>
+              <span>Shared Notes</span>
+            </HideWhenSideBarIsClosed>
+          </Link>
         </div>
       </div>
 

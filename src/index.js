@@ -13,6 +13,7 @@ import {
   createRoutesFromElements,
 } from "react-router-dom";
 import Shared from "./components/Shared";
+import SharedNotes from "./components/SharedNotes";
 
 const container = document.getElementById("root");
 const root = createRoot(container);
@@ -24,6 +25,7 @@ root.render(
         <Route path="/" element={<App />}>
           {/* ... etc. */}
         </Route>
+        <Route path="/shared" element={<SharedNotes />} />
         <Route path="/shared/:userId/:docId" element={<Shared />} />
       </Routes>
     </BrowserRouter>

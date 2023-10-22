@@ -1,9 +1,11 @@
 import {
+  arrayUnion,
   collection,
   doc,
   onSnapshot,
   orderBy,
   query,
+  updateDoc,
   where,
 } from "firebase/firestore";
 import React, { useEffect } from "react";
@@ -24,6 +26,8 @@ import { Error } from "@mui/icons-material";
 function Shared() {
   let { userId, docId } = useParams();
 
+  const { currentUser } = useAuth();
+
   const users = collection(db, "users");
   const userDoc = doc(users, userId);
   const userDocCollection = collection(userDoc, "userData");
@@ -34,6 +38,14 @@ function Shared() {
 
   useEffect(() => {
     const q = doc(userDocCollection, docId);
+
+    if (currentUser?.uid && userId !== currentUser?.uid) {
+      const ref = doc(userDocCollection, docId);
+      const sharedRef = doc(users, currentUser?.uid);
+      updateDoc(sharedRef, {
+        shared: arrayUnion(ref),
+      });
+    }
 
     let unsubscribe = onSnapshot(
       q,
@@ -63,8 +75,6 @@ function Shared() {
       unsubscribe();
     };
   }, []);
-
-  console.log(data);
 
   return (
     <div className="container">

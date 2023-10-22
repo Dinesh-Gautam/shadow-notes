@@ -14,6 +14,7 @@ import {
 } from "firebase/firestore";
 import { createPortal } from "react-dom";
 import Modal, { useModal } from "./elements/Modal/Modal";
+import { DeleteOutline } from "@mui/icons-material";
 
 const users = collection(db, "users");
 
@@ -55,23 +56,21 @@ function TrashBtn({ text }) {
 
   return (
     <>
-      <div>
-        <Button
-          attr={{
-            title: "Trash",
-            onClick: () => {
-              setModalOpen(true);
-              !initialRequest && setinitialRequest(true);
-            },
-          }}
-          text={
-            <>
-              <UseSvg type="trash" />
-              {text}
-            </>
-          }
-        />
-      </div>
+      <Button
+        attr={{
+          title: "Trash",
+          onClick: () => {
+            setModalOpen(true);
+            !initialRequest && setinitialRequest(true);
+          },
+        }}
+        text={
+          <>
+            <DeleteOutline />
+            {text}
+          </>
+        }
+      />
 
       <Modal title="Trash">
         <Trash trashData={trashData} settrashData={settrashData} />
