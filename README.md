@@ -1,8 +1,8 @@
 ![Logo](/public/Logo/192px_logo.png)
 
-# Shadow Notes
+# Shadow Notes 📝
 
-An notes taking app built with <b>React</b> and <b>Firebase</b>
+An notes taking app built with <b>React</b> and <b>Firebase</b> 🔥
 
 ## Demo
 
@@ -15,11 +15,11 @@ An notes taking app built with <b>React</b> and <b>Firebase</b>
 
 ## Features
 
-- Save notes to cloud
-- Live previews
-- Share notes
-- Filter notes
-- Drag and drop when creating notes
+- Save notes to cloud ☁️
+- Live previews 👀
+- Share notes 🤝
+- Filter notes 🔎
+- Drag and drop when creating notes 🖱
 
 ## Run Locally
 
