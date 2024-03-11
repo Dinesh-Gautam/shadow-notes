@@ -3,19 +3,14 @@ import {
   collection,
   doc,
   onSnapshot,
-  orderBy,
-  query,
   updateDoc,
-  where,
 } from "firebase/firestore";
 import React, { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { db } from "../firebase";
 import { useState } from "react";
 import DropDown from "./elements/DropDown/DropDown";
-import OutputTemplate, {
-  HighlightTextOnSearchMatch,
-} from "./MainOutput/OutputTemplate";
+
 import { input } from "./MainInput/inputs/inputOptions";
 import SimpleOutputTemplate from "./MainOutput/SimpleOutputTemplet";
 import { useAuth } from "../context/AuthContext";
@@ -95,11 +90,12 @@ function Shared() {
               key={data.id}
               open={true}
               DropdownBackgroundColor={
-                data.data.find((data) => data.name === input.color).state.value
+                data.data.find((data) => data.name === input.color)?.state
+                  ?.value
               }
               mainText={
-                data.data.find((data) => data.name === input.heading).state
-                  .value
+                data.data.find((data) => data.name === input.heading)?.state
+                  ?.value
               }
             >
               <SimpleOutputTemplate
