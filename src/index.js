@@ -1,19 +1,12 @@
-import React from "react";
-import App from "./App";
+import React, { lazy, Suspense } from "react";
 import { AuthProvider } from "./context/AuthContext";
-
 import { createRoot } from "react-dom/client";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import "./styles/styles.scss";
 
-import {
-  BrowserRouter,
-  Route,
-  RouterProvider,
-  Routes,
-  createBrowserRouter,
-  createRoutesFromElements,
-} from "react-router-dom";
-import Shared from "./components/Shared";
-import SharedNotes from "./components/SharedNotes";
+const Shared = lazy(() => import("./components/Shared"));
+const SharedNotes = lazy(() => import("./components/SharedNotes"));
+const App = lazy(() => import("./App"));
 
 const container = document.getElementById("root");
 const root = createRoot(container);
@@ -21,13 +14,13 @@ const root = createRoot(container);
 root.render(
   <AuthProvider>
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<App />}>
-          {/* ... etc. */}
-        </Route>
-        <Route path="/shared" element={<SharedNotes />} />
-        <Route path="/shared/:userId/:docId" element={<Shared />} />
-      </Routes>
+      <Suspense fallback={<div></div>}>
+        <Routes>
+          <Route path="/" element={<App />}></Route>
+          <Route path="/shared" element={<SharedNotes />} />
+          <Route path="/shared/:userId/:docId" element={<Shared />} />
+        </Routes>
+      </Suspense>
     </BrowserRouter>
   </AuthProvider>
 );
