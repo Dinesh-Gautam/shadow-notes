@@ -1,12 +1,10 @@
-import React, { Fragment, useRef, useState } from "react";
+import React, { Fragment, useState } from "react";
 import { useAuth } from "../context/AuthContext";
 import UseSvg from "./elements/UseSvg";
 import { Menu, AnchorWrapper, MenuProvider } from "./elements/Menu/Menu";
-import Modal, { ModalProvider, useModal } from "./elements/Modal/Modal";
-import MainInput from "./MainInput/MainInput";
-import { useInputs } from "./MainInput/InputContext";
+import { ModalProvider, useModal } from "./elements/Modal/Modal";
+
 import Separator from "./elements/Separator/Separator";
-import { useData } from "../context/DatabaseContext";
 import TrashBtn from "./TrashBtn";
 
 import styles from "./SideBar.module.scss";
@@ -79,7 +77,7 @@ function SideBar() {
 }
 
 function HideWhenSideBarIsClosed({ children }) {
-  const [closed, setClosed] = useState(true);
+  const [closed] = useState(true);
 
   return <Fragment>{!closed && children}</Fragment>;
 }

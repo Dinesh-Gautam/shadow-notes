@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import InputWrapper from "./InputWrapper/InputWrapper";
 import { input as InputOption, listTypes } from "./inputOptions";
 import useInputActions from "../useInputActions";
@@ -9,7 +9,7 @@ import { Draggable, Droppable } from "react-beautiful-dnd";
 import { getStyle } from "../MainInput";
 
 function useKeyboardEvents() {
-  const { removeElement, addListElement } = useInputActions();
+  const { removeElement } = useInputActions();
   const { inputs, setInputFocusId } = useInputs();
 
   function onKeyDown(e, input) {

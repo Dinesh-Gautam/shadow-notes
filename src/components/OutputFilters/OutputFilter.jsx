@@ -1,13 +1,9 @@
 import React from "react";
-import TrashBtn from "../TrashBtn";
 import ColorFilter from "./filterComponents/ColorFilter";
 import SearchFilter from "./filterComponents/SearchFilter";
 import { useData } from "../../context/DatabaseContext";
-import Button from "../MainInput/inputs/elements/Button";
-import UseSvg from "../elements/UseSvg";
 import { input } from "../MainInput/inputs/inputOptions";
 import styles from "./OutputFilter.module.scss";
-import { FilterList } from "@mui/icons-material";
 import FilterButton from "./filterComponents/FilterButton";
 
 function OutputFilter({ userDisplay, setuserDisplay }) {

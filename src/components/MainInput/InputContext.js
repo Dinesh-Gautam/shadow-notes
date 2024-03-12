@@ -9,7 +9,7 @@ import React, {
 import { v4 as uuidv4 } from "uuid";
 import { useData } from "../../context/DatabaseContext";
 
-import { headingState, input } from "./inputs/inputOptions";
+import { headingState } from "./inputs/inputOptions";
 import { useModal } from "../elements/Modal/Modal";
 import { serverTimestamp } from "@firebase/firestore";
 export const input_context = createContext();
@@ -256,6 +256,7 @@ export function InputContext(props) {
         localStorage.removeItem("editMode");
       }
     }, 1000);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [inputs, editMode]);
 
   useEffect(() => {
@@ -288,6 +289,7 @@ export function InputContext(props) {
     return () => {
       window.onbeforeunload = null;
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [inputs]);
 
   function hasAnyNotes() {

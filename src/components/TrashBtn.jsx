@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useData } from "../context/DatabaseContext";
 import { db } from "../firebase";
-import UseSvg from "./elements/UseSvg";
 import Button from "./MainInput/inputs/elements/Button";
 import Trash from "./Trash";
 import {
@@ -12,7 +11,6 @@ import {
   where,
   orderBy,
 } from "firebase/firestore";
-import { createPortal } from "react-dom";
 import Modal, { useModal } from "./elements/Modal/Modal";
 import { DeleteOutline } from "@mui/icons-material";
 

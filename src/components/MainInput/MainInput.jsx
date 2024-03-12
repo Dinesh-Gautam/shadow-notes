@@ -1,10 +1,8 @@
 import React from "react";
 import { useInputs } from "./InputContext";
 import InputBody from "./inputs/InputBody";
-import InputControls from "./inputs/InputControls";
 // import Button from "./inputs/elements/Button";
 import styles from "./mainInput.module.scss";
-import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import useInputActions from "./useInputActions";
 import UndoIcon from "@mui/icons-material/Undo";
 import RedoIcon from "@mui/icons-material/Redo";
@@ -28,7 +26,7 @@ export function getStyle(style, snapshot) {
 
 function MainInput() {
   const { formSubmitHandler, history, undo, redo } = useInputs();
-  const { onDragEnd, inputFormCancel } = useInputActions();
+  const { inputFormCancel } = useInputActions();
 
   return (
     <form

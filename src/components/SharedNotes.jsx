@@ -1,14 +1,9 @@
-import { getDocs, onSnapshot } from "firebase/firestore";
-import { collection, doc, getDoc, orderBy, query } from "firebase/firestore";
+import { collection, doc, getDoc } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { db } from "../firebase";
 import { useAuth } from "../context/AuthContext";
 import Loading from "./elements/Loading";
 import DropDown from "./elements/DropDown/DropDown";
-import AdditionalButtons from "./MainOutput/smallComponents/AdditionalButtons";
-import OutputTemplate, {
-  HighlightTextOnSearchMatch,
-} from "./MainOutput/OutputTemplate";
 import SimpleOutputTemplate from "./MainOutput/SimpleOutputTemplet";
 import { input } from "./MainInput/inputs/inputOptions";
 import { Link } from "react-router-dom";
@@ -59,6 +54,7 @@ function SharedNotes() {
 
       setUserData(docs);
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

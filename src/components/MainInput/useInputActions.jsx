@@ -1,4 +1,3 @@
-import React, { useContext } from "react";
 import { inputOptions, input } from "./inputs/inputOptions";
 import { useInputs } from "./InputContext";
 import { v4 as uuidv4 } from "uuid";

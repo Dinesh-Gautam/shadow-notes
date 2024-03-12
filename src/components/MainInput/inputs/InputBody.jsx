@@ -6,11 +6,7 @@ import { input as inputNames, inputOptions } from "./inputOptions";
 import { getStyle } from "../MainInput";
 import styles from "./InputBody.module.scss";
 import useInputActions from "../useInputActions";
-import useMenu, {
-  AnchorWrapper,
-  Menu,
-  MenuProvider,
-} from "../../elements/Menu/Menu";
+import { AnchorWrapper, Menu, MenuProvider } from "../../elements/Menu/Menu";
 import ColorAdditions from "./elements/ColorAdditions";
 import InputControls from "./InputControls";
 

@@ -2,6 +2,7 @@ import React from "react";
 import { useData } from "../../context/DatabaseContext";
 import { input, listTypes } from "../MainInput/inputs/inputOptions";
 import inputStyles from "../MainInput/inputs/inputField.module.scss";
+
 export function HighlightTextOnSearchMatch({ text }) {
   const { filterData } = useData();
   if (filterData.searchFilter) {

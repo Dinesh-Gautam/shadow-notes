@@ -1,11 +1,7 @@
 import React from "react";
 import { useData } from "../../../context/DatabaseContext";
-import UseSvg from "../../elements/UseSvg";
-import { headingId, useInputs } from "../../MainInput/InputContext";
-import { inputOptions } from "../../MainInput/inputs/inputOptions";
-import { v4 as uuidv4 } from "uuid";
+import {  useInputs } from "../../MainInput/InputContext";
 import Button from "../../MainInput/inputs/elements/Button";
-import Separator from "../../elements/Separator/Separator";
 import { serverTimestamp } from "firebase/firestore";
 import ShareButton from "./ShareButton";
 import { Delete, Edit, Star } from "@mui/icons-material";

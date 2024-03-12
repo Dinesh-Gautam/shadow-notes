@@ -1,7 +1,6 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 
 import styles from "./menu.module.scss";
-import { memo } from "react";
 // import { createPortal } from "react-dom";
 
 import { Menu as MuiMenu, styled } from "@mui/material";
@@ -24,7 +23,7 @@ export function useMenu() {
 }
 
 export const AnchorWrapper = ({ children }) => {
-  const { anchorRef, setMenuOpen, isMouseInsideMenu } = useMenu();
+  const { anchorRef, setMenuOpen } = useMenu();
 
   return (
     <div
@@ -128,7 +127,7 @@ export const AnchorWrapper = ({ children }) => {
 // };
 
 export const Menu = ({ outer, className, children }) => {
-  const { anchorRef, menuOpen, setMenuOpen, setIsMouseInsideMenu } = useMenu();
+  const { anchorRef, menuOpen, setMenuOpen } = useMenu();
 
   return (
     <StyledMenu

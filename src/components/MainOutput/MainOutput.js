@@ -2,11 +2,9 @@ import React from "react";
 import { useData } from "../../context/DatabaseContext";
 import DropDown from "../elements/DropDown/DropDown";
 import Loading from "../elements/Loading";
-import Button from "../MainInput/inputs/elements/Button";
 import OutputTemplate, { HighlightTextOnSearchMatch } from "./OutputTemplate";
 import AdditionalButtons from "./smallComponents/AdditionalButtons";
 import { input } from "../MainInput/inputs/inputOptions";
-import { Badge } from "@mui/material";
 import { filters } from "../../context/useOutputFilters";
 
 function MainOutput() {

@@ -1,8 +1,6 @@
-import React, { useContext, useState } from "react";
+import React from "react";
 import { v4 as uuidv4 } from "uuid";
 
-import Button from "./elements/Button";
-import UseSvg from "../../elements/UseSvg";
 import { inputOptions, input } from "./inputOptions";
 import useInputActions from "../useInputActions";
 

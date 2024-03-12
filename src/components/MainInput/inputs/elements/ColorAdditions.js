@@ -1,10 +1,8 @@
-import React, { memo } from "react";
+import React from "react";
 import Button from "./Button";
 import { useData } from "../../../../context/DatabaseContext";
 import useInputActions from "../../useInputActions";
 import { useMemo } from "react";
-import { useState } from "react";
-import { useEffect } from "react";
 
 import styles from "./ColorAdditions.module.scss";
 
