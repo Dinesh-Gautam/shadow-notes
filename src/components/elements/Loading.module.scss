@@ -7,6 +7,12 @@
   border-radius: $border-radius-default;
   animation: loading_animation 2s linear infinite;
 }
+.default {
+  height: 100%;
+  width: 100%;
+  border-radius: $border-radius-default;
+  animation: loading_animation 2s linear infinite;
+}
 
 @keyframes loading_animation {
   0% {

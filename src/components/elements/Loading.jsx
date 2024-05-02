@@ -5,7 +5,7 @@ function Loading({ type }) {
     case "simple-card":
       return <div className={styles[type]}></div>;
     default:
-      return "loading...";
+      return <div className={styles.default} />;
   }
 }
 

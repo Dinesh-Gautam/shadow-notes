@@ -2,6 +2,7 @@ import React from "react";
 import { useData } from "../../context/DatabaseContext";
 import { input, listTypes } from "../MainInput/inputs/inputOptions";
 import inputStyles from "../MainInput/inputs/inputField.module.scss";
+import { LinkPreview } from "../elements/LinkPreview/LinkPreview";
 
 export function HighlightTextOnSearchMatch({ text }) {
   const { filterData } = useData();
@@ -84,11 +85,14 @@ function OutputTemplate({
               )}
               {name === "link_input_value" && (
                 <a rel="noreferrer" target="_blank" href={url.href}>
-                  {state?.valueName ? (
-                    <HighlightTextOnSearchMatch text={state?.valueName} />
-                  ) : (
-                    <HighlightTextOnSearchMatch text={url.hostname} />
-                  )}
+                  <div>
+                    <LinkPreview url={url.href} />
+                    {state?.valueName ? (
+                      <HighlightTextOnSearchMatch text={state?.valueName} />
+                    ) : (
+                      <HighlightTextOnSearchMatch text={url.hostname} />
+                    )}
+                  </div>
                 </a>
               )}
               {name === "image_input_value" && (
