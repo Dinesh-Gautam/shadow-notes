@@ -95,6 +95,9 @@ export function LinkPreview({ url, useCache = true }) {
         }
       }
 
+      if (temp.description === temp["og:description"])
+        delete temp["og:description"];
+
       if (Object.keys(temp).length === 0) {
         setPreviewData(null);
       } else {
