@@ -7,6 +7,10 @@ import { useInputs } from "../InputContext";
 import styles from "./inputField.module.scss";
 import { Draggable, Droppable } from "react-beautiful-dnd";
 import { getStyle } from "../MainInput";
+import {
+  LinkPreview,
+  isUrlValid,
+} from "../../elements/LinkPreview/LinkPreview";
 
 function useKeyboardEvents() {
   const { removeElement } = useInputActions();
@@ -158,6 +162,9 @@ function InputField({ input }) {
               href={input?.state?.value || ""}
             >
               {input?.state?.valueName || input?.state?.value}
+              {isUrlValid(input?.state?.value) && (
+                <LinkPreview url={input.state.value} useCache={false} />
+              )}
             </a>
           )}
         </InputWrapper>

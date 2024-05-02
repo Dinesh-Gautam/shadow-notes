@@ -3,7 +3,7 @@ import { useCallback, useEffect, useState } from "react";
 import styles from "./LinkPreview.module.scss";
 import Loading from "../Loading";
 
-function useCachedPreviewData(destinationUrl) {
+function useCachedPreviewData(destinationUrl, useCache) {
   const [cached, setCached] = useState(null);
   const [previewData, setPreviewData] = useState({
     title: null,
@@ -34,6 +34,11 @@ function useCachedPreviewData(destinationUrl) {
   function setCachedPreviewData(data) {
     const key = convertToBase64(destinationUrl);
     const cachedData = localStorage.getItem("linkPreviewData");
+    if (!useCache) {
+      setPreviewData(data);
+
+      return;
+    }
     if (cachedData) {
       const parsedData = JSON.parse(cachedData);
       parsedData[key] = data;
@@ -52,8 +57,20 @@ function convertToBase64(str) {
   return base64;
 }
 
-export function LinkPreview({ url }) {
-  const [previewData, setPreviewData, cached] = useCachedPreviewData(url);
+export function isUrlValid(url) {
+  try {
+    new URL(url);
+    return true;
+  } catch (err) {
+    return false;
+  }
+}
+
+export function LinkPreview({ url, useCache = true }) {
+  const [previewData, setPreviewData, cached] = useCachedPreviewData(
+    url,
+    useCache
+  );
 
   const [loading, setLoading] = useState(false);
 
@@ -64,28 +81,29 @@ export function LinkPreview({ url }) {
       process.env.REACT_APP_PROXY_URL + `?destination=${url}`
     ).then((res) => res.text());
 
-    if (!data) return;
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(data, "text/html");
+    if (data) {
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(data, "text/html");
 
-    const temp = {};
-    for (const key in previewData) {
-      const element =
-        doc.querySelector(`meta[name="${key}"]`) ||
-        doc.querySelector(`meta[property="${key}"]`);
-      if (element) {
-        temp[key] = element?.getAttribute("content");
+      const temp = {};
+      for (const key in previewData) {
+        const element =
+          doc.querySelector(`meta[name="${key}"]`) ||
+          doc.querySelector(`meta[property="${key}"]`);
+        if (element) {
+          temp[key] = element?.getAttribute("content");
+        }
+      }
+
+      if (Object.keys(temp).length === 0) {
+        setPreviewData(null);
+      } else {
+        setPreviewData(temp);
       }
     }
 
-    if (Object.keys(temp).length === 0) {
-      setPreviewData(null);
-    } else {
-      setPreviewData(temp);
-    }
-
     setLoading(false);
-  }, []);
+  }, [url]);
 
   useEffect(() => {
     if (cached !== null) {
@@ -95,7 +113,7 @@ export function LinkPreview({ url }) {
         fetchData();
       }
     }
-  }, [cached]);
+  }, [cached, url]);
 
   useEffect(() => {
     console.log(previewData);

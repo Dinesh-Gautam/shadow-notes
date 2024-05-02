@@ -1,6 +1,7 @@
 import React from "react";
 import { input, listTypes } from "../MainInput/inputs/inputOptions";
 import inputStyles from "../MainInput/inputs/inputField.module.scss";
+import { LinkPreview } from "../elements/LinkPreview/LinkPreview";
 export function HighlightTextOnSearchMatch({ text }) {
   return text;
 }
@@ -54,6 +55,7 @@ function SimpleOutputTemplate({
               {name === "link_input_value" && (
                 <a rel="noreferrer" target="_blank" href={url.href}>
                   {<HighlightTextOnSearchMatch text={url.hostname} />}
+                  <LinkPreview url={url.href} />
                 </a>
               )}
               {name === "image_input_value" && (
