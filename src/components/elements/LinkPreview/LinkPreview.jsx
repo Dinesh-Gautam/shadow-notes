@@ -23,8 +23,8 @@ function useCachedPreviewData(destinationUrl) {
     }
     cachedData = JSON.parse(cachedData);
     console.log(cachedData);
-    if (cachedData && cachedData[key]) {
-      setPreviewData({ ...cachedData[key] });
+    if (cachedData && cachedData[key] !== undefined) {
+      setPreviewData(cachedData[key] ? { ...cachedData[key] } : null);
       setCached(true);
     } else {
       setCached(false);
@@ -55,9 +55,11 @@ function convertToBase64(str) {
 export function LinkPreview({ url }) {
   const [previewData, setPreviewData, cached] = useCachedPreviewData(url);
 
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   const fetchData = useCallback(async () => {
+    setLoading(true);
+    console.log("fetching link preview");
     const data = await fetch(
       process.env.REACT_APP_PROXY_URL + `?destination=${url}`
     ).then((res) => res.text());

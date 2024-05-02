@@ -86,12 +86,12 @@ function OutputTemplate({
               {name === "link_input_value" && (
                 <a rel="noreferrer" target="_blank" href={url.href}>
                   <div>
-                    <LinkPreview url={url.href} />
                     {state?.valueName ? (
                       <HighlightTextOnSearchMatch text={state?.valueName} />
                     ) : (
                       <HighlightTextOnSearchMatch text={url.hostname} />
                     )}
+                    <LinkPreview url={url.href} />
                   </div>
                 </a>
               )}
