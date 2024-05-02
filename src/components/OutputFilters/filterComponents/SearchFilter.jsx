@@ -13,7 +13,7 @@ function SearchFilter() {
   console.log(filterData);
   const handleSearchFilter = (e) => {
     const value = e.target.value;
-    updateFilterValue(value.trim(), filters.searchFilter.name);
+    updateFilterValue(value, filters.searchFilter.name);
   };
   const handleSearchClear = () => {
     updateFilterValue(null, filters.searchFilter.name);
