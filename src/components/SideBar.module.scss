@@ -30,7 +30,7 @@
     }
     button,
     a {
-      color: #000;
+      color: var(--default-text-color);
       box-shadow: $boxShadow-default;
       border-radius: $border-radius-default;
       display: flex;

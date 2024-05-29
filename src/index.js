@@ -3,6 +3,7 @@ import { AuthProvider } from "./context/AuthContext";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./styles/styles.scss";
+import { initializeTheme } from "./components/Theme";
 
 const Shared = lazy(() => import("./components/Shared"));
 const SharedNotes = lazy(() => import("./components/SharedNotes"));
@@ -10,6 +11,8 @@ const App = lazy(() => import("./App"));
 
 const container = document.getElementById("root");
 const root = createRoot(container);
+
+initializeTheme();
 
 root.render(
   <AuthProvider>

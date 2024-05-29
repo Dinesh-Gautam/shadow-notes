@@ -10,6 +10,7 @@ import TrashBtn from "./TrashBtn";
 import styles from "./SideBar.module.scss";
 import { GroupOutlined } from "@mui/icons-material";
 import { Link } from "react-router-dom";
+import { ToggleButton } from "./Theme";
 
 function SideBar() {
   const { logout, currentUser } = useAuth();
@@ -58,9 +59,10 @@ function SideBar() {
               <img src={photoURL} className={styles.userPhoto} alt="user" />
             </AnchorWrapper>
             <Menu>
+              <ToggleButton />
               <button onClick={logout}>
-                <span> Sign Out </span>
                 <UseSvg type="logOut" />
+                <span> Sign Out </span>
               </button>
             </Menu>
           </MenuProvider>

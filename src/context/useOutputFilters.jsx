@@ -84,6 +84,13 @@ function useOutputFilters() {
           const label = filters[key].label(filterData[key]);
           return (
             <Chip
+              sx={{
+                background: "var(--vless-alpha-text-color)",
+                color: "var(--default-text-color)",
+                svg: {
+                  color: "var(--default-text-color) !important",
+                },
+              }}
               // icon={icon}
               label={label}
               onDelete={() => {

@@ -3,12 +3,10 @@
 .container {
   // background: var(--default-color);
   // box-shadow: $boxShadow-more-depth;
-  border-radius: $border-radius-default;
+
   // position: absolute;
   z-index: 10000 !important;
-  div {
-    // background: red;
-  }
+
   button {
     width: 100%;
     box-shadow: none;

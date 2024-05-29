@@ -7,12 +7,11 @@ import { Menu as MuiMenu, styled } from "@mui/material";
 
 const StyledMenu = styled((props) => <MuiMenu {...props} />)(({ theme }) => ({
   ".MuiPaper-root": {
-    borderRadius: 6,
+    borderRadius: "var(--default-border-radius)",
     minWidth: 100,
-    boxShadow:
-      "0px 0px 8px rgba(0, 0, 0, 0.1), 0px 4px 32px rgba(0, 0, 0, 0.1)",
-    background: "#fafafa",
-    color: "#000",
+    boxShadow: "var(--boxShadow-more-depth)",
+    background: "var(--default-backgroundcolor)",
+    color: "var(--default-text-color)",
   },
 }));
 
@@ -131,10 +130,6 @@ export const Menu = ({ outer, className, children }) => {
 
   return (
     <StyledMenu
-      sx={{
-        borderRadius: 12,
-        boxShadow: "none",
-      }}
       // className={[styles.container, className].join(" ")}
       className={styles.container}
       anchorEl={anchorRef.current}

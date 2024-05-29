@@ -109,8 +109,9 @@
   }
   &:hover {
     &::after {
-      border: 2px dashed rgb(0, 0, 0, 0.05);
-      background: rgb(0, 0, 0, 0.05);
+      border: 2px dashed var(--vless-alpha-text-color);
+      background: var(--vless-alpha-text-color);
+      border-radius: 4px;
     }
   }
 }
