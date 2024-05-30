@@ -34,10 +34,10 @@ html {
     --less-alpha-text-color: rgba(255, 255, 255, 0.5);
     --vless-alpha-text-color: rgba(255, 255, 255, 0.05);
     --theme: #000;
-  }
 
-  .color-filter {
-    filter: opacity(0.7);
+    .color-filter {
+      filter: opacity(0.7);
+    }
   }
 }
 
