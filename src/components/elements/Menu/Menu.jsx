@@ -134,6 +134,14 @@ export const Menu = ({ outer, className, children }) => {
       className={styles.container}
       anchorEl={anchorRef.current}
       open={menuOpen}
+      anchorOrigin={{
+        vertical: "top",
+        horizontal: "right",
+      }}
+      transformOrigin={{
+        vertical: "top",
+        horizontal: "left",
+      }}
       // onClick={() => setMenuOpen(false)}
       onClose={() => setMenuOpen(false)}
     >

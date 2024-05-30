@@ -73,7 +73,6 @@ function SideBar() {
               {isGuestUser() ? (
                 <>
                   <button onClick={() => linkAccount()}>
-                    {" "}
                     <LinkOutlined fontSize="small" /> Link Account{" "}
                   </button>
                 </>
