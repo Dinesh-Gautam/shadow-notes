@@ -16,7 +16,7 @@ function ColorInput({ input }) {
       style={{
         backgroundColor: input?.state?.value,
       }}
-      className={styles.colorInput}
+      className={styles.colorInput + " color-filter"}
     ></div>
   );
 }
@@ -34,7 +34,7 @@ function ColorSelection({ value, id }) {
           })
         }
         value={value}
-        className={styles.color}
+        className={styles.color + " color-filter"}
       />
     </div>
   );

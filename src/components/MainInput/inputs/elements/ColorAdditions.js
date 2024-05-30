@@ -36,7 +36,7 @@ function ColorAdditions({ input }) {
               },
               name: "color_input_value",
               style: { backgroundColor: colorValue },
-              className: "random-color-btn colro-btn",
+              className: "random-color-btn colro-btn color-filter",
             }}
           />
         ))}
@@ -70,7 +70,7 @@ function ColorAdditions({ input }) {
                     },
                     name: "color_input_value",
                     style: { backgroundColor: value },
-                    className: "random-color-btn colro-btn",
+                    className: "random-color-btn colro-btn color-filter",
                   }}
                 />
               );

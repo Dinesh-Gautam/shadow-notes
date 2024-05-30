@@ -35,7 +35,7 @@ function DropDown({
       <div className={styles.wrapper}>
         <div
           style={{ backgroundColor: DropdownBackgroundColor || "" }}
-          className={styles.headerSideColor}
+          className={styles.headerSideColor + " color-filter"}
         ></div>
         <div onClick={dropInnerContainer} className={styles.heading}>
           <h1 className={className || styles.defaultDropDownMainContainer}>

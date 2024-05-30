@@ -111,6 +111,7 @@ function ColorFilter({ appliedColors }) {
               <Button
                 key={index}
                 attr={{
+                  className: "color-filter",
                   value: inputValue,
                   onClick: handleColorFilterClick,
                   name: "color_input_value",

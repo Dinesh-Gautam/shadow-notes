@@ -20,17 +20,23 @@ export function initializeTheme() {
 export function ToggleButton() {
   const [mode, setMode] = useState(getDefaultTheme);
 
+  function changeStateMode(mode) {
+    setMode(mode);
+    localStorage.setItem("theme", mode);
+  }
+
   function toggle() {
     const html = document.getElementsByTagName("html")[0];
-    if (html.dataset.theme === "dark") {
-      html.dataset.theme = "light";
-      setMode("light");
-      localStorage.setItem("theme", "light");
+    let mode = html.dataset.theme;
+
+    if (mode === "dark") {
+      mode = "light";
     } else {
-      html.dataset.theme = "dark";
-      setMode("dark");
-      localStorage.setItem("theme", "dark");
+      mode = "dark";
     }
+
+    html.dataset.theme = mode;
+    changeStateMode(mode);
   }
 
   return (
