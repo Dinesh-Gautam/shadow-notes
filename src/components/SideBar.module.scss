@@ -89,6 +89,7 @@
       min-height: $user-photo-height;
       min-width: $user-photo-height;
       border-radius: 50%;
+      background: var(--vless-alpha-text-color);
     }
 
     .userName,

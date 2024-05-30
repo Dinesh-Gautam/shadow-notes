@@ -8,13 +8,19 @@ import Separator from "./elements/Separator/Separator";
 import TrashBtn from "./TrashBtn";
 
 import styles from "./SideBar.module.scss";
-import { GroupOutlined } from "@mui/icons-material";
+import {
+  AccountCircle,
+  AccountCircleOutlined,
+  GroupOutlined,
+  LinkOutlined,
+  Person,
+} from "@mui/icons-material";
 import { Link } from "react-router-dom";
 import { ToggleButton } from "./Theme";
 
 function SideBar() {
-  const { logout, currentUser } = useAuth();
-  const { photoURL, displayName, email } = currentUser;
+  const { logout, isGuestUser, linkAccount, getUserInfo } = useAuth();
+  const { photoURL, displayName, email } = getUserInfo();
   const { setModalOpen } = useModal();
   return (
     <div className={styles.sideBarContainer}>
@@ -56,20 +62,39 @@ function SideBar() {
         <div className={styles.userInfo}>
           <MenuProvider>
             <AnchorWrapper>
-              <img src={photoURL} className={styles.userPhoto} alt="user" />
+              {isGuestUser() ? (
+                <AccountCircle className={styles.userPhoto} />
+              ) : (
+                <img src={photoURL} className={styles.userPhoto} alt="img" />
+              )}
             </AnchorWrapper>
             <Menu>
               <ToggleButton />
-              <button onClick={logout}>
-                <UseSvg type="logOut" />
-                <span> Sign Out </span>
-              </button>
+              {isGuestUser() ? (
+                <>
+                  <button onClick={() => linkAccount()}>
+                    {" "}
+                    <LinkOutlined fontSize="small" /> Link Account{" "}
+                  </button>
+                </>
+              ) : (
+                <button onClick={logout}>
+                  <UseSvg type="logOut" />
+                  <span> Sign Out </span>
+                </button>
+              )}
             </Menu>
           </MenuProvider>
           <HideWhenSideBarIsClosed>
             <div className={styles.userCredentials}>
-              <h3 className={styles.userName}>{displayName}</h3>
-              <span className={styles.userEmail}>{email}</span>
+              {isGuestUser() ? (
+                <h3 className={styles.userName}>Guest</h3>
+              ) : (
+                <>
+                  <h3 className={styles.userName}>{displayName}</h3>
+                  <span className={styles.userEmail}>{email}</span>
+                </>
+              )}
             </div>
           </HideWhenSideBarIsClosed>
         </div>

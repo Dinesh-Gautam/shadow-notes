@@ -364,7 +364,13 @@ main {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-
+  display: flex;
+  flex-direction: column;
+  gap: $padding-default;
+  span {
+    justify-self: center;
+    align-self: center;
+  }
   button {
     padding: $padding-default $padding-default * 2;
     background: var(--default-color);

@@ -9,9 +9,7 @@ function App() {
   return <main>{!currentUser ? <LazySignIn /> : <LazyMain />}</main>;
 }
 function LazySignIn() {
-  const SignWithGoogle = lazy(() =>
-    import("./components/signIn/SignWithGoogle")
-  );
+  const SignWithGoogle = lazy(() => import("./components/signIn/SignIn"));
   return (
     <Suspense fallback={<div></div>}>
       <SignWithGoogle />
