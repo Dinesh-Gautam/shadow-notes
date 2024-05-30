@@ -296,8 +296,7 @@ export function InputContext(props) {
     return inputs.some((e) => e?.state?.value && e?.state?.value !== "");
   }
 
-  const formSubmitHandler = (e) => {
-    e.preventDefault();
+  const formSubmitHandler = () => {
     const filteredInputs = inputs.filter((e) => e?.state?.value !== "");
 
     setEditMode({ edit: false, editParameters: {} });
