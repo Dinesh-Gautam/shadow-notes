@@ -12,9 +12,10 @@ form {
   height: 100%;
   display: flex;
   align-items: center;
-  padding: $padding-default;
+  // padding: $padding-default;
   // padding-bottom: 0;
   justify-content: space-between;
+  flex: 1;
   // height: 10%;
   button {
     background: var(--default-color);

@@ -9,13 +9,14 @@ export function useModal() {
   return useContext(ModalContext);
 }
 
-function ModalPortal({ title, children }) {
+function ModalPortal({ title, children, header }) {
   const { setModalOpen } = useModal();
 
   return (
     <div className={styles.container}>
       <div className={styles.header}>
         <h1>{title || "Modal"}</h1>
+        {header ? header : <div style={{ flex: 1 }}></div>}
         <div>
           <button onClick={() => setModalOpen(false)}>
             <UseSvg type="close" />

@@ -25,8 +25,7 @@ export function getStyle(style, snapshot) {
 }
 
 function MainInput() {
-  const { formSubmitHandler, history, undo, redo } = useInputs();
-  const { inputFormCancel } = useInputActions();
+  const { formSubmitHandler } = useInputs();
 
   return (
     <form
@@ -35,33 +34,40 @@ function MainInput() {
       //  onSubmit={formSubmitHandler}
     >
       <InputBody />
-
-      <div className={styles.inputControls}>
-        <div className={styles.formControls}>
-          {history.undo.length > 0 && (
-            <button title="Undo" type="button" onClick={undo}>
-              <UndoIcon />
-            </button>
-          )}
-          {history.redo.length > 0 && (
-            <button title="Redo" type="button" onClick={redo}>
-              <RedoIcon />
-            </button>
-          )}
-        </div>
-        <div className={styles.formControls}>
-          <button
-            type="button"
-            onClick={() => {
-              inputFormCancel();
-            }}
-          >
-            Cancel
-          </button>
-          <button type="submit">Submit</button>
-        </div>
-      </div>
     </form>
+  );
+}
+
+export function MainInputControls() {
+  const { history, undo, redo } = useInputs();
+  const { inputFormCancel } = useInputActions();
+
+  return (
+    <div className={styles.inputControls}>
+      <div className={styles.formControls}>
+        {history.undo.length > 0 && (
+          <button title="Undo" type="button" onClick={undo}>
+            <UndoIcon />
+          </button>
+        )}
+        {history.redo.length > 0 && (
+          <button title="Redo" type="button" onClick={redo}>
+            <RedoIcon />
+          </button>
+        )}
+      </div>
+      <div className={styles.formControls}>
+        <button
+          type="button"
+          onClick={() => {
+            inputFormCancel();
+          }}
+        >
+          Cancel
+        </button>
+        <button type="submit">Submit</button>
+      </div>
+    </div>
   );
 }
 

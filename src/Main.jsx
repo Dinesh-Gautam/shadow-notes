@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Separator from "./components/elements/Separator/Separator";
 import UndoDelete from "./components/elements/UndoDelete";
 import { InputContext, useInputs } from "./components/MainInput/InputContext";
-import MainInput from "./components/MainInput/MainInput";
+import MainInput, { MainInputControls } from "./components/MainInput/MainInput";
 import MainOutput from "./components/MainOutput/MainOutput";
 import OutputFilter from "./components/OutputFilters/OutputFilter";
 import UserInfo from "./components/UserInfo";
@@ -42,7 +42,10 @@ function Main() {
       </div>
       {userDisplay && <UserInfo />}
       <UndoDelete />
-      <Modal title={editMode.edit ? "Edit Note" : "Add Note"}>
+      <Modal
+        title={editMode.edit ? "Edit Note" : "Add Note"}
+        header={<MainInputControls />}
+      >
         <MainInput />
       </Modal>
     </>
