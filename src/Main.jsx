@@ -6,7 +6,7 @@ import MainInput, { MainInputControls } from "./components/MainInput/MainInput";
 import MainOutput from "./components/MainOutput/MainOutput";
 import OutputFilter from "./components/OutputFilters/OutputFilter";
 import UserInfo from "./components/UserInfo";
-import { DatabaseContext } from "./context/DatabaseContext";
+import { DatabaseContext, useData } from "./context/DatabaseContext";
 import SideBar from "./components/SideBar";
 import Modal, { ModalProvider } from "./components/elements/Modal/Modal";
 import { FilterProvider } from "./context/useOutputFilters";
@@ -28,16 +28,21 @@ export default function LazyMain() {
 function Main() {
   const [userDisplay, setuserDisplay] = useState(false);
   const { editMode } = useInputs();
+  const { userData } = useData();
   return (
     <>
       <SideBar />
       <div className="mainContainer">
         {/* <MainInput /> */}
-        <OutputFilter
-          userDisplay={userDisplay}
-          setuserDisplay={setuserDisplay}
-        />
-        <Separator type="horizontal-bold" />
+        {userData?.length > 0 && (
+          <>
+            <OutputFilter
+              userDisplay={userDisplay}
+              setuserDisplay={setuserDisplay}
+            />
+            <Separator type="horizontal-bold" />
+          </>
+        )}
         <MainOutput />
       </div>
       {userDisplay && <UserInfo />}
