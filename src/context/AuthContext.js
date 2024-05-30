@@ -5,11 +5,8 @@ import {
   signOut,
   onAuthStateChanged,
   signInAnonymously,
-  linkWithCredential,
-  linkWithRedirect,
   linkWithPopup,
 } from "firebase/auth";
-import { GoogleAuthProvider } from "firebase/auth";
 
 const AuthContext = React.createContext();
 
@@ -57,8 +54,9 @@ export function AuthProvider({ children }) {
         alert("Guest account successfully linked.", user);
       })
       .catch((error) => {
-        console.error(error);
-        alert("Account already linked", error);
+        if (error.code === "auth/credential-already-in-use") {
+          alert("Account already linked");
+        }
       });
   }
 
@@ -81,6 +79,12 @@ export function AuthProvider({ children }) {
   }
 
   function logout() {
+    if (currentUser.isAnonymous) {
+      const confirm = window.confirm(
+        "Are you sure you want to logout?\nYou will loose all of you guest user data!\nLink your account before Signing out."
+      );
+      if (!confirm) return;
+    }
     return signOut(auth);
   }
 

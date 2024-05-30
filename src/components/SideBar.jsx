@@ -70,18 +70,15 @@ function SideBar() {
             </AnchorWrapper>
             <Menu>
               <ToggleButton />
-              {isGuestUser() ? (
-                <>
-                  <button onClick={() => linkAccount()}>
-                    <LinkOutlined fontSize="small" /> Link Account{" "}
-                  </button>
-                </>
-              ) : (
-                <button onClick={logout}>
-                  <UseSvg type="logOut" />
-                  <span> Sign Out </span>
+              {isGuestUser() && (
+                <button onClick={() => linkAccount()}>
+                  <LinkOutlined fontSize="small" /> Link Account{" "}
                 </button>
               )}
+              <button onClick={logout}>
+                <UseSvg type="logOut" />
+                <span> Sign Out </span>
+              </button>
             </Menu>
           </MenuProvider>
           <HideWhenSideBarIsClosed>

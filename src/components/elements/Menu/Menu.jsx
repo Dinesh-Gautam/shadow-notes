@@ -135,7 +135,7 @@ export const Menu = ({ outer, className, children }) => {
       anchorEl={anchorRef.current}
       open={menuOpen}
       anchorOrigin={{
-        vertical: "top",
+        vertical: "bottom",
         horizontal: "right",
       }}
       transformOrigin={{

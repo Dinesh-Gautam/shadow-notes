@@ -208,6 +208,8 @@ export function InputContext(props) {
   const [history, setHistory] = useState({ undo: [], redo: [] });
   const historyChangeRef = useRef(null);
 
+  const formRef = useRef();
+
   function addToHistory({ useTimeout = false } = {}) {
     if (useTimeout) {
       clearInterval(historyChangeRef.current);
@@ -296,7 +298,8 @@ export function InputContext(props) {
     return inputs.some((e) => e?.state?.value && e?.state?.value !== "");
   }
 
-  const formSubmitHandler = () => {
+  const formSubmitHandler = (e) => {
+    e.preventDefault();
     const filteredInputs = inputs.filter((e) => e?.state?.value !== "");
 
     setEditMode({ edit: false, editParameters: {} });
@@ -343,6 +346,7 @@ export function InputContext(props) {
     setHistory,
     history,
     addToHistory,
+    formRef,
   };
   return (
     <input_context.Provider value={value}>

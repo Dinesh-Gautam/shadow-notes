@@ -25,20 +25,19 @@ export function getStyle(style, snapshot) {
 }
 
 function MainInput() {
+  const { formRef } = useInputs();
+  const { formSubmitHandler } = useInputs();
+
   return (
-    <form
-      className={styles.form}
-      //  onSubmit={formSubmitHandler}
-    >
+    <form ref={formRef} className={styles.form} onSubmit={formSubmitHandler}>
       <InputBody />
     </form>
   );
 }
 
 export function MainInputControls() {
-  const { history, undo, redo } = useInputs();
+  const { history, undo, redo, formRef } = useInputs();
   const { inputFormCancel } = useInputActions();
-  const { formSubmitHandler } = useInputs();
 
   return (
     <div className={styles.inputControls}>
@@ -63,7 +62,12 @@ export function MainInputControls() {
         >
           Cancel
         </button>
-        <button type="submit" onClick={() => formSubmitHandler()}>
+        <button
+          type="submit"
+          onClick={() => {
+            formRef.current?.requestSubmit();
+          }}
+        >
           Submit
         </button>
       </div>
