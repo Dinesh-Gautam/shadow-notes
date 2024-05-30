@@ -8,10 +8,11 @@
   display: flex;
   align-items: center;
   gap: $padding-default;
-  background-color: rgb(32, 32, 32);
+  background-color: var(--default-color);
   padding: $padding-default;
-  color: var(--default-color);
+  color: var(--default-text-color);
   border-radius: $border-radius-default;
+
   button {
     margin-left: $padding-default * 2;
     padding: 0;
