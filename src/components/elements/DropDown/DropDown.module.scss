@@ -53,6 +53,11 @@
       white-space: nowrap;
     }
   }
+  &:hover {
+    .buttonContainer {
+      display: flex;
+    }
+  }
   .buttonContainer {
     display: flex;
     align-items: center;
@@ -63,7 +68,7 @@
     box-shadow: $boxShadow-default;
     border-radius: $border-radius-default 0 0 $border-radius-default;
     background-color: var(--default-backgroundcolor);
-
+    display: none;
     button {
       box-shadow: none;
       background: transparent;
