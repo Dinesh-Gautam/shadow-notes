@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styles from "./DropDown.module.scss";
 import { AnchorWrapper, Menu, MenuProvider } from "../Menu/Menu";
 import { MoreVert, Share, Star } from "@mui/icons-material";
+import autoAnimate from "@formkit/auto-animate";
 
 function DropDown({
   children,
@@ -19,8 +20,16 @@ function DropDown({
     setDropdownDisplay((prev) => !prev);
   };
 
+  const parent = useRef(null);
+
+  useEffect(() => {
+    parent.current &&
+      autoAnimate(parent.current, { easing: "linear", duration: 100 });
+  }, [parent]);
+
   return (
     <div
+      ref={parent}
       className={
         styles.container + " " + (dropdownDisplay ? styles.visible : "")
       }

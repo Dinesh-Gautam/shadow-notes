@@ -6,6 +6,7 @@ import OutputTemplate, { HighlightTextOnSearchMatch } from "./OutputTemplate";
 import AdditionalButtons from "./smallComponents/AdditionalButtons";
 import { input } from "../MainInput/inputs/inputOptions";
 import { filters } from "../../context/useOutputFilters";
+import { useAutoAnimate } from "@formkit/auto-animate/react";
 
 function MainOutput() {
   const {
@@ -53,6 +54,7 @@ function MainOutput() {
     ? originalData && getFilteredData()
     : originalData;
 
+  const [animationParent] = useAutoAnimate();
   return (
     <div className="mainoutput_container">
       <GetOutputFilterTags />
@@ -86,7 +88,7 @@ function MainOutput() {
             } "Shared Notes"`}
         </span>
       ) : null} */}
-      <div className="mainoutput_wraper">
+      <div ref={animationParent} className="mainoutput_wraper">
         {!userData ? (
           Array(10)
             .fill("")
