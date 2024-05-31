@@ -8,6 +8,7 @@ import styles from "./trash.module.scss";
 import { input } from "./MainInput/inputs/inputOptions";
 import { useMenu } from "./elements/Menu/Menu";
 import { DeleteForever, RestoreFromTrash } from "@mui/icons-material";
+import { useAutoAnimate } from "@formkit/auto-animate/react";
 
 function TrashAdditionalButtons({ id }) {
   const { updateData_fireStore, setundoTrigger } = useData();
@@ -45,10 +46,11 @@ function TrashAdditionalButtons({ id }) {
 }
 
 function Trash({ trashData }) {
+  const [animationParent] = useAutoAnimate();
   return (
     <div className={styles.container}>
       <div className={styles.contentContainer}>
-        <div className={styles.content}>
+        <div ref={animationParent} className={styles.content}>
           {!trashData ? (
             Array(10)
               .fill("")
@@ -62,23 +64,24 @@ function Trash({ trashData }) {
                 (data) => data.name === input.color
               );
               return (
-                <DropDown
-                  key={id}
-                  id={id}
-                  extraButtons={<TrashAdditionalButtons id={id} />}
-                  DropdownBackgroundColor={
-                    DropdownBackgroundColor &&
-                    DropdownBackgroundColor.state.value
-                  }
-                  mainText={headingText.state.value}
-                >
-                  <OutputTemplate
-                    deletedOn={deletedOn}
-                    isInTrash={true}
-                    userData={data}
-                    docId={id}
-                  />
-                </DropDown>
+                <div key={id}>
+                  <DropDown
+                    id={id}
+                    extraButtons={<TrashAdditionalButtons id={id} />}
+                    DropdownBackgroundColor={
+                      DropdownBackgroundColor &&
+                      DropdownBackgroundColor.state.value
+                    }
+                    mainText={headingText.state.value}
+                  >
+                    <OutputTemplate
+                      deletedOn={deletedOn}
+                      isInTrash={true}
+                      userData={data}
+                      docId={id}
+                    />
+                  </DropDown>
+                </div>
               );
             })
           ) : (

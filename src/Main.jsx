@@ -10,6 +10,7 @@ import { DatabaseContext, useData } from "./context/DatabaseContext";
 import SideBar from "./components/SideBar";
 import Modal, { ModalProvider } from "./components/elements/Modal/Modal";
 import { FilterProvider } from "./context/useOutputFilters";
+import { useAutoAnimate } from "@formkit/auto-animate/react";
 
 export default function LazyMain() {
   // const Main = lazy(() => import("./components/Main"));
@@ -29,10 +30,13 @@ function Main() {
   const [userDisplay, setuserDisplay] = useState(false);
   const { editMode } = useInputs();
   const { userData } = useData();
+
+  const [animationParent] = useAutoAnimate();
+
   return (
     <>
       <SideBar />
-      <div className="mainContainer">
+      <div ref={animationParent} className="mainContainer">
         {/* <MainInput /> */}
         {userData?.length > 0 && (
           <>

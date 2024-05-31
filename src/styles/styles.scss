@@ -256,8 +256,9 @@ main {
     text-align: center;
     margin-top: $padding-large;
     font-size: $fontSize-large;
-    opacity: 0.5;
+    filter: opacity(0.5);
     font-weight: 700;
+    user-select: none;
   }
 }
 

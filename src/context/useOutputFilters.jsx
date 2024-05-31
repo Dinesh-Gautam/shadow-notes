@@ -78,13 +78,18 @@ function useOutputFilters() {
 
 export function GetOutputFilterTags() {
   const { filterData, updateFilterValue } = useOutputFilters();
+  const [animationParent] = useAutoAnimate({ duration: 100 });
 
   const filtersKey = Object.keys(filterData);
   if (filtersKey.length < 1) {
     return null;
   }
+
   return (
-    <Box sx={{ display: "flex", marginBottom: "1rem", gap: 2 }}>
+    <Box
+      ref={animationParent}
+      sx={{ display: "flex", marginBottom: "1rem", gap: 2 }}
+    >
       {filtersKey.map((key, index, arr) => {
         const label = filters[key].label(filterData[key]);
         return (
