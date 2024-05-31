@@ -16,7 +16,7 @@ function DropDown({
 }) {
   const [dropdownDisplay, setDropdownDisplay] = useState(open || false);
 
-  const dropInnerContainer = () => {
+  const dropInnerContainer = (e) => {
     setDropdownDisplay((prev) => !prev);
   };
 
