@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import InputWrapper from "./InputWrapper/InputWrapper";
 import { input as InputOption, listTypes } from "./inputOptions";
 import useInputActions from "../useInputActions";
@@ -89,15 +89,28 @@ function useInputProps() {
       inputRef.current[inputFocusId].focus();
   }, [inputFocusId]);
 
+  useEffect(() => {
+    if (!inputRef.current) return;
+
+    const textAreas = Object.values(inputRef.current).filter(
+      (e) => e.tagName === "TEXTAREA"
+    );
+    textAreas.forEach((ele) => {
+      ele.style.height = "auto";
+      ele.style.height = ele.scrollHeight + "px";
+    });
+  }, [inputRef]);
+
   function attachProps(input) {
     return {
       ref: (e) => (inputRef.current[input.id] = e),
       onKeyDown: (e) => onKeyDown(e, input),
       value: input?.state?.value || "",
       onChange: (e) => {
-        e.target.style.height = "auto";
-        e.target.style.height = e.target.scrollHeight + "px";
-
+        if (e.target.tagName === "TEXTAREA") {
+          e.target.style.height = "auto";
+          e.target.style.height = e.target.scrollHeight + "px";
+        }
         changeInputValue({ id: input.id, value: e.target.value });
       },
       required: input?.isRequired || false,
@@ -111,7 +124,6 @@ function Input(props) {
   const { attachProps } = useInputProps();
   const { input, ...otherProps } = props;
 
-  console.log(props);
   return props.type === "textarea" ? (
     <textarea {...attachProps(props.input)} {...otherProps} />
   ) : (
