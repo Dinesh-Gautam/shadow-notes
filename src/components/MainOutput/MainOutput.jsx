@@ -51,9 +51,12 @@ function MainOutput() {
     : originalData;
 
   const [animationParent] = useAutoAnimate();
+  const [animationParent2] = useAutoAnimate({ duration: 100 });
   return (
     <div className="mainoutput_container">
-      <GetOutputFilterTags />
+      <div ref={animationParent2}>
+        <GetOutputFilterTags />
+      </div>
       {/* {Object.keys(filteredUserData).length > 0 ? (
         <span className="output_filter_label">
           {filteredUserData.colorFIlter && (

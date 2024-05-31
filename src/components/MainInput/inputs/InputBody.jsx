@@ -9,6 +9,7 @@ import useInputActions from "../useInputActions";
 import { AnchorWrapper, Menu, MenuProvider } from "../../elements/Menu/Menu";
 import ColorAdditions from "./elements/ColorAdditions";
 import InputControls from "./InputControls";
+import { useAutoAnimate } from "@formkit/auto-animate/react";
 
 function ColorInput({ input }) {
   return (
@@ -43,6 +44,7 @@ function ColorSelection({ value, id }) {
 function InputBody() {
   const { inputs } = useInputs();
   const { onDragEnd, addInputElement, removeElement } = useInputActions();
+  const [animationParent, enableAnimation] = useAutoAnimate({ duration: 100 });
 
   function hasInnerNotes() {
     return inputs.filter((e) => !e.nonMoveable).length > 0;
@@ -98,7 +100,13 @@ function InputBody() {
         ))}
       </div>
 
-      <DragDropContext onDragEnd={onDragEnd}>
+      <DragDropContext
+        onBeforeDragStart={() => enableAnimation(false)}
+        onDragEnd={(...args) => {
+          onDragEnd(...args);
+          setTimeout(() => enableAnimation(true), 0);
+        }}
+      >
         <Droppable droppableId="droppable" type="main">
           {(provided, snapshot) => (
             <div
@@ -107,38 +115,40 @@ function InputBody() {
               className={styles.inputBody}
               style={getStyle(provided.droppableProps.style, snapshot)}
             >
-              {inputs
-                .filter(
-                  (input) =>
-                    !input.parentId &&
-                    input.name !== inputNames.heading &&
-                    input.name !== inputNames.color
-                )
-                .map((input, index, arr) => (
-                  <Draggable
-                    key={input.id}
-                    draggableId={input.id}
-                    index={index}
-                  >
-                    {(provided, snapshot) => (
-                      <div
-                        ref={provided.innerRef}
-                        {...provided.draggableProps}
-                        {...provided.dragHandleProps}
-                      >
-                        {!input.parentId && (
-                          <div>
-                            <InputField input={input} />
-                            <AddInput input={input} />
-                          </div>
-                        )}
-                      </div>
-                    )}
-                  </Draggable>
-                ))}
-              {!hasInnerNotes() && <AddInput />}
+              <div ref={animationParent}>
+                {inputs
+                  .filter(
+                    (input) =>
+                      !input.parentId &&
+                      input.name !== inputNames.heading &&
+                      input.name !== inputNames.color
+                  )
+                  .map((input, index, arr) => (
+                    <Draggable
+                      key={input.id}
+                      draggableId={input.id}
+                      index={index}
+                    >
+                      {(provided, snapshot) => (
+                        <div
+                          ref={provided.innerRef}
+                          {...provided.draggableProps}
+                          {...provided.dragHandleProps}
+                        >
+                          {!input.parentId && (
+                            <div>
+                              <InputField input={input} />
+                              <AddInput input={input} />
+                            </div>
+                          )}
+                        </div>
+                      )}
+                    </Draggable>
+                  ))}
+                {!hasInnerNotes() && <AddInput />}
 
-              {provided.placeholder}
+                {provided.placeholder}
+              </div>
             </div>
           )}
         </Droppable>
