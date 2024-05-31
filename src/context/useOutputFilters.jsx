@@ -2,6 +2,7 @@ import React, { createContext, useContext, useState } from "react";
 import { input } from "../components/MainInput/inputs/inputOptions";
 import Button from "../components/MainInput/inputs/elements/Button";
 import { Box, Chip } from "@mui/material";
+import { useAutoAnimate } from "@formkit/auto-animate/react";
 
 const filterContext = createContext();
 
@@ -72,38 +73,40 @@ function useOutputFilters() {
     }
   }
 
-  function GetOutputFilterTags() {
-    console.log(filterData);
-    const filtersKey = Object.keys(filterData);
-    if (filtersKey.length < 1) {
-      return null;
-    }
-    return (
-      <Box sx={{ display: "flex", marginBottom: "1rem", gap: 2 }}>
-        {filtersKey.map((key, index, arr) => {
-          const label = filters[key].label(filterData[key]);
-          return (
-            <Chip
-              sx={{
-                background: "var(--vless-alpha-text-color)",
-                color: "var(--default-text-color)",
-                svg: {
-                  color: "var(--default-text-color) !important",
-                },
-              }}
-              // icon={icon}
-              label={label}
-              onDelete={() => {
-                updateFilterValue(null, key);
-              }}
-            />
-          );
-        })}
-      </Box>
-    );
-  }
-
   return { filterData, setFilterData, updateFilterValue, GetOutputFilterTags };
+}
+
+export function GetOutputFilterTags() {
+  const { filterData, updateFilterValue } = useOutputFilters();
+
+  const filtersKey = Object.keys(filterData);
+  if (filtersKey.length < 1) {
+    return null;
+  }
+  return (
+    <Box sx={{ display: "flex", marginBottom: "1rem", gap: 2 }}>
+      {filtersKey.map((key, index, arr) => {
+        const label = filters[key].label(filterData[key]);
+        return (
+          <Chip
+            key={key}
+            sx={{
+              background: "var(--vless-alpha-text-color)",
+              color: "var(--default-text-color)",
+              svg: {
+                color: "var(--default-text-color) !important",
+              },
+            }}
+            // icon={icon}
+            label={label}
+            onDelete={() => {
+              updateFilterValue(null, key);
+            }}
+          />
+        );
+      })}
+    </Box>
+  );
 }
 
 export const FilterProvider = ({ children }) => {

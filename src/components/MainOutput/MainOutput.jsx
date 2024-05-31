@@ -5,15 +5,11 @@ import Loading from "../elements/Loading";
 import OutputTemplate, { HighlightTextOnSearchMatch } from "./OutputTemplate";
 import AdditionalButtons from "./smallComponents/AdditionalButtons";
 import { input } from "../MainInput/inputs/inputOptions";
-import { filters } from "../../context/useOutputFilters";
+import { GetOutputFilterTags, filters } from "../../context/useOutputFilters";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 
 function MainOutput() {
-  const {
-    filterData: filteredUserData,
-    userData: originalData,
-    GetOutputFilterTags,
-  } = useData();
+  const { filterData: filteredUserData, userData: originalData } = useData();
 
   function isAnyFilterApplied() {
     return Object.keys(filteredUserData).length > 0;
