@@ -19,6 +19,7 @@ form {
   // height: 10%;
   button {
     background: var(--default-color);
+    box-shadow: $boxShadow-default;
   }
 }
 
