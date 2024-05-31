@@ -80,6 +80,9 @@ $label-margin: 0px;
   z-index: 100;
   border-radius: 0 0 $border-radius-default $border-radius-default;
   gap: $padding-default;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.1s ease-in-out;
   input,
   span[data-input="true"] {
     border-radius: $border-radius-default !important;

@@ -104,7 +104,7 @@ function InputBody() {
         onBeforeDragStart={() => enableAnimation(false)}
         onDragEnd={(...args) => {
           onDragEnd(...args);
-          setTimeout(() => enableAnimation(true), 0);
+          setTimeout(() => enableAnimation(true), 1);
         }}
       >
         <Droppable droppableId="droppable" type="main">
@@ -161,14 +161,25 @@ function AddInput({ input }) {
   const [visible, setVisible] = useState(false);
   const { inputs } = useInputs();
 
+  const [animationParent] = useAutoAnimate({
+    duration: 150,
+    easing: "ease-in-out",
+  });
+
   return (
     <div
       onMouseEnter={() => setVisible(true)}
       onMouseLeave={() => setVisible(false)}
       className={styles.addInput}
+      ref={animationParent}
+      style={{
+        zIndex: 100,
+      }}
     >
       {visible && (
-        <InputControls index={inputs.findIndex((e) => e.id === input?.id)} />
+        <div>
+          <InputControls index={inputs.findIndex((e) => e.id === input?.id)} />
+        </div>
       )}
     </div>
   );

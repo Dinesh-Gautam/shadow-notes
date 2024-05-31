@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styles from "./inputWraper.module.scss";
 import UseSvg from "../../../elements/UseSvg";
 import useInputActions from "../../useInputActions";
+import { useAutoAnimate } from "@formkit/auto-animate/react";
 
 function getTextWidth(text, font) {
   // re-use canvas object for better performance
@@ -35,6 +36,7 @@ function InputWrapper({
 }) {
   const [show, setShow] = useState(false);
   const { removeElement, changeInputValue } = useInputActions();
+
   return (
     <div
       onMouseLeave={() => setShow(false)}
@@ -47,16 +49,18 @@ function InputWrapper({
       className={styles.container + " " + (isDragging ? styles.dragging : "")}
     >
       {show && (
-        <div className={styles.header}>
-          <div className={styles.buttons}>
-            {!noRemovable && (
-              <button
-                type="button"
-                onClick={() => removeElement({ id: input.id })}
-              >
-                <UseSvg type="close" />
-              </button>
-            )}
+        <div>
+          <div className={styles.header}>
+            <div className={styles.buttons}>
+              {!noRemovable && (
+                <button
+                  type="button"
+                  onClick={() => removeElement({ id: input.id })}
+                >
+                  <UseSvg type="close" />
+                </button>
+              )}
+            </div>
           </div>
         </div>
       )}
@@ -81,8 +85,20 @@ function InputWrapper({
         />
       </div>
       <div className={styles.childContainer}>{children}</div>
-      {show && inputFooter && (
-        <div className={styles.inputFooter}>{inputFooter}</div>
+      {inputFooter && (
+        <div
+          style={
+            show
+              ? {
+                  opacity: 1,
+                  pointerEvents: "all",
+                }
+              : {}
+          }
+          className={styles.inputFooter}
+        >
+          {inputFooter}
+        </div>
       )}
     </div>
   );

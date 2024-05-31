@@ -106,12 +106,16 @@
     // margin-inline: $padding-default;
     width: calc(100% - $padding-default);
     transform: translate(-50%, -50%);
+    border: 2px dashed var(--vless-alpha-text-color);
+    background: var(--vless-alpha-text-color);
+    border-radius: 4px;
+    opacity: 0;
+    transition: opacity 0.1s ease-in-out;
+    z-index: -1;
   }
   &:hover {
     &::after {
-      border: 2px dashed var(--vless-alpha-text-color);
-      background: var(--vless-alpha-text-color);
-      border-radius: 4px;
+      opacity: 1;
     }
   }
 }
