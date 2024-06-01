@@ -95,7 +95,8 @@
 .addInput {
   position: relative;
   padding-block: $padding-default;
-
+  z-index: 100;
+  transition: opacity 0.2s ease-in-out;
   &::after {
     content: "";
     position: absolute;

@@ -78,16 +78,21 @@ $label-margin: 0px;
   // transform: translateY(100%);
   width: 100%;
   z-index: 100;
-  border-radius: 0 0 $border-radius-default $border-radius-default;
+  border-radius: $border-radius-default;
   gap: $padding-default;
   // opacity: 1;
   // pointer-events: none;
   // transition: opacity 0.1s ease-in-out;
+
   input,
   span[data-input="true"] {
     border-radius: $border-radius-default !important;
     background-color: var(--default-color) !important;
     padding-block: 0;
+  }
+  input {
+    font-size: $fontSize-default - 2;
+    padding-block: $padding-default / 2;
   }
   button {
     background: var(--default-color);

@@ -45,7 +45,7 @@ function InputBody() {
   const { inputs } = useInputs();
   const { onDragEnd, addInputElement, removeElement } = useInputActions();
   const [animationParent, enableAnimation] = useAutoAnimate({
-    duration: 300,
+    duration: 200,
     easing: "ease-in-out",
   });
 
@@ -126,32 +126,34 @@ function InputBody() {
                       input.name !== inputNames.heading &&
                       input.name !== inputNames.color
                   )
-                  .map((input, index, arr) => (
-                    <Draggable
-                      key={input.id}
-                      draggableId={input.id}
-                      index={index}
-                    >
-                      {(provided, snapshot) => (
-                        <div
-                          ref={provided.innerRef}
-                          {...provided.draggableProps}
-                          {...provided.dragHandleProps}
-                        >
-                          {!input.parentId && (
-                            <div>
-                              <InputField input={input} />
-                              <AddInput input={input} />
-                            </div>
-                          )}
-                        </div>
-                      )}
-                    </Draggable>
+                  .map((input, index) => (
+                    <React.Fragment key={input.id}>
+                      <Draggable
+                        key={input.id}
+                        draggableId={input.id}
+                        index={index}
+                      >
+                        {(provided, snapshot) => (
+                          <div
+                            ref={provided.innerRef}
+                            {...provided.draggableProps}
+                            {...provided.dragHandleProps}
+                          >
+                            {!input.parentId && (
+                              <div>
+                                <InputField input={input} />
+                                <AddInput input={input} />
+                              </div>
+                            )}
+                          </div>
+                        )}
+                      </Draggable>
+                    </React.Fragment>
                   ))}
-                {!hasInnerNotes() && <AddInput />}
 
                 {provided.placeholder}
               </div>
+              {!hasInnerNotes() && <AddInput />}
             </div>
           )}
         </Droppable>
@@ -164,26 +166,26 @@ function AddInput({ input }) {
   const [visible, setVisible] = useState(false);
   const { inputs } = useInputs();
 
-  const [animationParent] = useAutoAnimate({
-    duration: 150,
-    easing: "ease-in-out",
-  });
-
   return (
     <div
       onMouseEnter={() => setVisible(true)}
       onMouseLeave={() => setVisible(false)}
       className={styles.addInput}
-      ref={animationParent}
-      style={{
-        zIndex: 100,
-      }}
+      style={
+        visible
+          ? {
+              opacity: 1,
+              // pointerEvents: "auto",
+            }
+          : {
+              opacity: 0,
+              // pointerEvents: "none",
+            }
+      }
     >
-      {visible && (
-        <div>
-          <InputControls index={inputs.findIndex((e) => e.id === input?.id)} />
-        </div>
-      )}
+      <div>
+        <InputControls index={inputs.findIndex((e) => e.id === input?.id)} />
+      </div>
     </div>
   );
 }
