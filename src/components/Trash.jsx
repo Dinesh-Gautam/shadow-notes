@@ -64,24 +64,23 @@ function Trash({ trashData }) {
                 (data) => data.name === input.color
               );
               return (
-                <div key={id}>
-                  <DropDown
-                    id={id}
-                    extraButtons={<TrashAdditionalButtons id={id} />}
-                    DropdownBackgroundColor={
-                      DropdownBackgroundColor &&
-                      DropdownBackgroundColor.state.value
-                    }
-                    mainText={headingText.state.value}
-                  >
-                    <OutputTemplate
-                      deletedOn={deletedOn}
-                      isInTrash={true}
-                      userData={data}
-                      docId={id}
-                    />
-                  </DropDown>
-                </div>
+                <DropDown
+                  key={id}
+                  id={id}
+                  extraButtons={<TrashAdditionalButtons id={id} />}
+                  DropdownBackgroundColor={
+                    DropdownBackgroundColor &&
+                    DropdownBackgroundColor.state.value
+                  }
+                  mainText={headingText.state.value}
+                >
+                  <OutputTemplate
+                    deletedOn={deletedOn}
+                    isInTrash={true}
+                    userData={data}
+                    docId={id}
+                  />
+                </DropDown>
               );
             })
           ) : (
