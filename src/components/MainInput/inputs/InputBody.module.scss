@@ -62,6 +62,7 @@
 .inputBody {
   height: 100%;
   overflow-y: auto;
+  overflow-x: hidden;
   padding: $padding-less;
   padding-top: $padding-default * 2;
   display: flex;
