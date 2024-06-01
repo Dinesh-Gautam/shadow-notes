@@ -3,6 +3,7 @@ import styles from "./DropDown.module.scss";
 import { AnchorWrapper, Menu, MenuProvider } from "../Menu/Menu";
 import { MoreVert, Share, Star } from "@mui/icons-material";
 import autoAnimate from "@formkit/auto-animate";
+import { motion } from "framer-motion";
 
 function DropDown({
   children,
@@ -20,18 +21,15 @@ function DropDown({
     setDropdownDisplay((prev) => !prev);
   };
 
-  const parent = useRef(null);
-
-  useEffect(() => {
-    parent.current &&
-      autoAnimate(parent.current, { easing: "linear", duration: 100 });
-  }, [parent]);
-
   return (
-    <div
-      ref={parent}
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      layout="position"
       className={
-        styles.container + " " + (dropdownDisplay ? styles.visible : "")
+        styles.container
+        // + " " + (dropdownDisplay ? styles.visible : "")
       }
       id={id}
     >
@@ -64,23 +62,20 @@ function DropDown({
 
               <Menu>{extraButtons}</Menu>
             </MenuProvider>
-
-            {/* <Separator type="vertical-medium" /> */}
-            {/* <button
-            style={{
-              transform: dropdownDisplay ? "rotate(180deg)" : "rotate(0deg)",
-            }}
-            onClick={dropInnerContainer}
-          >
-            <UseSvg type="expand" />
-          </button> */}
           </div>
         )}
       </div>
-      {dropdownDisplay && (
-        <div className={styles.innerContainer}>{children}</div>
-      )}
-    </div>
+
+      <motion.div
+        initial={{ height: 0, overflow: "hidden" }}
+        animate={{
+          height: dropdownDisplay ? "auto" : 0,
+        }}
+        className={styles.innerContainer}
+      >
+        {children}
+      </motion.div>
+    </motion.div>
   );
 }
 

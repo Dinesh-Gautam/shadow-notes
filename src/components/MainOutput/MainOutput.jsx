@@ -7,6 +7,7 @@ import AdditionalButtons from "./smallComponents/AdditionalButtons";
 import { input } from "../MainInput/inputs/inputOptions";
 import { GetOutputFilterTags, filters } from "../../context/useOutputFilters";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
+import { AnimatePresence } from "framer-motion";
 
 function MainOutput() {
   const { filterData: filteredUserData, userData: originalData } = useData();
@@ -50,7 +51,7 @@ function MainOutput() {
     ? originalData && getFilteredData()
     : originalData;
 
-  const [animationParent] = useAutoAnimate();
+  // const [animationParent] = useAutoAnimate();
   const [animationParent2] = useAutoAnimate({ duration: 100 });
   return (
     <div className="mainoutput_container">
@@ -87,7 +88,7 @@ function MainOutput() {
             } "Shared Notes"`}
         </span>
       ) : null} */}
-      <div ref={animationParent} className="mainoutput_wraper">
+      <div className="mainoutput_wraper">
         {!userData ? (
           Array(10)
             .fill("")
@@ -95,40 +96,45 @@ function MainOutput() {
         ) : userData.length < 1 ? (
           <span> Nothing Here. </span>
         ) : (
-          userData.map(({ data, id, publishDate, linkSharing, star }) => {
-            const headingText = data.find(
-              (data) => data.name === input.heading
-            );
-            const DropdownBackgroundColor = data.find(
-              (data) => data.name === input.color
-            );
-            return (
-              <DropDown
-                key={id}
-                data={{ linkSharing, star }}
-                extraButtons={
-                  <AdditionalButtons
+          <AnimatePresence>
+            {userData.map(({ data, id, publishDate, linkSharing, star }) => {
+              const headingText = data.find(
+                (data) => data.name === input.heading
+              );
+              const DropdownBackgroundColor = data.find(
+                (data) => data.name === input.color
+              );
+              return (
+                <DropDown
+                  key={id}
+                  data={{ linkSharing, star }}
+                  extraButtons={
+                    <AdditionalButtons
+                      userData={data}
+                      docId={id}
+                      data={{ linkSharing, star }}
+                    />
+                  }
+                  DropdownBackgroundColor={
+                    DropdownBackgroundColor &&
+                    DropdownBackgroundColor.state.value
+                  }
+                  mainText={
+                    <HighlightTextOnSearchMatch
+                      text={headingText.state.value}
+                    />
+                  }
+                >
+                  <OutputTemplate
+                    publishDate={publishDate}
                     userData={data}
+                    completeData={userData}
                     docId={id}
-                    data={{ linkSharing, star }}
                   />
-                }
-                DropdownBackgroundColor={
-                  DropdownBackgroundColor && DropdownBackgroundColor.state.value
-                }
-                mainText={
-                  <HighlightTextOnSearchMatch text={headingText.state.value} />
-                }
-              >
-                <OutputTemplate
-                  publishDate={publishDate}
-                  userData={data}
-                  completeData={userData}
-                  docId={id}
-                />
-              </DropDown>
-            );
-          })
+                </DropDown>
+              );
+            })}
+          </AnimatePresence>
         )}
       </div>
     </div>
