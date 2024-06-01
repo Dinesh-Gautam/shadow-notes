@@ -87,14 +87,14 @@ function InputWrapper({
       <div className={styles.childContainer}>{children}</div>
       {inputFooter && (
         <div
-          style={
-            show
-              ? {
-                  opacity: 1,
-                  pointerEvents: "all",
-                }
-              : {}
-          }
+          // style={
+          // show
+          //   ? {
+          //       opacity: 1,
+          //       pointerEvents: "all",
+          //     }
+          //   : {}
+          // }
           className={styles.inputFooter}
         >
           {inputFooter}

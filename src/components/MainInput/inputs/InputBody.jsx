@@ -44,7 +44,10 @@ function ColorSelection({ value, id }) {
 function InputBody() {
   const { inputs } = useInputs();
   const { onDragEnd, addInputElement, removeElement } = useInputActions();
-  const [animationParent, enableAnimation] = useAutoAnimate({ duration: 100 });
+  const [animationParent, enableAnimation] = useAutoAnimate({
+    duration: 300,
+    easing: "ease-in-out",
+  });
 
   function hasInnerNotes() {
     return inputs.filter((e) => !e.nonMoveable).length > 0;
