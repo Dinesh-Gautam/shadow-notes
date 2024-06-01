@@ -1,9 +1,8 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useState } from "react";
 import styles from "./DropDown.module.scss";
 import { AnchorWrapper, Menu, MenuProvider } from "../Menu/Menu";
 import { MoreVert, Share, Star } from "@mui/icons-material";
-import autoAnimate from "@formkit/auto-animate";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 
 function DropDown({
   children,
@@ -22,7 +21,7 @@ function DropDown({
   };
 
   return (
-    <motion.div
+    <m.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
@@ -66,7 +65,7 @@ function DropDown({
         )}
       </div>
 
-      <motion.div
+      <m.div
         initial={{ height: 0, overflow: "hidden" }}
         animate={{
           height: dropdownDisplay ? "auto" : 0,
@@ -74,8 +73,8 @@ function DropDown({
         className={styles.innerContainer}
       >
         {children}
-      </motion.div>
-    </motion.div>
+      </m.div>
+    </m.div>
   );
 }
 
