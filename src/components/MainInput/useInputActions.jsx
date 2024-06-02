@@ -2,6 +2,7 @@ import { inputOptions, input } from "./inputs/inputOptions";
 import { useInputs } from "./InputContext";
 import { v4 as uuidv4 } from "uuid";
 import { useModal } from "../elements/Modal";
+
 function useInputActions() {
   const {
     inputsDispatch,
@@ -84,13 +85,11 @@ function useInputActions() {
   }
 
   function onDragEnd(result) {
-    console.log(result);
     const sIndex = result?.source?.index;
     const dIndex = result?.destination?.index;
     const destinationId = result?.destination?.droppableId;
     const sourceId = result?.source?.droppableId;
     const draggableId = result?.draggableId;
-    console.log(sIndex, dIndex);
 
     if (dIndex === undefined) {
       return;

@@ -1,3 +1,4 @@
+import { serverTimestamp } from "@firebase/firestore";
 import React, {
   createContext,
   useContext,
@@ -8,10 +9,8 @@ import React, {
 } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { useData } from "../../context/DatabaseContext";
-
-import { headingState } from "./inputs/inputOptions";
 import { useModal } from "../elements/Modal";
-import { serverTimestamp } from "@firebase/firestore";
+import { headingState } from "./inputs/inputOptions";
 export const input_context = createContext();
 
 export function useInputs() {
@@ -23,10 +22,8 @@ const initialState = [{ ...headingState, id: headingId }];
 
 const addElement = (state, action) => {
   const { selectedInput, id, parentId, isFocusable, index } = action.payload;
-  console.log("focusable", isFocusable);
-  console.log("value of index is: ", index);
+
   if (index === undefined) {
-    // return state.addToLast({ ...selectedInput, id, parentId })
     return sortArray([
       ...state,
       {
@@ -94,9 +91,6 @@ const onDragEnd = (state, action) => {
 
   let newItems = [...state];
 
-  console.log(sourceId, destinationId);
-  console.log(draggableId);
-  // newItems.splice(dIndex, 0, removed);
   if (sourceId !== destinationId) {
     let removed = newItems.splice(sIndex, 1)[0];
 
@@ -128,7 +122,6 @@ const onDragEnd = (state, action) => {
         })
         .filter((e) => e);
 
-      console.log(newItems);
       let removed = newItems.splice(sIndex + nonMoveableLength, 1)[0];
       newItems.splice(dIndex + nonMoveableLength, 0, removed);
       newItems.push(childrenArray);
@@ -167,12 +160,10 @@ function sortArray(array) {
     }
   }
 
-  console.log(copyArray);
   return copyArray.flat();
 }
 
 const setInputs = (state, action) => {
-  console.log(action);
   switch (action.type) {
     case "addElement":
       return addElement(state, action);
@@ -198,16 +189,15 @@ const setInputs = (state, action) => {
 };
 
 export function InputContext(props) {
-  const saveStateRef = useRef(null);
-  const [inputFocusId, setInputFocusId] = useState(null);
   const [inputs, inputsDispatch] = useReducer(setInputs, initialState);
+  const [inputFocusId, setInputFocusId] = useState(null);
   const { setData_fireStore, updateData_fireStore } = useData();
   const [editMode, setEditMode] = useState({ edit: false, parameters: {} });
   const { modalOpen, setModalOpen } = useModal(false);
-
   const [history, setHistory] = useState({ undo: [], redo: [] });
-  const historyChangeRef = useRef(null);
 
+  const saveStateRef = useRef(null);
+  const historyChangeRef = useRef(null);
   const formRef = useRef();
 
   function addToHistory({ useTimeout = false } = {}) {
@@ -249,6 +239,7 @@ export function InputContext(props) {
 
   useEffect(() => {
     clearTimeout(saveStateRef.current);
+
     saveStateRef.current = setTimeout(() => {
       if (hasAnyNotes()) {
         localStorage.setItem("inputs", JSON.stringify(inputs));
@@ -266,10 +257,6 @@ export function InputContext(props) {
     const LeditMode = JSON.parse(localStorage.getItem("editMode"));
 
     if (LInputs) {
-      // alert(
-      //   "You have unsaved changes. Save them by clicking Submit or Done button"
-      // );
-
       inputsDispatch({ type: "localStorage", payload: LInputs });
       setEditMode(LeditMode);
     }
@@ -312,8 +299,6 @@ export function InputContext(props) {
     if (!hasAnyNotes()) {
       return null;
     }
-
-    console.log(filteredInputs);
 
     if (editMode.edit) {
       const docId = editMode.editParameters;

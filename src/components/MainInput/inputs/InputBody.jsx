@@ -8,7 +8,7 @@ import { getStyle } from "../MainInput";
 import useInputActions from "../useInputActions";
 import InputControls from "./InputControls";
 import InputField from "./InputField";
-import ColorAdditions from "./elements/ColorAdditions";
+import ColorAdditions from "./elements/ColorInput";
 import { input as inputNames, inputOptions } from "./inputOptions";
 
 function ColorInput({ input }) {

@@ -1,6 +1,5 @@
 import { useInputs } from "./InputContext";
 import InputBody from "./inputs/InputBody";
-// import Button from "./inputs/elements/Button";
 import RedoIcon from "@mui/icons-material/Redo";
 import UndoIcon from "@mui/icons-material/Undo";
 import useInputActions from "./useInputActions";
