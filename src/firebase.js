@@ -1,6 +1,6 @@
-import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore";
-import { getAuth, GoogleAuthProvider } from "firebase/auth";
+const { initializeApp } = await import("firebase/app");
+const { getFirestore } = await import("firebase/firestore");
+const { getAuth, GoogleAuthProvider } = await import("firebase/auth");
 
 // firebase init
 const app = initializeApp(
