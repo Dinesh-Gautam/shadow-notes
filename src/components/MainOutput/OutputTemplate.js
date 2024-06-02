@@ -49,7 +49,6 @@ function OutputTemplate({
         .filter((data) => !data.parentId)
         .map((data) => {
           const { name, value, state, id, type } = data;
-          console.log(data);
           const inputValue = state?.value;
           const additionalValue = state;
 
