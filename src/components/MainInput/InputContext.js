@@ -300,9 +300,7 @@ export function InputContext(props) {
 
   const formSubmitHandler = (e) => {
     e.preventDefault();
-    const filteredInputs = inputs.filter(
-      (e) => e?.state?.value !== undefined || e?.state?.value !== ""
-    );
+    const filteredInputs = inputs.filter((e) => e?.state?.value);
 
     setEditMode({ edit: false, editParameters: {} });
     setModalOpen(false);
