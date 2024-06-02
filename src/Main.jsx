@@ -11,10 +11,6 @@ import SideBar from "./components/SideBar";
 import Modal, { ModalProvider } from "./components/elements/Modal/Modal";
 import { FilterProvider } from "./context/useOutputFilters";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
-import { LazyMotion } from "framer-motion";
-
-const animationFeatures = () =>
-  import("./animations.js").then((res) => res.default);
 
 export default function LazyMain() {
   // const Main = lazy(() => import("./components/Main"));
@@ -23,9 +19,7 @@ export default function LazyMain() {
       <DatabaseContext>
         <ModalProvider>
           <InputContext>
-            <LazyMotion features={animationFeatures}>
-              <Main />
-            </LazyMotion>
+            <Main />
           </InputContext>
         </ModalProvider>
       </DatabaseContext>

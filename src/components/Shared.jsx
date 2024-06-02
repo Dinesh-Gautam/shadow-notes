@@ -17,6 +17,7 @@ import { useAuth } from "../context/AuthContext";
 
 import styles from "./Shared.module.scss";
 import { Error } from "@mui/icons-material";
+import Loading from "./elements/Loading";
 
 function Shared() {
   let { userId, docId } = useParams();
@@ -109,7 +110,7 @@ function Shared() {
           </div>
         </>
       ) : (
-        <div>Loading...</div>
+        <Loading type="simple-card" />
       )}
     </div>
   );
