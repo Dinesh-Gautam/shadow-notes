@@ -1,11 +1,8 @@
-import React from "react";
-// import Separator from "../../elements/Separator";
 import UseSvg from "../../elements/UseSvg";
 import Button from "../../MainInput/inputs/elements/Button";
-
-import styles from "./SearchFilter.module.scss";
 import { useData } from "../../../context/DatabaseContext";
-import useOutputFilters, { filters } from "../../../context/useOutputFilters";
+import useOutputFilters, { filters } from "../filterContext";
+import styles from "styles/components/filters/SearchFilter.module.scss";
 
 function SearchFilter() {
   const { updateFilterValue } = useData();

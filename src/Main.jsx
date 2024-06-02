@@ -3,13 +3,13 @@ import { useState } from "react";
 import { InputContext, useInputs } from "./components/MainInput/InputContext";
 import MainInput, { MainInputControls } from "./components/MainInput/MainInput";
 import MainOutput from "./components/MainOutput/MainOutput";
-import OutputFilter from "./components/OutputFilters/OutputFilter";
+import OutputFilter from "./components/OutputFilters/OutputFilters";
 import SideBar from "./components/SideBar";
 import Modal, { ModalProvider } from "./components/elements/Modal/Modal";
 import Separator from "./components/elements/Separator/Separator";
 import UndoDelete from "./components/elements/UndoDelete";
 import { DatabaseContext, useData } from "./context/DatabaseContext";
-import { FilterProvider } from "./context/useOutputFilters";
+import { FilterProvider } from "./components/OutputFilters/filterContext";
 
 export default function LazyMain() {
   // const Main = lazy(() => import("./components/Main"));

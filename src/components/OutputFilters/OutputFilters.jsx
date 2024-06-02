@@ -1,10 +1,10 @@
-import React, { useMemo } from "react";
-import ColorFilter from "./filterComponents/ColorFilter";
-import SearchFilter from "./filterComponents/SearchFilter";
+import { useMemo } from "react";
 import { useData } from "../../context/DatabaseContext";
 import { input } from "../MainInput/inputs/inputOptions";
-import styles from "./OutputFilter.module.scss";
+import styles from "styles/components/filters/OutputFilter.module.scss";
+import ColorFilter from "./filterComponents/ColorFilter";
 import FilterButton from "./filterComponents/FilterButton";
+import SearchFilter from "./filterComponents/SearchFilter";
 
 function OutputFilter() {
   const { userData } = useData();

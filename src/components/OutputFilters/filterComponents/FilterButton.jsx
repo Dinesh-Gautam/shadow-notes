@@ -1,10 +1,9 @@
 import { FilterList, Share, Star } from "@mui/icons-material";
-import React from "react";
-import { AnchorWrapper, Menu, MenuProvider } from "../../elements/Menu/Menu";
 import { FormControl, FormControlLabel, Switch } from "@mui/material";
-import { useData } from "../../../context/DatabaseContext";
 import { Box } from "@mui/system";
-import { filters } from "../../../context/useOutputFilters";
+import { useData } from "../../../context/DatabaseContext";
+import { AnchorWrapper, Menu, MenuProvider } from "../../elements/Menu/Menu";
+import { filters } from "../filterContext";
 
 function FilterButton() {
   const { filterData, updateFilterValue } = useData();

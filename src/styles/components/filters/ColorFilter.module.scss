@@ -1,6 +1,6 @@
-@import "../../../styles/variables";
-@import "../../../styles/mixins";
-@import "../../../styles/styles.scss";
+@import "styles/variables";
+@import "styles/mixins";
+@import "styles/styles.scss";
 
 .colorFilterContainer {
   @extend .random_color;

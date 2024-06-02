@@ -1,8 +1,8 @@
-import React, { createContext, useContext, useState } from "react";
-import { input } from "../components/MainInput/inputs/inputOptions";
-import Button from "../components/MainInput/inputs/elements/Button";
-import { Box, Chip } from "@mui/material";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
+import { Box, Chip } from "@mui/material";
+import { createContext, useContext, useState } from "react";
+import Button from "../MainInput/inputs/elements/Button";
+import { input } from "../MainInput/inputs/inputOptions";
 
 const filterContext = createContext();
 

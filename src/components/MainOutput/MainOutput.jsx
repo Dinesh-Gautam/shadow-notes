@@ -5,7 +5,7 @@ import Loading from "../elements/Loading";
 import OutputTemplate, { HighlightTextOnSearchMatch } from "./OutputTemplate";
 import AdditionalButtons from "./smallComponents/AdditionalButtons";
 import { input } from "../MainInput/inputs/inputOptions";
-import { GetOutputFilterTags, filters } from "../../context/useOutputFilters";
+import { GetOutputFilterTags, filters } from "../OutputFilters/filterContext";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 import { AnimatePresence } from "framer-motion";
 

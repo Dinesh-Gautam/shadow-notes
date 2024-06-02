@@ -18,7 +18,7 @@ import { db } from "../firebase";
 import { useAuth } from "./AuthContext";
 import { uuidv4 } from "@firebase/util";
 import { input, listTypes } from "../components/MainInput/inputs/inputOptions";
-import useOutputFilters from "./useOutputFilters";
+import useOutputFilters from "../components/OutputFilters/filterContext";
 
 const data_context = React.createContext();
 

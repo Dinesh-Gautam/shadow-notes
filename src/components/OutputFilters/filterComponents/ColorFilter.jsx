@@ -1,11 +1,10 @@
-import React, { useEffect, useRef, useState } from "react";
-import Separator from "../../elements/Separator/Separator";
-import Button from "../../MainInput/inputs/elements/Button";
-import UseSvg from "../../elements/UseSvg";
-
-import styles from "./ColorFilter.module.scss";
+import { useEffect, useRef, useState } from "react";
+import styles from "styles/components/filters/ColorFilter.module.scss";
 import { useData } from "../../../context/DatabaseContext";
-import { filters } from "../../../context/useOutputFilters";
+import Button from "../../MainInput/inputs/elements/Button";
+import Separator from "../../elements/Separator/Separator";
+import UseSvg from "../../elements/UseSvg";
+import { filters } from "../filterContext";
 
 function ColorFilter({ appliedColors }) {
   const { updateFilterValue } = useData();
