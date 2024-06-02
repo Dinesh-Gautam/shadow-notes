@@ -50,16 +50,16 @@ function TrashAdditionalButtons({ id }) {
 
 function Trash({ trashData }) {
   return (
-    <AnimatePresence>
-      <div className={styles.container}>
-        <div className={styles.contentContainer}>
-          <div className={styles.content}>
-            {!trashData ? (
-              Array(10)
-                .fill("")
-                .map((e, i) => <Loading key={i} type="simple-card" />)
-            ) : trashData.length > 0 ? (
-              trashData.map(({ data, id, deletedOn }) => {
+    <div className={styles.container}>
+      <div className={styles.contentContainer}>
+        <div className={styles.content}>
+          {!trashData ? (
+            Array(10)
+              .fill("")
+              .map((e, i) => <Loading key={i} type="simple-card" />)
+          ) : trashData.length > 0 ? (
+            <AnimatePresence>
+              {trashData.map(({ data, id, deletedOn }) => {
                 const headingText = data.find(
                   (data) => data.name === input.heading
                 );
@@ -85,14 +85,14 @@ function Trash({ trashData }) {
                     />
                   </DropDown>
                 );
-              })
-            ) : (
-              <span>Nothing in the Trash</span>
-            )}
-          </div>
+              })}
+            </AnimatePresence>
+          ) : (
+            <span>Nothing in the Trash</span>
+          )}
         </div>
       </div>
-    </AnimatePresence>
+    </div>
   );
 }
 

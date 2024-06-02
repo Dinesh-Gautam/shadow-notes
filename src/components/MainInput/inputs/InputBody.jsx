@@ -153,7 +153,7 @@ function InputBody() {
 
                 {provided.placeholder}
               </div>
-              {!hasInnerNotes() && <AddInput />}
+              {!hasInnerNotes() && <AddInput visible={true} />}
             </div>
           )}
         </Droppable>
@@ -162,14 +162,14 @@ function InputBody() {
   );
 }
 
-function AddInput({ input }) {
-  const [visible, setVisible] = useState(false);
+function AddInput({ input, visible: v = false }) {
+  const [visible, setVisible] = useState(v);
   const { inputs } = useInputs();
 
   return (
     <div
-      onMouseEnter={() => setVisible(true)}
-      onMouseLeave={() => setVisible(false)}
+      onMouseEnter={() => !v && setVisible(true)}
+      onMouseLeave={() => !v && setVisible(false)}
       className={styles.addInput}
       style={
         visible
