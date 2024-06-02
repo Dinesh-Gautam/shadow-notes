@@ -8,7 +8,7 @@ import SimpleOutputTemplate from "./MainOutput/SimpleOutputTemplet";
 import { input } from "./MainInput/inputs/inputOptions";
 import { Link } from "react-router-dom";
 
-import styles from "./Shared.module.scss";
+import styles from "styles/components/Shared.module.scss";
 
 function SharedNotes() {
   const [userData, setUserData] = useState(null);

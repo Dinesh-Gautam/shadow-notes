@@ -1,21 +1,19 @@
-import React, { Fragment, useState } from "react";
+import { Fragment, useState } from "react";
 import { useAuth } from "../context/AuthContext";
-import UseSvg from "./elements/UseSvg";
-import { Menu, AnchorWrapper, MenuProvider } from "./elements/Menu/Menu";
+import { AnchorWrapper, Menu, MenuProvider } from "./elements/Menu/Menu";
 import { ModalProvider, useModal } from "./elements/Modal/Modal";
+import UseSvg from "./elements/UseSvg";
 
 import Separator from "./elements/Separator/Separator";
-import TrashBtn from "./TrashBtn";
+import TrashBtn from "./Trash/TrashBtn";
 
-import styles from "./SideBar.module.scss";
 import {
   AccountCircle,
-  AccountCircleOutlined,
   GroupOutlined,
   LinkOutlined,
-  Person,
 } from "@mui/icons-material";
 import { Link } from "react-router-dom";
+import styles from "styles/components/SideBar.module.scss";
 import { ToggleButton } from "./Theme";
 
 function SideBar() {

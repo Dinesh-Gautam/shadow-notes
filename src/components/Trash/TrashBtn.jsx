@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { useData } from "../context/DatabaseContext";
-import { db } from "../firebase";
-import Button from "./MainInput/inputs/elements/Button";
+import { useData } from "../../context/DatabaseContext";
+import { db } from "../../firebase";
+import Button from "../MainInput/inputs/elements/Button";
 import Trash from "./Trash";
 import {
   collection,
@@ -11,7 +11,7 @@ import {
   where,
   orderBy,
 } from "firebase/firestore";
-import Modal, { useModal } from "./elements/Modal/Modal";
+import Modal, { useModal } from "../elements/Modal/Modal";
 import { DeleteOutline } from "@mui/icons-material";
 
 const users = collection(db, "users");

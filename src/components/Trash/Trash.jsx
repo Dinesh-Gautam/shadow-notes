@@ -1,15 +1,14 @@
-import React from "react";
-import { useData } from "../context/DatabaseContext";
-import DropDown from "./elements/DropDown/DropDown";
-import Loading from "./elements/Loading";
-import Separator from "./elements/Separator/Separator";
-import OutputTemplate from "./MainOutput/OutputTemplate";
-import styles from "./trash.module.scss";
-import { input } from "./MainInput/inputs/inputOptions";
-import { useMenu } from "./elements/Menu/Menu";
 import { DeleteForever, RestoreFromTrash } from "@mui/icons-material";
-import { useAutoAnimate } from "@formkit/auto-animate/react";
 import { AnimatePresence } from "framer-motion";
+import { useData } from "../../context/DatabaseContext";
+import { input } from "../MainInput/inputs/inputOptions";
+import OutputTemplate from "../MainOutput/OutputTemplate";
+import DropDown from "../elements/DropDown/DropDown";
+import Loading from "../elements/Loading";
+import { useMenu } from "../elements/Menu/Menu";
+import Separator from "../elements/Separator/Separator";
+
+import styles from "styles/components/trash.module.scss";
 
 function TrashAdditionalButtons({ id }) {
   const { updateData_fireStore, setundoTrigger, trashData, settrashData } =

@@ -9,7 +9,7 @@ import { LazyMotion } from "framer-motion";
 const animationFeatures = () =>
   import("./animations.js").then((res) => res.default);
 
-const Shared = lazy(() => import("./components/Shared"));
+const Shared = lazy(() => import("./components/SharedPage"));
 const SharedNotes = lazy(() => import("./components/SharedNotes"));
 const App = lazy(() => import("./App"));
 

@@ -5,18 +5,17 @@ import {
   onSnapshot,
   updateDoc,
 } from "firebase/firestore";
-import React, { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { db } from "../firebase";
-import { useState } from "react";
 import DropDown from "./elements/DropDown/DropDown";
 
+import { useAuth } from "../context/AuthContext";
 import { input } from "./MainInput/inputs/inputOptions";
 import SimpleOutputTemplate from "./MainOutput/SimpleOutputTemplet";
-import { useAuth } from "../context/AuthContext";
 
-import styles from "./Shared.module.scss";
 import { Error } from "@mui/icons-material";
+import styles from "styles/components/Shared.module.scss";
 import Loading from "./elements/Loading";
 
 function Shared() {

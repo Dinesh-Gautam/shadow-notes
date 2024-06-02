@@ -1,16 +1,15 @@
-import React, { useState } from "react";
-import Separator from "./components/elements/Separator/Separator";
-import UndoDelete from "./components/elements/UndoDelete";
+import { useAutoAnimate } from "@formkit/auto-animate/react";
+import { useState } from "react";
 import { InputContext, useInputs } from "./components/MainInput/InputContext";
 import MainInput, { MainInputControls } from "./components/MainInput/MainInput";
 import MainOutput from "./components/MainOutput/MainOutput";
 import OutputFilter from "./components/OutputFilters/OutputFilter";
-import UserInfo from "./components/UserInfo";
-import { DatabaseContext, useData } from "./context/DatabaseContext";
 import SideBar from "./components/SideBar";
 import Modal, { ModalProvider } from "./components/elements/Modal/Modal";
+import Separator from "./components/elements/Separator/Separator";
+import UndoDelete from "./components/elements/UndoDelete";
+import { DatabaseContext, useData } from "./context/DatabaseContext";
 import { FilterProvider } from "./context/useOutputFilters";
-import { useAutoAnimate } from "@formkit/auto-animate/react";
 
 export default function LazyMain() {
   // const Main = lazy(() => import("./components/Main"));
@@ -27,7 +26,6 @@ export default function LazyMain() {
   );
 }
 function Main() {
-  const [userDisplay, setuserDisplay] = useState(false);
   const { editMode } = useInputs();
   const { userData } = useData();
 
@@ -40,16 +38,12 @@ function Main() {
         {/* <MainInput /> */}
         {userData?.length > 0 && (
           <>
-            <OutputFilter
-              userDisplay={userDisplay}
-              setuserDisplay={setuserDisplay}
-            />
+            <OutputFilter />
             <Separator type="horizontal-bold" />
           </>
         )}
         <MainOutput />
       </div>
-      {userDisplay && <UserInfo />}
       <UndoDelete />
       <Modal
         title={editMode.edit ? "Edit Note" : "Add Note"}
