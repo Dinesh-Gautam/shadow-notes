@@ -3,6 +3,8 @@ import { createPortal } from "react-dom";
 import UseSvg from "../UseSvg";
 import styles from "./Modal.module.scss";
 
+import { AnimatePresence, m } from "framer-motion";
+
 const ModalContext = createContext();
 
 export function useModal() {
@@ -10,27 +12,39 @@ export function useModal() {
 }
 
 function ModalPortal({ title, children, header }) {
-  const { setModalOpen } = useModal();
+  const { modalOpen, setModalOpen } = useModal();
 
   return (
-    <div className={styles.container}>
-      <div className={styles.header}>
-        <h1>{title || "Modal"}</h1>
-        {header ? header : <div style={{ flex: 1 }}></div>}
-        <div>
-          <button onClick={() => setModalOpen(false)}>
-            <UseSvg type="close" />
-          </button>
-        </div>
-      </div>
-      <div className={styles.body}>{children}</div>
-    </div>
+    <AnimatePresence>
+      {modalOpen && (
+        <m.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 0.9 }}
+          transition={{
+            ease: "easeInOut",
+            duration: 0.2,
+          }}
+          className={styles.container}
+        >
+          <div className={styles.header}>
+            <h1>{title || "Modal"}</h1>
+            {header ? header : <div style={{ flex: 1 }}></div>}
+            <div>
+              <button onClick={() => setModalOpen(false)}>
+                <UseSvg type="close" />
+              </button>
+            </div>
+          </div>
+          <div className={styles.body}>{children}</div>
+        </m.div>
+      )}
+    </AnimatePresence>
   );
 }
 
 function Modal(props) {
-  const { modalOpen } = useModal();
-  return modalOpen && createPortal(<ModalPortal {...props} />, document.body);
+  return createPortal(<ModalPortal {...props} />, document.body);
 }
 
 export function ModalProvider({ children }) {
