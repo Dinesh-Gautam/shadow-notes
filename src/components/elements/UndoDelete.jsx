@@ -1,7 +1,6 @@
 import React from "react";
+import styles from "styles/components/elements/Undo.module.scss";
 import { useData } from "../../context/DatabaseContext";
-
-import styles from "./Undo.module.scss";
 
 function UndoDelete() {
   const { undoTrigger, setundoTrigger, settrashData } = useData();

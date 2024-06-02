@@ -1,6 +1,5 @@
 import React from "react";
-
-import styles from "./Separator.module.scss";
+import styles from "styles/components/elements/Separator.module.scss";
 
 function Separator({ type, mr }) {
   return (

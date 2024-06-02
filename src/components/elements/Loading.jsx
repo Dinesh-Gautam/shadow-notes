@@ -1,5 +1,6 @@
 import React from "react";
-import styles from "./Loading.module.scss";
+import styles from "styles/components/elements/Loading.module.scss";
+
 function Loading({ type }) {
   switch (type) {
     case "simple-card":

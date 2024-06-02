@@ -1,9 +1,8 @@
+import { AnimatePresence, m } from "framer-motion";
 import React, { createContext, useContext, useState } from "react";
 import { createPortal } from "react-dom";
 import UseSvg from "../UseSvg";
-import styles from "./Modal.module.scss";
-
-import { AnimatePresence, m } from "framer-motion";
+import styles from "styles/components/elements/Modal.module.scss";
 
 const ModalContext = createContext();
 

@@ -1,9 +1,6 @@
-import React, { useContext, useRef, useState } from "react";
-
-import styles from "./menu.module.scss";
-// import { createPortal } from "react-dom";
-
 import { Menu as MuiMenu, styled } from "@mui/material";
+import React, { useContext, useRef, useState } from "react";
+import styles from "styles/components/elements/menu.module.scss";
 
 const StyledMenu = styled((props) => <MuiMenu {...props} />)(({ theme }) => ({
   ".MuiPaper-root": {
