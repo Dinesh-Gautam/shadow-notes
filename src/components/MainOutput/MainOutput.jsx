@@ -3,7 +3,7 @@ import { useData } from "../../context/DatabaseContext";
 import DropDown from "../elements/DropDown/DropDown";
 import Loading from "../elements/Loading";
 import OutputTemplate, { HighlightTextOnSearchMatch } from "./OutputTemplate";
-import AdditionalButtons from "./smallComponents/AdditionalButtons";
+import AdditionalButtons from "./AdditionalButtons";
 import { input } from "../MainInput/inputs/inputOptions";
 import { GetOutputFilterTags, filters } from "../OutputFilters/filterContext";
 import { useAutoAnimate } from "@formkit/auto-animate/react";

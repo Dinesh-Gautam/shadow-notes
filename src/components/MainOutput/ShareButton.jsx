@@ -1,5 +1,3 @@
-import React, { useState } from "react";
-import { AnchorWrapper, Menu, MenuProvider } from "../../elements/Menu/Menu";
 import {
   Badge,
   FormControl,
@@ -7,16 +5,17 @@ import {
   Snackbar,
   Switch,
 } from "@mui/material";
-import { useAuth } from "../../../context/AuthContext";
-
-import styles from "./ShareButton.module.scss";
-import { useData } from "../../../context/DatabaseContext";
+import { useState } from "react";
+import { useAuth } from "../../context/AuthContext";
+import { AnchorWrapper, Menu, MenuProvider } from "../elements/Menu/Menu";
 import ShareIcon from "@mui/icons-material/Share";
+import { useData } from "../../context/DatabaseContext";
+import styles from "styles/components/ShareButton.module.scss";
 
 function ShareButton({ docId, data }) {
   const { updateDocField } = useData();
   const sharingUrl = useSharedUrl(docId);
-  console.log(sharingUrl);
+
   return (
     <MenuProvider>
       <AnchorWrapper>

@@ -4,7 +4,7 @@
     "target": "ES6",
     "baseUrl": "./src",
     "paths": {
-      "styles/*": ["./styles/*", "./styles/components/*"]
+      "styles/*": ["./styles/*"]
     }
   },
   "include": ["src/**/*"],
