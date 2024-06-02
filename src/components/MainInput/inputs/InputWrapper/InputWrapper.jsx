@@ -1,8 +1,7 @@
-import React, { useState } from "react";
-import styles from "./inputWraper.module.scss";
+import { useState } from "react";
 import UseSvg from "../../../elements/UseSvg";
 import useInputActions from "../../useInputActions";
-import { useAutoAnimate } from "@formkit/auto-animate/react";
+import styles from "styles/components/input/inputWrapper.module.scss";
 
 function getTextWidth(text, font) {
   // re-use canvas object for better performance

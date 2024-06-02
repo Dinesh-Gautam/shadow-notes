@@ -3,6 +3,7 @@
     "module": "CommonJS",
     "target": "ES6",
     "baseUrl": "./src",
+    "jsx": "react",
     "paths": {
       "styles/*": ["./styles/*"]
     }

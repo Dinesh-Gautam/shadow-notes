@@ -1,16 +1,15 @@
-import React from "react";
 import { v4 as uuidv4 } from "uuid";
 
-import { inputOptions, input } from "./inputOptions";
 import useInputActions from "../useInputActions";
+import { input, inputOptions } from "./inputOptions";
 
-import styles from "./InputControls.module.scss";
+import styles from "styles/components/input/InputControls.module.scss";
 
-import TitleIcon from "@mui/icons-material/Title";
-import ListIcon from "@mui/icons-material/List";
 import ImageIcon from "@mui/icons-material/Image";
 import LinkIcon from "@mui/icons-material/Link";
+import ListIcon from "@mui/icons-material/List";
 import PaletteIcon from "@mui/icons-material/Palette";
+import TitleIcon from "@mui/icons-material/Title";
 
 // function InputControls() {
 //   const [inputSelect, setInputSelect] = useState("title");

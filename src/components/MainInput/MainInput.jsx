@@ -1,11 +1,10 @@
-import React from "react";
 import { useInputs } from "./InputContext";
 import InputBody from "./inputs/InputBody";
 // import Button from "./inputs/elements/Button";
-import styles from "./mainInput.module.scss";
-import useInputActions from "./useInputActions";
-import UndoIcon from "@mui/icons-material/Undo";
 import RedoIcon from "@mui/icons-material/Redo";
+import UndoIcon from "@mui/icons-material/Undo";
+import useInputActions from "./useInputActions";
+import styles from "styles/components/input/mainInput.module.scss";
 
 export function getStyle(style, snapshot) {
   console.log(snapshot);

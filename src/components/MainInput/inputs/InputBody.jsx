@@ -1,15 +1,15 @@
-import React, { useState } from "react";
-import { useInputs } from "../InputContext";
-import InputField from "./InputField";
-import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
-import { input as inputNames, inputOptions } from "./inputOptions";
-import { getStyle } from "../MainInput";
-import styles from "./InputBody.module.scss";
-import useInputActions from "../useInputActions";
-import { AnchorWrapper, Menu, MenuProvider } from "../../elements/Menu/Menu";
-import ColorAdditions from "./elements/ColorAdditions";
-import InputControls from "./InputControls";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
+import React, { useState } from "react";
+import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
+import styles from "styles/components/input/InputBody.module.scss";
+import { AnchorWrapper, Menu, MenuProvider } from "../../elements/Menu/Menu";
+import { useInputs } from "../InputContext";
+import { getStyle } from "../MainInput";
+import useInputActions from "../useInputActions";
+import InputControls from "./InputControls";
+import InputField from "./InputField";
+import ColorAdditions from "./elements/ColorAdditions";
+import { input as inputNames, inputOptions } from "./inputOptions";
 
 function ColorInput({ input }) {
   return (

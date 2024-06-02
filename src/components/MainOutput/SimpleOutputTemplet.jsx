@@ -1,7 +1,8 @@
 import React from "react";
+import inputStyles from "styles/components/input/inputField.module.scss";
 import { input, listTypes } from "../MainInput/inputs/inputOptions";
-import inputStyles from "../MainInput/inputs/inputField.module.scss";
 import { LinkPreview } from "../elements/LinkPreview/LinkPreview";
+
 export function HighlightTextOnSearchMatch({ text }) {
   return text;
 }

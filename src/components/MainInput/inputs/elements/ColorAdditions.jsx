@@ -1,10 +1,9 @@
-import React from "react";
-import Button from "./Button";
+import { useMemo } from "react";
 import { useData } from "../../../../context/DatabaseContext";
 import useInputActions from "../../useInputActions";
-import { useMemo } from "react";
+import Button from "./Button";
 
-import styles from "./ColorAdditions.module.scss";
+import styles from "styles/components/input/ColorAdditions.module.scss";
 
 function ColorAdditions({ input }) {
   const { userData } = useData();

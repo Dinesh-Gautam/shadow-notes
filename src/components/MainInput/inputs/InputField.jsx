@@ -1,16 +1,18 @@
-import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
-import InputWrapper from "./InputWrapper/InputWrapper";
-import { input as InputOption, listTypes } from "./inputOptions";
-import useInputActions from "../useInputActions";
-import UseSvg from "../../elements/UseSvg";
-import { useInputs } from "../InputContext";
-import styles from "./inputField.module.scss";
-import { Draggable, Droppable } from "react-beautiful-dnd";
-import { getStyle } from "../MainInput";
+import { useEffect, useRef, useState } from "react";
+
+import styles from "styles/components/input/inputField.module.scss";
 import {
   LinkPreview,
   isUrlValid,
 } from "../../elements/LinkPreview/LinkPreview";
+import UseSvg from "../../elements/UseSvg";
+import { useInputs } from "../InputContext";
+import { getStyle } from "../MainInput";
+import useInputActions from "../useInputActions";
+import InputWrapper from "./InputWrapper/InputWrapper";
+import { input as InputOption, listTypes } from "./inputOptions";
+
+import { Draggable, Droppable } from "react-beautiful-dnd";
 
 function useKeyboardEvents() {
   const { removeElement } = useInputActions();
