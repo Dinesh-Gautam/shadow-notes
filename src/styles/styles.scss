@@ -270,10 +270,6 @@ main {
 
 .OutputTemplate_wraper {
   padding: $padding-default $padding-large;
-  background: var(--default-color);
-  margin-top: $padding-veryLess;
-  box-shadow: $boxShadow-default;
-  border-radius: $border-radius-default;
 
   .label_container {
     position: relative;

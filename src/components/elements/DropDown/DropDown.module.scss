@@ -108,6 +108,10 @@
   }
 
   .innerContainer {
-    display: none;
+    background: var(--default-color);
+    margin-top: $padding-veryLess;
+    box-shadow: $boxShadow-default;
+    border-radius: $border-radius-default;
+    overflow: hidden;
   }
 }
