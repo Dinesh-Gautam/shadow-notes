@@ -228,21 +228,19 @@ export function DatabaseContext({ children }) {
 
   const value = {
     data,
-    setdata: setData,
+    setData,
     setData_fireStore,
     updateData_fireStore,
     userData,
-    setuserData: setUserData,
+    setUserData,
     trashData,
-    settrashData: setTrashData,
+    setTrashData,
     userID,
     filterData: filterData,
-
     deleteData_fireStore,
     undoTrigger,
-    setundoTrigger: setUndoTrigger,
+    setUndoTrigger,
     updateDocField,
-
     ...filterData,
   };
   return (

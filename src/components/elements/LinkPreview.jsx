@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
-import Loading from "./Loading";
 import styles from "styles/components/elements/LinkPreview.module.scss";
+import Loading from "./Loading";
 
 function useCachedPreviewData(destinationUrl, useCache) {
   const [cached, setCached] = useState(null);
@@ -15,13 +15,16 @@ function useCachedPreviewData(destinationUrl, useCache) {
 
   useEffect(() => {
     const key = convertToBase64(destinationUrl);
+
     let cachedData = localStorage.getItem("linkPreviewData");
+
     if (!cachedData) {
       setCached(false);
       return;
     }
+
     cachedData = JSON.parse(cachedData);
-    console.log(cachedData);
+
     if (cachedData && cachedData[key] !== undefined) {
       setPreviewData(cachedData[key] ? { ...cachedData[key] } : null);
       setCached(true);
@@ -33,11 +36,12 @@ function useCachedPreviewData(destinationUrl, useCache) {
   function setCachedPreviewData(data) {
     const key = convertToBase64(destinationUrl);
     const cachedData = localStorage.getItem("linkPreviewData");
+
     if (!useCache) {
       setPreviewData(data);
-
       return;
     }
+
     if (cachedData) {
       const parsedData = JSON.parse(cachedData);
       parsedData[key] = data;
@@ -45,6 +49,7 @@ function useCachedPreviewData(destinationUrl, useCache) {
     } else {
       localStorage.setItem("linkPreviewData", JSON.stringify({ [key]: data }));
     }
+
     setPreviewData(data);
   }
 
@@ -57,12 +62,7 @@ function convertToBase64(str) {
 }
 
 export function isUrlValid(url) {
-  try {
-    new URL(url);
-    return true;
-  } catch (err) {
-    return false;
-  }
+  return !!new URL(url).href;
 }
 
 export function LinkPreview({ url, useCache = true }) {
@@ -75,7 +75,7 @@ export function LinkPreview({ url, useCache = true }) {
 
   const fetchData = useCallback(async () => {
     setLoading(true);
-    console.log("fetching link preview");
+
     const data = await fetch(
       process.env.REACT_APP_PROXY_URL + `?destination=${url}`
     ).then((res) => res.text());
@@ -105,6 +105,7 @@ export function LinkPreview({ url, useCache = true }) {
     }
 
     setLoading(false);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [url]);
 
   useEffect(() => {
@@ -115,11 +116,8 @@ export function LinkPreview({ url, useCache = true }) {
         fetchData();
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cached, url]);
-
-  useEffect(() => {
-    console.log(previewData);
-  }, [previewData]);
 
   return loading ? (
     <div style={{ height: 100, width: "100%" }}>

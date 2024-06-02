@@ -3,7 +3,7 @@ import styles from "styles/components/elements/Undo.module.scss";
 import { useData } from "../../context/DatabaseContext";
 
 function UndoDelete() {
-  const { undoTrigger, setundoTrigger, settrashData } = useData();
+  const { undoTrigger, setUndoTrigger, setTrashData } = useData();
   return (
     <div
       style={{ display: undoTrigger.trigger ? "flex" : "none" }}
@@ -11,15 +11,14 @@ function UndoDelete() {
     >
       <span>
         {undoTrigger.notes.length > 1
-          ? undoTrigger.notes.length + " Items has been deleted"
-          : undoTrigger.notes.length + " Item has been deleted"}
+          ? undoTrigger.notes.length + " Items deleted"
+          : undoTrigger.notes.length + " Item deleted"}
       </span>
       <button
         onClick={() => {
           const deletedNotes = undoTrigger.notes;
-          settrashData((prev) => [...prev, ...deletedNotes]);
-
-          setundoTrigger({ trigger: false, notes: [] });
+          setTrashData((prev) => [...prev, ...deletedNotes]);
+          setUndoTrigger({ trigger: false, notes: [] });
         }}
       >
         Undo

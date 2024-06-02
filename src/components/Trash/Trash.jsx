@@ -11,7 +11,7 @@ import Separator from "../elements/Separator";
 import styles from "styles/components/trash.module.scss";
 
 function TrashAdditionalButtons({ id }) {
-  const { updateData_fireStore, setundoTrigger, trashData, settrashData } =
+  const { updateData_fireStore, setUndoTrigger, trashData, setTrashData } =
     useData();
   const { setMenuOpen } = useMenu();
 
@@ -33,10 +33,10 @@ function TrashAdditionalButtons({ id }) {
       <button
         onClick={() => {
           const note = trashData.find((note) => note.id === id);
-          setundoTrigger((prev) => {
+          setUndoTrigger((prev) => {
             return { trigger: true, notes: [...prev.notes, note] };
           });
-          settrashData(trashData.filter((note) => note.id !== id));
+          setTrashData(trashData.filter((note) => note.id !== id));
           setMenuOpen(false);
         }}
       >

@@ -1,8 +1,8 @@
 import { MoreVert, Share, Star } from "@mui/icons-material";
 import { m } from "framer-motion";
 import React, { useState } from "react";
-import { AnchorWrapper, Menu, MenuProvider } from "./Menu";
 import styles from "styles/components/elements/DropDown.module.scss";
+import { AnchorWrapper, Menu, MenuProvider } from "./Menu";
 
 function DropDown({
   children,
@@ -22,14 +22,11 @@ function DropDown({
 
   return (
     <m.div
+      layout="position"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      layout="position"
-      className={
-        styles.container
-        // + " " + (dropdownDisplay ? styles.visible : "")
-      }
+      className={styles.container}
       id={id}
     >
       {(data?.linkSharing || data?.star) && (
@@ -50,8 +47,6 @@ function DropDown({
         </div>
         {extraButtons && (
           <div className={styles.buttonContainer}>
-            {/* {extraButtons} */}
-
             <MenuProvider>
               <AnchorWrapper>
                 <button>
@@ -66,10 +61,8 @@ function DropDown({
       </div>
 
       <m.div
-        initial={{ height: 0, overflow: "hidden" }}
-        animate={{
-          height: dropdownDisplay ? "auto" : 0,
-        }}
+        initial={{ height: 0 }}
+        animate={{ height: dropdownDisplay ? "auto" : 0 }}
         className={styles.innerContainer}
       >
         {children}

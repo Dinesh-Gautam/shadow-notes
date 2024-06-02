@@ -17,7 +17,7 @@ import { DeleteOutline } from "@mui/icons-material";
 const users = collection(db, "users");
 
 function TrashBtn({ text }) {
-  const { trashData, settrashData } = useData();
+  const { trashData, setTrashData } = useData();
   const { setModalOpen } = useModal();
   const [initialRequest, setinitialRequest] = useState(false);
 
@@ -38,7 +38,7 @@ function TrashBtn({ text }) {
     let unsubscribe;
     if (trashData === null && initialRequest) {
       unsubscribe = onSnapshot(userDocCollection, (snapshot) => {
-        settrashData(
+        setTrashData(
           snapshot.docs.map((doc) => {
             return { id: doc.id, ...doc.data() };
           })
@@ -71,7 +71,7 @@ function TrashBtn({ text }) {
       />
 
       <Modal title="Trash">
-        <Trash trashData={trashData} settrashData={settrashData} />
+        <Trash trashData={trashData} setTrashData={setTrashData} />
       </Modal>
     </>
   );

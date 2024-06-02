@@ -1,8 +1,8 @@
 import { AnimatePresence, m } from "framer-motion";
 import React, { createContext, useContext, useState } from "react";
 import { createPortal } from "react-dom";
-import UseSvg from "./UseSvg";
 import styles from "styles/components/elements/Modal.module.scss";
+import UseSvg from "./UseSvg";
 
 const ModalContext = createContext();
 
@@ -57,6 +57,7 @@ export function ModalProvider({ children }) {
     setModalOpen,
     modalToggle,
   };
+
   return (
     <ModalContext.Provider value={value}>{children}</ModalContext.Provider>
   );
