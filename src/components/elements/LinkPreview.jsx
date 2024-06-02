@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-import Loading from "../Loading";
+import Loading from "./Loading";
 import styles from "styles/components/elements/LinkPreview.module.scss";
 
 function useCachedPreviewData(destinationUrl, useCache) {

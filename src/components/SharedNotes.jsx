@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { db } from "../firebase";
 import { useAuth } from "../context/AuthContext";
 import Loading from "./elements/Loading";
-import DropDown from "./elements/DropDown/DropDown";
+import DropDown from "./elements/DropDown";
 import SimpleOutputTemplate from "./MainOutput/SimpleOutputTemplet";
 import { input } from "./MainInput/inputs/inputOptions";
 import { Link } from "react-router-dom";

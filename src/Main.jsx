@@ -1,18 +1,16 @@
 import { useAutoAnimate } from "@formkit/auto-animate/react";
-import { useState } from "react";
 import { InputContext, useInputs } from "./components/MainInput/InputContext";
 import MainInput, { MainInputControls } from "./components/MainInput/MainInput";
 import MainOutput from "./components/MainOutput/MainOutput";
 import OutputFilter from "./components/OutputFilters/OutputFilters";
+import { FilterProvider } from "./components/OutputFilters/filterContext";
 import SideBar from "./components/SideBar";
-import Modal, { ModalProvider } from "./components/elements/Modal/Modal";
-import Separator from "./components/elements/Separator/Separator";
+import Modal, { ModalProvider } from "./components/elements/Modal";
+import Separator from "./components/elements/Separator";
 import UndoDelete from "./components/elements/UndoDelete";
 import { DatabaseContext, useData } from "./context/DatabaseContext";
-import { FilterProvider } from "./components/OutputFilters/filterContext";
 
 export default function LazyMain() {
-  // const Main = lazy(() => import("./components/Main"));
   return (
     <FilterProvider>
       <DatabaseContext>

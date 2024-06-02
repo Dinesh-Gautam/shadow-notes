@@ -7,7 +7,7 @@ import {
 } from "@mui/material";
 import { useState } from "react";
 import { useAuth } from "../../context/AuthContext";
-import { AnchorWrapper, Menu, MenuProvider } from "../elements/Menu/Menu";
+import { AnchorWrapper, Menu, MenuProvider } from "../elements/Menu";
 import ShareIcon from "@mui/icons-material/Share";
 import { useData } from "../../context/DatabaseContext";
 import styles from "styles/components/ShareButton.module.scss";

@@ -2,7 +2,7 @@ import { FilterList, Share, Star } from "@mui/icons-material";
 import { FormControl, FormControlLabel, Switch } from "@mui/material";
 import { Box } from "@mui/system";
 import { useData } from "../../../context/DatabaseContext";
-import { AnchorWrapper, Menu, MenuProvider } from "../../elements/Menu/Menu";
+import { AnchorWrapper, Menu, MenuProvider } from "../../elements/Menu";
 import { filters } from "../filterContext";
 
 function FilterButton() {

@@ -8,7 +8,7 @@ import {
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { db } from "../firebase";
-import DropDown from "./elements/DropDown/DropDown";
+import DropDown from "./elements/DropDown";
 
 import { useAuth } from "../context/AuthContext";
 import { input } from "./MainInput/inputs/inputOptions";

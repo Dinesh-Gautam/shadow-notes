@@ -1,10 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 
 import styles from "styles/components/input/inputField.module.scss";
-import {
-  LinkPreview,
-  isUrlValid,
-} from "../../elements/LinkPreview/LinkPreview";
+import { LinkPreview, isUrlValid } from "../../elements/LinkPreview";
 import UseSvg from "../../elements/UseSvg";
 import { useInputs } from "../InputContext";
 import { getStyle } from "../MainInput";

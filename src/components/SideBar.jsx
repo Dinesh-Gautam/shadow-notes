@@ -1,10 +1,10 @@
 import { Fragment, useState } from "react";
 import { useAuth } from "../context/AuthContext";
-import { AnchorWrapper, Menu, MenuProvider } from "./elements/Menu/Menu";
-import { ModalProvider, useModal } from "./elements/Modal/Modal";
+import { AnchorWrapper, Menu, MenuProvider } from "./elements/Menu";
+import { ModalProvider, useModal } from "./elements/Modal";
 import UseSvg from "./elements/UseSvg";
 
-import Separator from "./elements/Separator/Separator";
+import Separator from "./elements/Separator";
 import TrashBtn from "./Trash/TrashBtn";
 
 import {

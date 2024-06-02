@@ -10,7 +10,7 @@ import { v4 as uuidv4 } from "uuid";
 import { useData } from "../../context/DatabaseContext";
 
 import { headingState } from "./inputs/inputOptions";
-import { useModal } from "../elements/Modal/Modal";
+import { useModal } from "../elements/Modal";
 import { serverTimestamp } from "@firebase/firestore";
 export const input_context = createContext();
 

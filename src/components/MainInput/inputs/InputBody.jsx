@@ -2,7 +2,7 @@ import { useAutoAnimate } from "@formkit/auto-animate/react";
 import React, { useState } from "react";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import styles from "styles/components/input/InputBody.module.scss";
-import { AnchorWrapper, Menu, MenuProvider } from "../../elements/Menu/Menu";
+import { AnchorWrapper, Menu, MenuProvider } from "../../elements/Menu";
 import { useInputs } from "../InputContext";
 import { getStyle } from "../MainInput";
 import useInputActions from "../useInputActions";

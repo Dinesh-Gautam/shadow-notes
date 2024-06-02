@@ -2,7 +2,7 @@ import React from "react";
 import inputStyles from "styles/components/input/inputField.module.scss";
 import { useData } from "../../context/DatabaseContext";
 import { input, listTypes } from "../MainInput/inputs/inputOptions";
-import { LinkPreview } from "../elements/LinkPreview/LinkPreview";
+import { LinkPreview } from "../elements/LinkPreview";
 
 export function HighlightTextOnSearchMatch({ text }) {
   const { filterData } = useData();

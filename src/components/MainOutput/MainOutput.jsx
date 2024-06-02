@@ -3,7 +3,7 @@ import { AnimatePresence } from "framer-motion";
 import { useData } from "../../context/DatabaseContext";
 import { input } from "../MainInput/inputs/inputOptions";
 import { GetOutputFilterTags, filters } from "../OutputFilters/filterContext";
-import DropDown from "../elements/DropDown/DropDown";
+import DropDown from "../elements/DropDown";
 import Loading from "../elements/Loading";
 import AdditionalButtons from "./AdditionalButtons";
 import OutputTemplate, { HighlightTextOnSearchMatch } from "./OutputTemplate";

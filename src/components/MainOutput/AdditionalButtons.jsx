@@ -5,7 +5,7 @@ import Button from "../MainInput/inputs/elements/Button";
 import { serverTimestamp } from "firebase/firestore";
 import ShareButton from "./ShareButton";
 import { Delete, Edit, Star } from "@mui/icons-material";
-import { useMenu } from "../elements/Menu/Menu";
+import { useMenu } from "../elements/Menu";
 
 function AdditionalButtons({ docId, userData, data }) {
   const { inputsDispatch, setEditMode } = useInputs();

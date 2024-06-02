@@ -11,7 +11,7 @@ import {
   where,
   orderBy,
 } from "firebase/firestore";
-import Modal, { useModal } from "../elements/Modal/Modal";
+import Modal, { useModal } from "../elements/Modal";
 import { DeleteOutline } from "@mui/icons-material";
 
 const users = collection(db, "users");

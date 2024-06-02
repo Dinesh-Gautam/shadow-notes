@@ -1,7 +1,7 @@
 import { inputOptions, input } from "./inputs/inputOptions";
 import { useInputs } from "./InputContext";
 import { v4 as uuidv4 } from "uuid";
-import { useModal } from "../elements/Modal/Modal";
+import { useModal } from "../elements/Modal";
 function useInputActions() {
   const {
     inputsDispatch,

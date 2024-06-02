@@ -3,10 +3,10 @@ import { AnimatePresence } from "framer-motion";
 import { useData } from "../../context/DatabaseContext";
 import { input } from "../MainInput/inputs/inputOptions";
 import OutputTemplate from "../MainOutput/OutputTemplate";
-import DropDown from "../elements/DropDown/DropDown";
+import DropDown from "../elements/DropDown";
 import Loading from "../elements/Loading";
-import { useMenu } from "../elements/Menu/Menu";
-import Separator from "../elements/Separator/Separator";
+import { useMenu } from "../elements/Menu";
+import Separator from "../elements/Separator";
 
 import styles from "styles/components/trash.module.scss";
 

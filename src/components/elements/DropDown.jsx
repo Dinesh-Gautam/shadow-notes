@@ -1,7 +1,7 @@
 import { MoreVert, Share, Star } from "@mui/icons-material";
 import { m } from "framer-motion";
 import React, { useState } from "react";
-import { AnchorWrapper, Menu, MenuProvider } from "../Menu/Menu";
+import { AnchorWrapper, Menu, MenuProvider } from "./Menu";
 import styles from "styles/components/elements/DropDown.module.scss";
 
 function DropDown({
