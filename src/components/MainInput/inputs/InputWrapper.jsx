@@ -1,6 +1,6 @@
 import { useState } from "react";
-import UseSvg from "../../../elements/UseSvg";
-import useInputActions from "../../useInputActions";
+import UseSvg from "../../elements/UseSvg";
+import useInputActions from "../useInputActions";
 import styles from "styles/components/input/inputWrapper.module.scss";
 
 function getTextWidth(text, font) {

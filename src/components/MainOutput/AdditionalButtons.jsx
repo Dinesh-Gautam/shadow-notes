@@ -20,7 +20,6 @@ function AdditionalButtons({ docId, userData, data }) {
       type: "cancel",
     });
 
-    console.log(userData);
     inputsDispatch({ type: "edit", payload: userData });
     setMenuOpen(false);
     setModalOpen(true);
@@ -30,7 +29,6 @@ function AdditionalButtons({ docId, userData, data }) {
     <>
       <button
         onClick={() => {
-          console.log(data);
           updateDocField(docId, { star: !data?.star ?? true });
         }}
       >

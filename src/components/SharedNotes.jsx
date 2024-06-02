@@ -23,7 +23,7 @@ function SharedNotes() {
     const documentSnapshots = await Promise.all(
       documentReferences
         .filter((ref) => ref.path.split("/")[1] !== userId)
-        .map((ref) => getDoc(ref).catch((e) => console.log(e)))
+        .map((ref) => getDoc(ref).catch((e) => console.error(e)))
     );
     const documents = documentSnapshots
       .map((snapshot) => {
@@ -50,7 +50,6 @@ function SharedNotes() {
         return;
       }
       const docs = await getDocuments(shared);
-      console.log(docs);
 
       setUserData(docs);
     });

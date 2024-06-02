@@ -7,7 +7,7 @@ import styles from "styles/components/filters/SearchFilter.module.scss";
 function SearchFilter() {
   const { updateFilterValue } = useData();
   const { filterData } = useOutputFilters();
-  console.log(filterData);
+
   const handleSearchFilter = (e) => {
     const value = e.target.value;
     updateFilterValue(value, filters.searchFilter.name);

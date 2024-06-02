@@ -269,8 +269,6 @@ export function InputContext(props) {
   }
 
   useEffect(() => {
-    console.log(hasAnyNotes());
-
     if (window.onbeforeunload === null) {
       window.onbeforeunload = unloadPage;
     }

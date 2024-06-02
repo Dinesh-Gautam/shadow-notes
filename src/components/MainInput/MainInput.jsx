@@ -6,7 +6,6 @@ import useInputActions from "./useInputActions";
 import styles from "styles/components/input/mainInput.module.scss";
 
 export function getStyle(style, snapshot) {
-  console.log(snapshot);
   if (!snapshot.isDraggingOver) {
     return {
       ...style,

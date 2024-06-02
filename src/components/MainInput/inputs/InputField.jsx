@@ -6,7 +6,7 @@ import UseSvg from "../../elements/UseSvg";
 import { useInputs } from "../InputContext";
 import { getStyle } from "../MainInput";
 import useInputActions from "../useInputActions";
-import InputWrapper from "./InputWrapper/InputWrapper";
+import InputWrapper from "./InputWrapper";
 import { input as InputOption, listTypes } from "./inputOptions";
 
 function useKeyboardEvents() {
@@ -33,14 +33,12 @@ function useKeyboardEvents() {
       const index = getIndex(input, -1);
       const nextInput = getInput(index);
       setInputFocusId(nextInput.id);
-      console.log(index);
     }
 
     if (e.code === codes.arrowDownKey) {
       const index = getIndex(input, 1);
       const nextInput = getInput(index);
       setInputFocusId(nextInput.id);
-      console.log(index);
     }
   }
 

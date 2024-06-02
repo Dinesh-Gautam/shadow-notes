@@ -85,7 +85,6 @@ export function DatabaseContext({ children }) {
     }
 
     async function migrateV2DataToV3() {
-      console.log(userDocCollection);
       // get all the documents from the v2 collection
       const docSnap = await getDoc(userDoc);
       //check if the data is migrated
@@ -159,9 +158,6 @@ export function DatabaseContext({ children }) {
           return { ...data, data: newDocData.flat() };
         });
 
-        console.log("newData");
-        console.log(newData);
-
         // delete all docs from userDocCollection
         const deleteDocs = allDocs.map((doc) => {
           return deleteDoc(doc.ref);
@@ -181,8 +177,6 @@ export function DatabaseContext({ children }) {
           });
           setLoading(false);
         });
-
-        console.log(newData);
       });
     }
 
@@ -194,7 +188,6 @@ export function DatabaseContext({ children }) {
   }, [userID]);
 
   function setData_fireStore(data) {
-    console.log(data);
     setDoc(
       userDoc,
       {
@@ -211,7 +204,6 @@ export function DatabaseContext({ children }) {
   }
 
   function updateData_fireStore(docId, data) {
-    console.log("updated");
     const toBeUpdatedDoc = doc(userDocCollection, docId);
     setDoc(toBeUpdatedDoc, data, { merge: true });
   }
