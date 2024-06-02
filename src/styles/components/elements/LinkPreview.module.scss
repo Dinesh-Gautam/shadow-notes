@@ -1,0 +1,48 @@
+@import "styles/variables";
+
+.container {
+  display: flex;
+  box-shadow: inset $boxShadow-small;
+  padding: $padding-veryLess;
+  gap: $padding-less;
+  border-radius: $border-radius-default;
+  min-height: 100px;
+  height: 100px;
+  max-height: 100px;
+  align-items: center;
+  color: var(--default-text-color);
+  overflow: hidden;
+  pointer-events: none;
+  background: var(--default-backgroundcolor);
+  h6 {
+    line-height: 120%;
+    display: -webkit-box;
+    max-width: 100%;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    font-weight: 600;
+    font-size: $fontSize-small;
+    margin-top: 2px;
+  }
+  img {
+    max-height: 100%;
+    width: auto;
+    max-width: 20%;
+    box-shadow: none;
+    border-radius: $border-radius-default;
+  }
+  p,
+  span {
+    font-size: $fontSize-small - 1px;
+    display: -webkit-box;
+    max-width: 100%;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  span,
+  p {
+    opacity: 0.8;
+  }
+}

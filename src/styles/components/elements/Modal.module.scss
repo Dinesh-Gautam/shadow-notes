@@ -1,0 +1,33 @@
+@import "styles/variables";
+.container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background: var(--default-backgroundcolor);
+  padding: $padding-default;
+  z-index: 10000;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  // justify-content: space-between;
+  gap: $padding-default;
+  border-bottom: 3px solid var(--vless-alpha-text-color);
+  padding-bottom: $padding-less;
+  margin-bottom: $padding-less;
+  text-transform: uppercase;
+  button {
+    background: transparent;
+    box-shadow: none;
+  }
+}
+
+.body {
+  flex: 1;
+  overflow: hidden;
+}
