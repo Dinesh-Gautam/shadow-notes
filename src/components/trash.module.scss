@@ -22,6 +22,8 @@
     height: 100%;
   }
   .content {
+    height: 100%;
+    align-content: start;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: $padding-default;

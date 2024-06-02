@@ -9,9 +9,11 @@ import { input } from "./MainInput/inputs/inputOptions";
 import { useMenu } from "./elements/Menu/Menu";
 import { DeleteForever, RestoreFromTrash } from "@mui/icons-material";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
+import { AnimatePresence } from "framer-motion";
 
 function TrashAdditionalButtons({ id }) {
-  const { updateData_fireStore, setundoTrigger } = useData();
+  const { updateData_fireStore, setundoTrigger, trashData, settrashData } =
+    useData();
   const { setMenuOpen } = useMenu();
 
   return (
@@ -31,11 +33,12 @@ function TrashAdditionalButtons({ id }) {
       <Separator type="vertical-medium" />
       <button
         onClick={() => {
+          const note = trashData.find((note) => note.id === id);
           setundoTrigger((prev) => {
-            return { trigger: true, id: [...prev.id, id] };
+            return { trigger: true, notes: [...prev.notes, note] };
           });
+          settrashData(trashData.filter((note) => note.id !== id));
           setMenuOpen(false);
-          document.getElementById(id).style.display = "none";
         }}
       >
         <DeleteForever />
@@ -46,49 +49,50 @@ function TrashAdditionalButtons({ id }) {
 }
 
 function Trash({ trashData }) {
-  const [animationParent] = useAutoAnimate();
   return (
-    <div className={styles.container}>
-      <div className={styles.contentContainer}>
-        <div ref={animationParent} className={styles.content}>
-          {!trashData ? (
-            Array(10)
-              .fill("")
-              .map((e, i) => <Loading key={i} type="simple-card" />)
-          ) : trashData.length > 0 ? (
-            trashData.map(({ data, id, deletedOn }) => {
-              const headingText = data.find(
-                (data) => data.name === input.heading
-              );
-              const DropdownBackgroundColor = data.find(
-                (data) => data.name === input.color
-              );
-              return (
-                <DropDown
-                  key={id}
-                  id={id}
-                  extraButtons={<TrashAdditionalButtons id={id} />}
-                  DropdownBackgroundColor={
-                    DropdownBackgroundColor &&
-                    DropdownBackgroundColor.state.value
-                  }
-                  mainText={headingText.state.value}
-                >
-                  <OutputTemplate
-                    deletedOn={deletedOn}
-                    isInTrash={true}
-                    userData={data}
-                    docId={id}
-                  />
-                </DropDown>
-              );
-            })
-          ) : (
-            <span>Nothing in the Trash</span>
-          )}
+    <AnimatePresence>
+      <div className={styles.container}>
+        <div className={styles.contentContainer}>
+          <div className={styles.content}>
+            {!trashData ? (
+              Array(10)
+                .fill("")
+                .map((e, i) => <Loading key={i} type="simple-card" />)
+            ) : trashData.length > 0 ? (
+              trashData.map(({ data, id, deletedOn }) => {
+                const headingText = data.find(
+                  (data) => data.name === input.heading
+                );
+                const DropdownBackgroundColor = data.find(
+                  (data) => data.name === input.color
+                );
+                return (
+                  <DropDown
+                    key={id}
+                    id={id}
+                    extraButtons={<TrashAdditionalButtons id={id} />}
+                    DropdownBackgroundColor={
+                      DropdownBackgroundColor &&
+                      DropdownBackgroundColor.state.value
+                    }
+                    mainText={headingText.state.value}
+                  >
+                    <OutputTemplate
+                      deletedOn={deletedOn}
+                      isInTrash={true}
+                      userData={data}
+                      docId={id}
+                    />
+                  </DropDown>
+                );
+              })
+            ) : (
+              <span>Nothing in the Trash</span>
+            )}
+          </div>
         </div>
       </div>
-    </div>
+    </AnimatePresence>
   );
 }
 

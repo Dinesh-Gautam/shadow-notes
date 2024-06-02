@@ -4,23 +4,23 @@ import { useData } from "../../context/DatabaseContext";
 import styles from "./Undo.module.scss";
 
 function UndoDelete() {
-  const { undoTrigger, setundoTrigger } = useData();
+  const { undoTrigger, setundoTrigger, settrashData } = useData();
   return (
     <div
       style={{ display: undoTrigger.trigger ? "flex" : "none" }}
       className={styles.undoContainer}
     >
       <span>
-        {undoTrigger.id.length > 1
-          ? undoTrigger.id.length + " Items has been deleted"
-          : undoTrigger.id.length + " Item has been deleted"}
+        {undoTrigger.notes.length > 1
+          ? undoTrigger.notes.length + " Items has been deleted"
+          : undoTrigger.notes.length + " Item has been deleted"}
       </span>
       <button
         onClick={() => {
-          undoTrigger.id.forEach((eachId) => {
-            document.getElementById(eachId).style.display = "block";
-          });
-          setundoTrigger({ trigger: false, id: [] });
+          const deletedNotes = undoTrigger.notes;
+          settrashData((prev) => [...prev, ...deletedNotes]);
+
+          setundoTrigger({ trigger: false, notes: [] });
         }}
       >
         Undo

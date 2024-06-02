@@ -36,7 +36,7 @@ export function DatabaseContext({ children }) {
   const [userData, setUserData] = useState(null);
   const [trashData, setTrashData] = useState(null);
   const filterData = useOutputFilters();
-  const [undoTrigger, setUndoTrigger] = useState({ trigger: false, id: [] });
+  const [undoTrigger, setUndoTrigger] = useState({ trigger: false, notes: [] });
 
   const [loading, setLoading] = useState(true);
 
@@ -49,10 +49,10 @@ export function DatabaseContext({ children }) {
     clearInterval(undoInterval);
     if (undoTrigger.trigger) {
       undoInterval = setTimeout(() => {
-        undoTrigger.id.forEach((eachId) => {
-          deleteData_fireStore(eachId);
+        undoTrigger.notes.forEach(({ id }) => {
+          deleteData_fireStore(id);
         });
-        setUndoTrigger({ trigger: false, id: [] });
+        setUndoTrigger({ trigger: false, notes: [] });
       }, 10000);
     } else {
       undoInterval && clearInterval(undoInterval);
