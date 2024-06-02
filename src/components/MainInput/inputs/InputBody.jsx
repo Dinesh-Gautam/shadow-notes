@@ -1,5 +1,5 @@
 import { useAutoAnimate } from "@formkit/auto-animate/react";
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import styles from "styles/components/input/InputBody.module.scss";
 import { AnchorWrapper, Menu, MenuProvider } from "../../elements/Menu";
@@ -11,7 +11,7 @@ import InputField from "./InputField";
 import ColorAdditions from "./elements/ColorInput";
 import { input as inputNames, inputOptions } from "./inputOptions";
 
-function ColorInput({ input }) {
+function Color({ input }) {
   return (
     <div
       style={{
@@ -44,14 +44,20 @@ function ColorSelection({ value, id }) {
 function InputBody() {
   const { inputs } = useInputs();
   const { onDragEnd, addInputElement, removeElement } = useInputActions();
+
   const [animationParent, enableAnimation] = useAutoAnimate({
     duration: 200,
     easing: "ease-in-out",
   });
 
-  function hasInnerNotes() {
-    return inputs.filter((e) => !e.nonMoveable).length > 0;
-  }
+  const hasNotes = useMemo(
+    () => inputs.filter((e) => !e.nonMoveable).length > 0,
+    [inputs]
+  );
+  const colorInputExists = useMemo(
+    () => !inputs.some((e) => e.name === inputNames.color),
+    [inputs]
+  );
 
   function addColorInput() {
     const colorInput = inputOptions.find((e) => e.name === inputNames.color);
@@ -63,17 +69,17 @@ function InputBody() {
   return (
     <>
       <div className={styles.heading}>
-        {!inputs.some((e) => e.name === inputNames.color) && (
+        {colorInputExists && (
           <button type="button" onClick={() => addColorInput()}>
             +
           </button>
         )}
-        {inputs.map((input, index) => (
+        {inputs.map((input) => (
           <React.Fragment key={input.id}>
             {input.name === inputNames.color && (
               <MenuProvider>
                 <AnchorWrapper>
-                  <ColorInput input={input} />
+                  <Color input={input} />
                 </AnchorWrapper>
                 <Menu>
                   <div className={styles.colorMenu}>
@@ -133,7 +139,7 @@ function InputBody() {
                         draggableId={input.id}
                         index={index}
                       >
-                        {(provided, snapshot) => (
+                        {(provided) => (
                           <div
                             ref={provided.innerRef}
                             {...provided.draggableProps}
@@ -153,7 +159,7 @@ function InputBody() {
 
                 {provided.placeholder}
               </div>
-              {!hasInnerNotes() && <AddInput visible={true} />}
+              {!hasNotes && <AddInput visible={true} />}
             </div>
           )}
         </Droppable>
@@ -171,17 +177,7 @@ function AddInput({ input, visible: v = false }) {
       onMouseEnter={() => !v && setVisible(true)}
       onMouseLeave={() => !v && setVisible(false)}
       className={styles.addInput}
-      style={
-        visible
-          ? {
-              opacity: 1,
-              // pointerEvents: "auto",
-            }
-          : {
-              opacity: 0,
-              // pointerEvents: "none",
-            }
-      }
+      style={visible ? { opacity: 1 } : { opacity: 0 }}
     >
       <div>
         <InputControls index={inputs.findIndex((e) => e.id === input?.id)} />

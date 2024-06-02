@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-
+import { Draggable, Droppable } from "react-beautiful-dnd";
 import styles from "styles/components/input/inputField.module.scss";
 import { LinkPreview, isUrlValid } from "../../elements/LinkPreview";
 import UseSvg from "../../elements/UseSvg";
@@ -8,8 +8,6 @@ import { getStyle } from "../MainInput";
 import useInputActions from "../useInputActions";
 import InputWrapper from "./InputWrapper/InputWrapper";
 import { input as InputOption, listTypes } from "./inputOptions";
-
-import { Draggable, Droppable } from "react-beautiful-dnd";
 
 function useKeyboardEvents() {
   const { removeElement } = useInputActions();
@@ -30,12 +28,6 @@ function useKeyboardEvents() {
       removeElement({ id: input.id });
       return;
     }
-
-    // if (e.code === codes.enterKey && input.name === InputOption.list) {
-    //   e.preventDefault();
-    //   const index = getIndex(input, 1);
-    //   addListElement({ parentId: input.parentId, index });
-    // }
 
     if (e.code === codes.arrowUpKey) {
       const index = getIndex(input, -1);
@@ -94,6 +86,7 @@ function useInputProps() {
     const textAreas = Object.values(inputRef.current).filter(
       (e) => e.tagName === "TEXTAREA"
     );
+
     textAreas.forEach((ele) => {
       ele.style.height = "auto";
       ele.style.height = ele.scrollHeight + "px";
@@ -203,7 +196,7 @@ function ImageInput({ input }) {
 
 function ListFooterButtons({ id, type }) {
   const { addListElement, changeListType } = useInputActions();
-  console.log(type);
+
   return (
     <>
       <button onClick={() => addListElement({ parentId: id })} type="button">
@@ -299,11 +292,6 @@ function ListInputWrapper({ input, children }) {
       className={styles.listInputWrapper}
       onMouseEnter={() => setShow(true)}
       onMouseLeave={() => setShow(false)}
-      style={
-        {
-          // outline: show ? "1px solid rgba(0,0,0,0.2)" : "none",
-        }
-      }
     >
       {show && (
         <div className={styles.dragHandle}>

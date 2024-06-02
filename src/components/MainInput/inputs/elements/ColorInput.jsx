@@ -20,13 +20,14 @@ function getAppliedColors(data) {
   const colorValues = new Set();
 
   for (const { data: colorData } of data) {
-    const colorValue = colorData.find(({ name }) => name === input.name)?.state
+    const colorValue = colorData.find(({ name }) => name === input.color)?.state
       .value;
     if (colorValue) {
       colorValues.add(colorValue);
     }
   }
 
+  console.log(colorValues);
   return Array.from(colorValues);
 }
 
@@ -39,13 +40,13 @@ function ColorAdditions({ input }) {
   return (
     <div>
       <ColorButtons
-        color={randomColors}
+        colors={randomColors}
         input={input}
         headerText="Random Colors"
       />
       {userData && (
         <ColorButtons
-          color={appliedColors}
+          colors={appliedColors}
           input={input}
           headerText="Applied Colors"
         />
@@ -61,25 +62,26 @@ function ColorButtons({ colors, input, headerText }) {
     <>
       <label> {headerText} </label>
       <div className={styles.randomColor}>
-        {colors.map((value, index) => {
-          return (
-            <Button
-              key={index}
-              attr={{
-                value: value,
-                onClick: () => {
-                  changeInputValue({
-                    id: input.id,
-                    value,
-                  });
-                },
-                name: "color_input_value",
-                style: { backgroundColor: value },
-                className: "random-color-btn colro-btn color-filter",
-              }}
-            />
-          );
-        })}
+        {colors &&
+          colors.map((value, index) => {
+            return (
+              <Button
+                key={index}
+                attr={{
+                  value: value,
+                  onClick: () => {
+                    changeInputValue({
+                      id: input.id,
+                      value,
+                    });
+                  },
+                  name: "color_input_value",
+                  style: { backgroundColor: value },
+                  className: "random-color-btn colro-btn color-filter",
+                }}
+              />
+            );
+          })}
       </div>
     </>
   );

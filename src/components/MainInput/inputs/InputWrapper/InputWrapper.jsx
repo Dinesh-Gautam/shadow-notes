@@ -4,7 +4,6 @@ import useInputActions from "../../useInputActions";
 import styles from "styles/components/input/inputWrapper.module.scss";
 
 function getTextWidth(text, font) {
-  // re-use canvas object for better performance
   const canvas =
     getTextWidth.canvas ||
     (getTextWidth.canvas = document.createElement("canvas"));
@@ -14,17 +13,9 @@ function getTextWidth(text, font) {
   return metrics.width;
 }
 
-// function getCssStyle(element, prop) {
-//   return window.getComputedStyle(element, null).getPropertyValue(prop);
-// }
-
-// function getCanvasFont(el = document.body) {
-//   const fontWeight = getCssStyle(el, "font-weight") || "normal";
-//   const fontSize = getCssStyle(el, "font-size") || "16px";
-//   const fontFamily = getCssStyle(el, "font-family") || "Times New Roman";
-
-//   return `${fontWeight} ${fontSize} ${fontFamily}`;
-// }
+function classes(...cls) {
+  return cls.filter(Boolean).join(" ");
+}
 
 function InputWrapper({
   input,
@@ -40,12 +31,7 @@ function InputWrapper({
     <div
       onMouseLeave={() => setShow(false)}
       onMouseEnter={() => setShow(true)}
-      style={
-        {
-          // outline: show ? "2px solid rgba(0, 0, 0, 0.2)" : "none",
-        }
-      }
-      className={styles.container + " " + (isDragging ? styles.dragging : "")}
+      className={classes(styles.container, isDragging ? styles.dragging : "")}
     >
       {show && (
         <div>
@@ -84,21 +70,7 @@ function InputWrapper({
         />
       </div>
       <div className={styles.childContainer}>{children}</div>
-      {inputFooter && (
-        <div
-          // style={
-          // show
-          //   ? {
-          //       opacity: 1,
-          //       pointerEvents: "all",
-          //     }
-          //   : {}
-          // }
-          className={styles.inputFooter}
-        >
-          {inputFooter}
-        </div>
-      )}
+      {inputFooter && <div className={styles.inputFooter}>{inputFooter}</div>}
     </div>
   );
 }

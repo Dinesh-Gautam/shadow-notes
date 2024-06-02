@@ -62,7 +62,12 @@ function convertToBase64(str) {
 }
 
 export function isUrlValid(url) {
-  return !!new URL(url).href;
+  const urlRegex =
+    /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/;
+
+  if (urlRegex.test(url)) {
+    return true;
+  }
 }
 
 export function LinkPreview({ url, useCache = true }) {
