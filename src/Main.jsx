@@ -33,7 +33,6 @@ function Main() {
     <>
       <SideBar />
       <div ref={animationParent} className="mainContainer">
-        {/* <MainInput /> */}
         {userData?.length > 0 && (
           <>
             <OutputFilter />
