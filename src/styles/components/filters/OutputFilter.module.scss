@@ -6,10 +6,6 @@
   gap: $padding-default;
   margin-top: $padding-default;
   flex-wrap: wrap;
-  // position: sticky;
-  // top: 0;
-  // z-index: 9999;
-  // background: rgba($color: #ffffff, $alpha: 1);
 
   @include breakpoint(lg, max) {
     justify-content: center;

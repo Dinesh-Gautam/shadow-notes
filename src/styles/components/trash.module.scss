@@ -3,6 +3,7 @@
 
 .container {
   height: 100%;
+
   .header {
     display: flex;
     align-items: center;
@@ -15,12 +16,13 @@
     border-bottom: 3px solid var(--vless-alpha-text-color);
     padding-bottom: $padding-default;
   }
+
   .contentContainer {
-    // margin-top: $padding-default;
     padding: $padding-default;
     overflow-y: auto;
     height: 100%;
   }
+
   .content {
     height: 100%;
     align-content: start;
@@ -31,7 +33,7 @@
     @include breakpoint(xxl, max) {
       grid-template-columns: 1fr;
     }
-    > span {
+    & > span {
       position: absolute;
       width: 100%;
       text-align: center;

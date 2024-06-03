@@ -14,7 +14,6 @@ $label-margin: 0px;
 }
 
 .header {
-  // background: var(--default-backgroundcolor);
   position: absolute;
   top: $label-margin + ($padding-default * 2);
   left: 0;
@@ -30,8 +29,6 @@ $label-margin: 0px;
     align-self: flex-end;
   }
   button {
-    // background-color: transparent;
-    // box-shadow: none;
     transform: translateY(-50%);
   }
 }
@@ -39,7 +36,6 @@ $label-margin: 0px;
 .inputContainer {
   flex: 1;
   position: relative;
-  // transform: translateY(-100%);
   padding: 0 $padding-default;
   top: $label-margin + 2px;
   width: fit-content;
@@ -72,17 +68,10 @@ $label-margin: 0px;
   padding: $padding-less $padding-default;
   background: var(--default-backgroundcolor);
   box-shadow: $boxShadow-default;
-  // position: absolute;
-  // bottom: 2px;
-  // left: 0;
-  // transform: translateY(100%);
   width: 100%;
   z-index: 100;
   border-radius: $border-radius-default;
   gap: $padding-default;
-  // opacity: 1;
-  // pointer-events: none;
-  // transition: opacity 0.1s ease-in-out;
 
   input,
   span[data-input="true"] {

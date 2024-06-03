@@ -49,8 +49,6 @@
   margin-left: $padding-default;
 }
 .colorFilterScrollBtn {
-  // position: absolute;
-  // top: 0;
   height: 100%;
   border-radius: 0;
   position: relative;
@@ -58,14 +56,12 @@
 }
 
 .colorFilterArrowLeft {
-  // left: 0;
   svg {
     transform: rotate(90deg);
   }
 }
 
 .colorFilterArrowRight {
-  // right: 0;
   svg {
     transform: rotate(-90deg);
   }
