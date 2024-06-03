@@ -1,3 +1,4 @@
+import ShareIcon from "@mui/icons-material/Share";
 import {
   Badge,
   FormControl,
@@ -6,11 +7,10 @@ import {
   Switch,
 } from "@mui/material";
 import { useState } from "react";
-import { useAuth } from "../../context/AuthContext";
-import { AnchorWrapper, Menu, MenuProvider } from "../elements/Menu";
-import ShareIcon from "@mui/icons-material/Share";
-import { useData } from "../../context/DatabaseContext";
 import styles from "styles/components/ShareButton.module.scss";
+import { useAuth } from "../../context/AuthContext";
+import { useData } from "../../context/DatabaseContext";
+import { AnchorWrapper, Menu, MenuProvider } from "../elements/Menu";
 
 function ShareButton({ docId, data }) {
   const { updateDocField } = useData();
@@ -32,7 +32,7 @@ function ShareButton({ docId, data }) {
         </button>
       </AnchorWrapper>
 
-      <Menu outer={true}>
+      <Menu>
         <div className={styles.container}>
           <FormControl component="fieldset">
             <FormControlLabel
@@ -55,9 +55,6 @@ function ShareButton({ docId, data }) {
               labelPlacement="start"
             />
           </FormControl>
-          {/* <div className={styles.linkContainer}>
-            <span>{sharingUrl}</span>
-          </div> */}
           {sharingUrl && <CopyToClipboardButton text={sharingUrl} />}
         </div>
       </Menu>
@@ -67,6 +64,7 @@ function ShareButton({ docId, data }) {
 
 const CopyToClipboardButton = ({ text }) => {
   const [open, setOpen] = useState(false);
+
   const handleClick = () => {
     setOpen(true);
     navigator.clipboard.writeText(text);
@@ -89,7 +87,6 @@ function useSharedUrl(docId) {
   const { currentUser } = useAuth();
 
   const websiteDomain = window.location.host;
-
   // Concatenate the URL components
   const sharingUrl = `http://${websiteDomain}/shared/${currentUser.uid}/${docId}`;
 

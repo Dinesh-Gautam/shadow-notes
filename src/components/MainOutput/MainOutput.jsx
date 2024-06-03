@@ -7,102 +7,49 @@ import DropDown from "../elements/DropDown";
 import Loading from "../elements/Loading";
 import AdditionalButtons from "./AdditionalButtons";
 import OutputTemplate, { HighlightTextOnSearchMatch } from "./OutputTemplate";
+import { useMemo } from "react";
+
+function getNoteField(data, name) {
+  return data.find((data) => data.name === name);
+}
 
 function MainOutput() {
   const { filterData: filteredUserData, userData: originalData } = useData();
 
-  function isAnyFilterApplied() {
-    return Object.keys(filteredUserData).length > 0;
-  }
+  const isAnyFilterApplied = useMemo(
+    () => Object.keys(filteredUserData).length > 0,
+    [filteredUserData]
+  );
 
-  function getFilteredData() {
-    return originalData.filter((data) => {
-      return Object.keys(filteredUserData).every((filterKey) => {
-        return filters[filterKey].filterFn(data, filteredUserData[filterKey]);
-      });
-    });
-  }
+  const getFilteredData = useMemo(() => {
+    if (!originalData || !Object.keys(filteredUserData).length) return;
 
-  // originalData.filter(({ data, linkSharing, star }) => {
-  //   return Object.keys(filteredUserData).every((filter) => {
-  // if (filter === "colorFIlter") {
-  //   return data.some(
-  //     (dataFields) =>
-  //       dataFields.name === input.color &&
-  //       dataFields.state.value === filteredUserData.colorFIlter
-  //   );
-  // } else if (filter === "searchFilter") {
-  //   return data.some((dataFields) => {
-  //     return RegExp(filteredUserData[filter].toLowerCase()).test(
-  //       dataFields.state?.value.toLowerCase()
-  //     );
-  //   });
-  // } else if (filter === "shareFilter") {
-  //   return linkSharing;
-  // } else if (filter === "staredFilter") {
-  //   return star;
-  // }
-  //     return false;
-  //   });
-  // })
+    return originalData.filter((data) =>
+      Object.keys(filteredUserData).every((filterKey) =>
+        filters[filterKey].filterFn(data, filteredUserData[filterKey])
+      )
+    );
+  }, [filteredUserData, originalData]);
 
-  const userData = isAnyFilterApplied()
-    ? originalData && getFilteredData()
-    : originalData;
+  const userData = isAnyFilterApplied ? getFilteredData : originalData;
 
-  // const [animationParent] = useAutoAnimate();
   const [animationParent2] = useAutoAnimate({ duration: 100 });
+
   return (
     <div className="mainoutput_container">
       <div ref={animationParent2}>
         <GetOutputFilterTags />
       </div>
-      {/* {Object.keys(filteredUserData).length > 0 ? (
-        <span className="output_filter_label">
-          {filteredUserData.colorFIlter && (
-            <div className="color_filter_container random_color_small output">
-              {outputFilterString}
-              <Button
-                attr={{
-                  value: filteredUserData.colorFIlter,
-                  name: "color_input_value",
-                  style: { backgroundColor: filteredUserData.colorFIlter },
-                }}
-              />
-            </div>
-          )}
-
-          {filteredUserData.searchFilter &&
-            `${
-              Object.keys(filteredUserData).length < 2
-                ? outputFilterString
-                : " and"
-            } "${filteredUserData.searchFilter}"`}
-
-          {filteredUserData.shareFilter &&
-            `${
-              Object.keys(filteredUserData).length < 2
-                ? outputFilterString
-                : " and"
-            } "Shared Notes"`}
-        </span>
-      ) : null} */}
       <div className="mainoutput_wraper">
         {!userData ? (
-          Array(10)
-            .fill("")
-            .map((e, i) => <Loading key={i} type="simple-card" />)
+          <LoadingCards />
         ) : userData.length < 1 ? (
           <span> Nothing Here. </span>
         ) : (
           <AnimatePresence>
             {userData.map(({ data, id, publishDate, linkSharing, star }) => {
-              const headingText = data.find(
-                (data) => data.name === input.heading
-              );
-              const DropdownBackgroundColor = data.find(
-                (data) => data.name === input.color
-              );
+              const headingText = getNoteField(data, input.heading);
+              const DropdownBackgroundColor = getNoteField(data, input.color);
               return (
                 <DropDown
                   key={id}
@@ -138,6 +85,12 @@ function MainOutput() {
       </div>
     </div>
   );
+}
+
+function LoadingCards() {
+  return Array(10)
+    .fill("")
+    .map((e, i) => <Loading key={i} type="simple-card" />);
 }
 
 export default MainOutput;

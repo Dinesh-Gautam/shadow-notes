@@ -27,7 +27,6 @@ function getAppliedColors(data) {
     }
   }
 
-  console.log(colorValues);
   return Array.from(colorValues);
 }
 

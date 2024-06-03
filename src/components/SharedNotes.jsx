@@ -4,11 +4,11 @@ import { db } from "../firebase";
 import { useAuth } from "../context/AuthContext";
 import Loading from "./elements/Loading";
 import DropDown from "./elements/DropDown";
-import SimpleOutputTemplate from "./MainOutput/SimpleOutputTemplet";
 import { input } from "./MainInput/inputs/inputOptions";
 import { Link } from "react-router-dom";
 
 import styles from "styles/components/Shared.module.scss";
+import OutputTemplate from "./MainOutput/OutputTemplate";
 
 function SharedNotes() {
   const [userData, setUserData] = useState(null);
@@ -104,7 +104,8 @@ function SharedNotes() {
                   //   <HighlightTextOnSearchMatch text={headingText.state.value} />
                 }
               >
-                <SimpleOutputTemplate
+                <OutputTemplate
+                  simple={true}
                   publishDate={publishDate}
                   userData={data}
                   completeData={userData}

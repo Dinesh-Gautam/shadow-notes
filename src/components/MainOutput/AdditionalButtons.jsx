@@ -1,25 +1,21 @@
+import { Delete, Edit, Star } from "@mui/icons-material";
+import { serverTimestamp } from "firebase/firestore";
 import React from "react";
 import { useData } from "../../context/DatabaseContext";
 import { useInputs } from "../MainInput/InputContext";
 import Button from "../MainInput/inputs/elements/Button";
-import { serverTimestamp } from "firebase/firestore";
-import ShareButton from "./ShareButton";
-import { Delete, Edit, Star } from "@mui/icons-material";
 import { useMenu } from "../elements/Menu";
+import ShareButton from "./ShareButton";
 
 function AdditionalButtons({ docId, userData, data }) {
   const { inputsDispatch, setEditMode } = useInputs();
-  const { setModalOpen } = useInputs();
   const { updateData_fireStore, updateDocField } = useData();
+  const { setModalOpen } = useInputs();
   const { setMenuOpen } = useMenu();
-  const editButtonHandler = () => {
-    setEditMode((prev) => {
-      return { edit: true, editParameters: docId };
-    });
-    inputsDispatch({
-      type: "cancel",
-    });
 
+  const editButtonHandler = () => {
+    setEditMode({ edit: true, editParameters: docId });
+    inputsDispatch({ type: "cancel" });
     inputsDispatch({ type: "edit", payload: userData });
     setMenuOpen(false);
     setModalOpen(true);

@@ -1,3 +1,4 @@
+import { Error } from "@mui/icons-material";
 import {
   arrayUnion,
   collection,
@@ -7,16 +8,13 @@ import {
 } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { db } from "../firebase";
-import DropDown from "./elements/DropDown";
-
-import { useAuth } from "../context/AuthContext";
-import { input } from "./MainInput/inputs/inputOptions";
-import SimpleOutputTemplate from "./MainOutput/SimpleOutputTemplet";
-
-import { Error } from "@mui/icons-material";
 import styles from "styles/components/Shared.module.scss";
+import { useAuth } from "../context/AuthContext";
+import { db } from "../firebase";
+import { input } from "./MainInput/inputs/inputOptions";
+import DropDown from "./elements/DropDown";
 import Loading from "./elements/Loading";
+import OutputTemplate from "./MainOutput/OutputTemplate";
 
 function Shared() {
   let { userId, docId } = useParams();
@@ -99,7 +97,8 @@ function Shared() {
                   ?.value
               }
             >
-              <SimpleOutputTemplate
+              <OutputTemplate
+                simple={true}
                 publishDate={data.publishDate}
                 userData={data.data}
                 completeData={data}
