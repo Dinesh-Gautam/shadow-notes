@@ -1,0 +1,106 @@
+// Main Output
+.mainoutput_wraper {
+  margin-bottom: $padding-default;
+  display: grid;
+  gap: $padding-default;
+  grid-template-columns: 1fr 1fr;
+  position: relative;
+  > span {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    margin-top: $padding-large;
+    font-size: $fontSize-large;
+    filter: opacity(0.5);
+    font-weight: 700;
+    user-select: none;
+  }
+}
+
+.dropdown_extraButtons {
+  display: flex;
+  height: 100%;
+  align-items: center;
+}
+
+.OutputTemplate_wraper {
+  padding: $padding-default $padding-large;
+
+  .label_container {
+    position: relative;
+    bottom: -4px;
+    background: transparent;
+    z-index: 1;
+  }
+
+  label {
+    font-size: $fontSize-small;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--less-alpha-text-color);
+    background: var(--default-color);
+    padding-right: $padding-veryLess;
+  }
+
+  h2,
+  h5 {
+    font-size: $fontSize-medium;
+  }
+  h2 {
+    font-weight: 500;
+    font-size: $fontSize-large - 4px;
+  }
+  h5 {
+    font-weight: 500;
+  }
+  h6,
+  span {
+    font-size: $fontSize-small;
+  }
+  p {
+    font-weight: 400;
+    font-size: $fontSize-default;
+    width: 100%;
+    text-rendering: auto;
+    letter-spacing: normal;
+    word-spacing: normal;
+    line-height: normal;
+    text-transform: none;
+    text-indent: 0px;
+    display: inline-block;
+    text-align: start;
+    appearance: auto;
+    -webkit-rtl-ordering: logical;
+    cursor: text;
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+  }
+  img {
+    display: block;
+    width: 100%;
+    max-width: 15%;
+    margin: 4px 0;
+    border-radius: $border-radius-default;
+    box-shadow: $boxShadow-default;
+  }
+  ul {
+    margin-left: $padding-default;
+  }
+  .output_footer {
+    margin-top: $padding-less;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    .publishing-date {
+      display: flex;
+      gap: 4px;
+      margin-left: auto;
+    }
+  }
+}
+
+.output_filter_label {
+  display: flex;
+  gap: $padding-veryLess;
+  margin-bottom: $padding-default;
+}

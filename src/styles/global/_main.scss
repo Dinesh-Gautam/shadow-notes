@@ -1,0 +1,42 @@
+main {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  height: 100%;
+  gap: $padding-default;
+}
+
+.container {
+  padding: $padding-default;
+  height: 100%;
+  overflow: auto;
+}
+
+.mainContainer {
+  grid-column: 2/3;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+  padding: 0 $padding-default;
+}
+
+.input_container {
+  background-color: var(--default-color);
+  padding: $padding-medium $padding-medium * 2;
+  border-radius: $border-radius-default;
+  box-shadow: $boxShadow-default;
+  img {
+    display: block;
+    width: 100%;
+    max-width: 15%;
+    margin: $padding-default 0;
+    border-radius: $border-radius-default;
+    box-shadow: $boxShadow-default;
+  }
+  input,
+  textarea,
+  span {
+    &:focus {
+      box-shadow: inset $boxShadow-input !important;
+    }
+  }
+}

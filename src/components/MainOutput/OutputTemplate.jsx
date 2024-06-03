@@ -81,96 +81,93 @@ function OutputTemplate({
 
         return (
           <highlightTextContext.Provider
+            key={id}
             value={{ disableHighLightingText, setDisableHighLightingText }}
           >
-            <React.Fragment key={id}>
-              {name === input.heading || name === input.color || (
-                <div className="label_container">
-                  <label>
-                    {additionalValue?.labelValue === undefined ||
-                    additionalValue?.labelValue === null
-                      ? value
-                      : additionalValue?.labelValue}
-                  </label>
+            {name === input.heading || name === input.color || (
+              <div className="label_container">
+                <label>
+                  {additionalValue?.labelValue === undefined ||
+                  additionalValue?.labelValue === null
+                    ? value
+                    : additionalValue?.labelValue}
+                </label>
+              </div>
+            )}
+            {name === input.title && (
+              <h2>{<HighlightTextOnSearchMatch text={inputValue} />}</h2>
+            )}
+            {name === input.description && (
+              <h5>{<HighlightTextOnSearchMatch text={inputValue} />}</h5>
+            )}
+            {name === input.paragraph && (
+              <p>{<HighlightTextOnSearchMatch text={inputValue} />}</p>
+            )}
+            {name === input.link && (
+              <a rel="noreferrer" target="_blank" href={url.href}>
+                <div>
+                  {state?.valueName ? (
+                    <HighlightTextOnSearchMatch text={state?.valueName} />
+                  ) : (
+                    <HighlightTextOnSearchMatch text={url.hostname} />
+                  )}
+                  <LinkPreview url={url.href} />
                 </div>
-              )}
-              {name === input.title && (
-                <h2>{<HighlightTextOnSearchMatch text={inputValue} />}</h2>
-              )}
-              {name === input.description && (
-                <h5>{<HighlightTextOnSearchMatch text={inputValue} />}</h5>
-              )}
-              {name === input.paragraph && (
-                <p>{<HighlightTextOnSearchMatch text={inputValue} />}</p>
-              )}
-              {name === input.link && (
-                <a rel="noreferrer" target="_blank" href={url.href}>
-                  <div>
-                    {state?.valueName ? (
-                      <HighlightTextOnSearchMatch text={state?.valueName} />
-                    ) : (
-                      <HighlightTextOnSearchMatch text={url.hostname} />
-                    )}
-                    <LinkPreview url={url.href} />
-                  </div>
-                </a>
-              )}
-              {name === input.image && (
-                <img loading="lazy" src={inputValue} alt={inputValue} />
-              )}
+              </a>
+            )}
+            {name === input.image && (
+              <img loading="lazy" src={inputValue} alt={inputValue} />
+            )}
 
-              {}
-              {name === input.list && (
-                <ul
-                  style={{
-                    listStyle: type === listTypes.checked ? "none" : "initial",
-                  }}
-                  className="list_input_ul"
-                >
-                  {userData
-                    .filter((e) => e.parentId === id)
-                    .map((data) => {
-                      return (
-                        <li
-                          style={{
-                            position: "relative",
-                          }}
-                          key={data.id}
-                        >
-                          {type === listTypes.checked && (
-                            <input
-                              onChange={(event) => {
-                                const updatedData = userData.map((e) =>
-                                  e.id === data.id
-                                    ? {
-                                        ...e,
-                                        state: {
-                                          ...e.state,
-                                          checked: event.target.checked,
-                                        },
-                                      }
-                                    : e
-                                );
+            {}
+            {name === input.list && (
+              <ul
+                style={{
+                  listStyle: type === listTypes.checked ? "none" : "initial",
+                }}
+                className="list_input_ul"
+              >
+                {userData
+                  .filter((e) => e.parentId === id)
+                  .map((data) => {
+                    return (
+                      <li
+                        style={{
+                          position: "relative",
+                        }}
+                        key={data.id}
+                      >
+                        {type === listTypes.checked && (
+                          <input
+                            onChange={(event) => {
+                              const updatedData = userData.map((e) =>
+                                e.id === data.id
+                                  ? {
+                                      ...e,
+                                      state: {
+                                        ...e.state,
+                                        checked: event.target.checked,
+                                      },
+                                    }
+                                  : e
+                              );
 
-                                updateData_fireStore(docId, {
-                                  data: updatedData,
-                                });
-                              }}
-                              className={inputStyles.listCheckbox}
-                              type="checkbox"
-                              checked={data.state.checked ?? false}
-                            />
-                          )}
-
-                          <HighlightTextOnSearchMatch
-                            text={data?.state?.value}
+                              updateData_fireStore(docId, {
+                                data: updatedData,
+                              });
+                            }}
+                            className={inputStyles.listCheckbox}
+                            type="checkbox"
+                            checked={data.state.checked ?? false}
                           />
-                        </li>
-                      );
-                    })}
-                </ul>
-              )}
-            </React.Fragment>
+                        )}
+
+                        <HighlightTextOnSearchMatch text={data?.state?.value} />
+                      </li>
+                    );
+                  })}
+              </ul>
+            )}
           </highlightTextContext.Provider>
         );
       })}

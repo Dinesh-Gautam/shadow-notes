@@ -1,0 +1,189 @@
+:root {
+  --default-backgroundcolor: #f0f0f0;
+  --default-color: #fafafa;
+  --default-text-color: rgba(0, 0, 0, 0.8);
+  --less-alpha-text-color: rgba(0, 0, 0, 0.5);
+  --vless-alpha-text-color: rgba(0, 0, 0, 0.05);
+  --theme: #b8b8b8;
+  --link-text-color: #2372e9;
+  --default-border-radius: #{$border-radius-default};
+  --boxShadow-more-depth: #{$boxShadow-more-depth};
+  --shadow-alpha: 0.1;
+  --text-selection-backgroundColor: yellow;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+}
+
+html {
+  &[data-theme="dark"] {
+    --default-backgroundcolor: hsl(0, 0%, 12%);
+    --default-color: hsl(0, 0%, 9%);
+    --default-text-color: rgba(255, 255, 255, 0.8);
+    --less-alpha-text-color: rgba(255, 255, 255, 0.5);
+    --vless-alpha-text-color: rgba(255, 255, 255, 0.05);
+    --theme: #000;
+    --shadow-alpha: 0.3;
+    --text-selection-backgroundColor: yellow;
+    --text-selection-color: #000;
+
+    .color-filter {
+      filter: opacity(0.7);
+    }
+  }
+}
+
+button,
+body,
+a,
+svg {
+  color: var(--default-text-color);
+  fill: var(--default-text-color);
+}
+
+#root {
+  height: 100%;
+}
+
+body {
+  background-color: var(--default-backgroundcolor);
+  font-family: $font-default;
+  font-weight: 400;
+  max-height: 100vh;
+}
+
+a {
+  text-decoration: none;
+  color: var(--link-text-color);
+}
+
+button {
+  background-color: var(--default-backgroundcolor);
+  border: none;
+  padding: math.div($padding-default, 2) $padding-default;
+  font-size: $fontSize-default;
+  font-family: $font-default;
+  border-radius: $border-radius-default;
+  box-shadow: $boxShadow-default;
+  cursor: pointer;
+  text-transform: capitalize;
+  color: var(--default-text-color);
+  outline: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: $padding-default;
+  svg {
+    opacity: 0.8;
+    height: $fontSize-medium;
+    // height: 100%;
+  }
+  &:active {
+    box-shadow: inset $boxShadow-default;
+  }
+}
+
+input,
+select,
+textarea,
+span[data-input="true"] {
+  padding: math.div($padding-default, 2) $padding-default;
+  background-color: var(--default-color);
+  border: $border-default;
+  border-radius: 0 $border-radius-default $border-radius-default
+    $border-radius-default;
+  outline: none;
+  font-size: $fontSize-medium;
+  color: var(--default-text-color);
+}
+input,
+span[data-input="true"] {
+  width: 100%;
+}
+
+input,
+select,
+textarea,
+button,
+span {
+  font-family: $font-default;
+}
+
+textarea {
+  width: 100%;
+  max-width: 100%;
+  min-height: $padding-large * 2;
+  min-width: $padding-default;
+  resize: vertical;
+  overflow: hidden;
+}
+
+select {
+  height: 1ch;
+  padding: 0 $padding-default;
+  padding-right: $padding-large;
+  font-size: $fontSize-default;
+  font-family: $font-default;
+  border-radius: $border-radius-default;
+  appearance: none;
+  background-image: linear-gradient(
+      45deg,
+      transparent 50%,
+      var(--less-alpha-text-color) 50%
+    ),
+    linear-gradient(135deg, var(--less-alpha-text-color) 50%, transparent 50%);
+  background-position: calc(100% - 20px) calc(1em), calc(100% - 15px) calc(1em),
+    calc(100% - 2.5em) 0.5em;
+  background-size: 5px 5px, 5px 5px, 1px 1.5em;
+  height: 100%;
+  box-sizing: content-box;
+  background-repeat: no-repeat;
+}
+
+.ml0 {
+  margin-left: 0;
+}
+.m0 {
+  margin: 0;
+}
+
+.random_color {
+  display: flex;
+  align-items: center;
+  gap: $padding-default;
+  flex-wrap: wrap;
+
+  button {
+    padding: $padding-default;
+    box-shadow: $boxShadow-small;
+    border: 3px solid rgba(255, 255, 255, 0.8);
+    transition: transform 0.2s ease-in-out;
+    height: $padding-less;
+    width: $padding-less;
+    &:hover {
+      transform: scale(1.2);
+    }
+  }
+  &_small {
+    display: flex;
+    align-items: center;
+    gap: $padding-less;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    button {
+      border: 3px solid rgba(255, 255, 255, 0.8);
+      padding: $padding-less / 1.2;
+      height: $padding-veryLess;
+      width: $padding-veryLess;
+    }
+  }
+}
