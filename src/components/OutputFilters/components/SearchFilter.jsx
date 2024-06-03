@@ -12,19 +12,13 @@ function SearchFilter() {
     const value = e.target.value;
     updateFilterValue(value, filters.searchFilter.name);
   };
+
   const handleSearchClear = () => {
     updateFilterValue(null, filters.searchFilter.name);
-    // handleSearchFilter({ target: { value: "" } });
   };
+
   return (
     <div className={styles.filterBySearch}>
-      {/* !! DONT REMOVE BELOW CODE  !! */}
-
-      {/* <select name="search-select">
-        <option value="all">all</option>
-      </select> */}
-      {/* <Separator type="vertical-medium" /> */}
-
       <input
         onChange={handleSearchFilter}
         value={filterData?.searchFilter || ""}

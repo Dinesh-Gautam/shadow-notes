@@ -7,6 +7,7 @@ import { filters } from "../filterContext";
 
 function FilterButton() {
   const { filterData, updateFilterValue } = useData();
+
   return (
     <MenuProvider>
       <AnchorWrapper>
@@ -17,9 +18,7 @@ function FilterButton() {
       <Menu>
         <FormControl sx={{ px: 2 }} component="fieldset">
           <FormControlLabel
-            sx={{
-              gap: 4,
-            }}
+            sx={{ gap: 4 }}
             value="Shared Notes"
             control={
               <Switch
@@ -78,7 +77,6 @@ function Label({ icon, text }) {
       }}
     >
       {icon}
-
       <span>{text}</span>
     </Box>
   );

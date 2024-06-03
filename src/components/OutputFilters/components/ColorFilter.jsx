@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useLayoutEffect, useMemo, useRef, useState } from "react";
 import styles from "styles/components/filters/ColorFilter.module.scss";
 import { useData } from "../../../context/DatabaseContext";
 import Button from "../../MainInput/inputs/elements/Button";
@@ -11,27 +11,22 @@ function ColorFilter({ appliedColors }) {
 
   const colorFilterBtnRef = useRef(null);
 
-  const [ScrollDisplay, setScrollDisplay] = useState({
-    all: false,
-  });
-  const [uniqueAppliedColors, setuniqueAppliedColors] = useState([]);
-  useEffect(() => {
-    appliedColors &&
-      setuniqueAppliedColors(
-        appliedColors.filter((e, index, arr) => arr.indexOf(e) === index)
-      );
-  }, [appliedColors]);
+  const uniqueAppliedColors = useMemo(
+    () =>
+      appliedColors &&
+      appliedColors.filter((e, index, arr) => arr.indexOf(e) === index),
+    [appliedColors]
+  );
+  const [ScrollDisplay, setScrollDisplay] = useState({ all: false });
 
-  useEffect(() => {
-    setScrollDisplay((prev) => {
-      return {
-        ...prev,
-        all:
-          colorFilterBtnRef.current.clientWidth < 1
-            ? false
-            : colorFilterBtnRef.current.scrollWidth !==
-              colorFilterBtnRef.current.clientWidth,
-      };
+  useLayoutEffect(() => {
+    setScrollDisplay({
+      all:
+        colorFilterBtnRef.current &&
+        (colorFilterBtnRef.current?.clientWidth < 1
+          ? false
+          : colorFilterBtnRef.current.scrollWidth !==
+            colorFilterBtnRef.current.clientWidth),
     });
   }, [uniqueAppliedColors]);
 
@@ -48,6 +43,7 @@ function ColorFilter({ appliedColors }) {
   const colorFIlterScrollHandlerRight = (e) => {
     e.preventDefault();
     const btnParent = colorFilterBtnRef.current;
+
     btnParent.scroll(
       Math.min(
         btnParent.scrollLeft + btnParent.clientWidth,
@@ -66,9 +62,7 @@ function ColorFilter({ appliedColors }) {
     <div className={styles.colorFilter}>
       <Button
         attr={{
-          onClick: () => {
-            updateFilterValue(null, filters.colorFilter.name);
-          },
+          onClick: () => updateFilterValue(null, filters.colorFilter.name),
         }}
         text="All"
       />
@@ -76,13 +70,7 @@ function ColorFilter({ appliedColors }) {
         type={ScrollDisplay.all ? "vertical-medium" : "vertical-medium"}
       />
       <div
-        style={
-          ScrollDisplay.all
-            ? {
-                marginLeft: 0,
-              }
-            : {}
-        }
+        style={ScrollDisplay.all ? { marginLeft: 0 } : {}}
         className={styles.colorContainer}
       >
         {ScrollDisplay.all && (

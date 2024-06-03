@@ -28,6 +28,7 @@ export const filters = {
       );
     },
   },
+
   searchFilter: {
     name: "searchFilter",
     label: (value) => `'${value}'`,
@@ -47,6 +48,7 @@ export const filters = {
       return data?.linkSharing ?? false;
     },
   },
+
   staredFilter: {
     name: "staredFilter",
     label: (value) => "Stared notes",
@@ -102,7 +104,6 @@ export function GetOutputFilterTags() {
                 color: "var(--default-text-color) !important",
               },
             }}
-            // icon={icon}
             label={label}
             onDelete={() => {
               updateFilterValue(null, key);
