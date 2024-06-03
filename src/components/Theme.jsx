@@ -12,7 +12,6 @@ function getDefaultTheme() {
 }
 
 export function initializeTheme() {
-  // get Theme from localStorage
   const theme = localStorage.getItem("theme");
   if (theme) updateTheme(theme);
 }

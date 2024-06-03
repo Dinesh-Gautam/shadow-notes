@@ -1,25 +1,24 @@
-import { Fragment, useState } from "react";
-import { useAuth } from "../context/AuthContext";
-import { AnchorWrapper, Menu, MenuProvider } from "./elements/Menu";
-import { ModalProvider, useModal } from "./elements/Modal";
-import UseSvg from "./elements/UseSvg";
-
-import Separator from "./elements/Separator";
-import TrashBtn from "./Trash/TrashBtn";
-
 import {
   AccountCircle,
   GroupOutlined,
   LinkOutlined,
 } from "@mui/icons-material";
+import { Fragment, useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "styles/components/SideBar.module.scss";
+import { useAuth } from "../context/AuthContext";
 import { ToggleButton } from "./Theme";
+import TrashBtn from "./Trash/TrashBtn";
+import { AnchorWrapper, Menu, MenuProvider } from "./elements/Menu";
+import { ModalProvider, useModal } from "./elements/Modal";
+import Separator from "./elements/Separator";
+import UseSvg from "./elements/UseSvg";
 
 function SideBar() {
   const { logout, isGuestUser, linkAccount, getUserInfo } = useAuth();
   const { photoURL, displayName, email } = getUserInfo();
   const { setModalOpen } = useModal();
+
   return (
     <div className={styles.sideBarContainer}>
       <div className={styles.upperContainer}>
