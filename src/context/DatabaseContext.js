@@ -1,24 +1,20 @@
 // import { v4 as uuidv4 } from "uuid";
-import React, { useContext, useEffect, useState } from "react";
 import {
+  addDoc,
   collection,
+  deleteDoc,
   doc,
   onSnapshot,
-  setDoc,
-  addDoc,
-  deleteDoc,
-  where,
-  query,
   orderBy,
-  getDocs,
-  getDoc,
+  query,
+  setDoc,
   updateDoc,
+  where,
 } from "firebase/firestore";
+import React, { useContext, useEffect, useState } from "react";
+import useOutputFilters from "../components/OutputFilters/filterContext";
 import { db } from "../firebase";
 import { useAuth } from "./AuthContext";
-import { uuidv4 } from "@firebase/util";
-import { input, listTypes } from "../components/MainInput/inputs/inputOptions";
-import useOutputFilters from "../components/OutputFilters/filterContext";
 
 const dataContext = React.createContext();
 
