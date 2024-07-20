@@ -2,7 +2,7 @@ import {
   linkWithPopup,
   onAuthStateChanged,
   signInAnonymously,
-  signInWithRedirect,
+  signInWithPopup,
   signOut,
 } from "firebase/auth";
 import React, { useContext, useEffect, useState } from "react";
@@ -35,7 +35,7 @@ export function AuthProvider({ children }) {
   }
 
   function login() {
-    signInWithRedirect(auth, googleProvider)
+    signInWithPopup(auth, googleProvider)
       .then((result) => {
         const user = result.user;
         setCurrentUser(user);
